@@ -8,6 +8,7 @@
         exit; // Exit the script to prevent further execution
     }
 
+    
 ?>
 
 
@@ -159,6 +160,12 @@
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
                     <form class="form-horizontal mt-4" method="post" action="function/funct.php">
+                    <div class="form-group">
+                                    <label for="idnumber" class="col-sm-2 control-label">Patient ID Number</label>
+                                    <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="patient_name" class="col-sm-2 control-label">Patient Name</label>
                                     <div class="col-sm-10">

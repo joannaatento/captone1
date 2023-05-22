@@ -80,12 +80,15 @@
     }
     
 
-    if(isset($_POST['submit_dental'])){ // pag get ng data 
+    if(isset($_POST['submit_dental'])){ // pag get ng data
+        
+        $user_id = $_POST['user_id']; 
+        $idnumber = $_POST['idnumber']; 
         $patient_name = $_POST['patient_name'];
         $date = $_POST['date'];
         $dentist_name = $_POST['dentist_name'];
 
-        $sql = "INSERT INTO dental VALUES ('','$patient_name','$date','$dentist_name')";
+        $sql = "INSERT INTO dental VALUES ('','$user_id','$idnumber','$patient_name','$date','$dentist_name')";
         if(mysqli_query($conn, $sql)){
             // echo "<script>window.history.go(-1);</script>";
             header('location: ../dental.php');
@@ -99,4 +102,5 @@
             ";
         }
     }
+    
 ?>

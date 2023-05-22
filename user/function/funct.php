@@ -135,5 +135,25 @@
         }
     }
     
+    if(isset($_POST['submit_dental'])){ // pag get ng data
+        
+        $idnumber = $_POST['idnumber']; 
+        $patient_name = $_POST['patient_name'];
+        $date = $_POST['date'];
+        $dentist_name = $_POST['dentist_name'];
 
+        $sql = "INSERT INTO dental VALUES ('','$idnumber','$patient_name','$date','$dentist_name')";
+        if(mysqli_query($conn, $sql)){
+            // echo "<script>window.history.go(-1);</script>";
+            header('location: ../dental.php');
+            echo $_SESSION['success'] ="
+                <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+                    <h2 style='
+                    color: #fff;
+                    font-size: 16px;
+                    margin-left: 10px;'>Dental Appointment Added.</h2>
+                </div>
+            ";
+        }
+    }
 ?>

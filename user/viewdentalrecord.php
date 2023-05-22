@@ -2,7 +2,7 @@
     session_start();
     include '../db.php';
 
-    if (!isset($_SESSION['admin_id'])){
+    if (!isset($_SESSION['user_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
@@ -36,20 +36,7 @@
 
 <body class="app">   
 
-<?php
-$sql = "SELECT * FROM dental";
-$result = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-  $row = $result->fetch_assoc(); 
-  $idnumber = $row['idnumber'];
-  $fullname = $row['fullname'];
-  $date = $row['date'];
-  $dentist_name = $row['dentist_name'];
-    }
- else {
- } 
-?>
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -65,8 +52,8 @@ if (mysqli_num_rows($result) > 0) {
 				            <img src="assets/images/user.png">
 				             <div class="app-utility-item app-user-dropdown dropdown">
 
-                   <?php  if (isset($_SESSION['username'])) : ?>
-                                    <p><?php echo $_SESSION['username']; ?></p>
+                   <?php  if (isset($_SESSION['fullname'])) : ?>
+                                    <p><?php echo $_SESSION['fullname']; ?></p>
                                     <?php endif ?></a>
                    </div>
 				   <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"></a>
@@ -169,38 +156,48 @@ if (mysqli_num_rows($result) > 0) {
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
                     <table class="styled-table">
-                            <thead>
-                                <tr>
-                                <th>Patient ID Number</th>
-                                <th>Patient ID Number</th>
-                                <th>Patient Name</th>
-                                <th>Date</th>
-                                <th>Dentist Name</th>
-                               
-                                </tr>
-                            </thead>
-                            <tbody id="healthRecordTableBody">
-                     <?php
+                    <thead>
+    <tr>
+        <th>Patient ID Number</th>
+        <th>Patient Name</th>
+        <th>Date</th>
+        <th>Dentist Name</th>
+    </tr>
+</thead>
+<tbody>
+<?php
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM dental WHERE idnumber = '$user_id'";
+$result = mysqli_query($conn, $sql);
 
-                                $sql = "SELECT * FROM dental";
-                                $result = mysqli_query($conn, $sql);
+if ($result && mysqli_num_rows($result) > 0) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    $idnumber = $row['idnumber'];
+    $fullname = $row['fullname'];
+    $date = $row['date'];
+    $dentist_name = $row['dentist_name'];
+    ?>
+    <tr>
+        <td><?php echo $idnumber; ?></td>
+        <td><?php echo $fullname; ?></td>
+        <td><?php echo $date; ?></td>
+        <td><?php echo $dentist_name; ?></td>
 
+        <td>
+        
+    </tr>
 
-                                while($row = $result->fetch_assoc()){
-                                ?>
-                                <tr>
-                                <td><?php echo $row['user_id']; ?></td>
-                                <td><?php echo $row['idnumber']; ?></td>
-                                <td><?php echo $row['patient_name']; ?></td>
-                                <td><?php echo $row['date']; ?></td>
-                                <td><?php echo $row['dentist_name']; ?></td>
-                                
+    <tr>
 
-                              
-                                </tr>
+  </tr>
+    <?php
+  }
+} else {
+  echo "<tr><td colspan='4'>No records found.</td></tr>";
+}
+?>
+</tbody>
 
-                                <?php } ?>
-  </tbody>
 </table>
 				    </div><!--//app-card-body-->
 				</div>			    

@@ -117,7 +117,7 @@
 										<path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
 										</svg>
 									</span>
-									<span class="nav-link-text">Request Schedule</span>
+									<span class="nav-link-text">Request Dental Schedule</span>
 									<span class="submenu-arrow">
 										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 											<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -126,8 +126,8 @@
 								</a>
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
+										<li class="submenu-item"><a class="submenu-link active" href="adddentalmessage.php">Add Dental Schedule</a></li>
 										<li class="submenu-item"><a class="submenu-link active">View Dental Record</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="medical.php">View Medical Record</a></li>
 									</ul>
 								</div>
 							</li>

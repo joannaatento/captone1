@@ -44,7 +44,7 @@
         $sql = "INSERT INTO healthrecord VALUES ('','$user_id','$fullname','$idnumber','$contact','$age','$birthday','$gender','$role','$gradecourse','$address','$fathername','$cfather','$mothername','$cmother','$polio','$measles','$tb','$seizure_epilepsy','$tetanus','$mumps','$hepatits','$bleeding_tendencies','$chicken_pox','$asthma','$fainting_spells','$eye_disorder','$heart','$illness','$allergyfood','$allergymed','$allow_not','$medications','$nameperson','$personcp','$relationship')";
         if(mysqli_query($conn, $sql)){
             // echo "<script>window.history.go(-1);</script>";
-            header('location: ../healthrecorddashboard.php');
+            header('location: ../healthrecordform.php');
             echo $_SESSION['success'] ="
                 <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
                     <h2 style='

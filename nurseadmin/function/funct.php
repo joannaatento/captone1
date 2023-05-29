@@ -102,5 +102,40 @@
             ";
         }
     }
-    
+   // if(isset($_POST['submit_status'])){ // pag get ng data
+        
+    //    $status_id = $_POST['status_id']; 
+    //    $statuses1030 = trim(mysqli_real_escape_string($conn, $_POST['statuses1030']));
+     //   $statuses1130 = trim(mysqli_real_escape_string($conn, $_POST['statuses1130']));
+     //   $statuses230 = trim(mysqli_real_escape_string($conn, $_POST['statuses230']));
+       // $statuses330 = trim(mysqli_real_escape_string($conn, $_POST['statuses330']));
+
+       // $sql = "INSERT INTO status VALUES ('',' $statuses1030',' $statuses1130',' $statuses230','$statuses330')";
+       // if(mysqli_query($conn, $sql)){
+            // echo "<script>window.history.go(-1);</script>";
+          //  header('location: ../status.php');
+           
+       // }
+  //  }
+// Step 3: Handle the form submission
+if(isset($_POST['submit_status'])) {
+    // Retrieve the submitted form data
+    $status_id = $_POST['status_id'];
+    $statuses1030 = $_POST['statuses1030'];
+    $statuses1130 = $_POST['statuses1130'];
+    $statuses230 = $_POST['statuses230'];
+    $statuses330 = $_POST['statuses330'];
+
+    // Step 4: Execute the update query
+    $sql = "UPDATE status SET statuses1030='$statuses1030', statuses1130='$statuses1130', statuses230='$statuses230', statuses330='$statuses330' WHERE status_id = $status_id";
+
+    // Execute the query and handle the result
+    if(mysqli_query($conn, $sql)) {
+        // Step 5: Handle the update result
+        header('Location: ../status.php?msg=Successfully updated!');
+        exit;
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
 ?>

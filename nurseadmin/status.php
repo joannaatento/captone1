@@ -2,12 +2,11 @@
     session_start();
     include '../db.php';
 
-    if (!isset($_SESSION['user_id'])){
+    if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
-
 ?>
 
 
@@ -30,13 +29,11 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/dental.css">
+	<link rel="stylesheet" href="assets/table.css">
 
 </head> 
 
-<body class="app">   
-
-
+<body class="app">   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -52,8 +49,8 @@
 				            <img src="assets/images/user.png">
 				             <div class="app-utility-item app-user-dropdown dropdown">
 
-                   <?php  if (isset($_SESSION['fullname'])) : ?>
-                                    <p><?php echo $_SESSION['fullname']; ?></p>
+                   <?php  if (isset($_SESSION['username'])) : ?>
+                                    <p><?php echo $_SESSION['username']; ?></p>
                                     <?php endif ?></a>
                    </div>
 				   <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"></a>
@@ -149,56 +146,149 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">All Dental Records</h4>
+						        <h4 class="notification-title mb-1"></h4>
 					        </div>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-                    <table class="styled-table">
-                    <thead>
-    <tr>
-        <th>Patient ID Number</th>
-        <th>Patient Name</th>
-        <th>Date</th>
-        <th>Dentist Name</th>
-    </tr>
-</thead>
-<tbody>
+              
 <?php
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM dental WHERE idnumber = '$user_id'";
+$sql = "SELECT * FROM status";
 $result = mysqli_query($conn, $sql);
 
-if ($result && mysqli_num_rows($result) > 0) {
-  while ($row = mysqli_fetch_assoc($result)) {
-    $idnumber = $row['idnumber'];
-    $fullname = $row['fullname'];
-    $date = $row['date'];
-    $dentist_name = $row['dentist_name'];
-    ?>
-    <tr>
-        <td><?php echo $idnumber; ?></td>
-        <td><?php echo $fullname; ?></td>
-        <td><?php echo $date; ?></td>
-        <td><?php echo $dentist_name; ?></td>
-
-        <td>
-        
-    </tr>
-
-    <tr>
-
-  </tr>
-    <?php
-  }
-} else {
-  echo "<tr><td colspan='4'>No records found.</td></tr>";
-}
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $statuses1030 = $row['statuses1030'];
+  $statuses1130 = $row['statuses1130'];
+  $statuses230 = $row['statuses230'];
+  $statuses330 = $row['statuses330'];
+    }
+ else {
+ } 
 ?>
-</tbody>
 
+<table class="styled-table">
+                            <thead>
+                                <tr>
+                                <th>Status for 10:30 A.M</th>
+                                <th>Status for 11:30 A.M</th>
+                                <th>Status for 02:30 P.M</th>
+                                <th>Status for 03:30 P.M</th>
+                                <th>Action</th>
+                              
+                               
+                                </tr>
+                            </thead>
+                            <tbody id="healthRecordTableBody">
+                     <?php
+
+$sql = "SELECT * FROM status";
+$result = mysqli_query($conn, $sql);
+
+
+while($row = $result->fetch_assoc()){
+?>
+<tr>
+<td><?php echo $row['statuses1030']; ?></td>
+<td><?php echo $row['statuses1130']; ?></td>
+<td><?php echo $row['statuses230']; ?></td>
+<td><?php echo $row['statuses330']; ?></td>
+<td>
+    <center>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
+                <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
+            </svg>
+        </a>
+    </center>
+</td>
+
+</tr>
+
+<?php } ?>
+</tbody>
 </table>
+                        
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Schedule</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <?php
+ $sql = "SELECT * FROM status";
+  $result = mysqli_query($conn, $sql);
+
+  if (mysqli_num_rows($result) > 0) {
+    while($row = $result -> fetch_assoc()){
+        $status_id = $row['status_id'];
+        $statuses1030 = $row['statuses1030'];
+        $statuses1130 = $row['statuses1130'];
+        $statuses230 = $row['statuses230'];
+        $statuses330 = $row['statuses330'];
+    }
+  } else {
+
+  }
+?>
+<?php
+// Step 1: Retrieve the data to be updated
+if(isset($_GET['status_id'])) {
+    $status_id = $_GET['status_id'];
+  
+}
+
+
+?>
+                <form action="function/funct.php" method="POST">
+
+    <input type="hidden" name="status_id" value="<?php echo $status_id; ?>">
+    <div class="mb-3">
+        <label for="inputStatus1030" class="form-label">Status 10:30 A.M</label>
+        <select class="form-select" id="inputStatus1030" name="statuses1030">
+            <option value="Available" <?php if ($statuses1030 == 'Available') echo 'selected'; ?>>Available</option>
+            <option value="Unavailable" <?php if ($statuses1030 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="inputStatus1130" class="form-label">Status 11:30 A.M</label>
+        <select class="form-select" id="inputStatus1130" name="statuses1130">
+            <option value="Available" <?php if ($statuses1130 == 'Available') echo 'selected'; ?>>Available</option>
+            <option value="Unavailable" <?php if ($statuses1130 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="inputStatus230" class="form-label">Status 02:30 P.M</label>
+        <select class="form-select" id="inputStatus230" name="statuses230">
+            <option value="Available" <?php if ($statuses230 == 'Available') echo 'selected'; ?>>Available</option>
+            <option value="Unavailable" <?php if ($statuses230 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="inputStatus330" class="form-label">Status 03:30 P.M</label>
+        <select class="form-select" id="inputStatus330" name="statuses330">
+            <option value="Available" <?php if ($statuses330 == 'Available') echo 'selected'; ?>>Available</option>
+            <option value="Unavailable" <?php if ($statuses330 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+        </select>
+    </div>
+    <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="submit_status" class="btn btn-primary">Update</button>
+</div>
+</form>
+
+        </div>
+    </div>
+</div>
+
+
 				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>

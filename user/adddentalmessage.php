@@ -45,8 +45,10 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/style.css">
+	<link rel="stylesheet" href="assets/styless.css">
 
+   
+</style>
 </head> 
 
 <body class="app">   	
@@ -152,32 +154,160 @@
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-					       
+                        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
+					        </div>
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-				
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    
-    <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
-	
-	<script>
-		// Timer to remove success message after 5 seconds (5000 milliseconds)
-		setTimeout(function(){
-			var successMessage = document.getElementById('success-message');
-			if(successMessage){
-				successMessage.remove();
-			}
-		}, 5000);
-	</script>
+                    <form class="form-horizontal mt-4" method="post" action="function/funct.php">
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="idnumber" class="col-sm-4 control-label">Enter your ID Number</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="patient_name" class="col-sm-4 control-label">Enter your Fullname</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your Fullname" required>
+                            </div>
+                        </div>
+                    </div>
+</div>
+
+                                <br>
+                                
+                                
+     
+<div class="row">
+
+                                    
+<div class="col-sm-6">
+    <div class="form-group">
+        <label for="date" class="col-sm-4 control-label">Dental Services</label>
+        <div class="col-sm-10">
+        <select id="time" name="time" class="form-control" required>
+                    <option value="">Select Service</option>
+                    <option value="Cleaning">Cleaning</option>
+                    <option value="Tooth Extraction">Tooth Extraction</option>
+                        
+      </select>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="gradecourse" class="col-sm-8 control-label">In what level are you currently enrolled</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="gradecourse" name="gradecourse" placeholder="If you are an employee, just type Employee" required>
+                            </div>
+                        </div>
+                    </div>
+
+</div>
+<br>
+                   
+<div class="text-box" style="border: 1px solid #ccc; padding: 10px; width: 300px; font-size: 10px;">
+   <center> <p>Available Day and Time</p> </center>
+   <p> Monday - Wednesday<br>
+  
+   </p>
+
+   <?php
+$sql = "SELECT * FROM status";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $statuses1030 = $row['statuses1030'];
+  $statuses1130 = $row['statuses1130'];
+  $statuses230 = $row['statuses230'];
+  $statuses330 = $row['statuses330'];
+    }
+ else {
+ } 
+?>
+<p>
+    <div class="<?php echo ($statuses1030 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1030; ?></div>
+    10:30 A.M
+    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="<?php echo ($statuses1130 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1130; ?></div>
+    11:30 A.M<br><br>
+    <div class="<?php echo ($statuses230 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses230; ?></div>
+    2:30 P.M
+    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+    <div class="<?php echo ($statuses330 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses330; ?></div>
+    3:30 P.M
+</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    function updateColor() {
+      var selectedValue = $(this).val();
+      $(this).removeClass('available unavailable').addClass(selectedValue.toLowerCase());
+    }
+
+    $('select').each(updateColor).change(updateColor);
+  });
+</script>
+
+
+<div class="row">
+    <div class="form-group">
+        <br>
+        <label for="message" class="col-sm-5 control-label">Write a message....</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." required>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <br>
+        <input type="text" name="dental_id" style="display: none;">
+        <button name="submit_dental" class="btn btn-success">Send Dental Appointment</button>
+    </div>
+</div>
+</form>
+</div><!--//app-card-body-->
+</div>			    
+</div>
+</div>
+</div>  					
+<!-- Javascript -->          
+<script src="assets/plugins/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+
+<!-- Page Specific JS -->
+<script src="assets/js/app.js"></script> 
+
+<script>
+    // Timer to remove success message after 5 seconds (5000 milliseconds)
+    setTimeout(function(){
+        var successMessage = document.getElementById('success-message');
+        if(successMessage){
+            successMessage.remove();
+        }
+    }, 5000);
+</script>
+
 
 </body>
 </html> 

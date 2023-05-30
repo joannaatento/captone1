@@ -25,7 +25,6 @@
     }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -129,7 +128,7 @@
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
 										<li class="submenu-item"><a class="submenu-link active" href="adddentalmessage.php">Add Dental Schedule</a></li>
-										<li class="submenu-item"><a class="submenu-link active">View Dental Record</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="viewdentalrecord.php">View Dental Record</a></li>
 									</ul>
 								</div>
 							</li>
@@ -181,7 +180,7 @@
                         <div class="form-group">
                             <label for="patient_name" class="col-sm-4 control-label">Enter your Fullname</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your Fullname" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" required>
                             </div>
                         </div>
                     </div>
@@ -198,7 +197,7 @@
     <div class="form-group">
         <label for="date" class="col-sm-4 control-label">Dental Services</label>
         <div class="col-sm-10">
-        <select id="time" name="time" class="form-control" required>
+        <select id="time" name="dental_service" class="form-control" required>
                     <option value="">Select Service</option>
                     <option value="Cleaning">Cleaning</option>
                     <option value="Tooth Extraction">Tooth Extraction</option>
@@ -214,7 +213,7 @@
                         <div class="form-group">
                             <label for="gradecourse" class="col-sm-8 control-label">In what level are you currently enrolled</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="gradecourse" name="gradecourse" placeholder="If you are an employee, just type Employee" required>
+                                <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" required>
                             </div>
                         </div>
                     </div>
@@ -281,7 +280,7 @@ if (mysqli_num_rows($result) > 0) {
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <br>
-        <input type="text" name="dental_id" style="display: none;">
+        <input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
         <button name="submit_dental" class="btn btn-success">Send Dental Appointment</button>
     </div>
 </div>

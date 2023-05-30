@@ -8,6 +8,21 @@
         exit; // Exit the script to prevent further execution
     }
 
+    $user_id = $_SESSION['user_id'];
+    $sql_query = "SELECT * FROM users WHERE user_id ='$user_id'";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $user_id = $row['user_id'];
+        $fullname = $row['fullname'];
+        require_once('../db.php');
+        if($_SESSION['type'] == 1){
+            // User type 1 specific code here
+        }
+        else{
+            header('location: ../login.php');
+            exit; // Exit the script to prevent further execution
+        }
+    }
 ?>
 
 
@@ -30,13 +45,30 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/dental.css">
+	<link rel="stylesheet" href="assets/styles.css">
 
+   
+</style>
 </head> 
 
 <body class="app">   
+    
+<?php
+$sql = "SELECT * FROM dental";
+$result = mysqli_query($conn, $sql);
 
-
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $name = $row['name'];
+  $dental_service = $row['dental_service'];
+  $c_enrolled = $row['c_enrolled'];
+  $message = $row['message'];
+  $date_created= $row['date_created'];
+    }
+ else {
+ } 
+?>
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -48,15 +80,9 @@
 					    </a>
 				    </div><!--//col-->
 		            <div class="app-utilities col-auto">		            
-					<div class="app-utility-item app-user-dropdown dropdown">
-				            <img src="assets/images/user.png">
-				             <div class="app-utility-item app-user-dropdown dropdown">
+			            <div class="app-utility-item app-user-dropdown dropdown">
 
-                   <?php  if (isset($_SESSION['fullname'])) : ?>
-                                    <p><?php echo $_SESSION['fullname']; ?></p>
-                                    <?php endif ?></a>
-                   </div>
-				   <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"></a>
+				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png"><?= $fullname;?></a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								<li><a class="dropdown-item" href="function/logout.php">Log Out</a></li>
 							</ul>
@@ -84,7 +110,7 @@
                     <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"/>
                 </svg>
             </span>
-            <span class="nav-link-text">Health Profiles</span>
+            <span class="nav-link-text">Health Record</span>
             <span class="submenu-arrow">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -93,41 +119,39 @@
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="studentlists.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelists.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="healthrecordform.php">Health Record Form</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="viewhealthrecord.php">View Health Record</a></li>
             </ul>
         </div>
     </li>
-    
-    <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
-            <span class="nav-icon">
-                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-plus" viewBox="0 0 16 16">
-			<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-			<path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
-			</svg>
-            </span>
-            <span class="nav-link-text">Appointments</span>
-            <span class="submenu-arrow">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                </svg>
-            </span>
-        </a>
-        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
-            <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="dental.php">Dental</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
-            </ul>
-        </div>
-    </li>
-</ul>
+  
 
-	
+
+												<li class="nav-item has-submenu">
+								<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
+									<span class="nav-icon">
+										<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-plus" viewBox="0 0 16 16">
+											<path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
+											<path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
+											</svg>
+									</span>
+									<span class="nav-link-text">Request Dental Schedule</span>
+									<span class="submenu-arrow">
+										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+										</svg>
+									</span>
+								</a>
+								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
+									<ul class="submenu-list list-unstyled">
+										<li class="submenu-item"><a class="submenu-link" href="adddentalmessage.php">Add Dental Schedule</a></li>
+										<li class="submenu-item"><a class="submenu-link active">View Dental Record</a></li>
+									</ul>
+								</div>
+							</li>
+				    </ul>
 			    </nav>
-				
-				
 	        </div>
 	    </div>
     </header>
@@ -138,9 +162,8 @@
 		    <div class="container-xl">
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
-					    <div class="col-auto">
-					        <h1 class="app-page-title mb-0"></h1>
-					    </div>
+					   
+					       
 						
 				    </div>
 			    </div>
@@ -148,78 +171,103 @@
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">All Dental Records</h4>
+                        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
 					        </div>
-							<!--//generate report-->
+                          
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-                    <table class="styled-table">
-                    <thead>
-    <tr>
-        <th>Patient ID Number</th>
-        <th>Patient Name</th>
-        <th>Date</th>
-        <th>Dentist Name</th>
-    </tr>
-</thead>
-<tbody>
-<?php
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM dental WHERE idnumber = '$user_id'";
-$result = mysqli_query($conn, $sql);
+                    <div class="app-card-body p-4">
+                    <?php
+							$sql = "SELECT * FROM dental WHERE user_id = '$user_id'";
+							$result = $conn->query($sql);
+    						while($row = $result->fetch_array()){
+						?>
+   
+        <hr class="hidden"><br>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" value="<?php echo $row['name']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-if ($result && mysqli_num_rows($result) > 0) {
-  while ($row = mysqli_fetch_assoc($result)) {
-    $idnumber = $row['idnumber'];
-    $fullname = $row['fullname'];
-    $date = $row['date'];
-    $dentist_name = $row['dentist_name'];
-    ?>
-    <tr>
-        <td><?php echo $idnumber; ?></td>
-        <td><?php echo $fullname; ?></td>
-        <td><?php echo $date; ?></td>
-        <td><?php echo $dentist_name; ?></td>
+        <br>
 
-        <td>
-        
-    </tr>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="date" class="col-sm-4 control-label">Dental Services</label>
+                    <div class="col-sm-10">
+                        <select id="dental_service" name="dental_service" class="form-control" readonly>
+                            <option disabled selected><?= $row['dental_service']; ?></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-    <tr>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="gradecourse" class="col-sm-8 control-label">Year level that you currently enrolled</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['c_enrolled']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  </tr>
-    <?php
-  }
-} else {
-  echo "<tr><td colspan='4'>No records found.</td></tr>";
-}
-?>
-</tbody>
+        <div class="row">
+            <div class="form-group">
+                <br>
+                <label for="message" class="col-sm-5 control-label">Message</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." value="<?php echo $row['message']; ?>" readonly>
+                </div>
+            </div>
+        </div>
 
-</table>
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    
-    <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
-	
-	<script>
-		// Timer to remove success message after 5 seconds (5000 milliseconds)
-		setTimeout(function(){
-			var successMessage = document.getElementById('success-message');
-			if(successMessage){
-				successMessage.remove();
-			}
-		}, 5000);
-	</script>
+        <div class="form-group">
+            <span><?php echo $row['date_created']; ?></span>
+        </div>
+    <?php } ?>
+
+</div><!--//app-card-body-->
+
+
+</div>			    
+</div>
+</div>
+</div>  					
+<!-- Javascript -->          
+<script src="assets/plugins/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+
+<!-- Page Specific JS -->
+<script src="assets/js/app.js"></script> 
+
+<script>
+    // Timer to remove success message after 5 seconds (5000 milliseconds)
+    setTimeout(function(){
+        var successMessage = document.getElementById('success-message');
+        if(successMessage){
+            successMessage.remove();
+        }
+    }, 5000);
+</script>
+
 
 </body>
 </html> 
+

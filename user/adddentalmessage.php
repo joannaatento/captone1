@@ -44,7 +44,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/styless.css">
+	<link rel="stylesheet" href="assets/styles.css">
 
    
 </style>
@@ -165,7 +165,7 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-                    <form class="form-horizontal mt-4" method="post" action="function/funct.php">
+                    <form class="form-horizontal mt-4" method="post" action="function/functions.php">
 
                     <div class="row">
                     <div class="col-sm-6">

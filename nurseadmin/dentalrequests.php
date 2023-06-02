@@ -30,10 +30,30 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-    <link rel="stylesheet" href="assets/table.css">
+	<link rel="stylesheet" href="assets/table.css">
+    <link rel="stylesheet" href="assets/msgdental.css">
+
+  
 </head> 
 
 <body class="app">   	
+<?php
+// Fetch dental records
+$sql = "SELECT * FROM dental";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    $row = $result->fetch_assoc(); 
+    $dental_id = $row['dental_id'];
+    $name = $row['name'];
+    $message = $row['message'];
+    $date_created = $row['date_created'];
+    $is_read = $row['is_read'];
+}
+?>
+
+
+
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -71,8 +91,8 @@
 					<img style="width: 150px; display:flex; margin-left: 50px; margin-top: 10px;" src="assets/images/dwcl.png" alt="logo">
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
-				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-					<li class="nav-item has-submenu">
+				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+    <li class="nav-item has-submenu">
         <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -143,8 +163,12 @@
             </ul>
         </div>
     </li>
-				    </ul>
+</ul>
+
+	
 			    </nav>
+				
+				
 	        </div>
 	    </div>
     </header>
@@ -166,65 +190,44 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Employees Health Profiles</h4>
+						        <h4 class="notification-title mb-1"></h4>
 					        </div>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-header p-4 pb-2  border-0">
-              <div class="app-search-box col">
-                        <form class="app-search-form">
-                            <input type="text" placeholder="Search..." name="query" id="searchQuery" class="form-control search-input">
-                            <button type="button" class="btn search-btn btn-primary" onclick="searchRecords()"><i class="fas fa-search"></i></button>
-                        </form>
-                        </div>
-				    <div class="app-card-body p-4">
-                    <div id="healthRecordTable">
-                            <table>
-                            <thead>
-                                <tr>
-                                <th>Student Name</th>
-                                <th>Student ID Number</th>
-                                <th>Age</th>
-                                <th>Contact</th>
-                                <th>Name of Person to Contact</th>
-                                <th>Contact Number</th>
-                                <th>Relationship</th>
-                                <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="healthRecordTableBody">
-                     <?php
+                    <div class="app-card-body p-4">
+    <?php
+    $sql = "SELECT * FROM dental";
+    $result = $conn->query($sql);
 
-                                $sql = "SELECT * FROM healthrecord WHERE role = 'employee'";
-                                $result = mysqli_query($conn, $sql);
+    while ($row = $result->fetch_array()) {
+        $dental_id = $row['dental_id'];
+        $is_read = $row['is_read'];
+        ?>
+        <div class="main-content">
+            <div class="email-list-item <?php echo ($is_read == 0) ? 'unread' : ''; ?>" <?php echo ($is_read == 0) ? 'style="background-color: #F1F1F1;"' : ''; ?>>
+                <div class="message">
+                    <b><div class="name" style="display: inline;"><?php echo $row['name']; ?></div></b>
+                    <div class="message" style="display: inline;"><?php echo $row['message']; ?></div>
+                    <div class="timestamp"><?php echo $row['date_created']; ?></div>
+                </div>
+                <?php if ($is_read == 0): ?>
+                    <a href="function/funct.php?dental_id=<?php echo $dental_id; ?>">Mark as Read</a>
+                <?php endif; ?>
+                <div class="delete-button" style="display: inline">
+                    <button>Delete</button>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
+</div><!--//app-card-body-->
 
 
-                                while($row = $result->fetch_assoc()){
-                                ?>
-                                <tr>
-                                <td><?php echo $row['fullname']; ?></td>
-                                <td><?php echo $row['idnumber']; ?></td>
-                                <td><?php echo $row['age']; ?></td>
-                                <td><?php echo $row['contact']; ?></td>
-                                <td><?php echo $row['nameperson']; ?></td>
-                                <td><?php echo $row['personcp']; ?></td>
-                                <td><?php echo $row['relationship']; ?></td>
 
-                                <td>
-                                <center><a href="viewemployeerecord.php?idnumber=<?php echo $row['idnumber']; ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                                        <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                                        </svg></a></center>
 
-     
-        </td>
-                                </tr>
 
-                                <?php } ?>
-  </tbody>
-</table>
-				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>
 	    </div>

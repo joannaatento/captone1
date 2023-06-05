@@ -31,11 +31,26 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
+    <link rel="stylesheet" href="assets/dentalstyle.css">
 
 </head> 
 
 <body class="app">   	
+<?php
+$sql = "SELECT * FROM dentalapp";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $fullname = $row['fullname'];
+  $role = $row['role'];
+  $cenrolled = $row['cenrolled'];
+  $date_time = $row['date_time'];
+    }
+ else {
+ } 
+?>
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -107,6 +122,31 @@
 				<path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
 				</svg>
             </span>
+            <span class="nav-link-text">Messages</span>
+        <span class="submenu-arrow">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </span>
+    </a>
+    <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
+        <ul class="submenu-list list-unstyled">
+            <li class="submenu-item"><a class="submenu-link active" href="dentalrequests.php">Dental Requests</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="medicalrequests.php">Medical Requests</a></li>
+        </ul>
+    </div>
+</li>
+
+    
+    <li class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+            <span class="nav-icon">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-plus" viewBox="0 0 16 16">
+			<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+			<path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
+			</svg>
+            </span>
             <span class="nav-link-text">Appointments</span>
             <span class="submenu-arrow">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +154,7 @@
                 </svg>
             </span>
         </a>
-        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
+        <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
                 <li class="submenu-item"><a class="submenu-link active" href="dental.php">Dental</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
@@ -159,52 +199,107 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-                    <form class="form-horizontal mt-4" method="post" action="function/funct.php">
-                    <div class="form-group">
-                                    <label for="idnumber" class="col-sm-2 control-label">Patient ID Number</label>
-                                    <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="patient_name" class="col-sm-2 control-label">Patient Name</label>
-                                    <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="patient_name" name="patient_name" placeholder="Enter patient name" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <br>
-                                    <label for="entry_date" class="col-sm-2 control-label">Entry Date</label>
-                                    <div class="col-sm-10">
-                                    <input type="date" class="form-control" id="date" name="date" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <br>
-                                    <label for="entry_content" class="col-sm-2 control-label">Dentist Name</label>
-                                    <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="dentist_name" name="dentist_name" placeholder="Enter Dentist Name" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
+  <form class="form-horizontal mt-4" method="post" action="function/funct.php">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="idnumber" class="control-label">Patient ID Number</label>
+          <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="fullname" class="control-label">Name</label>
+          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" required>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="role" class="control-label">Role</label>
+          <select id="role" name="role" class="form-control" required>
+            <option value="">Select Role</option>
+            <option value="Student">Student</option>
+            <option value="Employee">Employee</option>
+          </select>
+        </div>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="cenrolled" class="control-label">Currently enrolled in</label>
+          <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter patient name" required>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="date_time" class="control-label">Time and Date</label>
+          <input type="datetime-local" id="date_time" name="date_time" class="form-control" required>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="dentist_name" class="control-label">Dentist Name</label>
+          <input type="text" class="form-control" id="dentist_name" name="dentist_name" placeholder="Dentist Name" required>
+        </div>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-sm-12">
+        <input type="text" name="dental_id" style="display: none;">
+        <button name="submit_dental" class="btn btn-success">Add Dental Appointment</button>
+      </div>
+    </div>
+  </form>
+</div><!--//app-card-body-->
 
-                                    <br>
-                                    <input type="text" name="dental_id" style="display: none;">
-								    <button name="submit_dental" class="btn btn-success">Add Dental Appointment</button>
-                                    <a href="viewdentalrecords.php" class= "btn btn-success">View Dental Appointment Records</a>
-                                </div>
-                                </div>
-                                </form>
+<center>
+<table class="styled-table" >
+                            <thead>
+                                <tr>
+                                <th>Patient ID Number</th>
+                                <th>Patient Name</th>
+                                <th>Role</th>
+                                <th>Enrolled in</th>
+                                <th>Time and Date</th>
+                                <th>Action</th>
 
-				    </div><!--//app-card-body-->
+                               
+                                </tr>
+                            </thead>
+                            <tbody id="healthRecordTableBody">
+                     <?php
+
+                                $sql = "SELECT * FROM dentalapp";
+                                $result = mysqli_query($conn, $sql);
+
+
+                                while($row = $result->fetch_assoc()){
+                                ?>
+                                <tr>
+                                <td><?php echo $row['idnumber']; ?></td>
+                                <td><?php echo $row['fullname']; ?></td>
+                                <td><?php echo $row['role']; ?></td>
+                                <td><?php echo $row['cenrolled']; ?></td>
+                                <td><?php echo $row['date_time']; ?></td>
+                                
+                                <td>
+                                <a href="">
+                                       Approve </a>
+                               </td>
+                              
+                                </tr>
+
+                                <?php } ?>
+  </tbody>
+</table>
+<br>
+                                </center>
 				</div>			    
 		    </div>
 	    </div>
-    </div>  					
+    </div>  
+
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

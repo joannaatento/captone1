@@ -195,9 +195,9 @@
                                     
 <div class="col-sm-6">
     <div class="form-group">
-        <label for="date" class="col-sm-4 control-label">Dental Services</label>
+        <label for="dental_service" class="col-sm-4 control-label">Dental Services</label>
         <div class="col-sm-10">
-        <select id="time" name="dental_service" class="form-control" required>
+        <select id="dental_service" name="dental_service" class="form-control" required>
                     <option value="">Select Service</option>
                     <option value="Cleaning">Cleaning</option>
                     <option value="Tooth Extraction">Tooth Extraction</option>

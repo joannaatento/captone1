@@ -81,14 +81,14 @@
     
 
     if(isset($_POST['submit_dental'])){ // pag get ng data
-        
-        $user_id = $_POST['user_id']; 
+      
         $idnumber = $_POST['idnumber']; 
-        $patient_name = $_POST['patient_name'];
-        $date = $_POST['date'];
-        $dentist_name = $_POST['dentist_name'];
+        $fullname = $_POST['fullname'];
+        $role = $_POST['role'];
+        $cenrolled = $_POST['cenrolled'];
+        $date_time = $_POST['date_time'];
 
-        $sql = "INSERT INTO dental VALUES ('','$user_id','$idnumber','$patient_name','$date','$dentist_name')";
+        $sql = "INSERT INTO dentalapp VALUES ('','$idnumber','$fullname','$role','$cenrolled','$date_time')";
         if(mysqli_query($conn, $sql)){
             // echo "<script>window.history.go(-1);</script>";
             header('location: ../dental.php');
@@ -102,21 +102,6 @@
             ";
         }
     }
-   // if(isset($_POST['submit_status'])){ // pag get ng data
-        
-    //    $status_id = $_POST['status_id']; 
-    //    $statuses1030 = trim(mysqli_real_escape_string($conn, $_POST['statuses1030']));
-     //   $statuses1130 = trim(mysqli_real_escape_string($conn, $_POST['statuses1130']));
-     //   $statuses230 = trim(mysqli_real_escape_string($conn, $_POST['statuses230']));
-       // $statuses330 = trim(mysqli_real_escape_string($conn, $_POST['statuses330']));
-
-       // $sql = "INSERT INTO status VALUES ('',' $statuses1030',' $statuses1130',' $statuses230','$statuses330')";
-       // if(mysqli_query($conn, $sql)){
-            // echo "<script>window.history.go(-1);</script>";
-          //  header('location: ../status.php');
-           
-       // }
-  //  }
 // Step 3: Handle the form submission
 if(isset($_POST['submit_status'])) {
     // Retrieve the submitted form data
@@ -139,21 +124,4 @@ if(isset($_POST['submit_status'])) {
     }
 }
 
-// Assuming you have already established a database connection
-
-// Check if the dental_id parameter is present in the URL
-if (isset($_GET['dental_id'])) {
-    $dental_id = $_GET['dental_id'];
-
-    // Perform the necessary database update to mark the message as read
-    // Replace 'your_table_name' with the actual table name where you store the messages
-    $sql = "UPDATE dental SET is_read = 1 WHERE dental_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $dental_id);
-    $stmt->execute();
-
-    // Redirect the user back to the original page or any other appropriate page
-    header("Location: ../dentalrequests.php");
-    exit();
-}
 ?>

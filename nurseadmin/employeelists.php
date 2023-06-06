@@ -34,7 +34,7 @@
 </head> 
 
 <body class="app">   	
-    <header class="app-header fixed-top">	   	            
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -71,8 +71,8 @@
 					<img style="width: 150px; display:flex; margin-left: 50px; margin-top: 10px;" src="assets/images/dwcl.png" alt="logo">
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
-				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-					<li class="nav-item has-submenu">
+				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+    <li class="nav-item has-submenu">
         <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -90,8 +90,8 @@
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="studentlists.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelists.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="studentlists.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="employeelists.php">Employees</a></li>
             </ul>
         </div>
     </li>
@@ -143,8 +143,12 @@
             </ul>
         </div>
     </li>
-				    </ul>
+</ul>
+
+	
 			    </nav>
+				
+				
 	        </div>
 	    </div>
     </header>
@@ -166,7 +170,7 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Employees Health Profiles</h4>
+						        <h4 class="notification-title mb-1">Students Health Profiles</h4>
 					        </div>
 							<!--//generate report-->
 				        </div><!--//row-->
@@ -185,10 +189,10 @@
                                 <tr>
                                 <th>Student Name</th>
                                 <th>Student ID Number</th>
+								<th>Level of Education</th>
                                 <th>Age</th>
-                                <th>Contact</th>
                                 <th>Name of Person to Contact</th>
-                                <th>Contact Number</th>
+                                <th>Person to Contact Number</th>
                                 <th>Relationship</th>
                                 <th>Action</th>
                                 </tr>
@@ -205,8 +209,8 @@
                                 <tr>
                                 <td><?php echo $row['fullname']; ?></td>
                                 <td><?php echo $row['idnumber']; ?></td>
+								<td><?php echo $row['leveleduc']; ?></td>
                                 <td><?php echo $row['age']; ?></td>
-                                <td><?php echo $row['contact']; ?></td>
                                 <td><?php echo $row['nameperson']; ?></td>
                                 <td><?php echo $row['personcp']; ?></td>
                                 <td><?php echo $row['relationship']; ?></td>

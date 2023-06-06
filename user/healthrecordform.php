@@ -45,7 +45,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/style.css">
+	<link rel="stylesheet" href="assets/styleform.css">
 
 </head> 
 
@@ -181,15 +181,16 @@
 									</div>
 									
 									<div class="input_wrap">
-									<label for="fullname">Contact Number</label>
-										<input name="contact" type="text" required />
-										
-									</div>
+										<label>Contact Number</label>
+									<input name="personalcpnum" type="text" required />
+									
+								</div>
 									<div class="input_wrap">
 									<label for="fullname">Age</label>
 										<input name="age" type="text" required />
 									
 									</div>
+						
 									<div class="input_wrap">
 									<label for="fullname">Birthday</label>
 										<input name="birthday" type="date" required />
@@ -197,29 +198,45 @@
 									</div>
 									<div class="input_wrap">
 									<label for="fullname">Gender</label>
-										<select required name="gender">
-											<option selected>--SELECT GENDER--</option>
-											<option value="Male">MALE</option>
-											<option value="Female">FEMALE</option>
-										</select>
+									<select class="form-select" name="gender" required>
+										<option value="" disabled selected>Select Gender</option>
+										<option value="Female">Female</option>
+										<option value="Male">Male</option>
+									</select>
 									</div>
-									<div class="input_wrap">
-									<label for="fullname">Role</label>
-										<select required name="role">
-											<option selected>--SELECT ROLE--</option>
-											<option value="Student">STUDENT</option>
-											<option value="Employee">EMPLOYEE</option>
-										</select>
-									</div>
-									<div class="input_wrap">
-									<label for="fullname">Grade/Course & Year/Position</label>
-										<input name="gradecourse" type="text" required />
-									
-									</div>
+
 									<div class="input_wrap">
 									<label for="fullname">Home Address</label>
 										<input name="address" type="text" required />
 										
+									</div>
+
+									<div class="input_wrap">
+									<label for="fullname">Role</label>
+									<select class="form-select" name="role" required>
+										<option value="" disabled selected>Select Role</option>
+										<option value="Student">Student</option>
+										<option value="Employee">Employee</option>
+									</select>
+
+									</div>
+									<div class="input_wrap">
+									<label for="fullname">Grade/Course & Year/Position</label>
+										<input name="gradecourse" type="text" required />
+									</div>
+									
+									<div class="input_wrap">
+									<label for="fullname">Level of Education</label>
+									<select class="form-select" name="leveleduc" required>
+										<option value="" disabled selected>Select Level of Education</option>
+										<option value="Preschool">Preschool</option>
+										<option value="Kinder">Kinder</option>
+										<option value="Grade School">Grade School</option>
+										<option value="Junior High School">Junior High School</option>
+										<option value="Senior High School">Senior High School</option>
+										<option value="College">College</option>
+									</select>
+
 									</div>
 									
 									
@@ -346,7 +363,7 @@
 								</div>
 								<div class="input_wrap">
 								<label>Contact Number</label>
-									<input name="personcp" type="number" required />
+									<input name="personcp" type="text" required />
 									
 								</div>
 								<div class="input_wrap">

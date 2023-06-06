@@ -2,31 +2,19 @@
     session_start();
     include '../../db.php';
 
-    if(isset($_SESSION['form_submitted'])) {
-        echo '<script>window.alert("You have already submitted the form!")</script>';
-        echo '<script>window.location.replace("../viewhealthrecord.php");</script>';
-        exit;
-    }
-    
-    // Process the form submission
-    if($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // ... Your form processing code here ...
-        
-        // Mark the form as submitted
-        $_SESSION['form_submitted'] = true;
-        
 
     if(isset($_POST['submit_data'])){ // pag get ng data 
         $user_id = $_POST['user_id'];
         $fullname = trim(mysqli_real_escape_string($conn, $_POST['fullname']));
         $idnumber = trim(mysqli_real_escape_string($conn, $_POST['idnumber']));
-        $contact = trim(mysqli_real_escape_string($conn, $_POST['contact']));
+        $personalcpnum = trim(mysqli_real_escape_string($conn, $_POST['personalcpnum']));
         $age = trim(mysqli_real_escape_string($conn, $_POST['age']));
         $birthday = trim(mysqli_real_escape_string($conn, $_POST['birthday']));
         $gender = trim(mysqli_real_escape_string($conn, $_POST['gender']));
+        $address = trim(mysqli_real_escape_string($conn, $_POST['address']));
         $role = trim(mysqli_real_escape_string($conn, $_POST['role']));
         $gradecourse = trim(mysqli_real_escape_string($conn, $_POST['gradecourse']));
-        $address = trim(mysqli_real_escape_string($conn, $_POST['address']));
+        $leveleduc = trim(mysqli_real_escape_string($conn, $_POST['leveleduc']));
         $fathername = trim(mysqli_real_escape_string($conn, $_POST['fathername']));
         $cfather = trim(mysqli_real_escape_string($conn, $_POST['cfather']));
         $mothername = trim(mysqli_real_escape_string($conn, $_POST['mothername']));
@@ -53,7 +41,7 @@
         $personcp = trim(mysqli_real_escape_string($conn, $_POST['personcp']));
         $relationship = trim(mysqli_real_escape_string($conn, $_POST['relationship']));
 
-        $sql = "INSERT INTO healthrecord VALUES ('','$user_id','$fullname','$idnumber','$contact','$age','$birthday','$gender','$role','$gradecourse','$address','$fathername','$cfather','$mothername','$cmother','$polio','$measles','$tb','$seizure_epilepsy','$tetanus','$mumps','$hepatits','$bleeding_tendencies','$chicken_pox','$asthma','$fainting_spells','$eye_disorder','$heart','$illness','$allergyfood','$allergymed','$allow_not','$medications','$nameperson','$personcp','$relationship')";
+        $sql = "INSERT INTO healthrecord VALUES ('','$user_id','$fullname','$idnumber','$personalcpnum','$age','$birthday','$gender','$address','$role','$gradecourse','$leveleduc','$fathername','$cfather','$mothername','$cmother','$polio','$measles','$tb','$seizure_epilepsy','$tetanus','$mumps','$hepatits','$bleeding_tendencies','$chicken_pox','$asthma','$fainting_spells','$eye_disorder','$heart','$illness','$allergyfood','$allergymed','$allow_not','$medications','$nameperson','$personcp','$relationship')";
         if(mysqli_query($conn, $sql)){
             // echo "<script>window.history.go(-1);</script>";
             header('location: ../healthrecordform.php');
@@ -67,7 +55,7 @@
             ";
         }
     }
-}
+
 
     if(isset($_POST['signup'])){
         $fullname = $_POST['fullname'];

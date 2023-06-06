@@ -186,7 +186,7 @@
 									</div>
 									<div class="input_wrap">
 										<label>Contact</label>
-										<input name="contact" type="text" value="<?=$row['contact'];?>" readonly />
+										<input name="personalcpnum" type="text" value="<?=$row['personalcpnum'];?>" readonly />
 									</div>
 									<div class="input_wrap">
 										<label>Age</label>

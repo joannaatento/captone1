@@ -173,7 +173,7 @@
 									</div>
 									<div class="input_wrap">
 										<label>Contact</label>
-										<input name="contact" type="text" value="<?=$row['contact'];?>" readonly />
+										<input name="personalcpnum" type="text" value="<?=$row['personalcpnum'];?>" readonly />
 									</div>
 									<div class="input_wrap">
 										<label>Age</label>
@@ -190,21 +190,32 @@
 											<option disabled selected><?= $row['gender'];?></option>
 										</select>
 									</div>
+
+									<div class="input_wrap">
+										<label>Home Address</label>
+										<input name="address" type="text" value="<?=$row['address'];?>" readonly />
+										
+									</div>
+									
 									<div class="input_wrap">
 									<label>Role</label>
 										<select readonly>
 											<option disabled selected><?= $row['role'];?></option>
 										</select>
 									</div>
+
 									<div class="input_wrap">
 									<label>Grade/Course & Year/Position</label>
 										<input name="gradecourse" type="text" value="<?=$row['gradecourse'];?>" readonly />
 									</div>
+									
 									<div class="input_wrap">
-										<label>Home Address</label>
-										<input name="address" type="text" value="<?=$row['address'];?>" readonly />
-										
+									<label>Level of Education</label>
+										<select readonly>
+											<option disabled selected><?= $row['leveleduc'];?></option>
+										</select>
 									</div>
+								
 								</div>
 							</div>
 

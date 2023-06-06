@@ -47,13 +47,14 @@ if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $fullname = $row['fullname'];
   $idnumber = $row['idnumber'];
-  $contact = $row['contact'];
+  $personalcpnum = $row['personalcpnum'];
   $age = $row['age'];
   $birthday = $row['birthday'];
   $gender = $row['gender'];
+  $address = $row ['address'];
   $role = $row['role'];
   $gradecourse = ['gradecourse'];
-  $address = $row ['address'];
+  $leveleduc = $row ['leveleduc'];
   $fathername = $row['fathername'];
   $cfather = $row['cfather'];
   $mothername = $row['mothername'];
@@ -239,7 +240,7 @@ if (mysqli_num_rows($result) > 0) {
 									</div>
 									<div class="input_wrap">
 									<label for="fullname">Contact Number</label>
-										<input name="contact" type="text" value="<?php echo $contact; ?>"  readonly  />
+										<input name="personalcpnum" type="text" value="<?php echo $personalcpnum; ?>"  readonly  />
 										
 									</div>
 									<div class="input_wrap">
@@ -258,6 +259,13 @@ if (mysqli_num_rows($result) > 0) {
 											<option disabled selected><?= $row['gender'];?></option>
 										</select>
 									</div>
+
+									<div class="input_wrap">
+										<label>Home Address</label>
+										<input name="address" type="text" value="<?=$row['address'];?>" readonly />
+										
+									</div>
+
 									<div class="input_wrap">
 									<label>Role</label>
 										<select readonly>
@@ -268,10 +276,12 @@ if (mysqli_num_rows($result) > 0) {
 									<label>Grade/Course & Year/Position</label>
 										<input name="gradecourse" type="text" value="<?=$row['gradecourse'];?>" readonly />
 									</div>
+									
 									<div class="input_wrap">
-										<label>Home Address</label>
-										<input name="address" type="text" value="<?=$row['address'];?>" readonly />
-										
+									<label>Level of Education</label>
+										<select readonly>
+											<option disabled selected><?= $row['leveleduc'];?></option>
+										</select>
 									</div>
 								</div>
 							</div>

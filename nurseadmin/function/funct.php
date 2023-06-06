@@ -115,13 +115,14 @@ if(isset($_POST['submit_status'])) {
     $sql = "UPDATE status SET statuses1030='$statuses1030', statuses1130='$statuses1130', statuses230='$statuses230', statuses330='$statuses330' WHERE status_id = $status_id";
 
     // Execute the query and handle the result
-    if(mysqli_query($conn, $sql)) {
+    if (mysqli_query($conn, $sql)) {
         // Step 5: Handle the update result
-        header('Location: ../status.php?msg=Successfully updated!');
+        echo '<script>alert("Successfully updated!");</script>';
+        echo '<script>window.location.href="../dental.php";</script>';
         exit;
     } else {
-        echo "Error: " . mysqli_error($conn);
+        echo '<script>alert("Error: ' . mysqli_error($conn) . '");</script>';
     }
-}
+}    
 
 ?>

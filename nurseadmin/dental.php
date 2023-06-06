@@ -251,54 +251,124 @@ if (mysqli_num_rows($result) > 0) {
       </div>
     </div>
   </form>
+  
 </div><!--//app-card-body-->
+<br>
+<div style="text-align: right; margin-right: 48px;">
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
+        Update Dental Schedule
+    </button>
+</div>
+
 
 <center>
-<table class="styled-table" >
-                            <thead>
-                                <tr>
-                                <th>Patient ID Number</th>
-                                <th>Patient Name</th>
-                                <th>Role</th>
-                                <th>Enrolled in</th>
-                                <th>Time and Date</th>
-                                <th>Action</th>
+  
 
-                               
-                                </tr>
-                            </thead>
-                            <tbody id="healthRecordTableBody">
-                     <?php
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Patient ID Number</th>
+                <th>Patient Name</th>
+                <th>Role</th>
+                <th>Enrolled in</th>
+                <th>Time and Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="healthRecordTableBody">
+            <?php
+            $sql = "SELECT * FROM dentalapp";
+            $result = mysqli_query($conn, $sql);
+            
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <tr>
+                    <td><?php echo $row['idnumber']; ?></td>
+                    <td><?php echo $row['fullname']; ?></td>
+                    <td><?php echo $row['role']; ?></td>
+                    <td><?php echo $row['cenrolled']; ?></td>
+                    <td><?php echo $row['date_time']; ?></td>
+                    <td>
+                        <a href="">Approve</a>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <br>
+</center>
 
-                                $sql = "SELECT * FROM dentalapp";
-                                $result = mysqli_query($conn, $sql);
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Schedule</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <?php
+                $sql = "SELECT * FROM status";
+                $result = mysqli_query($conn, $sql);
 
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $status_id = $row['status_id'];
+                        $statuses1030 = $row['statuses1030'];
+                        $statuses1130 = $row['statuses1130'];
+                        $statuses230 = $row['statuses230'];
+                        $statuses330 = $row['statuses330'];
+                    }
+                } else {
 
-                                while($row = $result->fetch_assoc()){
-                                ?>
-                                <tr>
-                                <td><?php echo $row['idnumber']; ?></td>
-                                <td><?php echo $row['fullname']; ?></td>
-                                <td><?php echo $row['role']; ?></td>
-                                <td><?php echo $row['cenrolled']; ?></td>
-                                <td><?php echo $row['date_time']; ?></td>
-                                
-                                <td>
-                                <a href="">
-                                       Approve </a>
-                               </td>
-                              
-                                </tr>
+                }
+                ?>
+                <?php
+                // Step 1: Retrieve the data to be updated
+                if (isset($_GET['status_id'])) {
+                    $status_id = $_GET['status_id'];
+                }
 
-                                <?php } ?>
-  </tbody>
-</table>
-<br>
-                                </center>
-				</div>			    
-		    </div>
-	    </div>
-    </div>  
+                ?>
+                <form action="function/funct.php" method="POST">
+                    <input type="hidden" name="status_id" value="<?php echo $status_id; ?>">
+                    <div class="mb-3">
+                        <label for="inputStatus1030" class="form-label">Status 10:30 A.M</label>
+                        <select class="form-select" id="inputStatus1030" name="statuses1030">
+                            <option value="Available" <?php if ($statuses1030 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statuses1030 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus1130" class="form-label">Status 11:30 A.M</label>
+                        <select class="form-select" id="inputStatus1130" name="statuses1130">
+                            <option value="Available" <?php if ($statuses1130 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statuses1130 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus230" class="form-label">Status 02:30 P.M</label>
+                        <select class="form-select" id="inputStatus230" name="statuses230">
+                            <option value="Available" <?php if ($statuses230 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statuses230 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus330" class="form-label">Status 03:30 P.M</label>
+                        <select class="form-select" id="inputStatus330" name="statuses330">
+                            <option value="Available" <?php if ($statuses330 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statuses330 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="submit_status" class="btn btn-light">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>

@@ -28,7 +28,7 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/style.css">
-
+	
 </head> 
 
 <body class="app">   	

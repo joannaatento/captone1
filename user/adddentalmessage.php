@@ -181,7 +181,7 @@
                         <div class="form-group">
                             <label for="patient_name" class="col-sm-4 control-label">Enter your Fullname</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname"required>
                             </div>
                         </div>
                     </div>
@@ -212,17 +212,20 @@
 
 <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="gradecourse" class="col-sm-8 control-label">In what level are you currently enrolled</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" required>
+                        <label for="fullname">Level of Education</label>
+                        <select id="c_enrolled" name="c_enrolled" class="form-control" required>
+										<option value="">Select Level of Education</option>
+										<option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
+										<option value="Senior High School">Senior High School</option>
+										<option value="College">College</option>
+                                        <option value="Employee">Employee</option>
+									</select>
                             </div>
                         </div>
                     </div>
-
-</div>
 <br>
                    
-<div class="text-box" style="border: 1px solid #ccc; padding: 10px; width: 300px; font-size: 10px;">
+<div class="text-box" style="border: 1px solid #ccc; padding: 10px; width: 300px; font-size: 10px; margin-top: 20px;">
    <center> <p>Available Day and Time</p> </center>
    <p> Monday - Wednesday<br>
   

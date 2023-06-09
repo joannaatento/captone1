@@ -43,17 +43,33 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
-    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/table.css">
-    
-    
+    <link rel="stylesheet" href="assets/msgdental.css">
 
+  
 </head> 
 
 <body class="app">   	
-    <header class="app-header fixed-top">	   	            
+<?php
+// Fetch dental records
+$sql = "SELECT * FROM dental WHERE c_enrolled = 'Grade School & Grade School & Junior High School'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    $row = $result->fetch_assoc(); 
+    $dental_id = $row['dental_id'];
+    $name = $row['name'];
+    $message = $row['message'];
+    $date_created = $row['date_created'];
+    $is_read = $row['is_read'];
+}
+?>
+
+
+
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -109,12 +125,12 @@
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlists.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="studentlists.php">Students</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="employeelists.php">Employees</a></li>
             </ul>
         </div>
     </li>
-
+    
     <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
         <span class="nav-icon">
@@ -140,9 +156,10 @@
     </div>
 </li>
 
+
     
     <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
+        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-plus" viewBox="0 0 16 16">
@@ -157,29 +174,13 @@
                 </svg>
             </span>
         </a>
-        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
+        <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
                 <li class="submenu-item"><a class="submenu-link active" href="dental.php">Dental</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
             </ul>
         </div>
     </li>
-
-    <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecord.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
-            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
-            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-            </svg>
-        </span>
-        <span class="nav-link-text">Patient's Management Record</span>
-    </a>
-</li>
-
-
 </ul>
 
 	
@@ -189,7 +190,6 @@
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -212,9 +212,45 @@
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-					   
-				    </div><!--//app-card-body-->
+                    <div class="app-card-body p-4">
+    <?php
+    $sql = "SELECT * FROM dental WHERE c_enrolled = 'Employee'";
+    $result = $conn->query($sql);
+
+    while ($row = $result->fetch_array()) {
+        $dental_id = $row['dental_id'];
+        $is_read = $row['is_read'];
+        ?>
+        <div class="main-content">
+            <div class="email-list-item <?php echo ($is_read == 0) ? 'unread' : ''; ?>" <?php echo ($is_read == 0) ? 'style="background-color: #F1F1F1;"' : ''; ?>>
+                <div class="message">
+                    <b><div class="name" style="display: inline;"><?php echo $row['name']; ?></div></b>
+                    <div class="message" style="display: inline;"><?php echo $row['message']; ?></div>
+                    <div class="timestamp"><?php echo $row['date_created']; ?></div>
+                </div>
+                <?php if ($is_read == 0): ?>
+                    <a href="function/funct.php?dental_id=<?php echo $dental_id; ?>">Mark as Read</a>
+                <?php endif; ?>
+                <div class="delete-button" style="display: inline">
+  <a href="function/deletedentalreq.php?dental_id=<?php echo $dental_id; ?>" class="delete-link" onclick="return confirm('Are you sure you want to delete?')">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-trash3" viewBox="0 0 16 16">
+      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+    </svg>
+  </a>
+</div>
+
+
+            </div>
+        </div>
+        <?php
+    }
+    ?>
+</div><!--//app-card-body-->
+
+
+
+
+
 				</div>			    
 		    </div>
 	    </div>
@@ -235,7 +271,6 @@
 			}
 		}, 5000);
 	</script>
-
 
 </body>
 </html> 

@@ -5,6 +5,7 @@
 
     if(isset($_POST['signup'])){
         $username = $_POST['username'];
+        $type = $_POST['type'];
         $email = $_POST['email'];
         $password = $_POST['password'];
     
@@ -28,21 +29,23 @@
                 // Hash the password
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
-                $sql_add = "INSERT INTO `admins`(`username`, `email`, `password`) VALUES ('$username','$email','$hashedPassword')";
+                $sql_add = "INSERT INTO `admins`(`type`, `username`, `email`, `password`) VALUES ('$type','$username','$email','$hashedPassword')";
                 if($conn->query($sql_add) === TRUE){
                     $sql = "SELECT * FROM admins WHERE username = '$username'";
                     $result = $conn->query($sql);
                     if($result->num_rows > 0){
                         $row = mysqli_fetch_array($result);
                         $_SESSION['admin_id'] = $row['id'];
+                        $_SESSION['type'] = $row['type'];
                         $_SESSION['username'] = $row['username'];
                         $_SESSION['email'] = $row['email'];
-                        header('Location: ../healthrecorddashboard.php');
+                        header('Location: ../signup.php');
                     }
                 }
             }
         }
     }
+    
     
     if (isset($_POST['login'])) {
         $username = $_POST['username'];
@@ -58,6 +61,7 @@
             // Verify the password
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['admin_id'] = $row['admin_id'];
+                $_SESSION['type'] = $row['type'];
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['email'] = $row['email'];
                 header('Location: ../healthrecorddashboard.php');
@@ -81,14 +85,14 @@
     
 
     if(isset($_POST['submit_dental'])){ // pag get ng data
-      
+        $admin_id = $_POST['admin_id'];
         $idnumber = $_POST['idnumber']; 
         $fullname = $_POST['fullname'];
         $role = $_POST['role'];
         $cenrolled = $_POST['cenrolled'];
         $date_time = $_POST['date_time'];
 
-        $sql = "INSERT INTO dentalapp VALUES ('','$idnumber','$fullname','$role','$cenrolled','$date_time')";
+        $sql = "INSERT INTO dentalapp VALUES ('','$admin_id','$idnumber','$fullname','$role','$cenrolled','$date_time')";
         if(mysqli_query($conn, $sql)){
             // echo "<script>window.history.go(-1);</script>";
             header('location: ../dental.php');

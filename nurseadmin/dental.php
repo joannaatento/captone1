@@ -7,9 +7,24 @@
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
+    $admin_id = $_SESSION['admin_id'];
+    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $admin_id = $row['admin_id'];
+        $username = $row['username'];
+        require_once('../db.php');
+        if($_SESSION['type'] == 1){
+            // User type 1 specific code here
+        }
+        else{
+            header('location: ../login.php');
+            exit; // Exit the script to prevent further execution
+        }
+    }
 
-    
 ?>
+
 
 
 <!DOCTYPE html>
@@ -199,7 +214,9 @@ if (mysqli_num_rows($result) > 0) {
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
+                   
   <form class="form-horizontal mt-4" method="post" action="function/funct.php">
+ 
     <div class="row">
       <div class="col-sm-4">
         <div class="form-group">
@@ -246,7 +263,7 @@ if (mysqli_num_rows($result) > 0) {
     </div><br>
     <div class="row">
       <div class="col-sm-12">
-        <input type="text" name="dental_id" style="display: none;">
+      <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
         <button name="submit_dental" class="btn btn-success">Add Dental Appointment</button>
       </div>
     </div>
@@ -277,7 +294,7 @@ if (mysqli_num_rows($result) > 0) {
         </thead>
         <tbody id="healthRecordTableBody">
             <?php
-            $sql = "SELECT * FROM dentalapp";
+            $sql = "SELECT * FROM dentalapp WHERE admin_id = '$admin_id'";
             $result = mysqli_query($conn, $sql);
             
             while ($row = $result->fetch_assoc()) {

@@ -5,6 +5,7 @@
 
     if(isset($_POST['submit_data'])){ // pag get ng data 
         $user_id = $_POST['user_id'];
+        $image = $_FILES['image']['name'];
         $fullname = trim(mysqli_real_escape_string($conn, $_POST['fullname']));
         $idnumber = trim(mysqli_real_escape_string($conn, $_POST['idnumber']));
         $personalcpnum = trim(mysqli_real_escape_string($conn, $_POST['personalcpnum']));
@@ -41,22 +42,25 @@
         $personcp = trim(mysqli_real_escape_string($conn, $_POST['personcp']));
         $relationship = trim(mysqli_real_escape_string($conn, $_POST['relationship']));
 
-        $sql = "INSERT INTO healthrecord VALUES ('','$user_id','$fullname','$idnumber','$personalcpnum','$age','$birthday','$gender','$address','$role','$gradecourse','$leveleduc','$fathername','$cfather','$mothername','$cmother','$polio','$measles','$tb','$seizure_epilepsy','$tetanus','$mumps','$hepatits','$bleeding_tendencies','$chicken_pox','$asthma','$fainting_spells','$eye_disorder','$heart','$illness','$allergyfood','$allergymed','$allow_not','$medications','$nameperson','$personcp','$relationship')";
-        if(mysqli_query($conn, $sql)){
-            // echo "<script>window.history.go(-1);</script>";
-            header('location: ../healthrecordform.php');
-            echo $_SESSION['success'] ="
+        $sql = "INSERT INTO healthrecord VALUES ('','$user_id','$image','$fullname','$idnumber','$personalcpnum','$age','$birthday','$gender','$address','$role','$gradecourse','$leveleduc','$fathername','$cfather','$mothername','$cmother','$polio','$measles','$tb','$seizure_epilepsy','$tetanus','$mumps','$hepatits','$bleeding_tendencies','$chicken_pox','$asthma','$fainting_spells','$eye_disorder','$heart','$illness','$allergyfood','$allergymed','$allow_not','$medications','$nameperson','$personcp','$relationship')";
+      
+    if (mysqli_query($conn, $sql)) {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], "../../upload_image" . $_FILES["image"]["name"])) {
+            $_SESSION['success'] = "
                 <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
-                    <h2 style='
-                    color: #fff;
-                    font-size: 16px;
-                    margin-left: 10px;'>Your health record has been submitted.</h2>
+                    <h2 style='color: #fff; font-size: 16px; margin-left: 10px;'>Your health record has been submitted.</h2>
                 </div>
             ";
+            header('location: ../healthrecordform.php');
+        } else {
+            // There was an error uploading the file
+            echo "Error: " . $_FILES["image"]["error"];
         }
     }
 
 
+    // ...
+}
     if(isset($_POST['signup'])){
         $fullname = $_POST['fullname'];
         $type = $_POST['type'];

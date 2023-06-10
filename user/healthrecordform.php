@@ -45,7 +45,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/styleform.css">
+	<link rel="stylesheet" href="assets/formstyle.css">
 
 </head> 
 
@@ -127,7 +127,7 @@
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
 										<li class="submenu-item"><a class="submenu-link active" href="adddentalmessage.php">Add Dental Schedule</a></li>
-										<li class="submenu-item"><a class="submenu-link active">View Dental Record</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="viewhealthrecord.php">View Dental Record</a></li>
 									</ul>
 								</div>
 							</li>
@@ -162,221 +162,209 @@
 									unset($_SESSION['success']);
 								}
 							?>
+							
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
 					<p class="title_">Personal Information</p>
-					    <form class="form-horizontal mt-4"action="function/funct.php" method="post">
-							<div class="align_form">
-								<div class="input_form">
-								
-									<div class="input_wrap">
-										<label for="fullname">Full Name</label>
-										<input id="fullname" name="fullname" type="text" value="<?= $fullname;?>" required />
-										</div>
+					
+					<form class="form-horizontal mt-4" action="function/funct.php" method="post" enctype="multipart/form-data">
+    <div class="align_form">
 
-									<div class="input_wrap">
-									<label for="fullname">ID Number</label>
-										<input name="idnumber" type="text" required />
-									</div>
-									
-									<div class="input_wrap">
-										<label>Contact Number</label>
-									<input name="personalcpnum" type="text" required />
-									
-								</div>
-									<div class="input_wrap">
-									<label for="fullname">Age</label>
-										<input name="age" type="text" required />
-									
-									</div>
-						
-									<div class="input_wrap">
-									<label for="fullname">Birthday</label>
-										<input name="birthday" type="date" required />
-										
-									</div>
-									<div class="input_wrap">
-									<label for="fullname">Gender</label>
-									<select class="form-select" name="gender" required>
-										<option value="" disabled selected>Select Gender</option>
-										<option value="Female">Female</option>
-										<option value="Male">Male</option>
-									</select>
-									</div>
+	
+        <div class="input_form">
 
-									<div class="input_wrap">
-									<label for="fullname">Home Address</label>
-										<input name="address" type="text" required />
-										
-									</div>
+		<div class="input_wrap">
+                <label for="image">Upload Image</label>
+                <input type="file" name="image" id="image">
+							</div>
+        <div class="input_wrap">
+                <label for="fullname">Full Name</label>
+                <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" >
+            </div>
 
-									<div class="input_wrap">
-									<label for="fullname">Role</label>
-									<select class="form-select" name="role" required>
-										<option value="" disabled selected>Select Role</option>
-										<option value="Student">Student</option>
-										<option value="Employee">Employee</option>
-									</select>
+            <div class="input_wrap">
+                <label for="fullname">ID Number</label>
+                <input name="idnumber" type="text">
+            </div>
 
-									</div>
-									<div class="input_wrap">
-									<label for="fullname">Grade/Course & Year/Position</label>
-										<input name="gradecourse" type="text" required />
-									</div>
-									
-									<div class="input_wrap">
-									<label for="fullname">Level of Education</label>
-									<select class="form-select" name="leveleduc" required>
-										<option value="" disabled selected>Select Level of Education</option>
-										<option value="Preschool">Preschool</option>
-										<option value="Kinder">Kinder</option>
-										<option value="Grade School">Grade School</option>
-										<option value="Junior High School">Junior High School</option>
-										<option value="Senior High School">Senior High School</option>
-										<option value="College">College</option>
-									</select>
+            <div class="input_wrap">
+                <label>Contact Number</label>
+                <input name="personalcpnum" type="text">
+            </div>
 
-									</div>
-									
-									
-								</div>
-							</div>
-							<div class="input_form">
-							<div class="input_wrap">
-									<label for="fullname">Name of Father</label>
-										<input name="fathername" type="text" required />
-									
-									</div>
-									
-									<div class="input_wrap">
-									<label for="fullname">Contact</label>
-										<input name="cfather" type="text" required />
-									
-									</div>
-							</div>
+            <div class="input_wrap">
+                <label for="fullname">Age</label>
+                <input name="age" type="text">
+            </div>
 
-							<div class="input_form">
-							<div class="input_wrap">
-									<label for="fullname">Name of Mother</label>
-										<input name="mothername" type="text" required />
-									
-									</div>
-									
-									<div class="input_wrap">
-									<label for="fullname">Contact</label>
-										<input name="cmother" type="text" required />
-									
-									</div>
-							</div>
-							<div>
-								<p class="title_">Medical History</p>
-							</div>
-							<div class="input_form">
-								<div class="checkbox">
-									<input name="polio" value="polio" type="checkbox" id="polio">
-									<label class="label" for="polio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POLIO</label>
-								</div>
-								<div class="checkbox">
-									<input name="measles" value="measles" type="checkbox" id="measles">
-									<label class="label" for="measles">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEASLES</label>
-								</div>
-								<div class="checkbox">
-									<input name="tb" value="tb" type="checkbox" id="tb">
-									<label class="label" for="tb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PULMONARY TUBERCULOSIS</label>
-								</div>
-								<div class="checkbox">
-									<input name="seizure_epilepsy" value="seizure_epilepsy" type="checkbox" id="seizure_epilepsy">
-									<label class="label" for="seizure_epilepsy">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEIZURE / EPILEPSY</label>
-								</div>
-								<div class="checkbox">
-									<input name="tetanus" value="tetanus" type="checkbox" id="tetanus">
-									<label class="label" for="tetanus">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TETANUS</label>
-								</div>
-								<div class="checkbox">
-									<input name="mumps" value="mumps" type="checkbox" id="mumps">
-									<label class="label" for="mumps">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MUMPS</label>
-								</div>
-								<div class="checkbox">
-									<input name="hepatits" value="hepatits" type="checkbox" id="hepatits">
-									<label class="label" for="hepatits">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HEPATITIS</label>
-								</div>
-								<div class="checkbox">
-									<input name="bleeding_tendencies" value="bleeding_tendencies" type="checkbox" id="bleeding_tendencies">
-									<label class="label" for="bleeding_tendencies">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BLEEDING TENDENCIES</label>
-								</div>
-								<div class="checkbox">
-									<input name="chicken_pox" value="chicken_pox" type="checkbox" id="chicken_pox">
-									<label class="label" for="chicken_pox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHICKEN POX</label>
-								</div>
-								<div class="checkbox">
-									<input name="asthma" value="asthma" type="checkbox" id="asthma">
-									<label class="label" for="asthma">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASTHMA</label>
-								</div>
-								<div class="checkbox">
-									<input name="fainting_spells" value="fainting_spells" type="checkbox" id="fainting_spells">
-									<label class="label" for="fainting_spells">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAINTING SPELLS</label>
-								</div>
-								<div class="checkbox">
-									<input name="eye_disorder" value="eye_disorder" type="checkbox" id="eye_disorder">
-									<label class="label" for="eye_disorder">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EYE DISORDER</label>
-								</div>
-								<div class="input_wrap">
-								<label>Heart Ailment(please specify)</label>
-									<input name="heart" value="" type="text" />
-									
-								</div>
-								<div class="input_wrap">
-								<label>Other illness(please specify)</label>
-									<input name="illness" value="" type="text" />
-								
-								</div>
-							</div>
-							<div>
-								<p class="title_">Do you have any allergy to:</p>
-							</div>
-							<div class="input_form_2">
-								<div class="input_wrap">
-								<label>Food (if YES please specify, if NO leave it blank)</label>
-									<input name="allergyfood" type="text" />
-							
-								</div>
-								<div class="input_wrap">
-								<label>Medicine (if YES please specify, if NO leave it blank)</label>
-									<input name="allergymed" type="text" />
-								
-								</div>
-								<div class="input_wrap">
-								<label>Would you allow your child to be given medicine (as needed) while here in the school?</label>
-									<input name="allow_not" type="text" required />
-									
-								</div>
-								<div class="input_wrap">
-								<label>Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>
-									<input name="medications" type="text"  />
-									
-								</div>
-								<div class="input_wrap">
-								<label>Name of the person to be notified in case of emergency:</label>
-									<input name="nameperson" type="text" required />
-							
-								</div>
-								<div class="input_wrap">
-								<label>Contact Number</label>
-									<input name="personcp" type="text" required />
-									
-								</div>
-								<div class="input_wrap">
-								<label>Relationship</label>
-									<input name="relationship" type="text" required />
-									
-								</div>
-							</div>
-							<div class="app-card-footer px-4 py-3">
-								<input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
-								<button name="submit_data" class="btn btn-success">SUBMIT</button>
-							</div>
-						</form>
+            <div class="input_wrap">
+                <label for="fullname">Birthday</label>
+                <input name="birthday" type="date">
+            </div>
+            <div class="input_wrap">
+                <label for="fullname">Gender</label>
+                <select class="form-select" name="gender">
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </div>
+
+            <div class="input_wrap">
+                <label for="fullname">Home Address</label>
+                <input name="address" type="text">
+            </div>
+
+            <div class="input_wrap">
+                <label for="fullname">Role</label>
+                <select class="form-select" name="role">
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="Student">Student</option>
+                    <option value="Employee">Employee</option>
+                </select>
+            </div>
+            <div class="input_wrap">
+                <label for="fullname">Grade/Course & Year/Position</label>
+                <input name="gradecourse" type="text">
+            </div>
+
+            <div class="input_wrap">
+                <label for="fullname">Level of Education</label>
+                <select class="form-select" name="leveleduc">
+                    <option value="" disabled selected>Select Level of Education</option>
+                    <option value="Grade School">Grade School and Junior High School</option>
+                    <option value="Junior High School">Junior High School</option>
+                    <option value="Senior High School">Senior High School</option>
+                    <option value="College">College</option>
+					<option value="Employee">College</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="input_form">
+        <div class="input_wrap">
+            <label for="fullname">Name of Father</label>
+            <input name="fathername" type="text">
+        </div>
+
+        <div class="input_wrap">
+            <label for="fullname">Contact</label>
+            <input name="cfather" type="text">
+        </div>
+    </div>
+
+    <div class="input_form">
+        <div class="input_wrap">
+            <label for="fullname">Name of Mother</label>
+            <input name="mothername" type="text">
+        </div>
+
+        <div class="input_wrap">
+            <label for="fullname">Contact</label>
+            <input name="cmother" type="text">
+        </div>
+    </div>
+    <div>
+        <p class="title_">Medical History</p>
+    </div>
+    <div class="input_form">
+        <div class="checkbox">
+            <input name="polio" value="polio" type="checkbox" id="polio">
+            <label class="label" for="polio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POLIO</label>
+        </div>
+        <div class="checkbox">
+            <input name="measles" value="measles" type="checkbox" id="measles">
+            <label class="label" for="measles">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEASLES</label>
+        </div>
+        <div class="checkbox">
+            <input name="tb" value="tb" type="checkbox" id="tb">
+            <label class="label" for="tb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PULMONARY TUBERCULOSIS</label>
+        </div>
+        <div class="checkbox">
+            <input name="seizure_epilepsy" value="seizure_epilepsy" type="checkbox" id="seizure_epilepsy">
+            <label class="label" for="seizure_epilepsy">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEIZURE / EPILEPSY</label>
+        </div>
+        <div class="checkbox">
+            <input name="tetanus" value="tetanus" type="checkbox" id="tetanus">
+            <label class="label" for="tetanus">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TETANUS</label>
+        </div>
+        <div class="checkbox">
+            <input name="mumps" value="mumps" type="checkbox" id="mumps">
+            <label class="label" for="mumps">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MUMPS</label>
+        </div>
+        <div class="checkbox">
+            <input name="hepatits" value="hepatits" type="checkbox" id="hepatits">
+            <label class="label" for="hepatits">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HEPATITIS</label>
+        </div>
+        <div class="checkbox">
+            <input name="bleeding_tendencies" value="bleeding_tendencies" type="checkbox" id="bleeding_tendencies">
+            <label class="label" for="bleeding_tendencies">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BLEEDING TENDENCIES</label>
+        </div>
+        <div class="checkbox">
+            <input name="chicken_pox" value="chicken_pox" type="checkbox" id="chicken_pox">
+            <label class="label" for="chicken_pox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHICKEN POX</label>
+        </div>
+        <div class="checkbox">
+            <input name="asthma" value="asthma" type="checkbox" id="asthma">
+            <label class="label" for="asthma">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASTHMA</label>
+        </div>
+        <div class="checkbox">
+            <input name="fainting_spells" value="fainting_spells" type="checkbox" id="fainting_spells">
+            <label class="label" for="fainting_spells">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAINTING SPELLS</label>
+        </div>
+        <div class="checkbox">
+            <input name="eye_disorder" value="eye_disorder" type="checkbox" id="eye_disorder">
+            <label class="label" for="eye_disorder">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EYE DISORDER</label>
+        </div>
+        <div class="input_wrap">
+            <label>Heart Ailment(please specify) Put N/A if none.</label>
+            <input name="heart" value="" type="text">
+        </div>
+        <div class="input_wrap">
+            <label>Other illness(please specify) Put N/A if none.</label>
+            <input name="illness" value="" type="text">
+        </div>
+    </div>
+    <div>
+        <p class="title_">Do you have any allergy to:</p>
+    </div>
+    <div class="input_form_2">
+        <div class="input_wrap">
+            <label>Food (if YES please specify, if NO leave it blank)</label>
+            <input name="allergyfood" type="text">
+        </div>
+        <div class="input_wrap">
+            <label>Medicine (if YES please specify, if NO leave it blank)</label>
+            <input name="allergymed" type="text">
+        </div>
+        <div class="input_wrap">
+            <label>Would you allow your child to be given medicine (as needed) while here in the school?</label>
+            <input name="allow_not" type="text">
+        </div>
+        <div class="input_wrap">
+            <label>Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>
+            <input name="medications" type="text">
+        </div>
+        <div class="input_wrap">
+            <label>Name of the person to be notified in case of emergency:</label>
+            <input name="nameperson" type="text">
+        </div>
+        <div class="input_wrap">
+            <label>Contact Number</label>
+            <input name="personcp" type="text">
+        </div>
+        <div class="input_wrap">
+            <label>Relationship</label>
+            <input name="relationship" type="text">
+        </div>
+    </div>
+    <div class="app-card-footer px-4 py-3">
+	<input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
+        <button name="submit_data" class="btn btn-success">SUBMIT</button>
+    </div>
+</form>
+
 				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>

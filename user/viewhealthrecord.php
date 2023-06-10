@@ -43,7 +43,7 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/style.css">
-	<link rel="stylesheet" href="assets/styleform.css">
+	<link rel="stylesheet" href="assets/formstyle.css">
 
 </head> 
 
@@ -164,6 +164,15 @@
 						?>
 							<div class="align_form">
 								<div class="input_form">
+								<div class="input_wrap">
+							<label></label><br>
+							<div class="image_container">
+								<img src="<?php echo "upload_image/".$row['image'];?>">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Your Image</label>
+							</div>
+						</div>
+							</div>
+							<div class="input_form">
 									<div class="input_wrap">
 										<label>Full Name</label>
 										<input name="fullname" type="text" value="<?=$row['fullname'];?>" readonly />
@@ -175,7 +184,7 @@
 									<div class="input_wrap">
 										<label>Contact</label>
 										<input name="personalcpnum" type="text" value="<?=$row['personalcpnum'];?>" readonly />
-									</div>
+									</div><br>
 									<div class="input_wrap">
 										<label>Age</label>
 										<input name="age" type="text" value="<?=$row['age'];?>" readonly />
@@ -191,7 +200,7 @@
 											<option disabled selected><?= $row['gender'];?></option>
 										</select>
 									</div>
-
+										<br>
 									<div class="input_wrap">
 										<label>Home Address</label>
 										<input name="address" type="text" value="<?=$row['address'];?>" readonly />
@@ -209,7 +218,7 @@
 									<label>Grade/Course & Year/Position</label>
 										<input name="gradecourse" type="text" value="<?=$row['gradecourse'];?>" readonly />
 									</div>
-									
+									<br>
 									<div class="input_wrap">
 									<label>Level of Education</label>
 										<select readonly>
@@ -232,9 +241,8 @@
 										<input name="cfather" type="text" value="<?=$row['cfather'];?>" readonly />
 									
 									</div>
-							</div>
+							
 
-							<div class="input_form">
 								<div class="input_wrap">
 									<label for="fullname">Name of Mother</label>
 										<input name="mothername" type="text" value="<?=$row['mothername'];?>" readonly/>

@@ -208,4 +208,13 @@ input[type="text"]:focus {outline:none;}
 .btn:hover{
     color: #15a362;
 }
+.image_container {
+    width: 200px;
+    height: 200px;
+}
 
+.image_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

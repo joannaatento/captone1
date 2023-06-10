@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2023 at 06:17 PM
+-- Generation Time: Jun 10, 2023 at 06:16 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -107,6 +107,7 @@ INSERT INTO `dentalapp` (`dentalapp_id`, `admin_id`, `idnumber`, `fullname`, `ro
 CREATE TABLE `healthrecord` (
   `health_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `fullname` varchar(35) NOT NULL,
   `idnumber` int(11) NOT NULL,
   `personalcpnum` varchar(15) NOT NULL,
@@ -148,9 +149,9 @@ CREATE TABLE `healthrecord` (
 -- Dumping data for table `healthrecord`
 --
 
-INSERT INTO `healthrecord` (`health_id`, `user_id`, `fullname`, `idnumber`, `personalcpnum`, `age`, `birthday`, `gender`, `address`, `role`, `gradecourse`, `leveleduc`, `fathername`, `cfather`, `mothername`, `cmother`, `polio`, `measles`, `tb`, `seizure_epilepsy`, `tetanus`, `mumps`, `hepatits`, `bleeding_tendencies`, `chicken_pox`, `asthma`, `fainting_spells`, `eye_disorder`, `heart`, `illness`, `allergyfood`, `allergymed`, `allow_not`, `medications`, `nameperson`, `personcp`, `relationship`) VALUES
-(14, 20, 'Joanna Mae Atento', 6802182, '0', 21, '2001-12-15', 'Female', 'Guinobatan', 'Student', 'BSIT-3', 'College', 'Jojo Atento', '092738458775', 'Rowena Atento', '0928795469', '', '', '', '', '', '', '', '', '', '', '', 'eye_disorder', 'N/A', 'N/A', 'NO', 'NO', 'YES', 'NO', 'Edita Dela Cruz', '09156005165', 'Grandmother'),
-(20, 21, 'Employee Juan', 1234978, '09156005165', 22, '2000-12-15', 'Male', 'Camalig', 'Employee', 'Professor', 'College', 'Jose Rizal', '091247687087', 'Rowena Atento', '091456005879', '', '', '', '', '', '', '', '', '', '', '', 'eye_disorder', 'N/A', 'N/A', 'NO', 'NO', 'YES', 'NO', 'Tandang Sora', '092758468547', 'Grandmother');
+INSERT INTO `healthrecord` (`health_id`, `user_id`, `image`, `fullname`, `idnumber`, `personalcpnum`, `age`, `birthday`, `gender`, `address`, `role`, `gradecourse`, `leveleduc`, `fathername`, `cfather`, `mothername`, `cmother`, `polio`, `measles`, `tb`, `seizure_epilepsy`, `tetanus`, `mumps`, `hepatits`, `bleeding_tendencies`, `chicken_pox`, `asthma`, `fainting_spells`, `eye_disorder`, `heart`, `illness`, `allergyfood`, `allergymed`, `allow_not`, `medications`, `nameperson`, `personcp`, `relationship`) VALUES
+(73, 20, 'me.jpg', 'Joanna Mae Atento', 6802182, '09156005165', 21, '2001-12-15', 'Female', 'Guinobatan', 'Student', 'BSIT-3', 'College', 'Jojo Atento', '09134374637', 'Rowena Atento', '091476548368', '', '', '', '', '', '', '', '', '', '', '', 'eye_disorder', 'N/A', 'N/A', '', '', 'YES', 'NO', 'Edita Dela Cruz', '091564957760', 'Grandmother'),
+(74, 21, 'WIN_20230311_16_23_26_Pro.jpg', 'Employee Juan', 12345678, '09756578679', 22, '2000-12-15', 'Male', 'Polangui', 'Employee', 'Professor', 'Employee', 'Jose Rizal', '09145885479', 'Rowena Atento', '091476548368', '', '', '', '', '', '', '', '', '', '', 'fainting_spells', '', 'N/A', 'N/A', '', '', 'YES', 'NO', 'Tandang Sora', '091475865879', 'Grandmother');
 
 -- --------------------------------------------------------
 
@@ -263,7 +264,7 @@ ALTER TABLE `dentalapp`
 -- AUTO_INCREMENT for table `healthrecord`
 --
 ALTER TABLE `healthrecord`
-  MODIFY `health_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `health_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `status`

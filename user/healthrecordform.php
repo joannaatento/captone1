@@ -237,7 +237,7 @@
                     <option value="Junior High School">Junior High School</option>
                     <option value="Senior High School">Senior High School</option>
                     <option value="College">College</option>
-					<option value="Employee">College</option>
+					<option value="Employee">Employee</option>
                 </select>
             </div>
         </div>

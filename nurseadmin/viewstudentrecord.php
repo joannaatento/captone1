@@ -31,7 +31,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/style.css">
+	<link rel="stylesheet" href="assets/styles.css">
 
 </head> 
 
@@ -228,9 +228,10 @@ if (mysqli_num_rows($result) > 0) {
 							<div class="align_form">
 								<div class="input_form">
 								<div class="input_wrap">
-							<label></label><br>
+							<label></label>
 							<div class="image_container">
-								<img src="<?php echo "upload_image/".$row['image'];?>">
+							<br>
+								<img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Your Image</label>
 							</div>
 						</div>
@@ -406,7 +407,7 @@ if (mysqli_num_rows($result) > 0) {
 								</div>
 								<div class="input_wrap">
 								<label>Contact Number</label>
-									<input name="personcp" type="number" value="<?= $row['personcp'];?>" readonly />
+									<input name="personcp" type="text" value="<?= $row['personcp'];?>" readonly />
 									
 								</div>
 								<div class="input_wrap">

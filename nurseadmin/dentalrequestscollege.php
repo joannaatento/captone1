@@ -7,21 +7,6 @@
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
-    $admin_id = $_SESSION['admin_id'];
-    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
-    $result = $conn->query($sql_query);
-    while($row = $result->fetch_array()){
-        $admin_id = $row['admin_id'];
-        $username = $row['username'];
-        require_once('../db.php');
-        if($_SESSION['type'] == 1){
-            // User type 1 specific code here
-        }
-        else{
-            header('location: ../login.php');
-            exit; // Exit the script to prevent further execution
-        }
-    }
 
 ?>
 

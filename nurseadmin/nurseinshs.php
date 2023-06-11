@@ -14,7 +14,7 @@
         $admin_id = $row['admin_id'];
         $username = $row['username'];
         require_once('../db.php');
-        if($_SESSION['type'] == 1){
+        if($_SESSION['role'] == 2){
             // User type 1 specific code here
         }
         else{
@@ -132,9 +132,7 @@
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link active" href="dentalrequests.php">Grade School and JHS</a></li>
             <li class="submenu-item"><a class="submenu-link" href="dentalrequestsshs.php">Senior High School</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestscollege.php">College</a></li>
             <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployee.php">Employee</a></li>
         </ul>
     </div>

@@ -45,6 +45,20 @@
 									unset($_SESSION['failed']);
 								}
 							?>
+							<div class="email mb-3">
+							<label class="sr-only" for="signup-email">Role</label>
+							<select id="role" name="role" class="form-control role" required="required">
+								<option value="" selected disabled>Select your role</option>
+								<option value="1">Nurse in GS and JHS</option>
+								<option value="2">Nurse in SHS</option>
+								<option value="3">Nurse in College</option>
+								<option value="4">Doctor in GS, JHS & SHS</option>
+								<option value="5">Doctor in College</option>
+								
+								<!-- Add more options for different email types if needed -->
+							</select>
+							</div>
+
 							<div class="password mb-3">
 								<label class="sr-only" for="signup-password">Password</label>
 								<input id="signup-password" name="password" type="password" class="form-control signup-password" placeholder="Create a password" required="required">

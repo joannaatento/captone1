@@ -8,6 +8,7 @@
         $name = $_POST['name'];
         $dental_service = $_POST['dental_service'];
         $c_enrolled = $_POST['c_enrolled'];
+        $c_employee = $_POST['c_employee'];
         $message = $_POST['message'];
         
         // Set the time zone to Asia/Manila
@@ -15,8 +16,9 @@
     
         $date_created = date('Y-m-d h:i A'); // Include time in the date with AM/PM format
         $is_read = $_POST['is_read'];
+        $is_deleted_on_website = $_POST['is_deleted_on_website'];
     
-        $sql = "INSERT INTO dental VALUES ('','$user_id','$idnumber','$name','$dental_service','$c_enrolled','$message','$date_created','$is_read')";
+        $sql = "INSERT INTO dental VALUES ('','$user_id','$idnumber','$name','$dental_service','$c_enrolled','$c_employee','$message','$date_created','$is_read','$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
             header('location: ../adddentalmessage.php');

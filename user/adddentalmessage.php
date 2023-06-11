@@ -169,61 +169,72 @@
                     <form class="form-horizontal mt-4" method="post" action="function/functions.php">
 
                     <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="idnumber" class="col-sm-4 control-label">Enter your ID Number</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="patient_name" class="col-sm-4 control-label">Enter your Fullname</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname"required>
-                            </div>
-                        </div>
-                    </div>
-</div>
-
-                                <br>
-                                
-                                
-     
-<div class="row">
-
-                                    
-<div class="col-sm-6">
-    <div class="form-group">
-        <label for="dental_service" class="col-sm-4 control-label">Dental Services</label>
-        <div class="col-sm-10">
-        <select id="dental_service" name="dental_service" class="form-control" required>
-                    <option value="">Select Service</option>
-                    <option value="Cleaning">Cleaning</option>
-                    <option value="Tooth Extraction">Tooth Extraction</option>
-                        
-      </select>
-
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-4 control-label">Enter your ID Number</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-4 control-label">Enter your Fullname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" required>
+            </div>
         </div>
     </div>
 </div>
 
-
-<div class="col-sm-6">
-                        <div class="form-group">
-                        <label for="fullname">Level of Education</label>
-                        <select id="c_enrolled" name="c_enrolled" class="form-control" required>
-										<option value="">Select Level of Education</option>
-										<option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
-										<option value="Senior High School">Senior High School</option>
-										<option value="College">College</option>
-                                        <option value="Employee">Employee</option>
-									</select>
-                            </div>
-                        </div>
-                    </div>
 <br>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="dental_service" class="col-sm-4 control-label">Dental Services</label>
+            <div class="col-sm-10">
+                <select id="dental_service" name="dental_service" class="form-control" required>
+                    <option value="">Select Service</option>
+                    <option value="Cleaning">Cleaning</option>
+                    <option value="Tooth Extraction">Tooth Extraction</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="fullname">Level of Education</label>
+            <select id="c_enrolled" name="c_enrolled" class="form-control">
+                <option value="">Select Level of Education</option>
+                <option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
+                <option value="Senior High School">Senior High School</option>
+                <option value="College">College</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Inserted Code Starts -->
+<br>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="fullname">For Employee</label>
+            <select id="c_employee" name="c_employee" class="form-control">
+                <option value="">--Select--</option>
+                <option value="Employee in GS and JHS">Employee in GS and JHS</option>
+                <option value="Employee in SHS">Employee in Senior High School</option>
+                <option value="Employee College">Employee in College</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<br>
+
+
                    
 <div class="text-box" style="border: 1px solid #ccc; padding: 10px; width: 300px; font-size: 10px; margin-top: 20px;">
    <center> <p>Available Day and Time</p> </center>

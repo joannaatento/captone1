@@ -5,7 +5,7 @@
 
     if(isset($_POST['signup'])){
         $username = $_POST['username'];
-        $type = $_POST['type'];
+        $role = $_POST['role'];
         $email = $_POST['email'];
         $password = $_POST['password'];
     
@@ -29,14 +29,14 @@
                 // Hash the password
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
-                $sql_add = "INSERT INTO `admins`(`type`, `username`, `email`, `password`) VALUES ('$type','$username','$email','$hashedPassword')";
+                $sql_add = "INSERT INTO `admins`(`role`, `username`, `email`, `password`) VALUES ('$role','$username','$email','$hashedPassword')";
                 if($conn->query($sql_add) === TRUE){
                     $sql = "SELECT * FROM admins WHERE username = '$username'";
                     $result = $conn->query($sql);
                     if($result->num_rows > 0){
                         $row = mysqli_fetch_array($result);
                         $_SESSION['admin_id'] = $row['id'];
-                        $_SESSION['type'] = $row['type'];
+                        $_SESSION['role'] = $row['role'];
                         $_SESSION['username'] = $row['username'];
                         $_SESSION['email'] = $row['email'];
                         header('Location: ../signup.php');
@@ -61,29 +61,39 @@
             // Verify the password
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['admin_id'] = $row['admin_id'];
-                $_SESSION['type'] = $row['type'];
+                $_SESSION['role'] = $row['role'];
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['email'] = $row['email'];
-                header('Location: ../healthrecorddashboard.php');
+    
+                $role = $row['role'];
+                if ($role == '1') {
+                    header('Location: ../nurseingsjhs.php');
+                } elseif ($role == '2') {
+                    header('Location: ../nurseinshs.php');
+                } elseif ($role == '3') {
+                    // Handle role 3
+                    header('Location: ../nurseincollege.php');
+                } elseif ($role == '4') {
+                    // Handle role 4
+                    header('Location: ../doctoringsjhsshs.php');
+                } elseif ($role == '5') {
+                    // Handle role 5
+                    header('Location: ../doctorincollege.php');
+                } else {
+                    // Handle other roles or scenarios as needed
+                    header('Location: ../dashboard.php');
+                }
             } else {
-                echo $_SESSION['failed'] = "
-                    <div>
-                        <p style='font-size: 12px; color: red;'>Invalid username or password. Please try again.</p>
-                    </div>
-                ";
+                $_SESSION['failed'] = "Invalid username or password. Please try again.";
                 header('Location: ../login.php');
             }
         } else {
-            echo $_SESSION['failed'] = "
-                <div>
-                    <p style='font-size: 12px; color: red;'>Invalid username or password. Please try again.</p>
-                </div>
-            ";
+            $_SESSION['failed'] = "Invalid username or password. Please try again.";
             header('Location: ../login.php');
         }
     }
     
-
+    
     if(isset($_POST['submit_dental'])){ // pag get ng data
         $admin_id = $_POST['admin_id'];
         $idnumber = $_POST['idnumber']; 
@@ -129,20 +139,6 @@ if(isset($_POST['submit_status'])) {
     }
 }  
 
-if (isset($_GET['dental_id'])) {
-    $dental_id = $_GET['dental_id'];
-
-    // Perform the necessary database update to mark the message as read
-    // Replace 'your_table_name' with the actual table name where you store the messages
-    $sql = "UPDATE dental SET is_read = 1 WHERE dental_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $dental_id);
-    $stmt->execute();
-
-    // Redirect the user back to the original page or any other appropriate page
-    header("Location: ../dentalrequests.php");
-    exit();
-}
 
 
 ?>

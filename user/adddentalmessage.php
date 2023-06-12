@@ -44,7 +44,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/styles.css">
+	<link rel="stylesheet" href="assets/style.css">
 
    
 </style>
@@ -171,7 +171,7 @@
                     <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="idnumber" class="col-sm-4 control-label">Enter your ID Number</label>
+            <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">Enter your ID Number</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
             </div>
@@ -179,7 +179,7 @@
     </div>
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="patient_name" class="col-sm-4 control-label">Enter your Fullname</label>
+            <label for="patient_name" class="col-sm-4 control-label" style="font-size: 16px">Enter your Fullname</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" required>
             </div>
@@ -192,7 +192,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="dental_service" class="col-sm-4 control-label">Dental Services</label>
+            <label for="dental_service" class="col-sm-4 control-label" style="font-size: 16px">Dental Services</label>
             <div class="col-sm-10">
                 <select id="dental_service" name="dental_service" class="form-control" required>
                     <option value="">Select Service</option>
@@ -205,7 +205,7 @@
 
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="fullname">Level of Education</label>
+            <label for="fullname" style="font-size: 16px">Level of Education</label>
             <select id="c_enrolled" name="c_enrolled" class="form-control">
                 <option value="">Select Level of Education</option>
                 <option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
@@ -219,9 +219,20 @@
 <!-- Inserted Code Starts -->
 <br>
 <div class="row">
+
+<div class="col-sm-6">
+        <div class="form-group">
+            <label for="gradecourseyear" class="col-sm-4 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="igradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year">
+            </div>
+        </div>
+    </div>
+
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="fullname">For Employee</label>
+            <br>
+            <label for="fullname" style="font-size: 16px">For Employee</label>
             <select id="c_employee" name="c_employee" class="form-control">
                 <option value="">--Select--</option>
                 <option value="Employee in GS and JHS">Employee in GS and JHS</option>

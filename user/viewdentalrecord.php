@@ -227,6 +227,27 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
             </div>
         </div>
+<br>
+        <div class="row">
+
+<div class="col-sm-6">
+        <div class="form-group">
+            <label for="gradecourseyear" class="col-sm-8 control-label">Grade & Section/Course & Year</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?php echo $row['gradecourseyear']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="c_employee" class="col-sm-8 control-label">For Employee</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="c_employee" name="c_employee" value="<?php echo $row['c_employee']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+</div>
 
         <div class="row">
             <div class="form-group">

@@ -14,6 +14,7 @@
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
+        $idnumber = $row['idnumber'];
         require_once('../db.php');
         if($_SESSION['type'] == 1){
             // User type 1 specific code here
@@ -50,6 +51,24 @@
 </head> 
 
 <body class="app">   	
+<?php
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM patientrecord WHERE idnumber= '$idnumber'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $fullname = $row['fullname'];
+  $gradesection = $row['gradesection'];
+  $vitalsigns = $row['vitalsigns'];
+  $diagnosis = $row['diagnosis'];
+  $date_time = $row['date_time'];
+    }
+ else {
+ } 
+?>
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -151,9 +170,7 @@
 								</a>
 								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosis.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-</li>
-
+										<li class="submenu-item"><a class="submenu-link" href="viewdiagnosis.php">Diagnosis/Chief Compliants, Management & Treatment Record</a></li>
 
 									</ul>
 								</div>
@@ -183,7 +200,71 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-				
+
+                    <?php
+							$sql = "SELECT * FROM patientrecord WHERE idnumber = '$idnumber'";
+							$result = $conn->query($sql);
+    						while($row = $result->fetch_array()){
+						?>
+                        <br>
+				 <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your Fullname" value="<?php echo $row['fullname']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+        <div class="col-sm-6">
+        <div class="form-group">
+                    <label for="gradesection" class="col-sm-4 control-label">Grade & Section/Employee</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter your Fullname" value="<?php echo $row['gradesection']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="vitalsigns" class="col-sm-8 control-label">Vital Signs</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="vitalsigns" name="vitalsigns" placeholder="If you are an employee, just type Employee" value="<?php echo $row['vitalsigns']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+                <div class="form-group">
+                    <label for="diagnosis" class="col-sm-8 control-label">Diagnosis/Chief Complaints, Management & Treatement</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="diagnosis" name="diagnosis" value="<?php echo $row['diagnosis']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+
+
+
+        <div class="form-group">
+            <span><?php echo $row['date_time']; ?></span>
+        </div>
+  
+        <?php } ?>
 				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>

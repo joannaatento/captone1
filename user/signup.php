@@ -36,6 +36,10 @@
 								<input id="signup-name" name="fullname" type="text" class="form-control signup-name" placeholder="Full name" required="required">
 							</div>
 							<div class="email mb-3">
+								<label class="sr-only" for="signup-email">Your ID Number</label>
+								<input id="signup-name" name="idnumber" type="text" class="form-control signup-idnumber" placeholder="ID Number" required="required">
+							</div>
+							<div class="email mb-3">
 								<label class="sr-only" for="signup-email">Your Email</label>
 								<input id="signup-email" name="email" type="email" class="form-control signup-email" placeholder="School Email" required="required">
 							</div>

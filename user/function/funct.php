@@ -62,8 +62,9 @@
     // ...
 }
     if(isset($_POST['signup'])){
-        $fullname = $_POST['fullname'];
         $type = $_POST['type'];
+        $fullname = $_POST['fullname'];
+        $idnumber= $_POST['idnumber'];
         $email = $_POST['email'];
         $password = $_POST['password'];
     
@@ -87,7 +88,7 @@
                 // Hash the password
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
-                $sql_add = "INSERT INTO `users`(`type`, `fullname`, `email`, `password`) VALUES ('$type','$fullname','$email','$hashedPassword')";
+                $sql_add = "INSERT INTO `users`(`type`, `fullname`, `idnumber`, `email`, `password`) VALUES ('$type','$fullname','$idnumber','$email','$hashedPassword')";
                 if($conn->query($sql_add) === TRUE){
                     $sql = "SELECT * FROM users WHERE email = '$email'";
                     $result = $conn->query($sql);
@@ -96,6 +97,7 @@
                         $_SESSION['user_id'] = $row['id'];
                         $_SESSION['type'] = $row['type'];
                         $_SESSION['fullname'] = $row['fullname'];
+                        $_SESSION['idnumber'] = $row['idnumber'];
                         $_SESSION['email'] = $row['email'];
                         header('Location: ../healthrecorddashboard.php');
                     }
@@ -120,6 +122,7 @@
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['type'] = $row['type'];
                 $_SESSION['fullname'] = $row['fullname'];
+                $_SESSION['idnumber'] = $row['idnumber'];
                 $_SESSION['email'] = $row['email'];
                 header('Location: ../healthrecorddashboard.php');
             } else {

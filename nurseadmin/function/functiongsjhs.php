@@ -23,7 +23,7 @@ if (isset($_GET['dental_id'])) {
 if(isset($_POST['submit_patientmngmt'])){ // pag get ng data
     $admin_id = $_POST['admin_id']; 
     $idnumber = $_POST['idnumber']; 
-    $name = $_POST['name']; 
+    $fullname = $_POST['fullname']; 
     $gradesection = $_POST['gradesection'];
     $vitalsigns = $_POST['vitalsigns'];
     $diagnosis = $_POST['diagnosis'];
@@ -32,7 +32,7 @@ if(isset($_POST['submit_patientmngmt'])){ // pag get ng data
     
     $date_time = date('Y-m-d h:i A'); // Include time in the date with AM/PM format
 
-    $sql = "INSERT INTO patientrecord VALUES ('','$admin_id','$idnumber','$name','$gradesection','$vitalsigns','$diagnosis','$date_time')";
+    $sql = "INSERT INTO patientrecord VALUES ('','$admin_id','$idnumber','$fullname','$gradesection','$vitalsigns','$diagnosis','$date_time')";
     if(mysqli_query($conn, $sql)){
         // echo "<script>window.history.go(-1);</script>";
         header('location: ../patientmanagementrecordgsjhs.php');

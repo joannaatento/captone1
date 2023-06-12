@@ -57,8 +57,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
-
-<header class="app-header fixed-top">	   	            
+	   	            
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">

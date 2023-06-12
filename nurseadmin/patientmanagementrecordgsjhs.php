@@ -234,7 +234,7 @@
         <div class="form-group">
             <label for="patient_name" class="col-sm-4 control-label" style="font-size: 16px">Enter the Fullname</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter the Fullname" required>
+                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter the Fullname" required>
             </div>
         </div>
     </div>

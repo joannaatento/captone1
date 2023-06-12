@@ -46,7 +46,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-    <link rel="stylesheet" href="assets/dentalstyle.css">
+    <link rel="stylesheet" href="assets/dentalstyles.css">
 
 </head> 
 
@@ -170,7 +170,7 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="dental.php">Dental</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="dentalgsjhs.php">Dental</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
             </ul>
         </div>
@@ -295,7 +295,6 @@ if (mysqli_num_rows($result) > 0) {
 
 <center>
   
-
     <table class="styled-table">
         <thead>
             <tr>

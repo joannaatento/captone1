@@ -196,6 +196,8 @@
 					    <div class="col-auto">
 					        <h1 class="app-page-title mb-0"></h1>
 					    </div>
+
+
 						
 				    </div>
 			    </div>
@@ -204,14 +206,80 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+						        <h4 class="notification-title mb-1">Patient Management Record</h4>
 					        </div>
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
 					   
-                        
+                     <form class="form-horizontal mt-4" method="post" action="function/functiongsjhs.php">
+
+                    <div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">Enter the ID Number</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-4 control-label" style="font-size: 16px">Enter the Fullname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter the Fullname" required>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+<div class="col-sm-6">
+        <div class="form-group">
+            <label for="gradecsection" class="col-sm-4 control-label" style="font-size: 16px">Grade & Section</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" required>
+            </div>
+        </div>
+    </div>
+ 
+
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="vitalsigns" class="col-sm-4 control-label" style="font-size: 16px">Vital Signs</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="vitalsigns" name="vitalsigns" placeholder="Enter Vital Signs" required>
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="form-group">
+        <br>
+        <label for="diagnosis" class="col-sm-5 control-label">Diagnosis/Chief Complaints, Management & Treatement</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="diagnosis" name="diagnosis" placeholder="Diagnosis/Chief Complaints, Management & Treatement" required>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <br>
+        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+        <button name="submit_patientmngmt" class="btn btn-success">Enter</button>
+    </div>
+</div>
+</form>
+
 				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>

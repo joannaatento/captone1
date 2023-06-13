@@ -53,7 +53,7 @@
 </head> 
 
 <body class="app">   	
-    <header class="app-header fixed-top">	   	            
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -132,8 +132,8 @@
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsshs.php">Senior High School</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployee.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link active" href="dentalrequestgsjhs.php">Grade School and JHS</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequest.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -157,14 +157,14 @@
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="dentalshs.php">Dental</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="dentalgsjhs.php">Dental</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
             </ul>
         </div>
     </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecordshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="patientmanagementrecordgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -187,7 +187,6 @@
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -197,6 +196,8 @@
 					    <div class="col-auto">
 					        <h1 class="app-page-title mb-0"></h1>
 					    </div>
+
+
 						
 				    </div>
 			    </div>
@@ -205,13 +206,80 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+						        <h4 class="notification-title mb-1">Patient Management Record</h4>
 					        </div>
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
 					   
+                     <form class="form-horizontal mt-4" method="post" action="function/functiongsjhs.php">
+
+                    <div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">Enter the ID Number</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-4 control-label" style="font-size: 16px">Enter the Fullname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter the Fullname" required>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+<div class="col-sm-6">
+        <div class="form-group">
+            <label for="gradecsection" class="col-sm-4 control-label" style="font-size: 16px">Grade & Section/Employee</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" required>
+            </div>
+        </div>
+    </div>
+ 
+
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="vitalsigns" class="col-sm-4 control-label" style="font-size: 16px">Vital Signs</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="vitalsigns" name="vitalsigns" placeholder="Enter Vital Signs" required>
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="form-group">
+        <br>
+        <label for="diagnosis" class="col-sm-5 control-label">Diagnosis/Chief Complaints, Management & Treatement</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="diagnosis" name="diagnosis" placeholder="Diagnosis/Chief Complaints, Management & Treatement" required>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <br>
+        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+        <button name="submit_patientmngmt" class="btn btn-success">Enter</button>
+    </div>
+</div>
+</form>
+
 				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>

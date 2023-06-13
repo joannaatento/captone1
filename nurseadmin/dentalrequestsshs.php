@@ -39,7 +39,7 @@
 <body class="app">   	
 <?php
 // Fetch dental records
-$sql = "SELECT * FROM dental WHERE c_enrolled = 'Grade School & Grade School & Junior High School'";
+$sql = "SELECT * FROM dental WHERE c_enrolled = 'Senior High School'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {

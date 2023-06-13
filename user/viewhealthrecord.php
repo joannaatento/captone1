@@ -98,22 +98,22 @@
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="healthrecordform.php">Health Record Form</a></li>
-                <li class="submenu-item"><a class="submenu-link active" href="viewhealthrecord.php">View Health Record</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="healthrecordform.php">Health Record Form</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="viewhealthrecord.php">View Health Record</a></li>
             </ul>
         </div>
     </li>
   
 
 
-												<li class="nav-item has-submenu">
+	<li class="nav-item has-submenu">
 								<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
 									<span class="nav-icon">
 										<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-plus" viewBox="0 0 16 16">
-										<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-										<path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
-										</svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-plus" viewBox="0 0 16 16">
+											<path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
+											<path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
+											</svg>
 									</span>
 									<span class="nav-link-text">Request Dental Schedule</span>
 									<span class="submenu-arrow">
@@ -125,7 +125,34 @@
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
 										<li class="submenu-item"><a class="submenu-link" href="adddentalmessage.php">Add Dental Schedule</a></li>
-										<li class="submenu-item"><a class="submenu-link">View Dental Record</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="viewdentalrecord.php">View Dental Record</a></li>
+									</ul>
+								</div>
+							</li>
+
+
+							<li class="nav-item has-submenu">
+								<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+									<span class="nav-icon">
+										<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stickies" viewBox="0 0 16 16">
+										<path d="M1.5 0A1.5 1.5 0 0 0 0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5z"/>
+										<path d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z"/>
+										</svg>
+									</span>
+									<span class="nav-link-text">Clinic Records</span>
+									<span class="submenu-arrow">
+										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+										</svg>
+									</span>
+								</a>
+								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
+									<ul class="submenu-list list-unstyled">
+									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosis.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
+</li>
+
+
 									</ul>
 								</div>
 							</li>

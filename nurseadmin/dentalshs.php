@@ -14,7 +14,7 @@
         $admin_id = $row['admin_id'];
         $username = $row['username'];
         require_once('../db.php');
-        if($_SESSION['role'] == 1){
+        if($_SESSION['role'] == 2){
             // User type 1 specific code here
         }
         else{
@@ -228,122 +228,122 @@ if (mysqli_num_rows($result) > 0) {
 							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
+                    <div class="app-card-body p-4">
                    
-  <form class="form-horizontal mt-4" method="post" action="function/funct.php">
- 
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="idnumber" class="control-label">Patient ID Number</label>
-          <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="fullname" class="control-label">Name</label>
-          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" required>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="role" class="control-label">Role</label>
-          <select id="role" name="role" class="form-control" required>
-            <option value="">Select Role</option>
-            <option value="Student">Student</option>
-            <option value="Employee">Employee</option>
-          </select>
-        </div>
-      </div>
-    </div><br>
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="cenrolled" class="control-label">Currently enrolled in</label>
-          <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter patient name" required>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="service" class="control-label">Dental Service</label>
-          <select id="service" name="service" class="form-control" required>
-            <option value="">Select Service</option>
-            <option value="Cleaning">Cleaning</option>
-            <option value="Tooth Extraction">Tooth Extraction</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="date_time" class="control-label">Time and Date</label>
-          <input type="datetime-local" id="date_time" name="date_time" class="form-control" required>
-        </div>
-      </div>
- </div>
- <br>
- <div class="row">
- <div class="col-sm-4">
-        <div class="form-group">
-          <label for="dentist_name" class="control-label">Dentist</label>
-          <input type="text" id="dentist_name" name="dentist_name" class="form-control" placeholder="Enter Dentist Name" required>
-        </div>
-      </div>
- </div>
- <br>
-    <div class="row">
-      <div class="col-sm-12">
-      <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_dental" class="btn btn-success">Add Dental Appointment</button>
-      </div>
-    </div>
-  </form>
-  
-</div><!--//app-card-body-->
-<br>
-<div style="text-align: right; margin-right: 48px;">
-    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Update Dental Schedule
-    </button>
-</div>
-
-
-<center>
-  
-    <table class="styled-table">
-        <thead>
-            <tr>
-                <th>Patient ID Number</th>
-                <th>Patient Name</th>
-                <th>Role</th>
-                <th>Enrolled in</th>
-                <th>Service</th>
-                <th>Time and Date</th>
-                <th>Dentist</th>
-              
-            </tr>
-        </thead>
-        <tbody id="healthRecordTableBody">
-            <?php
-            $sql = "SELECT * FROM dentalapp WHERE admin_id = '$admin_id'";
-            $result = mysqli_query($conn, $sql);
-            
-            while ($row = $result->fetch_assoc()) {
-                ?>
-                <tr>
-                    <td><?php echo $row['idnumber']; ?></td>
-                    <td><?php echo $row['fullname']; ?></td>
-                    <td><?php echo $row['role']; ?></td>
-                    <td><?php echo $row['cenrolled']; ?></td>
-                    <td><?php echo $row['service']; ?></td>
-                    <td><?php echo $row['date_time']; ?></td>
-                    <td><?php echo $row['dentist_name']; ?></td>
+                   <form class="form-horizontal mt-4" method="post" action="function/funct.php">
                   
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-    <br>
-</center>
+                     <div class="row">
+                       <div class="col-sm-4">
+                         <div class="form-group">
+                           <label for="idnumber" class="control-label">Patient ID Number</label>
+                           <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+                         </div>
+                       </div>
+                       <div class="col-sm-4">
+                         <div class="form-group">
+                           <label for="fullname" class="control-label">Name</label>
+                           <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" required>
+                         </div>
+                       </div>
+                       <div class="col-sm-4">
+                         <div class="form-group">
+                           <label for="role" class="control-label">Role</label>
+                           <select id="role" name="role" class="form-control" required>
+                             <option value="">Select Role</option>
+                             <option value="Student">Student</option>
+                             <option value="Employee">Employee</option>
+                           </select>
+                         </div>
+                       </div>
+                     </div><br>
+                     <div class="row">
+                       <div class="col-sm-4">
+                         <div class="form-group">
+                           <label for="cenrolled" class="control-label">Currently enrolled in</label>
+                           <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter patient name" required>
+                         </div>
+                       </div>
+                       <div class="col-sm-4">
+                         <div class="form-group">
+                           <label for="service" class="control-label">Dental Service</label>
+                           <select id="service" name="service" class="form-control" required>
+                             <option value="">Select Service</option>
+                             <option value="Cleaning">Cleaning</option>
+                             <option value="Tooth Extraction">Tooth Extraction</option>
+                           </select>
+                         </div>
+                       </div>
+                       <div class="col-sm-4">
+                         <div class="form-group">
+                           <label for="date_time" class="control-label">Time and Date</label>
+                           <input type="datetime-local" id="date_time" name="date_time" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                  <div class="col-sm-4">
+                         <div class="form-group">
+                           <label for="dentist_name" class="control-label">Dentist</label>
+                           <input type="text" id="dentist_name" name="dentist_name" class="form-control" placeholder="Enter Dentist Name" required>
+                         </div>
+                       </div>
+                  </div>
+                  <br>
+                     <div class="row">
+                       <div class="col-sm-12">
+                       <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+                         <button name="submit_dentalshs" class="btn btn-success">Add Dental Appointment</button>
+                       </div>
+                     </div>
+                   </form>
+                   
+                 </div><!--//app-card-body-->
+                 <br>
+                 <div style="text-align: right; margin-right: 48px;">
+                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
+                         Update Dental Schedule
+                     </button>
+                 </div>
+                 
+                 
+                 <center>
+                   
+                     <table class="styled-table">
+                         <thead>
+                             <tr>
+                                 <th>Patient ID Number</th>
+                                 <th>Patient Name</th>
+                                 <th>Role</th>
+                                 <th>Enrolled in</th>
+                                 <th>Service</th>
+                                 <th>Time and Date</th>
+                                 <th>Dentist</th>
+                               
+                             </tr>
+                         </thead>
+                         <tbody id="healthRecordTableBody">
+                             <?php
+                             $sql = "SELECT * FROM dentalapp WHERE admin_id = '$admin_id'";
+                             $result = mysqli_query($conn, $sql);
+                             
+                             while ($row = $result->fetch_assoc()) {
+                                 ?>
+                                 <tr>
+                                     <td><?php echo $row['idnumber']; ?></td>
+                                     <td><?php echo $row['fullname']; ?></td>
+                                     <td><?php echo $row['role']; ?></td>
+                                     <td><?php echo $row['cenrolled']; ?></td>
+                                     <td><?php echo $row['service']; ?></td>
+                                     <td><?php echo $row['date_time']; ?></td>
+                                     <td><?php echo $row['dentist_name']; ?></td>
+                                   
+                                 </tr>
+                             <?php } ?>
+                         </tbody>
+                     </table>
+                     <br>
+                 </center>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -354,17 +354,17 @@ if (mysqli_num_rows($result) > 0) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <?php
-                $sql1 = "SELECT * FROM status";
-                $result1 = mysqli_query($conn, $sql1);
+            <?php
+                $sql2 = "SELECT * FROM statusshs";
+                $result2 = mysqli_query($conn, $sql2);
 
-                if (mysqli_num_rows($result1) > 0) {
-                    while ($row1 = $result1->fetch_assoc()) {
-                        $status_id = $row1['status_id'];
-                        $statuses1030_1 = $row1['statuses1030_1'];
-                        $statuses1130_2 = $row1['statuses1130_2'];
-                        $statuses230_3 = $row1['statuses230_3'];
-                        $statuses330_4 = $row1['statuses330_4'];
+                if (mysqli_num_rows($result2) > 0) {
+                    while ($row2 = $result2->fetch_assoc()) {
+                        $status_id = $row2['status_id'];
+                        $statuses1030_1 = $row2['statuses1030_1'];
+                        $statuses1130_2 = $row2['statuses1130_2'];
+                        $statuses230_3 = $row2['statuses230_3'];
+                        $statuses330_4 = $row2['statuses330_4'];
                     }
                 } else {
 
@@ -409,13 +409,14 @@ if (mysqli_num_rows($result) > 0) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit_status" class="btn btn-light">Update</button>
+                        <button type="submit" name="submit_statusshs" class="btn btn-light">Update</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>

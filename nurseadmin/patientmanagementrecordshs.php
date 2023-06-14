@@ -219,7 +219,7 @@
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
 					   
-                     <form class="form-horizontal mt-4" method="post" action="function/functiongsjhs.php">
+                     <form class="form-horizontal mt-4" method="post" action="function/functionshs.php">
 
                     <div class="row">
     <div class="col-sm-6">
@@ -245,9 +245,9 @@
 <div class="row">
 <div class="col-sm-6">
         <div class="form-group">
-            <label for="gradecsection" class="col-sm-4 control-label" style="font-size: 16px">Grade & Section/Employee</label>
+            <label for="gradecsection" class="col-sm-4 control-label" style="font-size: 16px">Course & Year/Employee</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" required>
+                <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Course & Year" required>
             </div>
         </div>
     </div>

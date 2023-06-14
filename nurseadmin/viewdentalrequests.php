@@ -294,7 +294,39 @@ if (mysqli_num_rows($result) > 0) {
         <div class="form-group">
             <span><?php echo $row['date_created']; ?></span>
         </div>
-        <a href="">Approve</a>
+        <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
+<!--Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="function/funct.php" method="POST">
+                    <input type="hidden" name="status_id" value="">
+                    <div class="mb-3">
+                        <label for="inputFrom" class="form-label">From</label>
+                        <input type="text" class="form-control" id="inputFrom" name="from">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="to">
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <input type="text" class="form-control" id="messagesms" name="messagesms">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="submit_status" class="btn btn-light">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
   
 </div><!--//app-card-body-->

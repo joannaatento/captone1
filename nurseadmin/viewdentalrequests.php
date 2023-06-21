@@ -316,8 +316,10 @@ if (mysqli_num_rows($result) > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="messagesms" class="form-label">Message</label>
-                        <input type="text" class="form-control" id="messagesms" name="messagesms">
+                        <textarea class="form-control" id="messagesms" name="messagesms" rows="4">Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
                     </div>
+
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                         <button type="submit" name="submit_status" class="btn btn-light">Send</button>

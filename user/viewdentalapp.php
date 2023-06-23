@@ -66,6 +66,7 @@ if (mysqli_num_rows($result) > 0) {
   $service = $row['service'];
   $date_time = $row['date_time'];
   $dentist_name = $row['dentist_name'];
+  $date_created = $row['date_created'];
     }
  else {
  } 
@@ -256,7 +257,7 @@ if (mysqli_num_rows($result) > 0) {
             </div>
 
         <div class="form-group">
-            <span><?php echo $row['date_time']; ?></span>
+            <span>Schedule: <?php echo $row['date_time']; ?></span>
         </div>
   
         <?php } ?>

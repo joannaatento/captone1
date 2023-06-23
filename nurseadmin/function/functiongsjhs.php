@@ -35,7 +35,7 @@ if(isset($_POST['submit_patientmngmt'])){ // pag get ng data
     $sql = "INSERT INTO patientrecord VALUES ('','$admin_id','$idnumber','$fullname','$gradesection','$vitalsigns','$diagnosis','$date_time')";
     if(mysqli_query($conn, $sql)){
         // echo "<script>window.history.go(-1);</script>";
-        header('location: ../patientmanagementrecordshs.php');
+        header('location: ../patientmanagementrecordgsjhs.php');
         echo $_SESSION['success'] ="
             <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
                 <h2 style='

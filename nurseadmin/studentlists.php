@@ -114,7 +114,7 @@
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
             <li class="submenu-item"><a class="submenu-link active" href="dentalrequestgsjhs.php">Grade School and JHS</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequest.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeegsjhs.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -139,7 +139,7 @@
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
                 <li class="submenu-item"><a class="submenu-link active" href="dentalgsjhs.php">Dental</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="medicalgsjhs.php">Medical</a></li>
             </ul>
         </div>
     </li>

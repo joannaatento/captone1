@@ -85,7 +85,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
-    <header class="app-header fixed-top">	   	            
+     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -96,7 +96,7 @@ if (mysqli_num_rows($result) > 0) {
 					    </a>
 				    </div><!--//col-->
 		            <div class="app-utilities col-auto">		            
-                    <div class="app-utility-item app-user-dropdown dropdown">
+					<div class="app-utility-item app-user-dropdown dropdown">
 				            <img src="assets/images/user.png">
 				             <div class="app-utility-item app-user-dropdown dropdown">
 
@@ -104,8 +104,7 @@ if (mysqli_num_rows($result) > 0) {
                                     <p><?php echo $_SESSION['username']; ?></p>
                                     <?php endif ?></a>
                    </div>
-
-                   <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"></a>
+				   <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"></a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								<li><a class="dropdown-item" href="function/logout.php">Log Out</a></li>
 							</ul>
@@ -123,8 +122,8 @@ if (mysqli_num_rows($result) > 0) {
 					<img style="width: 150px; display:flex; margin-left: 50px; margin-top: 10px;" src="assets/images/dwcl.png" alt="logo">
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
-				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-					<li class="nav-item has-submenu">
+				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+    <li class="nav-item has-submenu">
         <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -142,7 +141,7 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="studentlists.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="studentlists.php">Students</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="employeelists.php">Employees</a></li>
             </ul>
         </div>
@@ -156,7 +155,7 @@ if (mysqli_num_rows($result) > 0) {
                   <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
             </svg>
         </span>
-        <span class="nav-link-text">Messages</span>
+        <span class="nav-link-text">Dental Requests</span>
         <span class="submenu-arrow">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -165,8 +164,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link active" href="dentalrequests.php">Dental Requests</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="medicalrequests.php">Medical Requests</a></li>
+            <li class="submenu-item"><a class="submenu-link active" href="dentalrequestgsjhs.php">Grade School and JHS</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeegsjhs.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -190,13 +189,33 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="dental.php">Dental</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="dentalgsjhs.php">Dental</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="medicalgsjhs.php">Medical</a></li>
             </ul>
         </div>
     </li>
-				    </ul>
+
+    <li class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle active" href="patientmanagementrecordgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+        <span class="nav-icon">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+            </svg>
+        </span>
+        <span class="nav-link-text">Patient's Management Record</span>
+    </a>
+</li>
+
+
+</ul>
+
+	
 			    </nav>
+				
+				
 	        </div>
 	    </div>
     </header>

@@ -43,17 +43,32 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
-    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/table.css">
-    
-    
+    <link rel="stylesheet" href="assets/msdental.css">
 
+  
 </head> 
 
 <body class="app">   	
-    <header class="app-header fixed-top">	   	            
+<?php
+// Fetch dental records
+$sql = "SELECT * FROM dental";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    $row = $result->fetch_assoc(); 
+    $dental_id = $row['dental_id'];
+    $name = $row['name'];
+    $message = $row['message'];
+    $date_created = $row['date_created'];
+    $is_read = $row['is_read'];
+    $is_deleted_on_website = $row['is_deleted_on_website'];
+}
+?>
+
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -210,9 +225,51 @@
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-					   
-				    </div><!--//app-card-body-->
+                    <?php
+    $sql = "SELECT * FROM dental WHERE c_employee = 'Employee in College'";
+    $result = $conn->query($sql);
+
+    while ($row = $result->fetch_array()) {
+        $dental_id = $row['dental_id'];
+        $is_read = $row['is_read'];
+        $is_deleted_on_website = $row['is_deleted_on_website'];
+        ?>
+     
+     <div class="main-content">
+     <?php if ($is_deleted_on_website == 0): ?>
+        <div class="email-list-item <?php echo ($is_read == 0) ? 'unread' : ''; ?>" <?php echo ($is_read == 0) ? 'style="background-color: #F1F1F1;"' : ''; ?>>
+
+        <div class="message">
+                <b><div class="name" style="display: inline;"><?php echo $row['name']; ?></div></b>
+                <div class="message" style="display: inline;"><?php echo $row['message']; ?></div>
+                <div class="timestamp"><?php echo $row['date_created']; ?></div>
+            </div>
+
+            <?php if ($is_read == 0): ?>
+                <a href="function/functionemployeecollege.php?dental_id=<?php echo $dental_id; ?>">Mark as Read</a>
+            <?php endif; ?>
+
+            <a href="function/deletedentalreqcollege.php?dental_id=<?php echo $dental_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
+            
+            <a href="viewdentalrequestemployeecollege.php?date_created=<?php echo $row['date_created']; ?>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
+                    <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
+                </svg>
+            </a>
+
+        <?php endif; ?>
+
+
+    </div>
+
+
+     <?php
+    }
+    ?>
+</div><!--//app-card-body-->
+
+
+
 				</div>			    
 		    </div>
 	    </div>
@@ -234,7 +291,5 @@
 		}, 5000);
 	</script>
 
-
 </body>
 </html> 
-

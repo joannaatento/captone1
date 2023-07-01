@@ -265,7 +265,7 @@
                 <option value="">--Select--</option>
                 <option value="Employee in GS and JHS">Employee in GS and JHS</option>
                 <option value="Employee in SHS">Employee in Senior High School</option>
-                <option value="Employee College">Employee in College</option>
+                <option value="Employee in College">Employee in College</option>
             </select>
         </div>
     </div>

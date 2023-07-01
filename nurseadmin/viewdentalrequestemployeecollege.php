@@ -7,22 +7,8 @@
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
-    $admin_id = $_SESSION['admin_id'];
-    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
-    $result = $conn->query($sql_query);
-    while($row = $result->fetch_array()){
-        $admin_id = $row['admin_id'];
-        $username = $row['username'];
-        require_once('../db.php');
-        if($_SESSION['role'] == 3){
-            // User type 1 specific code here
-        }
-        else{
-            header('location: ../login.php');
-            exit; // Exit the script to prevent further execution
-        }
-    }
 
+  
 ?>
 
 
@@ -43,17 +29,36 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
-    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    
-    
+	<link rel="stylesheet" href="assets/viewdental.css">
 
 </head> 
 
-<body class="app">   	
-    <header class="app-header fixed-top">	   	            
+<body class="app"> 
+    <?php  	
+$date_created = $_GET['date_created'];
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM dental WHERE date_created = '$date_created'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $name = $row['name'];
+  $dental_service = $row['dental_service'];
+  $c_enrolled = $row['c_enrolled'];
+  $gradecourseyear = $row['gradecourseyear'];
+  $c_employee = $row['c_employee'];
+  $message = $row['message'];
+  $date_created = $row['date_created'];
+    }
+ else {
+ } 
+?>
+	   	            
+                       <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -132,8 +137,8 @@
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestscollege.php">College</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeecollege.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsshs.php">Senior High School</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeeshs.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -157,14 +162,14 @@
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="dentalcollege.php">Dental</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="dentalshs.php">Dental</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
             </ul>
         </div>
     </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecord.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="patientmanagementrecordshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -187,16 +192,14 @@
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
 		    <div class="container-xl">
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
-					    <div class="col-auto">
-					        <h1 class="app-page-title mb-0"></h1>
-					    </div>
+					   
+					       
 						
 				    </div>
 			    </div>
@@ -204,15 +207,96 @@
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+                        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
 					        </div>
-							<!--//generate report-->
+                          
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-					   
-				    </div><!--//app-card-body-->
+                    <div class="app-card-body p-4">
+                  
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" value="<?php echo $row['name']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="date" class="col-sm-4 control-label">Dental Services</label>
+                    <div class="col-sm-10">
+                        <select id="dental_service" name="dental_service" class="form-control" readonly>
+                            <option disabled selected><?= $row['dental_service']; ?></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="gradecourse" class="col-sm-8 control-label">Year level that you currently enrolled</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['c_enrolled']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+
+        <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="gradecourseyear" class="col-sm-8 control-label">Grade & Section/Course & Year</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?php echo $row['gradecourseyear']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="c_employee" class="col-sm-8 control-label">For Employee</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="c_employee" name="c_employee" value="<?php echo $row['c_employee']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <br>
+                <label for="message" class="col-sm-5 control-label">Message</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." value="<?php echo $row['message']; ?>" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span><?php echo $row['date_created']; ?></span>
+        </div>
+        <a href="">Approve</a>
+
+  
+</div><!--//app-card-body-->
 				</div>			    
 		    </div>
 	    </div>
@@ -233,7 +317,6 @@
 			}
 		}, 5000);
 	</script>
-
 
 </body>
 </html> 

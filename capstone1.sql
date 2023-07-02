@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2023 at 06:58 PM
+-- Generation Time: Jul 02, 2023 at 05:31 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -71,8 +71,21 @@ CREATE TABLE `dental` (
 --
 
 INSERT INTO `dental` (`dental_id`, `user_id`, `idnumber`, `name`, `dental_service`, `c_enrolled`, `gradecourseyear`, `c_employee`, `message`, `date_created`, `is_read`, `is_deleted_on_website`) VALUES
-(68, 20, 6802182, 'Joanna Mae Atento', 'Cleaning', 'Grade School & Grade School & Junior High School', 'Grade 7 Saint', '', 'Pa sched po ako, Monday 10:30 A.M', '2023-06-12 10:16:00', 1, 1),
-(69, 20, 6802182, 'Joanna Mae Atento', 'Cleaning', 'Grade School & Grade School & Junior High School', 'Grade 7 Saint', '', 'Pa sched po ako, Monday 10:30 A.M', '2023-06-12 11:14:00', 0, 0);
+(73, 24, 6802182, 'Joanna Mae Atento', 'Cleaning', '', '', 'Employee in GS and JHS', 'Pa sched po ako, Monday 10:30 A.M', '2023-06-14 01:21:00', 1, 1),
+(74, 24, 6802182, 'Joanna Mae Atento', 'Tooth Extraction', '', '', 'Employee in GS and JHS', 'Pa sched po ako, Monday 10:30 A.M', '2023-06-14 01:26:00', 1, 1),
+(75, 24, 6802182, 'Joanna Mae Atento', 'Cleaning', '', '', 'Employee in GS and JHS', 'Pa sched po ako, Monday 10:30 A.M', '2023-06-14 01:27:00', 1, 1),
+(76, 24, 6802182, 'Joanna Mae Atento', 'Cleaning', '', '', 'Employee in GS and JHS', 'Pa sched po ako, Monday 10:30 A.M', '2023-06-14 01:31:00', 1, 1),
+(77, 24, 6802182, 'Joanna Mae Atento', 'Cleaning', 'Grade School & Grade School & Junior High School', 'Grade 7 Saint', '', 'Pa sched po ako, Monday 10:30 A.M', '2023-06-14 10:08:00', 1, 1),
+(78, 24, 6802182, 'Joanna Mae', 'Cleaning', 'Senior High School', 'Grade 12 Saint', '', 'Pa sched po ako, Monday 10:30 A.M', '2023-06-14 10:21:00', 1, 1),
+(79, 24, 6802182, 'Joanna Mae Atento', 'Tooth Extraction', 'Senior High School', 'BSIT - 4', '', 'pa sched po Monday 11:30A.M', '2023-06-23 12:20:00', 0, 0),
+(80, 24, 6666, 'Joanna Mae Atento', 'Tooth Extraction', '', '', 'Employee in SHS', 'parequest po 11:30 AM. Monday', '2023-07-01 10:06:00', 0, 0),
+(81, 24, 6666, 'Joanna Mae Atento', 'Cleaning', 'College', '', '', 'parequest po 11:30 AM. Monday', '2023-07-01 10:28:00', 1, 1),
+(82, 24, 6666, 'Joanna Mae Atento', 'Tooth Extraction', 'College', 'BSIT - 4', '', 'Pa sched po ako, Monday 10:30 A.M', '2023-07-01 10:39:00', 1, 0),
+(83, 24, 6666, 'Joanna Mae Atento', 'Cleaning', 'College', 'BSIT -3', '', 'Pa sched po ako, Monday 10:30 A.M', '2023-07-01 10:41:00', 0, 1),
+(84, 24, 6666, 'Joanna Mae', 'Tooth Extraction', '', '', 'Employee College', 'pa sched po Monday 11:30A.M', '2023-07-01 10:48:00', 0, 0),
+(85, 24, 6666, 'Joanna Atento', 'Cleaning', '', '', 'Employee College', 'parequest po 11:30 AM. Monday', '2023-07-01 10:49:00', 0, 0),
+(86, 24, 6666, 'Joanna Mae Atento', 'Cleaning', '', '', 'Employee in College', 'Ppa sched po ako, Monday 10:30 A.M', '2023-07-01 10:54:00', 0, 0),
+(87, 24, 6666, 'Joanna Mae Atento', 'Cleaning', '', '', 'Employee in College', 'parequest po 11:30 AM. Monday', '2023-07-01 10:59:00', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -87,8 +100,21 @@ CREATE TABLE `dentalapp` (
   `fullname` varchar(50) NOT NULL,
   `role` varchar(50) NOT NULL,
   `cenrolled` varchar(50) NOT NULL,
-  `date_time` datetime NOT NULL
+  `service` varchar(200) NOT NULL,
+  `date_time` datetime NOT NULL,
+  `dentist_name` varchar(200) NOT NULL,
+  `date_created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dentalapp`
+--
+
+INSERT INTO `dentalapp` (`dentalapp_id`, `admin_id`, `idnumber`, `fullname`, `role`, `cenrolled`, `service`, `date_time`, `dentist_name`, `date_created`) VALUES
+(21, 11, 6802182, 'Joanna Mae Atento', 'Student', 'BSIT-3', 'Tooth Extraction', '2023-10-30 10:30:00', 'Apolinario Mabini', '2023-06-23 12:52:00'),
+(22, 11, 123456789, 'Camila Salvador', 'Student', 'BSIT - 4', 'Tooth Extraction', '2023-06-29 10:30:00', 'Kristine Uy', '2023-06-23 06:24:00'),
+(23, 11, 6802182, 'Joanna Mae Atento', 'Student', 'BSIT - 4', 'Cleaning', '2023-07-01 10:30:00', 'Kristine Uy', '2023-06-23 06:30:00'),
+(24, 11, 1234567, 'Camila Salvador', 'Student', 'BSIT - 4', 'Cleaning', '2023-06-30 10:40:00', 'Kristine Uy', '2023-06-23 06:33:00');
 
 -- --------------------------------------------------------
 
@@ -142,9 +168,8 @@ CREATE TABLE `healthrecord` (
 --
 
 INSERT INTO `healthrecord` (`health_id`, `user_id`, `image`, `fullname`, `idnumber`, `personalcpnum`, `age`, `birthday`, `gender`, `address`, `role`, `gradecourse`, `leveleduc`, `fathername`, `cfather`, `mothername`, `cmother`, `polio`, `measles`, `tb`, `seizure_epilepsy`, `tetanus`, `mumps`, `hepatits`, `bleeding_tendencies`, `chicken_pox`, `asthma`, `fainting_spells`, `eye_disorder`, `heart`, `illness`, `allergyfood`, `allergymed`, `allow_not`, `medications`, `nameperson`, `personcp`, `relationship`) VALUES
-(73, 20, 'me.jpg', 'Joanna Mae Atento', 6802182, '09156005165', 21, '2001-12-15', 'Female', 'Guinobatan', 'Student', 'BSIT-3', 'College', 'Jojo Atento', '09134374637', 'Rowena Atento', '091476548368', '', '', '', '', '', '', '', '', '', '', '', 'eye_disorder', 'N/A', 'N/A', '', '', 'YES', 'NO', 'Edita Dela Cruz', '091564957760', 'Grandmother'),
-(74, 21, 'WIN_20230311_16_23_26_Pro.jpg', 'Employee Juan', 12345678, '09756578679', 22, '2000-12-15', 'Male', 'Polangui', 'Employee', 'Professor', 'Employee', 'Jose Rizal', '09145885479', 'Rowena Atento', '091476548368', '', '', '', '', '', '', '', '', '', '', 'fainting_spells', '', 'N/A', 'N/A', '', '', 'YES', 'NO', 'Tandang Sora', '091475865879', 'Grandmother'),
-(75, 23, 'WIN_20230311_16_23_21_Pro.jpg', 'Charity Corpuz', 898989, '09275467589', 20, '2002-12-15', 'Female', 'Guinobatan', 'Student', 'BLISS-3', 'College', 'Marco Corpuz', '094375568768', 'Liezel Corpuz', '093477578996', 'polio', 'measles', '', '', '', '', '', '', '', '', '', 'eye_disorder', 'N/A', 'N/A', '', '', 'YES', 'NO', 'Domitilia Corpu', '092377435826', 'Grandmother');
+(76, 24, 'WIN_20230311_16_23_23_Pro.jpg', 'Joanna Mae Atento', 6802182, '09156005165', 21, '2002-12-15', 'Female', 'Guinobatan', 'Student', 'BSIT - 3', 'College', 'Jojo Atento', '095768385342', 'Rowena Atento', '093576385645', '', '', '', '', '', '', '', '', '', '', '', 'eye_disorder', 'N/A', 'N/A', 'NO', 'NO', 'YES', 'NO', 'Edita Dela Cruz', '09156005167', 'Grandmother'),
+(77, 25, 'WIN_20230203_15_00_13_Pro.jpg', 'Camila Salvador', 123456789, '09156005165', 21, '2001-12-15', 'Female', 'Guinobatan', 'Student', 'BSIT - 4', 'College', 'Jojo Atento', '093754836456', 'Rowena Atento', '091456005879', '', '', '', '', '', '', '', '', '', '', '', 'eye_disorder', 'N/A', 'N/A', '', '', 'YES', 'N/A', 'Edita Dela Cruz', '092325476546', 'Grandmother');
 
 -- --------------------------------------------------------
 
@@ -172,7 +197,63 @@ INSERT INTO `patientrecord` (`p_id`, `admin_id`, `idnumber`, `fullname`, `grades
 (6, 0, 0, 'Joanna Mae Atento', 'Grade 7 Saint', '9', 'Advil', '2023-06-13 12:39:00'),
 (7, 9, 6802182, 'Joanna Mae Atento', 'Grade 7 Saint Paul', '12A', 'Advil', '2023-06-13 12:47:00'),
 (8, 9, 1234567, 'Camila Salvador', 'Grade 7 Saint', '3853563', 'Biogesic', '2023-06-13 12:50:00'),
-(9, 9, 1234567, 'Camila Salvador', 'Grade 7 Saint', '1234557', 'Buscopan', '2023-06-13 12:51:00');
+(9, 9, 1234567, 'Camila Salvador', 'Grade 7 Saint', '1234557', 'Buscopan', '2023-06-13 12:51:00'),
+(10, 9, 6802182, 'Joanna Mae Atento', 'Employee', '24/7', 'Biogesic, Advil, Have Enough sleep', '2023-06-14 01:38:00'),
+(11, 10, 6802182, 'Joanna Mae Atento', 'BSIT - 3', '457-7', 'Rest', '2023-06-14 09:56:00'),
+(12, 9, 6802182, 'Joanna Mae Atento', 'Grade 7 Saint', '60/70', 'Mefinamic', '2023-06-23 11:36:00'),
+(13, 9, 6802182, 'Joanna Mae Atento', 'Grade 8 Saint', '70/80', 'nEOZIP', '2023-06-23 11:38:00'),
+(14, 10, 6802182, 'Joanna Mae Atento', 'Grade 12', '90/120', 'Neozip', '2023-06-23 11:40:00'),
+(15, 10, 1234567, 'Camila Salvador', 'Grade 9', '24/7', 'Rest ', '2023-07-01 09:59:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schoolhealthasses`
+--
+
+CREATE TABLE `schoolhealthasses` (
+  `schoolasses_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `idnumber` int(11) NOT NULL,
+  `fullname` varchar(200) NOT NULL,
+  `birthday` text NOT NULL,
+  `gender` varchar(200) NOT NULL,
+  `date` text NOT NULL,
+  `weight` text NOT NULL,
+  `height` varchar(20) NOT NULL,
+  `bmi` text NOT NULL,
+  `bp` text NOT NULL,
+  `pr` text NOT NULL,
+  `scalp` text NOT NULL,
+  `skin_nails` text NOT NULL,
+  `eyes` text NOT NULL,
+  `visual_acuity` text NOT NULL,
+  `ears` text NOT NULL,
+  `hearing_test` text NOT NULL,
+  `nose` text NOT NULL,
+  `throat` text NOT NULL,
+  `mouth_tongue` text NOT NULL,
+  `teeth_gums` text NOT NULL,
+  `chest_breasts` text NOT NULL,
+  `heart` text NOT NULL,
+  `lungs` text NOT NULL,
+  `abdomen` text NOT NULL,
+  `genitalia` text NOT NULL,
+  `spine_extremities` text NOT NULL,
+  `sexual` text NOT NULL,
+  `screening` text NOT NULL,
+  `otherfindings` text NOT NULL,
+  `remarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `schoolhealthasses`
+--
+
+INSERT INTO `schoolhealthasses` (`schoolasses_id`, `admin_id`, `idnumber`, `fullname`, `birthday`, `gender`, `date`, `weight`, `height`, `bmi`, `bp`, `pr`, `scalp`, `skin_nails`, `eyes`, `visual_acuity`, `ears`, `hearing_test`, `nose`, `throat`, `mouth_tongue`, `teeth_gums`, `chest_breasts`, `heart`, `lungs`, `abdomen`, `genitalia`, `spine_extremities`, `sexual`, `screening`, `otherfindings`, `remarks`) VALUES
+(7, 9, 6802182, 'Joanna Mae Atento', '2001-12-15', 'Female', '2023-07-19', '42', '150', 'Normal', '60/70', '20', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'None', 'overall is good, passed'),
+(8, 9, 6802182, 'Joanna Mae Atento', '2001-12-15', 'Female', '2023-07-05', '45', '151', 'Normal', '100/70', '30', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'None', 'passed'),
+(9, 9, 1234567, 'Camila Salvador', '2004-04-29', 'Female', '2023-07-14', '47', '153', 'Normal', '80/70', '20', 'Good', 'Good', 'Not Normal', 'Not Normal', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'None', 'good');
 
 -- --------------------------------------------------------
 
@@ -182,18 +263,60 @@ INSERT INTO `patientrecord` (`p_id`, `admin_id`, `idnumber`, `fullname`, `grades
 
 CREATE TABLE `status` (
   `status_id` int(11) NOT NULL,
-  `statuses1030` varchar(50) NOT NULL,
-  `statuses1130` varchar(50) NOT NULL,
-  `statuses230` varchar(50) NOT NULL,
-  `statuses330` varchar(50) NOT NULL
+  `statuses1030_1` varchar(50) NOT NULL,
+  `statuses1130_2` varchar(50) NOT NULL,
+  `statuses230_3` varchar(50) NOT NULL,
+  `statuses330_4` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `status`
 --
 
-INSERT INTO `status` (`status_id`, `statuses1030`, `statuses1130`, `statuses230`, `statuses330`) VALUES
-(8, 'Unavailable', 'Available', 'Available', 'Available');
+INSERT INTO `status` (`status_id`, `statuses1030_1`, `statuses1130_2`, `statuses230_3`, `statuses330_4`) VALUES
+(8, 'Available', 'Unavailable', 'Available', 'Unavailable');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `statuscollege`
+--
+
+CREATE TABLE `statuscollege` (
+  `status_id` int(11) NOT NULL,
+  `statuses1030_1` varchar(200) NOT NULL,
+  `statuses1130_2` varchar(200) NOT NULL,
+  `statuses230_3` varchar(200) NOT NULL,
+  `statuses330_4` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `statuscollege`
+--
+
+INSERT INTO `statuscollege` (`status_id`, `statuses1030_1`, `statuses1130_2`, `statuses230_3`, `statuses330_4`) VALUES
+(1, 'Available', 'Available', 'Available', 'Available');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `statusshs`
+--
+
+CREATE TABLE `statusshs` (
+  `status_id` int(11) NOT NULL,
+  `statuses1030_1` varchar(50) NOT NULL,
+  `statuses1130_2` varchar(50) NOT NULL,
+  `statuses230_3` varchar(50) NOT NULL,
+  `statuses330_4` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `statusshs`
+--
+
+INSERT INTO `statusshs` (`status_id`, `statuses1030_1`, `statuses1130_2`, `statuses230_3`, `statuses330_4`) VALUES
+(10, 'Available', 'Available', 'Available', 'Available');
 
 -- --------------------------------------------------------
 
@@ -253,9 +376,27 @@ ALTER TABLE `patientrecord`
   ADD PRIMARY KEY (`p_id`);
 
 --
+-- Indexes for table `schoolhealthasses`
+--
+ALTER TABLE `schoolhealthasses`
+  ADD PRIMARY KEY (`schoolasses_id`);
+
+--
 -- Indexes for table `status`
 --
 ALTER TABLE `status`
+  ADD PRIMARY KEY (`status_id`);
+
+--
+-- Indexes for table `statuscollege`
+--
+ALTER TABLE `statuscollege`
+  ADD PRIMARY KEY (`status_id`);
+
+--
+-- Indexes for table `statusshs`
+--
+ALTER TABLE `statusshs`
   ADD PRIMARY KEY (`status_id`);
 
 --
@@ -278,31 +419,49 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `dental`
 --
 ALTER TABLE `dental`
-  MODIFY `dental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `dental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `dentalapp`
 --
 ALTER TABLE `dentalapp`
-  MODIFY `dentalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `dentalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `healthrecord`
 --
 ALTER TABLE `healthrecord`
-  MODIFY `health_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `health_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `patientrecord`
 --
 ALTER TABLE `patientrecord`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `schoolhealthasses`
+--
+ALTER TABLE `schoolhealthasses`
+  MODIFY `schoolasses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
   MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `statuscollege`
+--
+ALTER TABLE `statuscollege`
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `statusshs`
+--
+ALTER TABLE `statusshs`
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

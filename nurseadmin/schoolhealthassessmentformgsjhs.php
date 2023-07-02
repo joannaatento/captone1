@@ -259,7 +259,7 @@
         <div class="form-group">
             <label for="birthday" class="col-sm-4 control-label" style="font-size: 16px">Birthday</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="gender" name="gender" placeholder="Birthday" required>
+                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" required>
             </div>
         </div>
     </div>
@@ -271,8 +271,8 @@
         <div class="col-sm-10">
             <select class="form-control" id="gender" name="gender" required>
                 <option value="">--Select Gender--</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
             </select>
         </div>
     </div>
@@ -297,7 +297,7 @@
 
     <div class="col-md-2">
       <div class="form-group">
-        <label for="height">Height</label>
+        <label for="height">Height (in cm)</label>
         <input type="text" class="form-control" id="height" name="height" required>
       </div>
     </div>
@@ -311,20 +311,29 @@
 
     <div class="col-md-2">
       <div class="form-group">
-        <label for="bloodPressure">Blood Pressure</label>
-        <input type="text" class="form-control" id="bloodPressure" name="bloodPressure" required>
+        <label for="pr">Pulse Rate</label>
+        <input type="text" class="form-control" id="pr" name="pr" required>
       </div>
     </div>
 
     <div class="col-md-2">
       <div class="form-group">
+        <label for="bp">Blood Pressure</label>
+        <input type="text" class="form-control" id="bp" name="bp" required>
+      </div>
+    </div>
+
+
+  <div class="row">
+
+  <div class="col-md-2">
+    <br>
+      <div class="form-group">
         <label for="scalp">Scalp</label>
         <input type="text" class="form-control" id="scalp" name="scalp" required>
       </div>
-    </div>
-  </div>
+   </div>
 
-  <div class="row">
     <div class="col-md-2">
     <br>
       <div class="form-group">
@@ -344,8 +353,8 @@
     <div class="col-md-2">
         <br>
       <div class="form-group">
-        <label for="visual_aculty">Visual Aculty</label>
-        <input type="text" class="form-control" id="visual_aculty" name="visual_aculty" required>
+        <label for="visual_acuity">Visual Acuity</label>
+        <input type="text" class="form-control" id="visual_acuity" name="visual_acuity" required>
       </div>
     </div>
 
@@ -364,17 +373,18 @@
         <input type="text" class="form-control" id="hearing_test" name="hearing_test" required>
       </div>
     </div>
+  </div>
 
-    <div class="col-md-2">
+  <div class="row">
+
+  <div class="col-md-2">
         <br>
       <div class="form-group">
         <label for="nose">Nose</label>
         <input type="text" class="form-control" id="nose" name="nose" required>
       </div>
     </div>
-  </div>
 
-  <div class="row">
     <div class="col-md-2">
     <br>
       <div class="form-group">
@@ -414,17 +424,18 @@
         <input type="text" class="form-control" id="heart" name="heart" required>
       </div>
     </div>
+  </div>
 
-    <div class="col-md-2">
+  <div class="row">
+
+  <div class="col-md-2">
         <br>
       <div class="form-group">
         <label for="lungs">Lungs</label>
         <input type="text" class="form-control" id="lungs" name="lungs" required>
       </div>
     </div>
-  </div>
 
-  <div class="row">
     <div class="col-md-2">
     <br>
       <div class="form-group">
@@ -469,7 +480,7 @@
         <br>
       <div class="form-group">
         <label for="otherfindings">Other Findings</label>
-        <input type="text" class="form-control" id="otherfindings" name="otherfindings" required>
+        <input type="text" class="form-control" id="otherfindings" name="otherfindings">
       </div>
     </div>
   </div>
@@ -482,6 +493,7 @@
         <input type="text" class="form-control" id="remarks" name="remarks" required>
       </div>
     </div>
+  </div>
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

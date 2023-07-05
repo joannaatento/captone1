@@ -92,7 +92,7 @@ if(isset($_POST['submit_patientmngmt'])){ // pag get ng data
                     <h2 style='
                     color: #fff;
                     font-size: 16px;
-                    margin-left: 10px;'>Dental Appointment Added.</h2>
+                    margin-left: 10px;'>Health Assessment Added.</h2>
                 </div>
             ";
         }

@@ -8,6 +8,7 @@
         exit; // Exit the script to prevent further execution
     }
 
+  
 ?>
 
 
@@ -30,11 +31,61 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-    <link rel="stylesheet" href="assets/table.css">
+	<link rel="stylesheet" href="assets/styles.css">
+
 </head> 
 
-<body class="app">   	
-<header class="app-header fixed-top">	   	            
+<body class="app"> 
+    <?php  	
+$idnumber = $_GET['idnumber'];
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM healthrecord WHERE idnumber = '$idnumber'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $image = $row['image'];
+  $fullname = $row['fullname'];
+  $idnumber = $row['idnumber'];
+  $personalcpnum = $row['personalcpnum'];
+  $age = $row['age'];
+  $birthday = $row['birthday'];
+  $gender = $row['gender'];
+  $address = $row ['address'];
+  $role = $row['role'];
+  $gradecourse = ['gradecourse'];
+  $leveleduc = $row ['leveleduc'];
+  $fathername = $row['fathername'];
+  $cfather = $row['cfather'];
+  $mothername = $row['mothername'];
+  $cmother = $row['cmother'];
+  $polio = $row['polio'];
+  $measles = $row['measles'];
+  $tb = $row['tb'];
+  $seizure_epilepsy = $row['seizure_epilepsy'];
+  $tetanus = $row['tetanus'];
+  $mumps = $row['mumps'];
+  $hepatits = $row['hepatits'];
+  $bleeding_tendencies = ['bleeding_tendencies'];
+  $chicken_pox = $row['chicken_pox'];
+  $asthma = $row['asthma'];
+  $fainting_spells = $row['fainting_spells'];
+  $eye_disorder =$row ['eye_disorder'];
+  $heart = $row['heart'];
+  $illness =$row['illness'];
+  $allergyfood = $row['allergyfood'];
+  $allergymed = $row['allergymed'];
+  $allow_not = $row['allow_not'];
+  $medications = $row['medications'];
+  $nameperson = $row['nameperson'];
+  $personcp =$row['personcp'];
+  $relationship =$row['relationship'];
+    }
+ else {
+ } 
+?>
+  <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -169,6 +220,7 @@
 	    </div>
     </header>
     
+    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -176,7 +228,7 @@
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
 					    <div class="col-auto">
-					        <h1 class="app-page-title mb-0"></h1>
+					        <h1 class="app-page-title mb-0">Fill-up Health Record Form</h1>
 					    </div>
 						
 				    </div>
@@ -186,64 +238,204 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Students Health Profiles</h4>
+						        <h4 class="notification-title mb-1">Please fill-up honestly.</h4>
 					        </div>
-							<!--//generate report-->
+							
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-header p-4 pb-2  border-0">
-              <div class="app-search-box col">
-                        <form class="app-search-form">
-                            <input type="text" placeholder="Search..." name="query" id="searchQuery" class="form-control search-input">
-                            <button type="button" class="btn search-btn btn-primary" onclick="searchRecords()"><i class="fas fa-search"></i></button>
-                        </form>
-                        </div>
-				    <div class="app-card-body p-4">
-                    <div id="healthRecordTable">
-                            <table>
-                            <thead>
-                                <tr>
-                                <th>Student Name</th>
-                                <th>Student ID Number</th>
-								<th>Level of Education</th>
-                                <th>Age</th>
-                                <th>Name of Person to Contact</th>
-                                <th>Person to Contact Number</th>
-                                <th>Relationship</th>
-                                <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="healthRecordTableBody">
-                     <?php
+					<div class="app-card-body p-4">
+					
+							<div class="align_form">
+								<div class="input_form">
+								<div class="input_wrap">
+							<label></label>
+							<div class="image_container">
+							<br>
+								<img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Your Image</label>
+							</div>
+						</div>
+							</div>
+							<div class="input_form">
+									<div class="input_wrap">
+										<label>Full Name</label>
+										<input name="fullname" type="text" value="<?=$row['fullname'];?>" readonly />
+									</div>
+									<div class="input_wrap">
+										<label>ID Number</label>
+										<input name="idnumber" type="text" value="<?=$row['idnumber'];?>" readonly />
+									</div>
+									<div class="input_wrap">
+										<label>Contact</label>
+										<input name="personalcpnum" type="text" value="<?=$row['personalcpnum'];?>" readonly />
+									</div><br>
+									<div class="input_wrap">
+										<label>Age</label>
+										<input name="age" type="text" value="<?=$row['age'];?>" readonly />
+									</div>
+									<div class="input_wrap">
+										<label>Birthday</label>
+										<input name="birthday" type="date" value="<?= $row['birthday'];?>" readonly />
+										
+									</div>
+									<div class="input_wrap">
+										<label>Gender</label>
+										<select readonly>
+											<option disabled selected><?= $row['gender'];?></option>
+										</select>
+									</div>
+										<br>
+									<div class="input_wrap">
+										<label>Home Address</label>
+										<input name="address" type="text" value="<?=$row['address'];?>" readonly />
+										
+									</div>
+									
+									<div class="input_wrap">
+									<label>Role</label>
+										<select readonly>
+											<option disabled selected><?= $row['role'];?></option>
+										</select>
+									</div>
 
-                                $sql = "SELECT * FROM healthrecord WHERE role = 'employee'";
-                                $result = mysqli_query($conn, $sql);
+									<div class="input_wrap">
+									<label>Grade/Course & Year/Position</label>
+										<input name="gradecourse" type="text" value="<?=$row['gradecourse'];?>" readonly />
+									</div>
+									<br>
+									<div class="input_wrap">
+									<label>Level of Education</label>
+										<select readonly>
+											<option disabled selected><?= $row['leveleduc'];?></option>
+										</select>
+									</div>
+								
+								</div>
+							</div>
 
+							<div class="input_form">
+								<div class="input_wrap">
+									<label for="fullname">Name of Father</label>
+										<input name="fathername" type="text" value="<?=$row['fathername'];?>" readonly/>
+									
+									</div>
+									
+									<div class="input_wrap">
+									<label for="fullname">Contact</label>
+										<input name="cfather" type="text" value="<?=$row['cfather'];?>" readonly />
+									
+									</div>
+							
 
-                                while($row = $result->fetch_assoc()){
-                                ?>
-                                <tr>
-                                <td><?php echo $row['fullname']; ?></td>
-                                <td><?php echo $row['idnumber']; ?></td>
-								<td><?php echo $row['leveleduc']; ?></td>
-                                <td><?php echo $row['age']; ?></td>
-                                <td><?php echo $row['nameperson']; ?></td>
-                                <td><?php echo $row['personcp']; ?></td>
-                                <td><?php echo $row['relationship']; ?></td>
+								<div class="input_wrap">
+									<label for="fullname">Name of Mother</label>
+										<input name="mothername" type="text" value="<?=$row['mothername'];?>" readonly/>
+									
+									</div>
+									
+									<div class="input_wrap">
+									<label for="fullname">Contact</label>
+										<input name="cmother" type="text" value="<?=$row['cmother'];?>" readonly />
+									
+									</div>
+							</div>
 
-                                <td>
-                                <center><a href="viewemployeerecordshs.php?idnumber=<?php echo $row['idnumber']; ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                                        <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                                        </svg></a></center>
-
-     
-        </td>
-                                </tr>
-
-                                <?php } ?>
-  </tbody>
-</table>
+							<div>
+								<p class="title_">Medical History</p>
+							</div>
+							<div class="input_form">
+								<div class="checkbox">
+									<input name="polio" type="checkbox" value="<?= $row['polio'];?>" id="polio" <?php if ($row['polio']) echo "checked"; ?>>
+									<label class="label" for="polio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POLIO</label>
+								</div>
+								<div class="checkbox">
+									<input name="measles" type="checkbox" value="<?= $row['measles'];?>" id="measles" <?php if ($row['measles']) echo "checked"; ?>>
+									<label class="label" for="measles">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEASLES</label>
+								</div>
+								<div class="checkbox">
+									<input name="tb" type="checkbox" value="<?= $row['tb'];?>" id="tb"<?php if ($row['tb']) echo "checked"; ?>>
+									<label class="label" for="tb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PULMONARY TUBERCULOSIS</label>
+								</div>
+								<div class="checkbox">
+									<input name="seizure_epilepsy" type="checkbox" value="<?= $row['seizure_epilepsy'];?>" id="seizure_epilepsy" <?php if ($row['seizure_epilepsy']) echo "checked"; ?>>
+									<label class="label" for="seizure_epilepsy">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEIZURE / EPILEPSY</label>
+								</div>
+								<div class="checkbox">
+									<input name="tetanus" type="checkbox" value="<?= $row['tetanus'];?>" id="tetanus" <?php if ($row['tetanus']) echo "checked"; ?>>
+									<label class="label" for="tetanus">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TETANUS</label>
+								</div>
+								<div class="checkbox">
+									<input name="mumps" type="checkbox" value="<?= $row['mumps'];?>" id="mumps" <?php if ($row['mumps']) echo "checked"; ?>>
+									<label class="label" for="mumps">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MUMPS</label>
+								</div>
+								<div class="checkbox">
+									<input name="hepatits" type="checkbox" value="<?= $row['hepatits'];?>" id="hepatits" <?php if ($row['hepatits']) echo "checked"; ?>>
+									<label class="label" for="hepatits">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HEPATITIS</label>
+								</div>
+								<div class="checkbox">
+									<input name="bleeding_tendencies" type="checkbox" value="<?= $row['bleeding_tendencies'];?>" id="bleeding_tendencies" <?php if ($row['bleeding_tendencies']) echo "checked"; ?>>
+									<label class="label" for="bleeding_tendencies">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BLEEDING TENDENCIES</label>
+								</div>
+								<div class="checkbox">
+									<input name="chicken_pox" type="checkbox" value="<?= $row['chicken_pox'];?>" id="chicken_pox" <?php if ($row['chicken_pox']) echo "checked"; ?>>
+									<label class="label" for="chicken_pox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHICKEN POX</label>
+								</div>
+								<div class="checkbox">
+									<input name="asthma" type="checkbox" value="<?= $row['asthma'];?>" id="asthma" <?php if ($row['asthma']) echo "checked"; ?>>
+									<label class="label" for="asthma">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASTHMAA</label>
+								</div>
+								<div class="checkbox">
+									<input name="fainting_spells" type="checkbox" value="<?= $row['fainting_spells'];?>" id="fainting_spells" <?php if ($row['fainting_spells']) echo "checked"; ?>>
+									<label class="label" for="fainting_spells">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAINTING SPELLS</label>
+								</div>
+								<div class="checkbox">
+									<input name="eye_disorder" type="checkbox" value="<?= $row['eye_disorder'];?>" id="eye_disorder" <?php if ($row['eye_disorder']) echo "checked"; ?>>
+									<label class="label" for="eye_disorder">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EYE DISORDER</label>
+								</div>
+								<div class="input_wrap">
+								<label>Heart Ailment(please specify)</label>
+									<input name="heart" type="text" value="<?=$row['heart'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Other illness(please specify)</label>
+									<input name="illness" type="text" value="<?=$row['illness'];?>" readonly />
+								</div>
+							</div>
+							<div>
+								<p class="title_">Do you have any allergy to:</p>
+							</div>
+							<div class="input_form_2">
+								<div class="input_wrap">
+								<label>Food (if YES please specify, if NO leave it blank)</label>
+									<input name="allergyfood" type="text" value="<?=$row['allergyfood'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Medicine (if YES please specify, if NO leave it blank)</label>
+									<input name="allergymed" type="text" value="<?=$row['allergymed'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Would you allow your child to be given medicine (as needed) while here in the school?</label>
+									<input name="allow_not" type="text" value="<?=$row['allow_not'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>
+									<input name="medications" type="text" value="<?=$row['medications'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Name of the person to be notified in case of emergency:</label>
+									<input name="nameperson" type="text" value="<?=$row['nameperson'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Contact Number</label>
+									<input name="personcp" type="text" value="<?= $row['personcp'];?>" readonly />
+									
+								</div>
+								<div class="input_wrap">
+								<label>Relationship</label>
+									<input name="relationship" type="text" value="<?=$row['relationship'];?>" readonly />
+								</div>
+							</div>
+						
 				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>

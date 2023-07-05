@@ -67,7 +67,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
-    <header class="app-header fixed-top">	   	            
+  <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -146,8 +146,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsshs.php">Senior High School</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployee.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestscollege.php">College</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeecollege.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -171,14 +171,14 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="dentalshs.php">Dental</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="dentalcollege.php">Dental</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
             </ul>
         </div>
     </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecordshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="patientmanagementrecord.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -201,7 +201,6 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">

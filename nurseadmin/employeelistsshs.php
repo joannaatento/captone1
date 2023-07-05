@@ -7,21 +7,6 @@
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
-    $admin_id = $_SESSION['admin_id'];
-    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
-    $result = $conn->query($sql_query);
-    while($row = $result->fetch_array()){
-        $admin_id = $row['admin_id'];
-        $username = $row['username'];
-        require_once('../db.php');
-        if($_SESSION['role'] == 2){
-            // User type 1 specific code here
-        }
-        else{
-            header('location: ../login.php');
-            exit; // Exit the script to prevent further execution
-        }
-    }
 
 ?>
 
@@ -43,13 +28,9 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
-    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    
-    
-
+    <link rel="stylesheet" href="assets/table.css">
 </head> 
 
 <body class="app">   	
@@ -197,8 +178,6 @@
 					    <div class="col-auto">
 					        <h1 class="app-page-title mb-0"></h1>
 					    </div>
-
-
 						
 				    </div>
 			    </div>
@@ -207,80 +186,64 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Patient Management Record</h4>
+						        <h4 class="notification-title mb-1">Students Health Profiles</h4>
 					        </div>
-                            <?php
-								if(isset($_SESSION['success'])){
-									echo $_SESSION['success'];
-									unset($_SESSION['success']);
-								}
-							?>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
+                    <div class="app-card-header p-4 pb-2  border-0">
+              <div class="app-search-box col">
+                        <form class="app-search-form">
+                            <input type="text" placeholder="Search..." name="query" id="searchQuery" class="form-control search-input">
+                            <button type="button" class="btn search-btn btn-primary" onclick="searchRecords()"><i class="fas fa-search"></i></button>
+                        </form>
+                        </div>
 				    <div class="app-card-body p-4">
-					   
-                     <form class="form-horizontal mt-4" method="post" action="function/functionshs.php">
+                    <div id="healthRecordTable">
+                            <table>
+                            <thead>
+                                <tr>
+                                <th>Student Name</th>
+                                <th>Student ID Number</th>
+								<th>Level of Education</th>
+                                <th>Age</th>
+                                <th>Name of Person to Contact</th>
+                                <th>Person to Contact Number</th>
+                                <th>Relationship</th>
+                                <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="healthRecordTableBody">
+                     <?php
 
-                    <div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">Enter the ID Number</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-4 control-label" style="font-size: 16px">Enter the Fullname</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter the Fullname" required>
-            </div>
-        </div>
-    </div>
-</div>
+                                $sql = "SELECT * FROM healthrecord WHERE role = 'employee'";
+                                $result = mysqli_query($conn, $sql);
 
-<br>
 
-<div class="row">
-<div class="col-sm-6">
-        <div class="form-group">
-            <label for="gradecsection" class="col-sm-4 control-label" style="font-size: 16px">Course & Year/Employee</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Course & Year" required>
-            </div>
-        </div>
-    </div>
- 
+                                while($row = $result->fetch_assoc()){
+                                ?>
+                                <tr>
+                                <td><?php echo $row['fullname']; ?></td>
+                                <td><?php echo $row['idnumber']; ?></td>
+								<td><?php echo $row['leveleduc']; ?></td>
+                                <td><?php echo $row['age']; ?></td>
+                                <td><?php echo $row['nameperson']; ?></td>
+                                <td><?php echo $row['personcp']; ?></td>
+                                <td><?php echo $row['relationship']; ?></td>
 
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="vitalsigns" class="col-sm-4 control-label" style="font-size: 16px">Vital Signs</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="vitalsigns" name="vitalsigns" placeholder="Enter Vital Signs" required>
-            </div>
-        </div>
-    </div>
+                                <td>
+                                <center><a href="viewemployeerecord.php?idnumber=<?php echo $row['idnumber']; ?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
+                                        <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
+                                        </svg></a></center>
 
-<div class="row">
-    <div class="form-group">
-        <br>
-        <label for="diagnosis" class="col-sm-5 control-label">Diagnosis/Chief Complaints, Management & Treatement</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="diagnosis" name="diagnosis" placeholder="Diagnosis/Chief Complaints, Management & Treatement" required>
-        </div>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <br>
-        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_patientmngmt" class="btn btn-success">Enter</button>
-    </div>
-</div>
-</form>
+     
+        </td>
+                                </tr>
 
+                                <?php } ?>
+  </tbody>
+</table>
 				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>
@@ -302,7 +265,6 @@
 			}
 		}, 5000);
 	</script>
-
 
 </body>
 </html> 

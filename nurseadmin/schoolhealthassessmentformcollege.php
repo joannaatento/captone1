@@ -7,8 +7,22 @@
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
+    $admin_id = $_SESSION['admin_id'];
+    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $admin_id = $row['admin_id'];
+        $username = $row['username'];
+        require_once('../db.php');
+        if($_SESSION['role'] == 3){
+            // User type 1 specific code here
+        }
+        else{
+            header('location: ../login.php');
+            exit; // Exit the script to prevent further execution
+        }
+    }
 
-  
 ?>
 
 
@@ -29,35 +43,17 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
+    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/viewdental.css">
+	<link rel="stylesheet" href="assets/table.css">
+    
+    
 
 </head> 
 
-<body class="app"> 
-    <?php  	
-$date_created = $_GET['date_created'];
-
-// Retrieve the health record for the given ID number
-$sql = "SELECT * FROM dental WHERE date_created = '$date_created'";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-  $row = $result->fetch_assoc(); 
-  $idnumber = $row['idnumber'];
-  $name = $row['name'];
-  $dental_service = $row['dental_service'];
-  $c_enrolled = $row['c_enrolled'];
-  $gradecourseyear = $row['gradecourseyear'];
-  $c_employee = $row['c_employee'];
-  $message = $row['message'];
-  $date_created = $row['date_created'];
-    }
- else {
- } 
-?>
-   <header class="app-header fixed-top">	   	            
+<body class="app">   	
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -210,8 +206,11 @@ if (mysqli_num_rows($result) > 0) {
 		    <div class="container-xl">
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
-					   
-					       
+					    <div class="col-auto">
+					        <h1 class="app-page-title mb-0"></h1>
+					    </div>
+
+
 						
 				    </div>
 			    </div>
@@ -219,130 +218,294 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-                        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
+					        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">School Health Assessment Form</h4>
 					        </div>
-                          
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
+							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-body p-4">
-                  
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" value="<?php echo $row['name']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="date" class="col-sm-4 control-label">Dental Services</label>
-                    <div class="col-sm-10">
-                        <select id="dental_service" name="dental_service" class="form-control" readonly>
-                            <option disabled selected><?= $row['dental_service']; ?></option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="gradecourse" class="col-sm-8 control-label">Year level that you currently enrolled</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['c_enrolled']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-        <div class="row">
-
-        <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="gradecourseyear" class="col-sm-8 control-label">Grade & Section/Course & Year</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?php echo $row['gradecourseyear']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="c_employee" class="col-sm-8 control-label">For Employee</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="c_employee" name="c_employee" value="<?php echo $row['c_employee']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <br>
-                <label for="message" class="col-sm-5 control-label">Message</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." value="<?php echo $row['message']; ?>" readonly>
-                </div>
-            </div>
-        </div>
-
+				    <div class="app-card-body p-4">
+                     <form class="form-horizontal mt-4" method="post" action="function/functioncollege.php">
+                    
+                    <div class="row">
+                      
+    <div class="col-sm-6">
         <div class="form-group">
-            <span><?php echo $row['date_created']; ?></span>
-        </div>
-        <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
-<!--Modal-->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">Enter the ID Number</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
             </div>
-            <div class="modal-body">
-                <form action="function/funct.php" method="POST">
-                    <input type="hidden" name="status_id" value="">
-                    <div class="mb-3">
-                        <label for="inputFrom" class="form-label">From</label>
-                        <input type="text" class="form-control" id="inputFrom" name="from">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputTo" class="form-label">To</label>
-                        <input type="text" class="form-control" id="inputTo" name="to">
-                    </div>
-                    <div class="mb-3">
-                        <label for="messagesms" class="form-label">Message</label>
-                        <textarea class="form-control" id="messagesms" name="messagesms" rows="4">Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit_status" class="btn btn-light">Send</button>
-                    </div>
-                </form>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-4 control-label" style="font-size: 16px">Enter the Fullname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter the Fullname" required>
             </div>
         </div>
     </div>
 </div>
 
-  
-</div><!--//app-card-body-->
+<br>
+
+<div class="row">
+<div class="col-sm-6">
+        <div class="form-group">
+            <label for="birthday" class="col-sm-4 control-label" style="font-size: 16px">Birthday</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" required>
+            </div>
+        </div>
+    </div>
+ 
+
+    <div class="col-sm-6">
+    <div class="form-group">
+        <label for="gender" class="col-sm-4 control-label" style="font-size: 16px">Gender</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="gender" name="gender" required>
+                <option value="">--Select Gender--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<p><b><br>A. PHYSICAL EXAMINATION</p></b>
+<div class="row">
+
+<div class="col-md-2">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="weight">Weight</label>
+        <input type="text" class="form-control" id="weight" name="weight" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="height">Height (in cm)</label>
+        <input type="text" class="form-control" id="height" name="height" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="bmi">BMI</label>
+        <input type="text" class="form-control" id="bmi" name="bmi" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="pr">Pulse Rate</label>
+        <input type="text" class="form-control" id="pr" name="pr" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="bp">Blood Pressure</label>
+        <input type="text" class="form-control" id="bp" name="bp" required>
+      </div>
+    </div>
+
+
+  <div class="row">
+
+  <div class="col-md-2">
+    <br>
+      <div class="form-group">
+        <label for="scalp">Scalp</label>
+        <input type="text" class="form-control" id="scalp" name="scalp" required>
+      </div>
+   </div>
+
+    <div class="col-md-2">
+    <br>
+      <div class="form-group">
+        <label for="skin_nails">Skin & Nails</label>
+        <input type="text" class="form-control" id="skin_nails" name="skin_nails" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="eyes">Eyes</label>
+        <input type="text" class="form-control" id="eyes" name="eyes" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="visual_acuity">Visual Acuity</label>
+        <input type="text" class="form-control" id="visual_acuity" name="visual_acuity" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="ears">Ears</label>
+        <input type="text" class="form-control" id="ears" name="ears" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="hearing_test">Hearing Test</label>
+        <input type="text" class="form-control" id="hearing_test" name="hearing_test" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+  <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="nose">Nose</label>
+        <input type="text" class="form-control" id="nose" name="nose" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+    <br>
+      <div class="form-group">
+        <label for="throat">Throat</label>
+        <input type="text" class="form-control" id="throat" name="throat" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="mouth_tongue">Mouth & Tongue</label>
+        <input type="text" class="form-control" id="mouth_tongue" name="mouth_tongue" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="teeth_gums">Teeth & Gums</label>
+        <input type="text" class="form-control" id="teeth_gums" name="teeth_gums" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="chest_breasts">Chest & Breasts</label>
+        <input type="text" class="form-control" id="chest_breasts" name="chest_breasts" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="heart">Heart</label>
+        <input type="text" class="form-control" id="heart" name="heart" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+  <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="lungs">Lungs</label>
+        <input type="text" class="form-control" id="lungs" name="lungs" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+    <br>
+      <div class="form-group">
+        <label for="abdomen">Abdomen</label>
+        <input type="text" class="form-control" id="abdomen" name="abdomen" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="genitalia">Genitalia</label>
+        <input type="text" class="form-control" id="genitalia" name="genitalia" required>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+        <br>
+      <div class="form-group">
+        <label for="spine_extremities">Spine & Extremities</label>
+        <input type="text" class="form-control" id="spine_extremities" name="spine_extremities" required>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+        <br>
+      <div class="form-group">
+        <label for="sexual">Sexual Maturity Rating</label>
+        <input type="text" class="form-control" id="sexual" name="sexual" required>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+        <br>
+      <div class="form-group">
+        <label for="screening">Screening, Risk Taking Behavior</label>
+        <input type="text" class="form-control" id="screening" name="screening" required>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+        <br>
+      <div class="form-group">
+        <label for="otherfindings">Other Findings</label>
+        <input type="text" class="form-control" id="otherfindings" name="otherfindings">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10">
+    <br>
+      <div class="form-group">
+        <label for="remarks">Remarks</label>
+        <input type="text" class="form-control" id="remarks" name="remarks" required>
+      </div>
+    </div>
+  </div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <br>
+        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+        <button name="submit_schoolhealthassesform" class="btn btn-success">Enter</button>
+    </div>
+</div>
+</form>
+
+				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>
 	    </div>
@@ -363,6 +526,7 @@ if (mysqli_num_rows($result) > 0) {
 			}
 		}, 5000);
 	</script>
+
 
 </body>
 </html> 

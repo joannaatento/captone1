@@ -57,8 +57,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
-	   	            
-                       <header class="app-header fixed-top">	   	            
+   <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -114,8 +113,8 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlists.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelists.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="studentlistscollege.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="employeelistscollege.php">Employees</a></li>
             </ul>
         </div>
     </li>
@@ -137,8 +136,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsshs.php">Senior High School</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeeshs.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestscollege.php">College</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeecollege.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -162,14 +161,14 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="dentalshs.php">Dental</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="dentalcollege.php">Dental</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
             </ul>
         </div>
     </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecordshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="patientmanagementrecordcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -182,6 +181,18 @@ if (mysqli_num_rows($result) > 0) {
     </a>
 </li>
 
+<li class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle active" href="schoolhealthassessmentformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+        <span class="nav-icon">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
+            <path d="M8.5 4.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L7 6l-.549.317a.5.5 0 1 0 .5.866l.549-.317V7.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L9 6l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V4.5zM5.5 9a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+            </svg>
+        </span>
+        <span class="nav-link-text">School Health Assessment Form</span>
+    </a>
+</li>
 
 </ul>
 
@@ -192,6 +203,7 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
+    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">

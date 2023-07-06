@@ -31,33 +31,61 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/viewdental.css">
+	<link rel="stylesheet" href="assets/styles.css">
 
 </head> 
 
 <body class="app"> 
     <?php  	
-$date_created = $_GET['date_created'];
+$idnumber = $_GET['idnumber'];
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM dental WHERE date_created = '$date_created'";
+$sql = "SELECT * FROM healthrecord WHERE idnumber = '$idnumber'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
+  $image = $row['image'];
+  $fullname = $row['fullname'];
   $idnumber = $row['idnumber'];
-  $name = $row['name'];
-  $dental_service = $row['dental_service'];
-  $c_enrolled = $row['c_enrolled'];
-  $gradecourseyear = $row['gradecourseyear'];
-  $c_employee = $row['c_employee'];
-  $message = $row['message'];
-  $date_created = $row['date_created'];
+  $personalcpnum = $row['personalcpnum'];
+  $age = $row['age'];
+  $birthday = $row['birthday'];
+  $gender = $row['gender'];
+  $address = $row ['address'];
+  $role = $row['role'];
+  $gradecourse = ['gradecourse'];
+  $leveleduc = $row ['leveleduc'];
+  $fathername = $row['fathername'];
+  $cfather = $row['cfather'];
+  $mothername = $row['mothername'];
+  $cmother = $row['cmother'];
+  $polio = $row['polio'];
+  $measles = $row['measles'];
+  $tb = $row['tb'];
+  $seizure_epilepsy = $row['seizure_epilepsy'];
+  $tetanus = $row['tetanus'];
+  $mumps = $row['mumps'];
+  $hepatits = $row['hepatits'];
+  $bleeding_tendencies = ['bleeding_tendencies'];
+  $chicken_pox = $row['chicken_pox'];
+  $asthma = $row['asthma'];
+  $fainting_spells = $row['fainting_spells'];
+  $eye_disorder =$row ['eye_disorder'];
+  $heart = $row['heart'];
+  $illness =$row['illness'];
+  $allergyfood = $row['allergyfood'];
+  $allergymed = $row['allergymed'];
+  $allow_not = $row['allow_not'];
+  $medications = $row['medications'];
+  $nameperson = $row['nameperson'];
+  $personcp =$row['personcp'];
+  $relationship =$row['relationship'];
     }
  else {
  } 
 ?>
-   <header class="app-header fixed-top">	   	            
+    <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -204,14 +232,17 @@ if (mysqli_num_rows($result) > 0) {
 	    </div>
     </header>
     
+    
+    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
 		    <div class="container-xl">
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
-					   
-					       
+					    <div class="col-auto">
+					        <h1 class="app-page-title mb-0">Fill-up Health Record Form</h1>
+					    </div>
 						
 				    </div>
 			    </div>
@@ -219,130 +250,206 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-                        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
+					        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Please fill-up honestly.</h4>
 					        </div>
-                          
+							
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-body p-4">
-                  
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" value="<?php echo $row['name']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
+					<div class="app-card-body p-4">
+					
+							<div class="align_form">
+								<div class="input_form">
+								<div class="input_wrap">
+							<label></label>
+							<div class="image_container">
+							<br>
+								<img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Your Image</label>
+							</div>
+						</div>
+							</div>
+							<div class="input_form">
+									<div class="input_wrap">
+										<label>Full Name</label>
+										<input name="fullname" type="text" value="<?=$row['fullname'];?>" readonly />
+									</div>
+									<div class="input_wrap">
+										<label>ID Number</label>
+										<input name="idnumber" type="text" value="<?=$row['idnumber'];?>" readonly />
+									</div>
+									<div class="input_wrap">
+										<label>Contact</label>
+										<input name="personalcpnum" type="text" value="<?=$row['personalcpnum'];?>" readonly />
+									</div><br>
+									<div class="input_wrap">
+										<label>Age</label>
+										<input name="age" type="text" value="<?=$row['age'];?>" readonly />
+									</div>
+									<div class="input_wrap">
+										<label>Birthday</label>
+										<input name="birthday" type="date" value="<?= $row['birthday'];?>" readonly />
+										
+									</div>
+									<div class="input_wrap">
+										<label>Gender</label>
+										<select readonly>
+											<option disabled selected><?= $row['gender'];?></option>
+										</select>
+									</div>
+										<br>
+									<div class="input_wrap">
+										<label>Home Address</label>
+										<input name="address" type="text" value="<?=$row['address'];?>" readonly />
+										
+									</div>
+									
+									<div class="input_wrap">
+									<label>Role</label>
+										<select readonly>
+											<option disabled selected><?= $row['role'];?></option>
+										</select>
+									</div>
 
-        <br>
+									<div class="input_wrap">
+									<label>Grade/Course & Year/Position</label>
+										<input name="gradecourse" type="text" value="<?=$row['gradecourse'];?>" readonly />
+									</div>
+									<br>
+									<div class="input_wrap">
+									<label>Level of Education</label>
+										<select readonly>
+											<option disabled selected><?= $row['leveleduc'];?></option>
+										</select>
+									</div>
+								
+								</div>
+							</div>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="date" class="col-sm-4 control-label">Dental Services</label>
-                    <div class="col-sm-10">
-                        <select id="dental_service" name="dental_service" class="form-control" readonly>
-                            <option disabled selected><?= $row['dental_service']; ?></option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+							<div class="input_form">
+								<div class="input_wrap">
+									<label for="fullname">Name of Father</label>
+										<input name="fathername" type="text" value="<?=$row['fathername'];?>" readonly/>
+									
+									</div>
+									
+									<div class="input_wrap">
+									<label for="fullname">Contact</label>
+										<input name="cfather" type="text" value="<?=$row['cfather'];?>" readonly />
+									
+									</div>
+							
 
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="gradecourse" class="col-sm-8 control-label">Year level that you currently enrolled</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['c_enrolled']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
+								<div class="input_wrap">
+									<label for="fullname">Name of Mother</label>
+										<input name="mothername" type="text" value="<?=$row['mothername'];?>" readonly/>
+									
+									</div>
+									
+									<div class="input_wrap">
+									<label for="fullname">Contact</label>
+										<input name="cmother" type="text" value="<?=$row['cmother'];?>" readonly />
+									
+									</div>
+							</div>
 
-        <br>
-        <div class="row">
-
-        <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="gradecourseyear" class="col-sm-8 control-label">Grade & Section/Course & Year</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?php echo $row['gradecourseyear']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="c_employee" class="col-sm-8 control-label">For Employee</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="c_employee" name="c_employee" value="<?php echo $row['c_employee']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <br>
-                <label for="message" class="col-sm-5 control-label">Message</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." value="<?php echo $row['message']; ?>" readonly>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <span><?php echo $row['date_created']; ?></span>
-        </div>
-        <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
-<!--Modal-->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="function/funct.php" method="POST">
-                    <input type="hidden" name="status_id" value="">
-                    <div class="mb-3">
-                        <label for="inputFrom" class="form-label">From</label>
-                        <input type="text" class="form-control" id="inputFrom" name="from">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputTo" class="form-label">To</label>
-                        <input type="text" class="form-control" id="inputTo" name="to">
-                    </div>
-                    <div class="mb-3">
-                        <label for="messagesms" class="form-label">Message</label>
-                        <textarea class="form-control" id="messagesms" name="messagesms" rows="4">Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit_status" class="btn btn-light">Send</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-  
-</div><!--//app-card-body-->
+							<div>
+								<p class="title_">Medical History</p>
+							</div>
+							<div class="input_form">
+								<div class="checkbox">
+									<input name="polio" type="checkbox" value="<?= $row['polio'];?>" id="polio" <?php if ($row['polio']) echo "checked"; ?>>
+									<label class="label" for="polio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POLIO</label>
+								</div>
+								<div class="checkbox">
+									<input name="measles" type="checkbox" value="<?= $row['measles'];?>" id="measles" <?php if ($row['measles']) echo "checked"; ?>>
+									<label class="label" for="measles">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEASLES</label>
+								</div>
+								<div class="checkbox">
+									<input name="tb" type="checkbox" value="<?= $row['tb'];?>" id="tb"<?php if ($row['tb']) echo "checked"; ?>>
+									<label class="label" for="tb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PULMONARY TUBERCULOSIS</label>
+								</div>
+								<div class="checkbox">
+									<input name="seizure_epilepsy" type="checkbox" value="<?= $row['seizure_epilepsy'];?>" id="seizure_epilepsy" <?php if ($row['seizure_epilepsy']) echo "checked"; ?>>
+									<label class="label" for="seizure_epilepsy">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEIZURE / EPILEPSY</label>
+								</div>
+								<div class="checkbox">
+									<input name="tetanus" type="checkbox" value="<?= $row['tetanus'];?>" id="tetanus" <?php if ($row['tetanus']) echo "checked"; ?>>
+									<label class="label" for="tetanus">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TETANUS</label>
+								</div>
+								<div class="checkbox">
+									<input name="mumps" type="checkbox" value="<?= $row['mumps'];?>" id="mumps" <?php if ($row['mumps']) echo "checked"; ?>>
+									<label class="label" for="mumps">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MUMPS</label>
+								</div>
+								<div class="checkbox">
+									<input name="hepatits" type="checkbox" value="<?= $row['hepatits'];?>" id="hepatits" <?php if ($row['hepatits']) echo "checked"; ?>>
+									<label class="label" for="hepatits">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HEPATITIS</label>
+								</div>
+								<div class="checkbox">
+									<input name="bleeding_tendencies" type="checkbox" value="<?= $row['bleeding_tendencies'];?>" id="bleeding_tendencies" <?php if ($row['bleeding_tendencies']) echo "checked"; ?>>
+									<label class="label" for="bleeding_tendencies">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BLEEDING TENDENCIES</label>
+								</div>
+								<div class="checkbox">
+									<input name="chicken_pox" type="checkbox" value="<?= $row['chicken_pox'];?>" id="chicken_pox" <?php if ($row['chicken_pox']) echo "checked"; ?>>
+									<label class="label" for="chicken_pox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHICKEN POX</label>
+								</div>
+								<div class="checkbox">
+									<input name="asthma" type="checkbox" value="<?= $row['asthma'];?>" id="asthma" <?php if ($row['asthma']) echo "checked"; ?>>
+									<label class="label" for="asthma">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASTHMAA</label>
+								</div>
+								<div class="checkbox">
+									<input name="fainting_spells" type="checkbox" value="<?= $row['fainting_spells'];?>" id="fainting_spells" <?php if ($row['fainting_spells']) echo "checked"; ?>>
+									<label class="label" for="fainting_spells">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAINTING SPELLS</label>
+								</div>
+								<div class="checkbox">
+									<input name="eye_disorder" type="checkbox" value="<?= $row['eye_disorder'];?>" id="eye_disorder" <?php if ($row['eye_disorder']) echo "checked"; ?>>
+									<label class="label" for="eye_disorder">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EYE DISORDER</label>
+								</div>
+								<div class="input_wrap">
+								<label>Heart Ailment(please specify)</label>
+									<input name="heart" type="text" value="<?=$row['heart'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Other illness(please specify)</label>
+									<input name="illness" type="text" value="<?=$row['illness'];?>" readonly />
+								</div>
+							</div>
+							<div>
+								<p class="title_">Do you have any allergy to:</p>
+							</div>
+							<div class="input_form_2">
+								<div class="input_wrap">
+								<label>Food (if YES please specify, if NO leave it blank)</label>
+									<input name="allergyfood" type="text" value="<?=$row['allergyfood'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Medicine (if YES please specify, if NO leave it blank)</label>
+									<input name="allergymed" type="text" value="<?=$row['allergymed'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Would you allow your child to be given medicine (as needed) while here in the school?</label>
+									<input name="allow_not" type="text" value="<?=$row['allow_not'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>
+									<input name="medications" type="text" value="<?=$row['medications'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Name of the person to be notified in case of emergency:</label>
+									<input name="nameperson" type="text" value="<?=$row['nameperson'];?>" readonly />
+								</div>
+								<div class="input_wrap">
+								<label>Contact Number</label>
+									<input name="personcp" type="text" value="<?= $row['personcp'];?>" readonly />
+									
+								</div>
+								<div class="input_wrap">
+								<label>Relationship</label>
+									<input name="relationship" type="text" value="<?=$row['relationship'];?>" readonly />
+								</div>
+							</div>
+						
+				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>
 	    </div>

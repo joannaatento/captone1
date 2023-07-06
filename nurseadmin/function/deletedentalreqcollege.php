@@ -15,7 +15,7 @@ if (isset($_GET['dental_id'])) {
     $stmt->execute();
 
     // Redirect the user back to the original page or any other appropriate page
-    header("Location: ../dentalrequestscollege.php");
+    header("Location: ../dentalrequestsemployeecollege.php");
     exit();
 }
 

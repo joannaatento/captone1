@@ -400,7 +400,7 @@
 <div class="row">
     <div class="form-group">
         <br>
-        <label for="message" class="col-sm-5 control-label">Write a message....</label>
+        <label for="message" class="col-sm-5 control-label">Write a message.... (Include DATE & TIME)</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." required>
         </div>

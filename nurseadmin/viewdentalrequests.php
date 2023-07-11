@@ -320,7 +320,7 @@ if (mysqli_num_rows($result) > 0) {
                 <form action="" method="POST">
                     <div class="mb-3">
                         <label for="inputTo" class="form-label">To</label>
-                        <input type="text" class="form-control" id="inputTo" name="phone">
+                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
                     </div>
                     <div class="mb-3">
                         <label for="messagesms" class="form-label">Message</label>

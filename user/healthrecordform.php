@@ -117,7 +117,7 @@
 											<path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
 											</svg>
 									</span>
-									<span class="nav-link-text">Request Dental Schedule</span>
+									<span class="nav-link-text">Request Scheduling Appointment</span>
 									<span class="submenu-arrow">
 										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 											<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -126,8 +126,9 @@
 								</a>
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-										<li class="submenu-item"><a class="submenu-link" href="adddentalmessage.php">Add Dental Schedule</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="viewdentalrecord.php">View Dental Record</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="adddentalmessage.php">Request Dental Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessage.php">Request Medical Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessage.php">Request Physician Scheduling</a></li>
 									</ul>
 								</div>
 							</li>
@@ -165,7 +166,6 @@
 	        </div>
 	    </div>
     </header>
-    
     
     <div class="app-wrapper">
 	    

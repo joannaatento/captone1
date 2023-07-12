@@ -1,6 +1,7 @@
 <?php
     session_start();
     include '../db.php';
+    require '../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -305,7 +306,89 @@ if (mysqli_num_rows($result) > 0) {
         <div class="form-group">
             <span><?php echo $row['date_created']; ?></span>
         </div>
-        <a href="">Approve</a>
+        <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
+<!--Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="Send">Send</button>
+                    </div>
+                </form>
+
+                <?php
+    /**
+     * Send an SMS message directly by calling HTTP endpoint.
+     *
+     * For your convenience, environment variables are already pre-populated with your account data
+     * like authentication, base URL, and phone number.
+     *
+     * Please find detailed information in the readme file.
+     */
+    
+    
+
+    use GuzzleHttp\Client;
+    use GuzzleHttp\RequestOptions;
+
+    if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $phoneNumber = $_POST['phone'];
+        $message = $_POST['message'];
+
+        $client = new Client([
+            'base_uri' => "https://2kw6nm.api.infobip.com/",
+            'headers' => [
+                'Authorization' => "App 47d7c2b8394b7802f3eb4e49f8da3a40-aee5ec9a-6fae-4e23-b89f-246ee2b98f4a",
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ]
+        ]);
+
+        $response = $client->request(
+            'POST',
+            'sms/2/text/advanced',
+            [
+                RequestOptions::JSON => [
+                    'messages' => [
+                        [
+                            'from' => 'Clinic',
+                            'destinations' => [
+                                ['to' => $phoneNumber]
+                            ],
+                            'text' => $message,
+                        ]
+                    ]
+                ],
+            ]
+        );
+
+        echo("<p>HTTP code: " . $response->getStatusCode() . "</p>");
+        echo("<p>Response body: " . $response->getBody()->getContents() . "</p>");
+    }
+    ?>
+
+
+            </div>
+        </div>
+    </div>
+</div>
 
   
 </div><!--//app-card-body-->

@@ -277,10 +277,8 @@
 <div class="container">
   <div class="text-box">
     <center>
-      <p>Available Day and Time <b>IN GS and JHS</b></p>
+      <p>Available Day and Time <b>IN GS, JHS and SHS</b></p>
     </center>
-    <p> Monday - Wednesday<br>
-    </p>
 
     <?php
     $sql1 = "SELECT * FROM status";
@@ -293,53 +291,21 @@
         $statuses1130_2 = $row1['statuses1130_2']; // Update column name to 'statuses1130'
         $statuses230_3 = $row1['statuses230_3']; // Update column name to 'statuses230'
         $statuses330_4 = $row1['statuses330_4']; // Update column name to 'statuses330'
+        $statuses430_5 = $row1['statuses430_5']; // Update column name to 'statuses430'
     }
     ?>
     <p>
       <div class="<?php echo ($statuses1030_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1030_1; ?></div>
-      10:30 A.M
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div class="<?php echo ($statuses1130_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1130_2; ?></div>
-      11:30 A.M<br><br>
-      <div class="<?php echo ($statuses230_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses230_3; ?></div>
-      2:30 P.M
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Monday - 9:00 A.M - 11:00 A.M.
+      <br><br><div class="<?php echo ($statuses1130_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1130_2; ?></div>
+      Tuesday - 9:00 A.M - 11:00 A.M.
+      <br><br><div class="<?php echo ($statuses230_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses230_3; ?></div>
+      Wednesday - 9:00 A.M - 11:00 A.M.
+      <br><br>
       <div class="<?php echo ($statuses330_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses330_4; ?></div>
-      3:30 P.M
-    </p>
-  </div>
-
-  <div class="text-box">
-    <center>
-      <p>Available Day and Time <b>IN SHS</b></p>
-    </center>
-    <p> Monday - Wednesday<br>
-    </p>
-
-    <?php
-    $sql2 = "SELECT * FROM statusshs";
-    $result2 = mysqli_query($conn, $sql2);
-
-    if (mysqli_num_rows($result2)) {
-        $row2 = $result2->fetch_assoc();
-
-        $statuses1030_1 = $row2['statuses1030_1']; // Update column name to 'statuses1030'
-        $statuses1130_2 = $row2['statuses1130_2']; // Update column name to 'statuses1130'
-        $statuses230_3 = $row2['statuses230_3']; // Update column name to 'statuses230'
-        $statuses330_4 = $row2['statuses330_4']; // Update column name to 'statuses330'
-    }
-    ?>
-    <p>
-      <div class="<?php echo ($statuses1030_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1030_1; ?></div>
-      10:30 A.M
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div class="<?php echo ($statuses1130_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1130_2; ?></div>
-      11:30 A.M<br><br>
-      <div class="<?php echo ($statuses230_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses230_3; ?></div>
-      2:30 P.M
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div class="<?php echo ($statuses330_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses330_4; ?></div>
-      3:30 P.M
+      Thursday- 9:00 A.M - 11:00 A.M.
+      <br><br><div class="<?php echo ($statuses430_5 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses430_5; ?></div>
+      Friday- 9:00 A.M - 11:00 A.M.
     </p>
   </div>
 

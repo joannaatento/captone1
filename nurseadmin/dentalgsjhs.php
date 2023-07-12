@@ -378,6 +378,7 @@ if (mysqli_num_rows($result) > 0) {
                         $statuses1130_2 = $row1['statuses1130_2'];
                         $statuses230_3 = $row1['statuses230_3'];
                         $statuses330_4 = $row1['statuses330_4'];
+                        $statuses430_5 = $row1['statuses430_5'];
                     }
                 } else {
 
@@ -392,36 +393,44 @@ if (mysqli_num_rows($result) > 0) {
                 ?>
                 <form action="function/funct.php" method="POST">
                     <input type="hidden" name="status_id" value="<?php echo $status_id; ?>">
+                    <input type="hidden" name="roles" value="1"> <!-- Set the role value to 1 for dentalgsjhs -->
                     <div class="mb-3">
-                        <label for="inputStatus1030_1" class="form-label">Status 10:30 A.M</label>
+                        <label for="inputStatus1030_1" class="form-label">Monday - 9:00 A.M - 11:00 A.M.</label>
                         <select class="form-select" id="inputStatus1030_1" name="statuses1030_1">
                             <option value="Available" <?php if ($statuses1030_1 == 'Available') echo 'selected'; ?>>Available</option>
                             <option value="Unavailable" <?php if ($statuses1030_1 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="inputStatus1130" class="form-label">Status 11:30 A.M</label>
+                        <label for="inputStatus1130" class="form-label">Tuesday - 9:00 A.M - 11:00 A.M.</label>
                         <select class="form-select" id="inputStatus1130" name="statuses1130_2">
                             <option value="Available" <?php if ($statuses1130_2 == 'Available') echo 'selected'; ?>>Available</option>
                             <option value="Unavailable" <?php if ($statuses1130_2 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="inputStatus230" class="form-label">Status 02:30 P.M</label>
+                        <label for="inputStatus230" class="form-label">Wednesday - 9:00 A.M - 11:00 A.M.</label>
                         <select class="form-select" id="inputStatus230" name="statuses230_3">
                             <option value="Available" <?php if ($statuses230_3 == 'Available') echo 'selected'; ?>>Available</option>
                             <option value="Unavailable" <?php if ($statuses230_3 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="inputStatus330" class="form-label">Status 03:30 P.M</label>
+                        <label for="inputStatus330" class="form-label">Thursday - 9:00 A.M - 11:00 A.M.</label>
                         <select class="form-select" id="inputStatus330" name="statuses330_4">
                             <option value="Available" <?php if ($statuses330_4 == 'Available') echo 'selected'; ?>>Available</option>
                             <option value="Unavailable" <?php if ($statuses330_4 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <label for="inputStatus430" class="form-label">Friday - 9:00 A.M - 11:00 A.M.</label>
+                        <select class="form-select" id="inputStatus430" name="statuses430_5">
+                            <option value="Available" <?php if ($statuses430_5 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statuses430_5 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button>
                         <button type="submit" name="submit_status" class="btn btn-light">Update</button>
                     </div>
                 </form>

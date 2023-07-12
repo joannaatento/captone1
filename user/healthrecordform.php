@@ -153,6 +153,8 @@
 								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
 									<li class="submenu-item"> <a class="submenu-link" href="viewdentalapp.php">Dental Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalrecords.php">Medical Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianrecords.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosis.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolasses.php">School Health Assessment</a>
 </li>

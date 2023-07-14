@@ -282,7 +282,7 @@ if (mysqli_num_rows($result) > 0) {
     <div class="form-group">
       <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 Fullname</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" required>
+        <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" required>
       </div>
     </div>
   </div>

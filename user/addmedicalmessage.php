@@ -344,11 +344,11 @@
 <div class="row">
     <div class="col-sm-4">
         <div class="form-group">
-            <label for="c_enrolled" class="col-sm-12 control-label" style="font-size: 16px">Level of Education</label>
+            <label for="c_enrolled" class="col-sm-12 control-label" style="font-size: 16px">For Student</label>
             <div class="col-sm-12">
-                <select id="c_enrolled" name="c_enrolled" class="form-control" required>
+                <select id="c_enrolled" name="c_enrolled" class="form-control">
                 <option value="">Select Level of Education</option>
-                <option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
+                <option value="Grade School & Junior High School">Grade School & Junior High School</option>
                 <option value="Senior High School">Senior High School</option>
                 <option value="College">College</option>
                 </select>
@@ -356,17 +356,18 @@
         </div>
     </div>
     <div class="col-sm-4">
-    <div class="form-group">
-          <label for="role" class="col-sm-12 control-label">Role</label>
-          <div class="col-sm-12">
-          <select id="role" name="role" class="form-control" required>
-            <option value="">Select Role</option>
-            <option value="Student">Student</option>
-            <option value="Employee">Employee</option>
-          </select>
+        <div class="form-group">
+            <label for="fullname" style="col-sm-12 font-size: 16px">For Employee</label>
+            <div class="col-sm-12">
+            <select id="c_employee" name="c_employee" class="form-control">
+                <option value="">--Select--</option>
+                <option value="Employee in GS and JHS">Employee in GS and JHS</option>
+                <option value="Employee in SHS">Employee in Senior High School</option>
+                <option value="Employee in College">Employee in College</option>
+            </select>
         </div>
-      </div>
-            </div>
+    </div>
+</div>
     <div class="col-sm-4">
         <div class="form-group">
             <label for="onoff" class="col-sm-12 control-label" style="font-size: 16px">On-campus Activity or Off-campus Activity</label>
@@ -493,9 +494,9 @@
 <div class="row">
     <div class="form-group">
         <br>
-        <label for="message" class="col-sm-10 control-label">Write a message.... (State what for is the medical scheduling)</label>
+        <label for="message" class="col-sm-10 control-label">Write a message.... (State what for is the medical scheduling and Date and Time)</label>
         <div class="col-sm-12">
-            <textarea type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." required></textarea>
+            <textarea type="text" class="form-control" id="message" name="message" placeholder="Enter your message.... Ex. July 08, 2023 Monday 8:00AM" required></textarea>
         </div>
     </div>
 </div>

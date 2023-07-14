@@ -41,24 +41,36 @@
 $date_created = $_GET['date_created'];
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM dental WHERE date_created = '$date_created'";
+$sql = "SELECT * FROM medical WHERE date_created = '$date_created'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
-  $name = $row['name'];
-  $dental_service = $row['dental_service'];
+  $name1 = $row['name1'];
+  $gradecourseyear1 = $row ['gradecourseyear1'];
+  $idnumber2 = $row['idnumber2'];
+  $name2 = $row['name2'];
+  $gradecourseyear2 = $row ['gradecourseyear2'];
+  $idnumber3 = $row['idnumber3'];
+  $name3 = $row['name3'];
+  $gradecourseyear3 = $row ['gradecourseyear3'];
+  $idnumber4 = $row['idnumber4'];
+  $name4 = $row['name4'];
+  $gradecourseyear4 = $row ['gradecourseyear4'];
+  $idnumber5 = $row['idnumber5'];
+  $name5 = $row['name5'];
+  $gradecourseyear5 = $row ['gradecourseyear5'];
   $c_enrolled = $row['c_enrolled'];
-  $gradecourseyear = $row['gradecourseyear'];
   $c_employee = $row['c_employee'];
+  $onoff = $row['onoff'];
   $message = $row['message'];
   $date_created = $row['date_created'];
     }
  else {
  } 
 ?>
-<header class="app-header fixed-top">	   	            
+	<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -235,8 +247,9 @@ if (mysqli_num_rows($result) > 0) {
 		    <div class="container-xl">
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
-					   
-					       
+					    <div class="col-auto">
+					        <h1 class="app-page-title mb-0"></h1>
+					    </div>
 						
 				    </div>
 			    </div>
@@ -244,80 +257,181 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-                        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
+					        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Medical Appointments</h4>
 					        </div>
-                          
+            
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-body p-4">
-                  
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" value="<?php echo $row['name']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
+				    <div class="app-card-body p-4">
 
-        <br>
+ 
+  <div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 ID Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+      </div>
+    </div>
+  </div>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="date" class="col-sm-4 control-label">Dental Services</label>
-                    <div class="col-sm-10">
-                        <select id="dental_service" name="dental_service" class="form-control" readonly>
-                            <option disabled selected><?= $row['dental_service']; ?></option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 Fullname</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" value="<?php echo $row['name1']; ?>" readonly>
+      </div>
+    </div>
+  </div>
 
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="gradecourse" class="col-sm-8 control-label">Year level that you currently enrolled</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['c_enrolled']; ?>" readonly>
-                    </div>
-                </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear1']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 2 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber1" placeholder="Enter ID number" value="<?php echo $row['idnumber2']; ?>" readonly>
             </div>
         </div>
-
-        <br>
-        <div class="row">
-
-        <div class="col-sm-6">
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" value="<?php echo $row['name2']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear2" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear2" name="gradecourseyear2" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear2']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+ 
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number" value="<?php echo $row['idnumber3']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname" value="<?php echo $row['name3']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear3" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear3" name="gradecourseyear3" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear3']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 4 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number" value="<?php echo $row['idnumber4']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname" value="<?php echo $row['name4']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear4" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear4" name="gradecourseyear4" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear4']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 5 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number" value="<?php echo $row['idnumber5']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname" value="<?php echo $row['name5']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear5" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear5" name="gradecourseyear5" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear5']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
                 <div class="form-group">
-                    <label for="gradecourseyear" class="col-sm-8 control-label">Grade & Section/Course & Year</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?php echo $row['gradecourseyear']; ?>" readonly>
+                    <label for="c_employee" class="col-sm-12 control-label">For Student</label>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" id="c_enrolled" name="c_enrolled" value="<?php echo $row['c_enrolled']; ?>" readonly>
                     </div>
                 </div>
             </div>
             
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="c_employee" class="col-sm-8 control-label">For Employee</label>
-                    <div class="col-sm-10">
+                    <label for="c_employee" class="col-sm-12 control-label">For Employee</label>
+                    <div class="col-sm-12">
                         <input type="text" class="form-control" id="c_employee" name="c_employee" value="<?php echo $row['c_employee']; ?>" readonly>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="c_employee" class="col-sm-12 control-label">On-campus Activity or Off-campus Activity</label>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" id="c_employee" name="onoff" value="<?php echo $row['onoff']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+</div>
+<div class="row">
             <div class="form-group">
                 <br>
                 <label for="message" class="col-sm-5 control-label">Message</label>
@@ -331,6 +445,7 @@ if (mysqli_num_rows($result) > 0) {
             <span><?php echo $row['date_created']; ?></span>
         </div>
         <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
+        
 <!--Modal-->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -347,7 +462,7 @@ if (mysqli_num_rows($result) > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="messagesms" class="form-label">Message</label>
-                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
                     </div>
 
 

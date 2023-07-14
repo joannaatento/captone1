@@ -50,7 +50,7 @@
         $name5 = $_POST['name5'];
         $gradecourseyear5 = $_POST ['gradecourseyear5'];
         $c_enrolled = $_POST['c_enrolled'];
-        $role = $_POST['role'];
+        $c_employee= $_POST['c_employee'];
         $onoff = $_POST['onoff'];
         $message = $_POST['message'];
         
@@ -64,7 +64,7 @@
         $sql = "INSERT INTO medical VALUES ('','$user_id','$idnumber','$name1','$gradecourseyear1',
         '$idnumber2','$name2','$gradecourseyear2','$idnumber3','$name3','$gradecourseyear3',
         '$idnumber4','$name4','$gradecourseyear4','$idnumber5','$name5','$gradecourseyear5',
-        '$c_enrolled','$role','$onoff','$message','$date_created','$is_read','$is_deleted_on_website')";
+        '$c_enrolled','$c_employee','$onoff','$message','$date_created','$is_read','$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
             header('location: ../addmedicalmessage.php');

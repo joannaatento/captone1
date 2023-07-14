@@ -214,7 +214,7 @@
     <div class="form-group">
       <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 Fullname</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" required>
+        <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" required>
       </div>
     </div>
   </div>
@@ -235,7 +235,7 @@
         <div class="form-group">
             <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 2 ID Number</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber1" placeholder="Enter ID number" required>
+                <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number" required>
             </div>
         </div>
     </div>
@@ -243,7 +243,7 @@
         <div class="form-group">
             <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" required>
+                <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname" required>
             </div>
         </div>
     </div>
@@ -263,7 +263,7 @@
         <div class="form-group">
             <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 ID Number</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number" required>
+                <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number" required>
             </div>
         </div>
     </div>
@@ -271,7 +271,7 @@
         <div class="form-group">
             <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 Fullname</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname" required>
+                <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname" required>
             </div>
         </div>
     </div>
@@ -291,7 +291,7 @@
         <div class="form-group">
             <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 4 ID Number</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number" required>
+                <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number" required>
             </div>
         </div>
     </div>
@@ -299,7 +299,7 @@
         <div class="form-group">
             <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname" required>
+                <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname" required>
             </div>
         </div>
     </div>
@@ -318,7 +318,7 @@
         <div class="form-group">
             <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 5 ID Number</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number" required>
+                <input type="text" class="form-control" id="idnumber" name="idnumber5" placeholder="Enter ID number" required>
             </div>
         </div>
     </div>
@@ -326,7 +326,7 @@
         <div class="form-group">
             <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname" required>
+                <input type="text" class="form-control" id="name" name="name5" placeholder="Enter Fullname" required>
             </div>
         </div>
     </div>
@@ -342,10 +342,10 @@
 
 <br>
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="c_enrolled" class="col-sm-4 control-label" style="font-size: 16px">Level of Education</label>
-            <div class="col-sm-10">
+            <label for="c_enrolled" class="col-sm-12 control-label" style="font-size: 16px">Level of Education</label>
+            <div class="col-sm-12">
                 <select id="c_enrolled" name="c_enrolled" class="form-control" required>
                 <option value="">Select Level of Education</option>
                 <option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
@@ -355,10 +355,22 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
+    <div class="form-group">
+          <label for="role" class="col-sm-12 control-label">Role</label>
+          <div class="col-sm-12">
+          <select id="role" name="role" class="form-control" required>
+            <option value="">Select Role</option>
+            <option value="Student">Student</option>
+            <option value="Employee">Employee</option>
+          </select>
+        </div>
+      </div>
+            </div>
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="onoff" class="col-sm-10 control-label" style="font-size: 16px">On-campus Activity or Off-campus Activity</label>
-            <div class="col-sm-10">
+            <label for="onoff" class="col-sm-12 control-label" style="font-size: 16px">On-campus Activity or Off-campus Activity</label>
+            <div class="col-sm-12">
                 <select id="onoff" name="onoff" class="form-control" required>
                 <option value="">Select</option>
                 <option value="On-campus Activity">On-campus Activity</option>
@@ -482,8 +494,8 @@
     <div class="form-group">
         <br>
         <label for="message" class="col-sm-10 control-label">Write a message.... (State what for is the medical scheduling)</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." required>
+        <div class="col-sm-12">
+            <textarea type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." required></textarea>
         </div>
     </div>
 </div>
@@ -491,7 +503,7 @@
     <div class="col-sm-offset-2 col-sm-10">
         <br>
         <input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
-        <button name="submit_dental" class="btn btn-success">Send Medical Appointment</button>
+        <button name="submit_medical" class="btn btn-success">Send Medical Appointment</button>
     </div>
 </div>
 </form>

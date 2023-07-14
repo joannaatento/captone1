@@ -235,7 +235,7 @@
         <div class="form-group">
             <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 2 ID Number</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number" required>
+                <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number">
             </div>
         </div>
     </div>
@@ -243,7 +243,7 @@
         <div class="form-group">
             <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname" required>
+                <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname">
             </div>
         </div>
     </div>
@@ -263,7 +263,7 @@
         <div class="form-group">
             <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 ID Number</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number" required>
+                <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number">
             </div>
         </div>
     </div>
@@ -271,7 +271,7 @@
         <div class="form-group">
             <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 Fullname</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname" required>
+                <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname">
             </div>
         </div>
     </div>
@@ -291,7 +291,7 @@
         <div class="form-group">
             <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 4 ID Number</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number" required>
+                <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number">
             </div>
         </div>
     </div>
@@ -299,7 +299,7 @@
         <div class="form-group">
             <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname" required>
+                <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname">
             </div>
         </div>
     </div>
@@ -318,7 +318,7 @@
         <div class="form-group">
             <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 5 ID Number</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber5" placeholder="Enter ID number" required>
+                <input type="text" class="form-control" id="idnumber" name="idnumber5" placeholder="Enter ID number">
             </div>
         </div>
     </div>
@@ -326,7 +326,7 @@
         <div class="form-group">
             <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name5" placeholder="Enter Fullname" required>
+                <input type="text" class="form-control" id="name" name="name5" placeholder="Enter Fullname">
             </div>
         </div>
     </div>

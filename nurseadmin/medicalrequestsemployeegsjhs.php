@@ -277,7 +277,7 @@ if (mysqli_num_rows($result) > 0) {
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
                     <?php
-    $sql = "SELECT * FROM medical WHERE c_enrolled = 'Grade School & Junior High School'";
+    $sql = "SELECT * FROM medical WHERE c_employee= 'Employee in GS and JHS'";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_array()) {

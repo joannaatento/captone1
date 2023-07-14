@@ -26,6 +26,7 @@
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -43,17 +44,29 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
-    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    
-    
+    <link rel="stylesheet" href="assets/dentalstyles.css">
 
 </head> 
 
 <body class="app">   	
-<header class="app-header fixed-top">	   	            
+<?php
+$sql = "SELECT * FROM dentalapp";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $fullname = $row['fullname'];
+  $role = $row['role'];
+  $cenrolled = $row['cenrolled'];
+  $date_time = $row['date_time'];
+    }
+ else {
+ } 
+?>
+    <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -218,18 +231,370 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+						        <h4 class="notification-title mb-1">Medical Appointments</h4>
 					        </div>
-							<!--//generate report-->
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-					   
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
+                    <b><p>Note: We will accommodate 1 to 5 students/employees per year level. Only one (1) student/employee will message to have a medical request scheduling appointment.</p></b>
+  <form class="form-horizontal mt-4" method="post" action="function/funct.php">
+ 
+  <div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 ID Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 Fullname</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 2 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber1" placeholder="Enter ID number" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear2" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear2" name="gradecourseyear2" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+ 
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear3" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear3" name="gradecourseyear3" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 4 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear4" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear4" name="gradecourseyear4" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 5 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear5" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear5" name="gradecourseyear5" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="c_enrolled" class="col-sm-12 control-label" style="font-size: 16px">Level of Education</label>
+            <div class="col-sm-12">
+                <select id="c_enrolled" name="c_enrolled" class="form-control" required>
+                <option value="">Select Level of Education</option>
+                <option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
+                <option value="Senior High School">Senior High School</option>
+                <option value="College">College</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="onoff" class="col-sm-12 control-label" style="font-size: 16px">On-campus Activity or Off-campus Activity</label>
+            <div class="col-sm-12">
+                <select id="onoff" name="onoff" class="form-control" required>
+                <option value="">Select</option>
+                <option value="On-campus Activity">On-campus Activity</option>
+                <option value="Off-campus Activity">Off-campus Activity</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
+      <div class="col-sm-12">
+        <input type="datetime-local" class="form-control" id="datetime" name="datetime">
+      </div>
+    </div>
+  </div>
+</div>
+ </br>
+    <div class="row">
+      <div class="col-sm-12">
+      <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+        <button name="submit_medicalgsjhs" class="btn btn-success">Add Medical Appointment</button>
+      </div>
+    </div>
+  </form>
+  
+</div><!--//app-card-body-->
+<br>
+<div style="text-align: right; margin-right: 48px;">
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
+        Update Dental Schedule
+    </button>
+</div>
+
+
+<center>
+  
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Patient ID Number</th>
+                <th>Patient Name</th>
+                <th>Role</th>
+                <th>Enrolled in</th>
+                <th>Service</th>
+                <th>Time and Date</th>
+                <th>Dentist</th>
+              
+            </tr>
+        </thead>
+        <tbody id="healthRecordTableBody">
+            <?php
+            $sql = "SELECT * FROM dentalapp WHERE admin_id = '$admin_id'";
+            $result = mysqli_query($conn, $sql);
+            
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <tr>
+                    <td><?php echo $row['idnumber']; ?></td>
+                    <td><?php echo $row['fullname']; ?></td>
+                    <td><?php echo $row['role']; ?></td>
+                    <td><?php echo $row['cenrolled']; ?></td>
+                    <td><?php echo $row['service']; ?></td>
+                    <td><?php echo $row['date_time']; ?></td>
+                    <td><?php echo $row['dentist_name']; ?></td>
+                  
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <br>
+</center>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Schedule</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <?php
+                $sql1 = "SELECT * FROM statusmedicalgsjhs";
+                $result1 = mysqli_query($conn, $sql1);
+
+                if (mysqli_num_rows($result1) > 0) {
+                    while ($row1 = $result1->fetch_assoc()) {
+                        $medical_id = $row1['medical_id'];
+                        $statusmedmonam_1 = $row1['statusmedmonam_1'];
+                        $statusmedtueam_2 = $row1['statusmedtueam_2'];
+                        $statusmedwedam_3 = $row1['statusmedwedam_3'];
+                        $statusmedthuam_4 = $row1['statusmedthuam_4'];
+                        $statusmedfriam_5 = $row1['statusmedfriam_5'];
+                        $statusmedmonpm_6 = $row1['statusmedmonpm_6'];
+                        $statusmedtuepm_7 = $row1['statusmedtuepm_7'];
+                        $statusmedwedpm_8 = $row1['statusmedwedpm_8'];
+                        $statusmedthupm_9 = $row1['statusmedthupm_9'];
+                        $statusmedfripm_10 = $row1['statusmedfripm_10'];
+                    }
+                } else {
+
+                }
+                ?>
+                <?php
+                // Step 1: Retrieve the data to be updated
+                if (isset($_GET['medical_id'])) {
+                    $medical_id = $_GET['medical_id'];
+                }
+
+                ?>
+                <form action="function/funct.php" method="POST">
+                    <input type="hidden" name="medical_id" value="<?php echo $medical_id; ?>">
+                    <div class="mb-3">
+                        <label for="inputStatus1030_1" class="form-label">Monday - 8:00 A.M - 11:00 A.M.</label>
+                        <select class="form-select" id="inputStatus1030_1" name="statusmedmonam_1">
+                            <option value="Available" <?php if ($statusmedmonam_1 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedmonam_1 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus1130" class="form-label">Tuesday - 8:00 A.M - 11:00 A.M.</label>
+                        <select class="form-select" id="inputStatus1130" name="statusmedtueam_2">
+                            <option value="Available" <?php if ($statusmedtueam_2 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedtueam_2 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus230" class="form-label">Wednesday - 8:00 A.M - 11:00 A.M.</label>
+                        <select class="form-select" id="inputStatus230" name="statusmedwedam_3">
+                            <option value="Available" <?php if ($statusmedwedam_3 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedwedam_3 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus330" class="form-label">Thursday - 8:00 A.M - 11:00 A.M.</label>
+                        <select class="form-select" id="inputStatus330" name="statusmedthuam_4">
+                            <option value="Available" <?php if ($statusmedthuam_4 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedthuam_4 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus430" class="form-label">Friday - 8:00 A.M - 11:00 A.M.</label>
+                        <select class="form-select" id="inputStatus430" name="statusmedfriam_5">
+                            <option value="Available" <?php if ($statusmedfriam_5  == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedfriam_5  == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus430" class="form-label">Monday - 1:30 P.M - 4:00 P.M.</label>
+                        <select class="form-select" id="inputStatus430" name="statusmedmonpm_6">
+                            <option value="Available" <?php if ($statusmedmonpm_6 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedmonpm_6 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus430" class="form-label">Tuesday - 1:30 P.M - 4:00 P.M.</label>
+                        <select class="form-select" id="inputStatus430" name="statusmedtuepm_7">
+                            <option value="Available" <?php if ($statusmedtuepm_7 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedtuepm_7 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus430" class="form-label">Wednesday - 1:30 P.M - 4:00 P.M.</label>
+                        <select class="form-select" id="inputStatus430" name="statusmedwedpm_8">
+                            <option value="Available" <?php if ($statusmedwedpm_8 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedwedpm_8 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus430" class="form-label">Thursday - 1:30 P.M - 4:00 P.M.</label>
+                        <select class="form-select" id="inputStatus430" name="statusmedthupm_9">
+                            <option value="Available" <?php if ($statusmedthupm_9 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedthupm_9 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus430" class="form-label">Friday - 1:30 P.M - 4:00 P.M.</label>
+                        <select class="form-select" id="inputStatus430" name="statusmedfripm_10">
+                            <option value="Available" <?php if ($statusmedfripm_10 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusmedfripm_10 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button>
+                        <button type="submit" name="submit_statusmedicalgsjhs" class="btn btn-light">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
@@ -246,7 +611,6 @@
 			}
 		}, 5000);
 	</script>
-
 
 </body>
 </html> 

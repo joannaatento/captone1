@@ -199,105 +199,145 @@
 				    <div class="app-card-body p-4">
                     <b><p>Note: We will accommodate 1 to 5 students/employees per year level. Only one (1) student/employee will message to have a medical request scheduling appointment.</p></b>
 
-                    <form class="form-horizontal mt-4" method="post" action="function/functions.php">
-                               
-    <div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee 1 ID Number</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" required>
-            </div>
-        </div>
+<form class="form-horizontal mt-4" method="post" action="function/functions.php">
+<div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 ID Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" required>
+      </div>
     </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee 1 Fullname</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" required>
-            </div>
-        </div>
-    </div>
-</div>
+  </div>
 
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 Fullname</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
+</div>
 <br>
 
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee 2 ID Number</label>
-            <div class="col-sm-10">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 2 ID Number</label>
+            <div class="col-sm-12">
                 <input type="text" class="form-control" id="idnumber" name="idnumber1" placeholder="Enter ID number" required>
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-            <div class="col-sm-10">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
                 <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" required>
             </div>
         </div>
     </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear2" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear2" name="gradecourseyear2" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
 </div>
 
 <br>
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee 3 ID Number</label>
-            <div class="col-sm-10">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 ID Number</label>
+            <div class="col-sm-12">
                 <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number" required>
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee 3 Fullname</label>
-            <div class="col-sm-10">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 Fullname</label>
+            <div class="col-sm-12">
                 <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname" required>
             </div>
         </div>
     </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear3" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear3" name="gradecourseyear3" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
 </div>
 
 <br>
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee ID Number</label>
-            <div class="col-sm-10">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 4 ID Number</label>
+            <div class="col-sm-12">
                 <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number" required>
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-            <div class="col-sm-10">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
                 <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname" required>
             </div>
         </div>
     </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear4" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear4" name="gradecourseyear4" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-6">
+<div class="col-sm-4">
         <div class="form-group">
-            <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee ID Number</label>
-            <div class="col-sm-10">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 5 ID Number</label>
+            <div class="col-sm-12">
                 <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number" required>
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-            <div class="col-sm-10">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
                 <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname" required>
             </div>
         </div>
     </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear5" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear5" name="gradecourseyear5" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
 </div>
 
 <br>
@@ -315,14 +355,17 @@
             </div>
         </div>
     </div>
-
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="gradecourseyear" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+            <label for="onoff" class="col-sm-10 control-label" style="font-size: 16px">On-campus Activity or Off-campus Activity</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="igradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year">
+                <select id="onoff" name="onoff" class="form-control" required>
+                <option value="">Select</option>
+                <option value="On-campus Activity">On-campus Activity</option>
+                <option value="Off-campus Activity">Off-campus Activity</option>
+                </select>
             </div>
-       
+        </div>
     </div>
 </div>
 <br><br>
@@ -334,31 +377,50 @@
     </center>
 
     <?php
-    $sql1 = "SELECT * FROM status";
+    $sql1 = "SELECT * FROM statusmedicalgsjhs";
     $result1 = mysqli_query($conn, $sql1);
 
     if (mysqli_num_rows($result1)) {
         $row1 = $result1->fetch_assoc();
 
-        $statuses1030_1 = $row1['statuses1030_1']; // Update column name to 'statuses1030'
-        $statuses1130_2 = $row1['statuses1130_2']; // Update column name to 'statuses1130'
-        $statuses230_3 = $row1['statuses230_3']; // Update column name to 'statuses230'
-        $statuses330_4 = $row1['statuses330_4']; // Update column name to 'statuses330'
-        $statuses430_5 = $row1['statuses430_5']; // Update column name to 'statuses430'
+        $statusmedmonam_1 = $row1['statusmedmonam_1']; 
+        $statusmedtueam_2 = $row1['statusmedtueam_2']; 
+        $statusmedwedam_3 = $row1['statusmedwedam_3']; 
+        $statusmedthuam_4 = $row1['statusmedthuam_4']; 
+        $statusmedfriam_5 = $row1['statusmedfriam_5']; 
+        $statusmedmonpm_6 = $row1['statusmedmonpm_6']; 
+        $statusmedtuepm_7 = $row1['statusmedtuepm_7']; 
+        $statusmedwedpm_8 = $row1['statusmedwedpm_8']; 
+        $statusmedthupm_9 = $row1['statusmedthupm_9']; 
+        $statusmedfripm_10 = $row1['statusmedfripm_10']; 
     }
     ?>
     <p>
-      <div class="<?php echo ($statuses1030_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1030_1; ?></div>
-      Monday - 9:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statuses1130_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1130_2; ?></div>
-      Tuesday - 9:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statuses230_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses230_3; ?></div>
-      Wednesday - 9:00 A.M - 11:00 A.M.
+    <b><p>Morning</p></b>
+      <div class="<?php echo ($statusmedmonam_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonam_1; ?></div>
+      Monday - 8:00 A.M - 11:00 A.M.
+      <br><br><div class="<?php echo ($statusmedtueam_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtueam_2; ?></div>
+      Tuesday - 8:00 A.M - 11:00 A.M.
+      <br><br><div class="<?php echo ($statusmedwedam_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedam_3; ?></div>
+      Wednesday - 8:00 A.M - 11:00 A.M.
       <br><br>
-      <div class="<?php echo ($statuses330_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses330_4; ?></div>
-      Thursday- 9:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statuses430_5 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses430_5; ?></div>
-      Friday- 9:00 A.M - 11:00 A.M.
+      <div class="<?php echo ($statusmedthuam_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthuam_4; ?></div>
+      Thursday- 8:00 A.M - 11:00 A.M.
+      <br><br><div class="<?php echo ($statusmedfriam_5  == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfriam_5; ?></div>
+      Friday- 8:00 A.M - 11:00 A.M.
+<br><br>
+<b><p>Afternoon</b></p>
+      <div class="<?php echo ($statusmedmonpm_6 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonpm_6; ?></div>
+      Monday - 1:30 P.M - 4:00 P.M.
+      <br><br><div class="<?php echo ($statusmedtuepm_7 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtuepm_7; ?></div>
+      Tuesday - 1:30 P.M - 4:00 P.M..
+      <br><br><div class="<?php echo ($statusmedwedpm_8 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedpm_8; ?></div>
+      Wednesday - 1:30 P.M - 4:00 P.M.
+      <br><br>
+      <div class="<?php echo ($statusmedthupm_9 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthupm_9; ?></div>
+      Thursday- 1:30 P.M - 4:00 P.M.
+      <br><br><div class="<?php echo ($statusmedfripm_10 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfripm_10; ?></div>
+      Friday- 1:30 P.M - 4:00 P.M.
     </p>
   </div>
 

@@ -315,7 +315,7 @@
     <center>
       <p>Available Day and Time <b>IN COLLEGE</b></p>
     </center>
-    <p> Monday - Wednesday<br>
+    <p>
     </p>
 
     <?php
@@ -329,19 +329,21 @@
         $statuses1130_2 = $row3['statuses1130_2']; // Update column name to 'statuses1130'
         $statuses230_3 = $row3['statuses230_3']; // Update column name to 'statuses230'
         $statuses330_4 = $row3['statuses330_4']; // Update column name to 'statuses330'
+        $statuses430_5 = $row3['statuses430_5']; // Update column name to 'statuses330'
     }
     ?>
-    <p>
+     <p>
       <div class="<?php echo ($statuses1030_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1030_1; ?></div>
-      10:30 A.M
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div class="<?php echo ($statuses1130_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1130_2; ?></div>
-      11:30 A.M<br><br>
-      <div class="<?php echo ($statuses230_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses230_3; ?></div>
-      2:30 P.M
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Monday - 8:00 A.M - 12:00 P.M.
+      <br><br><div class="<?php echo ($statuses1130_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1130_2; ?></div>
+      Tuesday - 8:00 A.M - 12:00 A.M.
+      <br><br><div class="<?php echo ($statuses230_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses230_3; ?></div>
+      Wednesday - 8:00 A.M - 12:00 P.M.
+      <br><br>
       <div class="<?php echo ($statuses330_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses330_4; ?></div>
-      3:30 P.M
+      Thursday- 8:00 A.M - 12:00 P.M.
+      <br><br><div class="<?php echo ($statuses430_5 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses430_5; ?></div>
+      Friday- 8:00 A.M - 12:00 P.M.
     </p>
   </div>
 </div>

@@ -240,9 +240,10 @@ if(isset($_POST['submit_statuscollege'])) {
     $statuses1130_2 = $_POST['statuses1130_2'];
     $statuses230_3 = $_POST['statuses230_3'];
     $statuses330_4 = $_POST['statuses330_4'];
+    $statuses430_5 = $_POST['statuses430_5'];
 
     // Step 4: Execute the update query
-    $sql = "UPDATE statuscollege SET statuses1030_1='$statuses1030_1', statuses1130_2='$statuses1130_2', statuses230_3='$statuses230_3', statuses330_4='$statuses330_4' WHERE status_id = $status_id";
+    $sql = "UPDATE statuscollege SET statuses1030_1='$statuses1030_1', statuses1130_2='$statuses1130_2', statuses230_3='$statuses230_3', statuses330_4='$statuses330_4', statuses430_5='$statuses430_5' WHERE status_id = $status_id";
 
     // Execute the query and handle the result
     if (mysqli_query($conn, $sql)) {

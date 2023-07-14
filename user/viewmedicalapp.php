@@ -14,6 +14,7 @@
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
+        $idnumber = $row['idnumber'];
         require_once('../db.php');
         if($_SESSION['type'] == 1){
             // User type 1 specific code here
@@ -45,26 +46,27 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/styles.css">
+	<link rel="stylesheet" href="assets/style.css">
 
-   
-</style>
 </head> 
 
-<body class="app">   
-    
+<body class="app">   	
 <?php
-$sql = "SELECT * FROM dental";
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM dentalapp WHERE idnumber= '$idnumber'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
-  $name = $row['name'];
-  $dental_service = $row['dental_service'];
-  $c_enrolled = $row['c_enrolled'];
-  $message = $row['message'];
-  $date_created= $row['date_created'];
+  $fullname = $row['fullname'];
+  $role = $row['role'];
+  $cenrolled = $row['cenrolled'];
+  $service = $row['service'];
+  $date_time = $row['date_time'];
+  $dentist_name = $row['dentist_name'];
+  $date_created = $row['date_created'];
     }
  else {
  } 
@@ -203,123 +205,80 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-                        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
-					        </div>
-                          
+					       
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-body p-4">
+				    <div class="app-card-body p-4">
+
                     <?php
-							$sql = "SELECT * FROM dental WHERE user_id = '$user_id'";
+							$sql = "SELECT * FROM medicalapp WHERE idnumber = '$idnumber'";
 							$result = $conn->query($sql);
     						while($row = $result->fetch_array()){
 						?>
-   
-        <hr class="hidden"><br>
-        <div class="row">
-            <div class="col-sm-6">
+                        <br>
+				 <div class="row">
+                 <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
-                    <div class="col-sm-10">
+                    <label for="idnumber" class="col-sm-12 control-label">Your ID Number</label>
                         <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
-                    </div>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" value="<?php echo $row['name']; ?>" readonly>
-                    </div>
+                    <label for="patient_name" class="col-sm-12 control-label">Your name</label>
+                        <input type="text" class="form-control" id="fullname" name="name1" placeholder="Enter your Fullname" value="<?php echo $row['name1']; ?>" readonly>
                 </div>
             </div>
-        </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col-sm-6">
+      
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="date" class="col-sm-4 control-label">Dental Services</label>
-                    <div class="col-sm-10">
-                        <select id="dental_service" name="dental_service" class="form-control" readonly>
-                            <option disabled selected><?= $row['dental_service']; ?></option>
-                        </select>
-                    </div>
+                    <label for="gradecourseyear1" class="col-sm-12 control-label">Grade & Section/Course & Year</label>
+                        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter your Fullname" value="<?php echo $row['gradecourseyear1']; ?>" readonly>
                 </div>
             </div>
-
-            <div class="col-sm-6">
+                            </div>
+      <br>
+            <div class="row">
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="gradecourse" class="col-sm-8 control-label">Year level that you currently enrolled</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['c_enrolled']; ?>" readonly>
-                    </div>
+                    <label for="cenrolled" class="col-sm-12 control-label">Role</label>
+                        <input type="text" class="form-control" id="role" name="role" placeholder="If you are an employee, just type Employee" value="<?php echo $row['role']; ?>" readonly>
                 </div>
             </div>
-        </div>
-<br>
-        <div class="row">
+      
+        <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="onoff" class="col-sm-12 control-label">On-campus Activity or Off-campus Activity</label>
+                        <input type="text" class="form-control" id="onoff" name="onoff" value="<?php echo $row['onoff']; ?>" readonly>
+                    </div>
+                </div>
 
-<div class="col-sm-6">
         <div class="form-group">
-            <label for="gradecourseyear" class="col-sm-8 control-label">Grade & Section/Course & Year</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?php echo $row['gradecourseyear']; ?>" readonly>
-            </div>
+            <span>Schedule: <?php echo $row['date_time']; ?></span>
         </div>
-    </div>
+  
+        <?php } ?>
+				    </div><!--//app-card-body-->
+				</div>			    
+		    </div>
+	    </div>
+    </div>  					
+    <!-- Javascript -->          
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
     
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="c_employee" class="col-sm-8 control-label">For Employee</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="c_employee" name="c_employee" value="<?php echo $row['c_employee']; ?>" readonly>
-            </div>
-        </div>
-    </div>
-</div>
-
-        <div class="row">
-            <div class="form-group">
-                <br>
-                <label for="message" class="col-sm-5 control-label">Message</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." value="<?php echo $row['message']; ?>" readonly>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <span><?php echo $row['date_created']; ?></span>
-        </div>
-    <?php } ?>
-
-</div><!--//app-card-body-->
-
-
-</div>			    
-</div>
-</div>
-</div>  					
-<!-- Javascript -->          
-<script src="assets/plugins/popper.min.js"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-
-<!-- Page Specific JS -->
-<script src="assets/js/app.js"></script> 
-
-<script>
-    // Timer to remove success message after 5 seconds (5000 milliseconds)
-    setTimeout(function(){
-        var successMessage = document.getElementById('success-message');
-        if(successMessage){
-            successMessage.remove();
-        }
-    }, 5000);
-</script>
-
+    <!-- Page Specific JS -->
+    <script src="assets/js/app.js"></script> 
+	
+	<script>
+		// Timer to remove success message after 5 seconds (5000 milliseconds)
+		setTimeout(function(){
+			var successMessage = document.getElementById('success-message');
+			if(successMessage){
+				successMessage.remove();
+			}
+		}, 5000);
+	</script>
 
 </body>
 </html> 

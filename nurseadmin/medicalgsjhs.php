@@ -52,15 +52,16 @@
 
 <body class="app">   	
 <?php
-$sql = "SELECT * FROM dentalapp";
+$sql = "SELECT * FROM medicalapp";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
-  $fullname = $row['fullname'];
+  $fullname = $row['name1'];
+  $gradecourseyear1 = $row['gradecourseyear1'];
   $role = $row['role'];
-  $cenrolled = $row['cenrolled'];
+  $onoff  = $row['onoff'];
   $date_time = $row['date_time'];
     }
  else {
@@ -271,7 +272,7 @@ if (mysqli_num_rows($result) > 0) {
   <div class="row">
   <div class="col-sm-4">
     <div class="form-group">
-      <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 ID Number</label>
+      <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee ID Number</label>
       <div class="col-sm-12">
         <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" required>
       </div>
@@ -280,7 +281,7 @@ if (mysqli_num_rows($result) > 0) {
 
   <div class="col-sm-4">
     <div class="form-group">
-      <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 Fullname</label>
+      <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
       <div class="col-sm-12">
         <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" required>
       </div>
@@ -300,122 +301,12 @@ if (mysqli_num_rows($result) > 0) {
 <div class="row">
     <div class="col-sm-4">
         <div class="form-group">
-            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 2 ID Number</label>
+            <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber1" placeholder="Enter ID number" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-    <div class="form-group">
-      <label for="gradecourseyear2" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear2" name="gradecourseyear2" placeholder="Enter Grade & Section/Course & Year">
-      </div>
-    </div>
-  </div>
-</div>
-<br>
- 
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 ID Number</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 Fullname</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-    <div class="form-group">
-      <label for="gradecourseyear3" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear3" name="gradecourseyear3" placeholder="Enter Grade & Section/Course & Year">
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<div class="row">
-<div class="col-sm-4">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 4 ID Number</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-    <div class="form-group">
-      <label for="gradecourseyear4" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear4" name="gradecourseyear4" placeholder="Enter Grade & Section/Course & Year">
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<div class="row">
-<div class="col-sm-4">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 5 ID Number</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-    <div class="form-group">
-      <label for="gradecourseyear5" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear5" name="gradecourseyear5" placeholder="Enter Grade & Section/Course & Year">
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="c_enrolled" class="col-sm-12 control-label" style="font-size: 16px">Level of Education</label>
-            <div class="col-sm-12">
-                <select id="c_enrolled" name="c_enrolled" class="form-control" required>
-                <option value="">Select Level of Education</option>
-                <option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
-                <option value="Senior High School">Senior High School</option>
-                <option value="College">College</option>
+                <select id="role" name="role" class="form-control" required>
+                <option value="">Select</option>
+                <option value="Student">Student</option>
+                <option value="Employee">Employee</option>
                 </select>
             </div>
         </div>
@@ -436,7 +327,7 @@ if (mysqli_num_rows($result) > 0) {
     <div class="form-group">
       <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
       <div class="col-sm-12">
-        <input type="datetime-local" class="form-control" id="datetime" name="datetime">
+        <input type="datetime-local" class="form-control" id="datetime" name="date_time">
       </div>
     </div>
   </div>
@@ -458,43 +349,38 @@ if (mysqli_num_rows($result) > 0) {
     </button>
 </div>
 
-
 <center>
-  
-    <table class="styled-table">
-        <thead>
-            <tr>
-                <th>Patient ID Number</th>
-                <th>Patient Name</th>
-                <th>Role</th>
-                <th>Enrolled in</th>
-                <th>Service</th>
-                <th>Time and Date</th>
-                <th>Dentist</th>
-              
-            </tr>
-        </thead>
-        <tbody id="healthRecordTableBody">
-            <?php
-            $sql = "SELECT * FROM dentalapp WHERE admin_id = '$admin_id'";
-            $result = mysqli_query($conn, $sql);
-            
-            while ($row = $result->fetch_assoc()) {
-                ?>
-                <tr>
-                    <td><?php echo $row['idnumber']; ?></td>
-                    <td><?php echo $row['fullname']; ?></td>
-                    <td><?php echo $row['role']; ?></td>
-                    <td><?php echo $row['cenrolled']; ?></td>
-                    <td><?php echo $row['service']; ?></td>
-                    <td><?php echo $row['date_time']; ?></td>
-                    <td><?php echo $row['dentist_name']; ?></td>
-                  
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-    <br>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>ID Number</th>
+        <th>Fullname</th>
+        <th>Grade & Section/Course & Year</th>
+        <th>Role</th>
+        <th>On-campus Activity or Off-campus Activity</th>
+        <th>Time & Date</th>
+      </tr>
+    </thead>
+    <tbody id="healthRecordTableBody">
+      <?php
+      $sql = "SELECT * FROM medicalapp WHERE admin_id = '$admin_id'";
+      $result = mysqli_query($conn, $sql);
+
+      while ($row = $result->fetch_assoc()) {
+        ?>
+        <tr>
+          <td><?php echo $row['idnumber']; ?></td>
+          <td><?php echo $row['name1']; ?></td>
+          <td><?php echo $row['gradecourseyear1']; ?></td>
+          <td><?php echo $row['role']; ?></td>
+          <td><?php echo $row['onoff']; ?></td>
+          <td><?php echo $row['date_time']; ?></td>
+        </tr>
+        
+      <?php } ?>
+    </tbody>
+  </table>
+  <br><br>
 </center>
 
 <!-- Modal -->

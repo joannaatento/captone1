@@ -438,35 +438,53 @@
 
   <div class="text-box">
     <center>
-      <p>Available Day and Time <b>IN COLLEGE</b></p>
+      <p>Available Day and Time <b>IN SHS</b></p>
     </center>
-    <p> Monday - Wednesday<br>
-    </p>
+     <?php
+    $sql2 = "SELECT * FROM statusmedicalshs";
+    $result2 = mysqli_query($conn, $sql2);
 
-    <?php
-    $sql3 = "SELECT * FROM statuscollege";
-    $result3 = mysqli_query($conn, $sql3);
+    if (mysqli_num_rows($result2)) {
+        $row2 = $result2->fetch_assoc();
 
-    if (mysqli_num_rows($result3)) {
-        $row3 = $result3->fetch_assoc();
-
-        $statuses1030_1 = $row3['statuses1030_1']; // Update column name to 'statuses1030'
-        $statuses1130_2 = $row3['statuses1130_2']; // Update column name to 'statuses1130'
-        $statuses230_3 = $row3['statuses230_3']; // Update column name to 'statuses230'
-        $statuses330_4 = $row3['statuses330_4']; // Update column name to 'statuses330'
+        $statusmedmonam_1 = $row2['statusmedmonam_1']; 
+        $statusmedtueam_2 = $row2['statusmedtueam_2']; 
+        $statusmedwedam_3 = $row2['statusmedwedam_3']; 
+        $statusmedthuam_4 = $row2['statusmedthuam_4']; 
+        $statusmedfriam_5 = $row2['statusmedfriam_5']; 
+        $statusmedmonpm_6 = $row2['statusmedmonpm_6']; 
+        $statusmedtuepm_7 = $row2['statusmedtuepm_7']; 
+        $statusmedwedpm_8 = $row2['statusmedwedpm_8']; 
+        $statusmedthupm_9 = $row2['statusmedthupm_9']; 
+        $statusmedfripm_10 = $row2['statusmedfripm_10']; 
     }
     ?>
     <p>
-      <div class="<?php echo ($statuses1030_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1030_1; ?></div>
-      10:30 A.M
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div class="<?php echo ($statuses1130_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses1130_2; ?></div>
-      11:30 A.M<br><br>
-      <div class="<?php echo ($statuses230_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses230_3; ?></div>
-      2:30 P.M
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div class="<?php echo ($statuses330_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statuses330_4; ?></div>
-      3:30 P.M
+    <b><p>Morning</p></b>
+      <div class="<?php echo ($statusmedmonam_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonam_1; ?></div>
+      Monday - 8:00 A.M - 11:00 A.M.
+      <br><br><div class="<?php echo ($statusmedtueam_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtueam_2; ?></div>
+      Tuesday - 8:00 A.M - 11:00 A.M.
+      <br><br><div class="<?php echo ($statusmedwedam_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedam_3; ?></div>
+      Wednesday - 8:00 A.M - 11:00 A.M.
+      <br><br>
+      <div class="<?php echo ($statusmedthuam_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthuam_4; ?></div>
+      Thursday- 8:00 A.M - 11:00 A.M.
+      <br><br><div class="<?php echo ($statusmedfriam_5  == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfriam_5; ?></div>
+      Friday- 8:00 A.M - 11:00 A.M.
+<br><br>
+<b><p>Afternoon</b></p>
+      <div class="<?php echo ($statusmedmonpm_6 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonpm_6; ?></div>
+      Monday - 1:30 P.M - 4:00 P.M.
+      <br><br><div class="<?php echo ($statusmedtuepm_7 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtuepm_7; ?></div>
+      Tuesday - 1:30 P.M - 4:00 P.M..
+      <br><br><div class="<?php echo ($statusmedwedpm_8 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedpm_8; ?></div>
+      Wednesday - 1:30 P.M - 4:00 P.M.
+      <br><br>
+      <div class="<?php echo ($statusmedthupm_9 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthupm_9; ?></div>
+      Thursday- 1:30 P.M - 4:00 P.M.
+      <br><br><div class="<?php echo ($statusmedfripm_10 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfripm_10; ?></div>
+      Friday- 1:30 P.M - 4:00 P.M.
     </p>
   </div>
 </div>

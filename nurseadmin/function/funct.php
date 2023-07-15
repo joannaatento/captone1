@@ -288,6 +288,38 @@ if(isset($_POST['submit_statusmedicalgsjhs'])) {
     }
 }  
 
+if(isset($_POST['submit_statusmedicalshs'])) {
+    // Retrieve the submitted form data
+    $medical_id = $_POST['medical_id'];
+    $statusmedmonam_1 = $_POST['statusmedmonam_1'];
+    $statusmedtueam_2 = $_POST['statusmedtueam_2'];
+    $statusmedwedam_3 = $_POST['statusmedwedam_3'];
+    $statusmedthuam_4  = $_POST['statusmedthuam_4'];
+    $statusmedfriam_5  = $_POST['statusmedfriam_5'];
+    $statusmedmonpm_6  = $_POST['statusmedmonpm_6'];
+    $statusmedtuepm_7  = $_POST['statusmedtuepm_7'];
+    $statusmedwedpm_8  = $_POST['statusmedwedpm_8'];
+    $statusmedthupm_9  = $_POST['statusmedthupm_9'];
+    $statusmedfripm_10 = $_POST['statusmedfripm_10'];
+
+    // Step 4: Execute the update query
+    $sql = "UPDATE statusmedicalshs SET statusmedmonam_1='$statusmedmonam_1', statusmedtueam_2='$statusmedtueam_2', 
+    statusmedwedam_3='$statusmedwedam_3', statusmedthuam_4='$statusmedthuam_4', statusmedfriam_5='$statusmedfriam_5', 
+    statusmedmonpm_6='$statusmedmonpm_6', statusmedtuepm_7='$statusmedtuepm_7', statusmedwedpm_8='$statusmedwedpm_8',
+    statusmedthupm_9='$statusmedthupm_9', statusmedfripm_10 ='$statusmedfripm_10'
+    WHERE medical_id = $medical_id";
+
+    // Execute the query and handle the result
+    if (mysqli_query($conn, $sql)) {
+        // Step 5: Handle the update result
+        echo '<script>alert("Successfully updated!");</script>';
+        echo '<script>window.location.href="../medicalshs.php";</script>';
+        exit;
+    } else {
+        echo '<script>alert("Error: ' . mysqli_error($conn) . '");</script>';
+    }
+}  
+
 if(isset($_POST['submit_medicalgsjhs'])){ // pag get ng data
     $admin_id = $_POST['admin_id'];
     $idnumber = $_POST['idnumber']; 

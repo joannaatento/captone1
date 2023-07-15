@@ -347,5 +347,32 @@ if(isset($_POST['submit_medicalgsjhs'])){ // pag get ng data
     }
 }
 
+if(isset($_POST['submit_medicalshs'])){ // pag get ng data
+    $admin_id = $_POST['admin_id'];
+    $idnumber = $_POST['idnumber']; 
+    $name1 = $_POST['name1'];
+    $gradecourseyear1 = $_POST['gradecourseyear1'];
+    $role = $_POST['role'];
+    $onoff = $_POST['onoff'];
+    $date_time = $_POST['date_time'];
+
+    date_default_timezone_set('Asia/Manila');
+    $date_created = date('Y-m-d h:i A'); 
+
+    $sql = "INSERT INTO medicalapp VALUES ('','$admin_id','$idnumber','$name1','$gradecourseyear1','$role','$onoff','$date_time','$date_created')";
+    if(mysqli_query($conn, $sql)){
+        // echo "<script>window.history.go(-1);</script>";
+        header('location: ../medicalshs.php');
+        echo $_SESSION['success'] ="
+            <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+                <h2 style='
+                color: #fff;
+                font-size: 16px;
+                margin-left: 10px;'>Medical Appointment Added.</h2>
+            </div>
+        ";
+    }
+}
+
 ?>
 

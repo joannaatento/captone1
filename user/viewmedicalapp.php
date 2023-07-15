@@ -190,78 +190,70 @@ if (mysqli_num_rows($result) > 0) {
 	    </div>
     </header>
     <div class="app-wrapper">
-	    
-	    <div class="app-content pt-3 p-md-3 p-lg-4">
-		    <div class="container-xl">
-			    <div class="position-relative mb-3">
-				    <div class="row g-3 justify-content-between">
-					   
-					       
-						
-				    </div>
-			    </div>
-			    
-                <div class="app-card app-card-notification shadow-sm mb-4">
-				    <div class="app-card-header px-4 py-3">
-				        <div class="row g-3 align-items-center">
-					       
-				        </div><!--//row-->
-				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <div class="position-relative mb-3">
+                <div class="row g-3 justify-content-between">
+                </div>
+            </div>
+            
+            <div class="app-card app-card-notification shadow-sm mb-4">
+                <div class="app-card-header px-4 py-3">
+                    <div class="row g-3 align-items-center">
+                    </div><!--//row-->
+                </div><!--//app-card-header-->
+                <div class="app-card-body p-4">
                     <?php
-							$sql = "SELECT * FROM medicalapp WHERE idnumber = '$idnumber'";
-							$result = $conn->query($sql);
-    						while($row = $result->fetch_array()){
-						?>
-                        <br>
-				 <div class="row">
-                 <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="idnumber" class="col-sm-12 control-label">Your ID Number</label>
-                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="patient_name" class="col-sm-12 control-label">Your name</label>
-                        <input type="text" class="form-control" id="fullname" name="name1" placeholder="Enter your Fullname" value="<?php echo $row['name1']; ?>" readonly>
-                </div>
-            </div>
-      
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="gradecourseyear1" class="col-sm-12 control-label">Grade & Section/Course & Year</label>
-                        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter your Fullname" value="<?php echo $row['gradecourseyear1']; ?>" readonly>
-                </div>
-            </div>
+                    $sql = "SELECT * FROM medicalapp WHERE idnumber = '$idnumber'";
+                    $result = $conn->query($sql);
+                    while($row = $result->fetch_array()) {
+                    ?>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="idnumber" class="col-sm-12 control-label">Your ID Number</label>
+                                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
                             </div>
-      <br>
-            <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="cenrolled" class="col-sm-12 control-label">Role</label>
-                        <input type="text" class="form-control" id="role" name="role" placeholder="If you are an employee, just type Employee" value="<?php echo $row['role']; ?>" readonly>
-                </div>
-            </div>
-      
-        <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="onoff" class="col-sm-12 control-label">On-campus Activity or Off-campus Activity</label>
-                        <input type="text" class="form-control" id="onoff" name="onoff" value="<?php echo $row['onoff']; ?>" readonly>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="patient_name" class="col-sm-12 control-label">Your name</label>
+                                <input type="text" class="form-control" id="fullname" name="name1" placeholder="Enter your Fullname" value="<?php echo $row['name1']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="gradecourseyear1" class="col-sm-12 control-label">Grade & Section/Course & Year</label>
+                                <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter your Fullname" value="<?php echo $row['gradecourseyear1']; ?>" readonly>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-        <div class="form-group">
-            <span>Schedule: <?php echo $row['date_time']; ?></span>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="cenrolled" class="col-sm-12 control-label">Role</label>
+                                <input type="text" class="form-control" id="role" name="role" placeholder="If you are an employee, just type Employee" value="<?php echo $row['role']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="onoff" class="col-sm-12 control-label">On-campus Activity or Off-campus Activity</label>
+                                <input type="text" class="form-control" id="onoff" name="onoff" value="<?php echo $row['onoff']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span>Schedule: <?php echo $row['date_time']; ?></span>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div><!--//app-card-body-->
+            </div>
         </div>
-  
-        <?php } ?>
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
+    </div>
+</div>
+
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

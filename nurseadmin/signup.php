@@ -54,6 +54,8 @@
 								<option value="3">Nurse in College</option>
 								<option value="4">Doctor in GS, JHS & SHS</option>
 								<option value="5">Doctor in College</option>
+								<option value="6">Physician in GS, JHS & SHS</option>
+								<option value="7">Physician in college</option>
 								
 								<!-- Add more options for different email types if needed -->
 							</select>

@@ -79,6 +79,12 @@
                 } elseif ($role == '5') {
                     // Handle role 5
                     header('Location: ../doctorincollege.php');
+                } elseif ($role == '6') {
+                    // Handle role 6
+                    header('Location: ../physiciangsjhsshs.php');
+                } elseif ($role == '7') {
+                    // Handle role 7
+                    header('Location: ../physicianincollege.php');
                 } else {
                     // Handle other roles or scenarios as needed
                     header('Location: ../dashboard.php');
@@ -434,4 +440,3 @@ if(isset($_POST['submit_medicalcollege'])){ // pag get ng data
 }
 
 ?>
-

@@ -284,7 +284,7 @@ if (mysqli_num_rows($result) > 0) {
                 <a href="function/functionemployeegsjhs.php?dental_id=<?php echo $dental_id; ?>">Mark as Read</a>
             <?php endif; ?>
 
-            <a href="function/deletedentalreqgsjhs.php?dental_id=<?php echo $dental_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
+            <a href="function/deletereqgsjhs.php?dental_id=<?php echo $dental_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
             
             <a href="viewdentalrequestemployeegsjhs.php?date_created=<?php echo $row['date_created']; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">

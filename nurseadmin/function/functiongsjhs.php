@@ -35,6 +35,7 @@ if (isset($_GET['med_id'])) {
 }
 
 
+
  
 if(isset($_POST['submit_patientmngmt'])){ // pag get ng data
     $admin_id = $_POST['admin_id']; 

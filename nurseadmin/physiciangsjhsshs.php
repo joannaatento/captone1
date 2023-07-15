@@ -123,7 +123,7 @@
                   <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
             </svg>
         </span>
-        <span class="nav-link-text">Dental Requests</span>
+        <span class="nav-link-text">Physician Consultation Request</span>
         <span class="submenu-arrow">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -132,7 +132,8 @@
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link active" href="dentalrequests.php">Grade School and JHS</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianstudent.php">Student</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianemployee.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -147,7 +148,7 @@
 			<path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
 			</svg>
             </span>
-            <span class="nav-link-text">Appointments</span>
+            <span class="nav-link-text">Approved Consultation Appointment</span>
             <span class="submenu-arrow">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -156,27 +157,11 @@
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="dental.php">Dental</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="medical.php">Medical</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianstudentapproved.php">Student</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianemployeeapproved.php">Employee</a></li>
             </ul>
         </div>
     </li>
-
-    <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecord.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
-            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
-            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-            </svg>
-        </span>
-        <span class="nav-link-text">Patient's Management Record</span>
-    </a>
-</li>
-
-
 </ul>
 
 	

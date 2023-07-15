@@ -335,7 +335,7 @@ if (mysqli_num_rows($result) > 0) {
     <div class="row">
       <div class="col-sm-12">
       <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_medicalshs" class="btn btn-success">Add Medical Appointment</button>
+        <button name="submit_medicalcollege" class="btn btn-success">Add Medical Appointment</button>
       </div>
     </div>
   </form>

@@ -226,66 +226,75 @@
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-header p-4 pb-2  border-0">
-              <div class="app-search-box col">
-                        <form class="app-search-form">
-                            <input type="text" placeholder="Search..." name="query" id="searchQuery" class="form-control search-input">
-                            <button type="button" class="btn search-btn btn-primary" onclick="searchRecords()"><i class="fas fa-search"></i></button>
-                        </form>
-                        </div>
-				    <div class="app-card-body p-4">
-                    <div id="healthRecordTable">
-                            <table>
-                            <thead>
-                                <tr>
-                                <th>Student Name</th>
-                                <th>Student ID Number</th>
-								<th>Level of Education</th>
-                                <th>Age</th>
-                                <th>Name of Person to Contact</th>
-                                <th>Person to Contact Number</th>
-                                <th>Relationship</th>
-                                <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="healthRecordTableBody">
-                     <?php
+                    <div class="app-card-header p-4 pb-2 border-0">
+  <div class="app-search-box col">
+    <form class="app-search-form" onsubmit="event.preventDefault(); searchRecords();">
+      <input type="text" placeholder="Search..." name="query" id="searchQuery" class="form-control search-input">
+      <button type="submit" class="btn search-btn btn-primary"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+</div>
 
-                                $sql = "SELECT * FROM healthrecord WHERE role = 'student'";
-                                $result = mysqli_query($conn, $sql);
+<div class="app-card-body p-4">
+  <div id="healthRecordTable">
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Student ID Number</th>
+          <th>Level of Education</th>
+          <th>Age</th>
+          <th>Name of Person to Contact</th>
+          <th>Person to Contact Number</th>
+          <th>Relationship</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="healthRecordTableBody">
+        <?php
+        $sql = "SELECT * FROM healthrecord WHERE role = 'student'";
+        $result = mysqli_query($conn, $sql);
 
+        while($row = $result->fetch_assoc()){
+        ?>
+        <tr>
+          <td><?php echo $row['fullname']; ?></td>
+          <td><?php echo $row['idnumber']; ?></td>
+          <td><?php echo $row['leveleduc']; ?></td>
+          <td><?php echo $row['age']; ?></td>
+          <td><?php echo $row['nameperson']; ?></td>
+          <td><?php echo $row['personcp']; ?></td>
+          <td><?php echo $row['relationship']; ?></td>
+          <td>
+            <center><a href="viewstudentrecordcollege.php?idnumber=<?php echo $row['idnumber']; ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
+                <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
+              </svg>
+            </a></center>
+          </td>
+        </tr>
+        <?php } ?>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-                                while($row = $result->fetch_assoc()){
-                                ?>
-                                <tr>
-                                <td><?php echo $row['fullname']; ?></td>
-                                <td><?php echo $row['idnumber']; ?></td>
-								<td><?php echo $row['leveleduc']; ?></td>
-                                <td><?php echo $row['age']; ?></td>
-                                <td><?php echo $row['nameperson']; ?></td>
-                                <td><?php echo $row['personcp']; ?></td>
-                                <td><?php echo $row['relationship']; ?></td>
+<script>
+function searchRecords() {
+  var searchQuery = document.getElementById("searchQuery").value;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("healthRecordTableBody").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "search.php?query=" + searchQuery, true);
+  xhttp.send();
+}
+</script>
 
-                                <td>
-                                <center><a href="viewstudentrecordcollege.php?idnumber=<?php echo $row['idnumber']; ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                                        <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                                        </svg></a></center>
-
-     
-        </td>
-                                </tr>
-
-                                <?php } ?>
-  </tbody>
-</table>
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script>
+ <!-- Javascript -->          
+ <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
     
     <!-- Page Specific JS -->

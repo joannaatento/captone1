@@ -252,7 +252,7 @@
       </thead>
       <tbody id="healthRecordTableBody">
         <?php
-        $sql = "SELECT * FROM healthrecord WHERE role = 'student'";
+        $sql = "SELECT * FROM healthrecord WHERE role = 'employee'";
         $result = mysqli_query($conn, $sql);
 
         while($row = $result->fetch_assoc()){

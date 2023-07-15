@@ -70,7 +70,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
-	<header class="app-header fixed-top">	   	            
+   <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -126,8 +126,8 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlists.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelists.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="studentlistsshs.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="employeelistsshs.php">Employees</a></li>
             </ul>
         </div>
     </li>
@@ -149,8 +149,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link active" href="dentalrequestgsjhs.php">Grade School and JHS</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeegsjhs.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsshs.php">Senior High School</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeeshs.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -172,13 +172,12 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-5" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link active" href="medicalrequestgsjhs.php">Grade School and JHS</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="medicalrequestsemployeegsjhs.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link active" href="medicalrequestshs.php">Senior High School</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="medicalrequestsemployeeshs.php">Employee</a></li>
         </ul>
     </div>
 </li>
 
-    
     <li class="nav-item has-submenu">
         <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
             <span class="nav-icon">
@@ -197,14 +196,14 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="dentalgsjhs.php">Dental</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="medicalgsjhs.php">Medical</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="dentalshs.php">Dental</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="medicalshs.php">Medical</a></li>
             </ul>
         </div>
     </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecordgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="patientmanagementrecordshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -218,7 +217,7 @@ if (mysqli_num_rows($result) > 0) {
 </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="schoolhealthassessmentformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="schoolhealthassessmentformshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
@@ -229,6 +228,7 @@ if (mysqli_num_rows($result) > 0) {
         <span class="nav-link-text">School Health Assessment Form</span>
     </a>
 </li>
+
 
 
 </ul>

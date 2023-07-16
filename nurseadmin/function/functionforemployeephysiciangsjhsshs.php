@@ -20,5 +20,4 @@ if (isset($_GET['physician_id'])) {
     header("Location: ../physicianstudentgsjhsshs.php");
     exit();
 }
-
 ?>

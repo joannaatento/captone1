@@ -232,8 +232,10 @@
             <div class="col-sm-10">
                 <select id="role" name="role" class="form-control">
                 <option value="">Select Role</option>
-                <option value="Student">Student</option>
-                <option value="Employee">Employee</option>
+                <option value="Student in North Campus">Student in North Campus</option>
+                <option value="Student in South Campus">Student in South Campus</option>
+                <option value="Employee in North Campus">Employee in North Campus</option>
+                <option value="Employee in South Campus">Employee in South Campus</option>
                 </select>
             </div>
         </div>

@@ -14,7 +14,7 @@
         $admin_id = $row['admin_id'];
         $username = $row['username'];
         require_once('../db.php');
-        if($_SESSION['role'] == 6){
+        if($_SESSION['role'] == 7){
             // User type 1 specific code here
         }
         else{
@@ -209,7 +209,7 @@ if (mysqli_num_rows($result) > 0) {
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
                     <?php
-    $sql = "SELECT * FROM physician WHERE role = 'Employee in North Campus'";
+    $sql = "SELECT * FROM physician WHERE role = 'Employee in South Campus'";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_array()) {
@@ -229,12 +229,12 @@ if (mysqli_num_rows($result) > 0) {
             </div>
 
             <?php if ($is_read == 0): ?>
-                <a href="function/functionemployeegsjhs.php?physician_id=<?php echo $physician_id; ?>">Mark as Read</a>
+                <a href="function/functionforphysiciancollege.php?physician_id=<?php echo $physician_id; ?>">Mark as Read</a>
             <?php endif; ?>
 
-            <a href="function/foremployeeshs.php?physician_id=<?php echo $physician_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
+                <a href="function/deletereqcollege.php?physician_id=<?php echo $physician_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
             
-            <a href="viewphysicianemployeerequestgsjhsshs.php?date_created=<?php echo $row['date_created']; ?>">
+            <a href="viewphysicianrequestcollege.php?date_created=<?php echo $row['date_created']; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
                     <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
                 </svg>

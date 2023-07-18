@@ -1,28 +1,15 @@
 <?php
     session_start();
     include '../db.php';
+    require '../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
-    $admin_id = $_SESSION['admin_id'];
-    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
-    $result = $conn->query($sql_query);
-    while($row = $result->fetch_array()){
-        $admin_id = $row['admin_id'];
-        $username = $row['username'];
-        require_once('../db.php');
-        if($_SESSION['role'] == 6){
-            // User type 1 specific code here
-        }
-        else{
-            header('location: ../login.php');
-            exit; // Exit the script to prevent further execution
-        }
-    }
 
+  
 ?>
 
 
@@ -45,29 +32,31 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    <link rel="stylesheet" href="assets/msdental.css">
+	<link rel="stylesheet" href="assets/viewdental.css">
 
-  
 </head> 
 
-<body class="app">   	
-<?php
-// Fetch dental records
-$sql = "SELECT * FROM physician";
+<body class="app"> 
+    <?php  	
+$date_created = $_GET['date_created'];
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM physician WHERE date_created = '$date_created'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-    $row = $result->fetch_assoc(); 
-    $physician_id = $row['physician_id'];
-    $name = $row['name'];
-    $message = $row['message'];
-    $date_created = $row['date_created'];
-    $is_read = $row['is_read'];
-    $is_deleted_on_website = $row['is_deleted_on_website'];
-}
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $name = $row['name'];
+  $gradecourseyear = $row ['gradecourseyear'];
+  $role = $row['role'];
+  $message = $row['message'];
+  $date_created = $row['date_created'];
+    }
+ else {
+ } 
 ?>
-    <header class="app-header fixed-top">	   	            
+     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -185,7 +174,6 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -203,56 +191,154 @@ if (mysqli_num_rows($result) > 0) {
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+						        <h4 class="notification-title mb-1">Physician Consultation Appointments</h4>
 					        </div>
-							<!--//generate report-->
+            
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <?php
-    $sql = "SELECT * FROM physician WHERE role = 'Employee in North Campus'";
-    $result = $conn->query($sql);
+                    <div class="app-card-body p-4">
+<form class="form-horizontal mt-4" method="post" action="function/functions.php">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee ID Number</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+      </div>
+    </div>
+  </div>
 
-    while ($row = $result->fetch_array()) {
-        $physician_id = $row['physician_id'];
-        $is_read = $row['is_read'];
-        $is_deleted_on_website = $row['is_deleted_on_website'];
-        ?>
-     
-     <div class="main-content">
-     <?php if ($is_deleted_on_website == 0): ?>
-        <div class="email-list-item <?php echo ($is_read == 0) ? 'unread' : ''; ?>" <?php echo ($is_read == 0) ? 'style="background-color: #F1F1F1;"' : ''; ?>>
-
-        <div class="message">
-                <b><div class="name" style="display: inline;"><?php echo $row['name']; ?></div></b>
-                <div class="message" style="display: inline;"><?php echo $row['message']; ?></div>
-                <div class="timestamp"><?php echo $row['date_created']; ?></div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" value="<?php echo $row['name']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+ </div>
+<br>
+ <div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="gradecourseyear" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="role" class="col-sm-4 control-label">Role</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="role" name="role" value="<?php echo $row['role']; ?>" readonly>
+                    </div>
+                </div>
             </div>
 
-            <?php if ($is_read == 0): ?>
-                <a href="function/functionemployeegsjhs.php?physician_id=<?php echo $physician_id; ?>">Mark as Read</a>
-            <?php endif; ?>
-
-            <a href="function/foremployeeshs.php?physician_id=<?php echo $physician_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
-            
-            <a href="viewphysicianemployeerequestgsjhsshs.php?date_created=<?php echo $row['date_created']; ?>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                    <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                </svg>
-            </a>
-
-        <?php endif; ?>
-
-
+      <p><b><br>Note: </b> The PHYSICIAN will ONLY be available every <b>WEDNESDAY (8:00 A.M to 11:00 A.M)</b>. If your request has been approved, a text message will be sent to you.</p>
+    
+<div class="row">
+    <div class="form-group">
+        <br>
+        <label for="message" class="col-sm-10 control-label">Write a message.... (State Date and Time)</label>
+        <div class="col-sm-12">
+        <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." value="<?php echo $row['message']; ?>" readonly>
+        </div>
     </div>
+</div>
+</div>
+
+        <div class="form-group">
+            <span><?php echo $row['date_created']; ?></span>
+        </div>
+        <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
+        
+<!--Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for physician consulatation appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                    </div>
 
 
-     <?php
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="Send">Send</button>
+                    </div>
+                </form>
+
+                <?php
+    /**
+     * Send an SMS message directly by calling HTTP endpoint.
+     *
+     * For your convenience, environment variables are already pre-populated with your account data
+     * like authentication, base URL, and phone number.
+     *
+     * Please find detailed information in the readme file.
+     */
+    
+    
+
+    use GuzzleHttp\Client;
+    use GuzzleHttp\RequestOptions;
+
+    if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $phoneNumber = $_POST['phone'];
+        $message = $_POST['message'];
+
+        $client = new Client([
+            'base_uri' => "https://2kw6nm.api.infobip.com/",
+            'headers' => [
+                'Authorization' => "App 47d7c2b8394b7802f3eb4e49f8da3a40-aee5ec9a-6fae-4e23-b89f-246ee2b98f4a",
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ]
+        ]);
+
+        $response = $client->request(
+            'POST',
+            'sms/2/text/advanced',
+            [
+                RequestOptions::JSON => [
+                    'messages' => [
+                        [
+                            'from' => 'Clinic',
+                            'destinations' => [
+                                ['to' => $phoneNumber]
+                            ],
+                            'text' => $message,
+                        ]
+                    ]
+                ],
+            ]
+        );
+
+        echo("<p>HTTP code: " . $response->getStatusCode() . "</p>");
+        echo("<p>Response body: " . $response->getBody()->getContents() . "</p>");
     }
     ?>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+  
 </div><!--//app-card-body-->
-
-
-
 				</div>			    
 		    </div>
 	    </div>
@@ -276,3 +362,4 @@ if (mysqli_num_rows($result) > 0) {
 
 </body>
 </html> 
+

@@ -209,7 +209,7 @@ if (mysqli_num_rows($result) > 0) {
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
                     <?php
-    $sql = "SELECT * FROM physician WHERE role = 'Student'";
+    $sql = "SELECT * FROM physician WHERE role = 'Student in North Campus'";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_array()) {

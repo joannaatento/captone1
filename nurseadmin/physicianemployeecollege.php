@@ -67,7 +67,7 @@ if (mysqli_num_rows($result) > 0) {
     $is_deleted_on_website = $row['is_deleted_on_website'];
 }
 ?>
-   <header class="app-header fixed-top">	   	            
+     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -171,8 +171,8 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicianstudentapproved.php">Student</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="physicianemployeeapproved.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianstudentcollegeapproved.php">Student</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianemployeecollegeapproved.php">Employee</a></li>
             </ul>
         </div>
     </li>

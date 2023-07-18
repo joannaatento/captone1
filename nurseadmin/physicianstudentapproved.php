@@ -245,8 +245,8 @@ if (mysqli_num_rows($result) > 0) {
       <div class="col-sm-12">
         <select id="role" name="role" class="form-control" required>
           <option value="">Select</option>
-          <option value="Student">Student</option>
-          <option value="Employee">Employee</option>
+          <option value="Student in North Campus">Student</option>
+          <option value="Employee in North Campus">Employee</option>
         </select>
       </div>
     </div>
@@ -282,7 +282,7 @@ if (mysqli_num_rows($result) > 0) {
                          </thead>
                          <tbody id="healthRecordTableBody">
                              <?php
-                             $sql = "SELECT * FROM physicianapp WHERE role = 'student'";
+                             $sql = "SELECT * FROM physicianapp WHERE role = 'Student in North Campus'";
                              $result = mysqli_query($conn, $sql);
                              
                              while ($row = $result->fetch_assoc()) {

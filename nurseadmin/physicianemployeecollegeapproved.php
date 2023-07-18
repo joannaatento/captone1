@@ -1,16 +1,30 @@
 <?php
     session_start();
     include '../db.php';
-    require '../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
+    $admin_id = $_SESSION['admin_id'];
+    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $admin_id = $row['admin_id'];
+        $username = $row['username'];
+        require_once('../db.php');
+        if($_SESSION['role'] == 7){
+            // User type 1 specific code here
+        }
+        else{
+            header('location: ../login.php');
+            exit; // Exit the script to prevent further execution
+        }
+    }
 
-  
 ?>
+
 
 
 <!DOCTYPE html>
@@ -32,25 +46,22 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/viewdental.css">
+    <link rel="stylesheet" href="assets/dentalstyles.css">
 
 </head> 
 
-<body class="app"> 
-    <?php  	
-$date_created = $_GET['date_created'];
-
-// Retrieve the health record for the given ID number
-$sql = "SELECT * FROM physician WHERE date_created = '$date_created'";
+<body class="app">   	
+<?php
+$sql = "SELECT * FROM dentalapp";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
-  $name = $row['name'];
-  $gradecourseyear = $row ['gradecourseyear'];
+  $fullname = $row['fullname'];
+  $cenrolled = $row['cenrolled'];
   $role = $row['role'];
-  $message = $row['message'];
+  $date_time = $row['date_time'];
   $date_created = $row['date_created'];
     }
  else {
@@ -112,8 +123,8 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlistsphysiciancollege.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelistsphysiciancollege.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="studentlistsphysician.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="employeelistsphysician.php">Employees</a></li>
             </ul>
         </div>
     </li>
@@ -135,8 +146,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicianstudentcollege.php">Student</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="physicianemployeecollege.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianstudentgsjhsshs.php">Student</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianemployeegsjhsshs.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -160,8 +171,8 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicianstudentcollegeapproved.php">Student</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="physicianemployeecollegeapproved.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianstudentapproved.php">Student</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianemployeeapproved.php">Employee</a></li>
             </ul>
         </div>
     </li>
@@ -174,6 +185,7 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
+    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -191,158 +203,105 @@ if (mysqli_num_rows($result) > 0) {
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Physician Consultation Appointments</h4>
+						        <h4 class="notification-title mb-1">Physician Student Appointments</h4>
 					        </div>
-            
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
                     <div class="app-card-body p-4">
-<form class="form-horizontal mt-4" method="post" action="function/functions.php">
-<div class="row">
-  <div class="col-sm-6">
+                   
+                   <form class="form-horizontal mt-4" method="post" action="function/funct.php">
+                  
+                   <div class="row">
+  <div class="col-sm-4">
     <div class="form-group">
-      <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee ID Number</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" value="<?php echo $row['idnumber']; ?>" readonly>
-      </div>
+      <label for="idnumber" class="col-sm-12 control-label">Patient ID Number</label>
+      <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
     </div>
   </div>
-
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <div class="form-group">
-      <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" value="<?php echo $row['name']; ?>" readonly>
-      </div>
+      <label for="fullname" class="col-sm-12 control-label">Name</label>
+      <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" required>
     </div>
   </div>
- </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="cenrolled" class="col-sm-12 control-label">Currently enrolled in</label>
+      <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter patient name">
+    </div>
+  </div>
+</div>
 <br>
- <div class="row">
-  <div class="col-sm-6">
+<div class="row">
+  <div class="col-sm-4">
     <div class="form-group">
-      <label for="gradecourseyear" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear']; ?>" readonly>
+      <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
+      <div class="col-sm-12">
+        <select id="role" name="role" class="form-control" required>
+          <option value="">Select</option>
+          <option value="Student in College">Student</option>
+          <option value="Employee in College">Employee</option>
+        </select>
       </div>
     </div>
   </div>
-  <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="role" class="col-sm-4 control-label">Role</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="role" name="role" value="<?php echo $row['role']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
+  <div class="col-sm-4">
+                         <div class="form-group">
+                           <label for="date_time" class="col-sm-12 control-label">Schedule</label>
+                           <input type="datetime-local" id="date_time" name="date_time" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
 
-      <p><b><br>Note: </b> The PHYSICIAN will ONLY be available every <b>WEDNESDAY (8:00 A.M to 11:00 A.M)</b>. If your request has been approved, a text message will be sent to you.</p>
-    
-<div class="row">
-    <div class="form-group">
-        <br>
-        <label for="message" class="col-sm-10 control-label">Write a message.... (State Date and Time)</label>
-        <div class="col-sm-12">
-        <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." value="<?php echo $row['message']; ?>" readonly>
-        </div>
-    </div>
-</div>
-</div>
-
-        <div class="form-group">
-            <span><?php echo $row['date_created']; ?></span>
-        </div>
-        <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
-        
-<!--Modal-->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="POST">
-                    <div class="mb-3">
-                        <label for="inputTo" class="form-label">To</label>
-                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
-                    </div>
-                    <div class="mb-3">
-                        <label for="messagesms" class="form-label">Message</label>
-                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for physician consulatation appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" value="Send">Send</button>
-                    </div>
-                </form>
-
-                <?php
-    /**
-     * Send an SMS message directly by calling HTTP endpoint.
-     *
-     * For your convenience, environment variables are already pre-populated with your account data
-     * like authentication, base URL, and phone number.
-     *
-     * Please find detailed information in the readme file.
-     */
-    
-    
-
-    use GuzzleHttp\Client;
-    use GuzzleHttp\RequestOptions;
-
-    if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-        $phoneNumber = $_POST['phone'];
-        $message = $_POST['message'];
-
-        $client = new Client([
-            'base_uri' => "https://2kw6nm.api.infobip.com/",
-            'headers' => [
-                'Authorization' => "App 47d7c2b8394b7802f3eb4e49f8da3a40-aee5ec9a-6fae-4e23-b89f-246ee2b98f4a",
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ]
-        ]);
-
-        $response = $client->request(
-            'POST',
-            'sms/2/text/advanced',
-            [
-                RequestOptions::JSON => [
-                    'messages' => [
-                        [
-                            'from' => 'Clinic',
-                            'destinations' => [
-                                ['to' => $phoneNumber]
-                            ],
-                            'text' => $message,
-                        ]
-                    ]
-                ],
-            ]
-        );
-
-        echo("<p>HTTP code: " . $response->getStatusCode() . "</p>");
-        echo("<p>Response body: " . $response->getBody()->getContents() . "</p>");
-    }
-    ?>
+    <br>
+                     <div class="row">
+                       <div class="col-sm-12">
+                       <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+                         <button name="submit_physiciancollegeemployee" class="btn btn-success">Add Physician Consultation Appointment</button>
+                       </div>
+                     </div>
+                   </form>
+                   
+                 </div><!--//app-card-body-->
+                 <center>
+                   
+                     <table class="styled-table">
+                         <thead>
+                             <tr>
+                                 <th>Patient ID Number</th>
+                                 <th>Patient Name</th>
+                                 <th>Enrolled in</th>
+                                 <th>Time and Date</th>
+                             </tr>
+                         </thead>
+                         <tbody id="healthRecordTableBody">
+                             <?php
+                             $sql = "SELECT * FROM physicianapp WHERE role = 'Employee in College'";
+                             $result = mysqli_query($conn, $sql);
+                             
+                             while ($row = $result->fetch_assoc()) {
+                                 ?>
+                                 <tr>
+                                     <td><?php echo $row['idnumber']; ?></td>
+                                     <td><?php echo $row['fullname']; ?></td>
+                                     <td><?php echo $row['cenrolled']; ?></td>
+                                     <td><?php echo $row['date_time']; ?></td>
+                                   
+                                 </tr>
+                             <?php } ?>
+                         </tbody>
+                     </table>
+                     <br>
+                 </center>
 
 
-            </div>
-        </div>
-    </div>
-</div>
 
-  
-</div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

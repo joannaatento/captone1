@@ -444,12 +444,13 @@ if(isset($_POST['submit_physiciangsjhsshs'])){ // pag get ng data
     $idnumber = $_POST['idnumber']; 
     $fullname = $_POST['fullname'];
     $cenrolled = $_POST['cenrolled'];
+    $role = $_POST['role'];
     $date_time = $_POST['date_time'];
    
     date_default_timezone_set('Asia/Manila');
     $date_created = date('Y-m-d h:i A'); 
 
-    $sql = "INSERT INTO physicianapp VALUES ('','$admin_id','$idnumber','$fullname','$cenrolled','$date_time','$date_created')";
+    $sql = "INSERT INTO physicianapp VALUES ('','$admin_id','$idnumber','$fullname','$cenrolled','$role','$date_time','$date_created')";
     if(mysqli_query($conn, $sql)){
         // echo "<script>window.history.go(-1);</script>";
         header('location: ../physicianstudentapproved.php');

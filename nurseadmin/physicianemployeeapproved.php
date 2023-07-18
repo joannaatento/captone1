@@ -59,8 +59,8 @@ if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
   $fullname = $row['fullname'];
-  $cenrolled = $row['cenrolled'];
   $role = $row['role'];
+  $cenrolled = $row['cenrolled'];
   $date_time = $row['date_time'];
   $date_created = $row['date_created'];
     }
@@ -215,58 +215,58 @@ if (mysqli_num_rows($result) > 0) {
 				    </div><!--//app-card-header-->
                     <div class="app-card-body p-4">
                    
-                   <form class="form-horizontal mt-4" method="post" action="function/funct.php">
+                    <form class="form-horizontal mt-4" method="post" action="function/functionforemployeephysiciangsjhsshs.php">
                   
-                   <div class="row">
-  <div class="col-sm-4">
-    <div class="form-group">
-      <label for="idnumber" class="col-sm-12 control-label">Patient ID Number</label>
-      <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="form-group">
-      <label for="fullname" class="col-sm-12 control-label">Name</label>
-      <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" required>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="form-group">
-      <label for="cenrolled" class="col-sm-12 control-label">Currently enrolled in</label>
-      <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter patient name">
-    </div>
-  </div>
+                  <div class="row">
+ <div class="col-sm-4">
+   <div class="form-group">
+     <label for="idnumber" class="col-sm-12 control-label">Patient ID Number</label>
+     <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+   </div>
+ </div>
+ <div class="col-sm-4">
+   <div class="form-group">
+     <label for="fullname" class="col-sm-12 control-label">Name</label>
+     <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" required>
+   </div>
+ </div>
+ <div class="col-sm-4">
+   <div class="form-group">
+     <label for="cenrolled" class="col-sm-12 control-label">Currently enrolled in</label>
+     <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter patient name">
+   </div>
+ </div>
 </div>
 <br>
 <div class="row">
-  <div class="col-sm-4">
-    <div class="form-group">
-      <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
-      <div class="col-sm-12">
-        <select id="role" name="role" class="form-control" required>
-          <option value="">Select</option>
-          <option value="Student">Student</option>
-          <option value="Employee">Employee</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-                         <div class="form-group">
-                           <label for="date_time" class="col-sm-12 control-label">Schedule</label>
-                           <input type="datetime-local" id="date_time" name="date_time" class="form-control" required>
-                         </div>
-                       </div>
-                  </div>
+ <div class="col-sm-4">
+   <div class="form-group">
+     <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
+     <div class="col-sm-12">
+       <select id="role" name="role" class="form-control" required>
+         <option value="">Select</option>
+         <option value="Student">Student</option>
+         <option value="Employee">Employee</option>
+       </select>
+     </div>
+   </div>
+ </div>
+ <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="date_time" class="col-sm-12 control-label">Schedule</label>
+                          <input type="datetime-local" id="date_time" name="date_time" class="form-control" required>
+                        </div>
+                      </div>
+                 </div>
 
-    <br>
-                     <div class="row">
-                       <div class="col-sm-12">
-                       <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-                         <button name="submit_physiciangsjhsshs" class="btn btn-success">Add Physician Consultation Appointment</button>
-                       </div>
-                     </div>
-                   </form>
+   <br>
+                    <div class="row">
+                      <div class="col-sm-12">
+                      <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+                        <button name="submit_physiciangsjhsshs" class="btn btn-success">Add Physician Consultation Appointment</button>
+                      </div>
+                    </div>
+                  </form>
                    
                  </div><!--//app-card-body-->
                  <center>
@@ -282,7 +282,7 @@ if (mysqli_num_rows($result) > 0) {
                          </thead>
                          <tbody id="healthRecordTableBody">
                              <?php
-                             $sql = "SELECT * FROM physicianapp WHERE role = 'student'";
+                              $sql = "SELECT * FROM physicianapp WHERE role = 'employee'";
                              $result = mysqli_query($conn, $sql);
                              
                              while ($row = $result->fetch_assoc()) {

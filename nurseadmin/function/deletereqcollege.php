@@ -68,6 +68,7 @@ if (isset($_GET['physician_id'])) {
     // Redirect the user back to the original page or any other appropriate page
     header("Location: ../physicianstudentcollege.php");
     exit();
+
 }
-   
+ 
     ?>

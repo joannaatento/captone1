@@ -67,7 +67,7 @@ if (mysqli_num_rows($result) > 0) {
     $is_deleted_on_website = $row['is_deleted_on_website'];
 }
 ?>
-    <header class="app-header fixed-top">	   	            
+   <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -123,8 +123,8 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlistsphysician.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelistsphysician.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="studentlistsphysiciancollege.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="employeelistsphysiciancollege.php">Employees</a></li>
             </ul>
         </div>
     </li>
@@ -146,8 +146,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicianstudentgsjhsshs.php">Student</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="physicianemployeegsjhsshs.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianstudentcollege.php">Student</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianemployeecollege.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -229,10 +229,10 @@ if (mysqli_num_rows($result) > 0) {
             </div>
 
             <?php if ($is_read == 0): ?>
-                <a href="function/functionforphysiciancollege.php?physician_id=<?php echo $physician_id; ?>">Mark as Read</a>
+                <a href="function/foremployeecollege.php?physician_id=<?php echo $physician_id; ?>">Mark as Read</a>
             <?php endif; ?>
 
-                <a href="function/deletereqcollege.php?physician_id=<?php echo $physician_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
+                <a href="function/functionforphysiciancollege.php?physician_id=<?php echo $physician_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
             
             <a href="viewphysicianrequestcollege.php?date_created=<?php echo $row['date_created']; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">

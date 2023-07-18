@@ -65,7 +65,6 @@ if (mysqli_num_rows($result) > 0) {
   $cenrolled = $row['cenrolled'];
   $service = $row['service'];
   $date_time = $row['date_time'];
-  $dentist_name = $row['dentist_name'];
   $date_created = $row['date_created'];
     }
  else {
@@ -252,14 +251,7 @@ if (mysqli_num_rows($result) > 0) {
                     <label for="service" class="col-sm-8 control-label">Service</label>
                         <input type="text" class="form-control" id="service" name="service" value="<?php echo $row['service']; ?>" readonly>
                     </div>
-                </div>
-
-         <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="dentist_name" class="col-sm-8 control-label">Dentist</label>
-                        <input type="text" class="form-control" id="dentist_name" name="dentist_name" value="<?php echo $row['dentist_name']; ?>" readonly>
-                    </div>
-                </div>
+                            </div>
             </div>
 
         <div class="form-group">

@@ -52,8 +52,8 @@
 								<option value="1">Nurse in GS and JHS</option>
 								<option value="2">Nurse in SHS</option>
 								<option value="3">Nurse in College</option>
-								<option value="4">Doctor in GS, JHS & SHS</option>
-								<option value="5">Doctor in College</option>
+								<option value="4">Dentist in GS, JHS & SHS</option>
+								<option value="5">Dentist in College</option>
 								<option value="6">Physician in GS, JHS & SHS</option>
 								<option value="7">Physician in College</option>
 								

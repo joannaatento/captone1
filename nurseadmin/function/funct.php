@@ -75,7 +75,7 @@
                     header('Location: ../nurseincollege.php');
                 } elseif ($role == '4') {
                     // Handle role 4
-                    header('Location: ../doctoringsjhsshs.php');
+                    header('Location: ../dentistingsjhsshs.php');
                 } elseif ($role == '5') {
                     // Handle role 5
                     header('Location: ../doctorincollege.php');
@@ -133,15 +133,14 @@
         $cenrolled = $_POST['cenrolled'];
         $service = $_POST['service'];
         $date_time = $_POST['date_time'];
-        $dentist_name = $_POST['dentist_name'];
     
         date_default_timezone_set('Asia/Manila');
         $date_created = date('Y-m-d h:i A'); 
     
-        $sql = "INSERT INTO dentalapp VALUES ('','$admin_id','$idnumber','$fullname','$role','$cenrolled','$service','$date_time','$dentist_name','$date_created')";
+        $sql = "INSERT INTO dentalapp VALUES ('','$admin_id','$idnumber','$fullname','$role','$cenrolled','$service','$date_time','$date_created')";
         if (mysqli_query($conn, $sql)) {
             // Redirect to dentalgsjhs.php
-            header('location: ../dentalshs.php');
+            header('location: ../dentalgsjhsshs.php');
             exit;
         } else {
             echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
@@ -180,7 +179,7 @@
 // Step 3: Handle the form submission
 
 // Assuming you have the $role variable defined somewhere
-if (isset($_POST['submit_status'])) {
+if(isset($_POST['submit_status'])) {
     // Retrieve the submitted form data
     $status_id = $_POST['status_id'];
     $statuses1030_1 = $_POST['statuses1030_1'];
@@ -190,30 +189,19 @@ if (isset($_POST['submit_status'])) {
     $statuses430_5 = $_POST['statuses430_5'];
 
     // Step 4: Execute the update query
-    $sql = "UPDATE status SET statuses1030_1='$statuses1030_1', statuses1130_2='$statuses1130_2', statuses230_3='$statuses230_3', statuses330_4='$statuses330_4', statuses430_5 ='$statuses430_5' WHERE status_id = $status_id";
+    $sql = "UPDATE status SET statuses1030_1='$statuses1030_1', statuses1130_2='$statuses1130_2', statuses230_3='$statuses230_3', statuses330_4='$statuses330_4', statuses430_5='$statuses430_5' WHERE status_id = $status_id";
 
     // Execute the query and handle the result
     if (mysqli_query($conn, $sql)) {
         // Step 5: Handle the update result
         echo '<script>alert("Successfully updated!");</script>';
-
-        if (isset($_POST['roles'])) {
-            $roles = $_POST['roles'];
-
-            $redirectUrl = '';
-            if ($roles == 1) {
-                $redirectUrl = "../dentalgsjhs.php";
-            } elseif ($roles == 2) {
-                $redirectUrl = "../dentalshs.php";
-            }
-
-            echo '<script>window.location.href = "' . $redirectUrl . '";</script>';
-            exit;
-        }
+        echo '<script>window.location.href="../dentalgsjhsshs.php";</script>';
+        exit;
     } else {
         echo '<script>alert("Error: ' . mysqli_error($conn) . '");</script>';
     }
-}
+}  
+
 
 
 if(isset($_POST['submit_statusshs'])) {

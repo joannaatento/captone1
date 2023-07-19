@@ -146,7 +146,7 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link active" href="dentalrequestgsjhsshs.php">Student</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestgsjhsshs.php">Student</a></li>
             <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeegsjhsshs.php">Employee</a></li>
         </ul>
     </div>

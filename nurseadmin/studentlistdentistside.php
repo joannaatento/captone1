@@ -91,7 +91,7 @@
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlistdentistside.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="studentlistdentistside.php">Students</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="employeelistdentistside.php">Employees</a></li>
             </ul>
         </div>
@@ -114,7 +114,7 @@
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link active" href="dentalrequestgsjhsshs.php">Student</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="dentalrequestgsjhsshs.php">Student</a></li>
             <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeegsjhsshs.php">Employee</a></li>
         </ul>
     </div>
@@ -138,7 +138,6 @@
 	        </div>
 	    </div>
     </header>
-    
     
     <div class="app-wrapper">
 	    

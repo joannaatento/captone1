@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>CAPSTONE</title>
+    <title>View Employee Record</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -85,7 +85,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
-  <header class="app-header fixed-top">	   	            
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 

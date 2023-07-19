@@ -194,7 +194,7 @@ if (mysqli_num_rows($result) > 0) {
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
                     <?php
-    $sql = "SELECT * FROM dental WHERE c_employee = 'Employee in GS and JHS'";
+    $sql = "SELECT * FROM dental WHERE c_employee = 'Employee in North Campus'";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_array()) {
@@ -219,7 +219,7 @@ if (mysqli_num_rows($result) > 0) {
 
             <a href="function/foremployeeshs.php?dental_id=<?php echo $dental_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
             
-            <a href="viewdentalrequestemployeegsjhs.php?date_created=<?php echo $row['date_created']; ?>">
+            <a href="viewdentalrequestemployeegsjhsshs.php?date_created=<?php echo $row['date_created']; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
                     <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
                 </svg>

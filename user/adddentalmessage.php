@@ -266,9 +266,8 @@
             <label for="fullname" style="font-size: 16px">For Employee</label>
             <select id="c_employee" name="c_employee" class="form-control">
                 <option value="">--Select--</option>
-                <option value="Employee in GS and JHS">Employee in GS and JHS</option>
-                <option value="Employee in SHS">Employee in Senior High School</option>
-                <option value="Employee in College">Employee in College</option>
+                <option value="Employee in North Campus">Employee in North Campus</option>
+                <option value="Employee in South Campus">Employee in South Campus</option>
             </select>
         </div>
     </div>

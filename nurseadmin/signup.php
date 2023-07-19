@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>SIGN UP</title>
+    <title>Admin Signup</title>
     
     <!-- Meta -->
     <meta charset="utf-8">

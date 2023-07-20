@@ -78,7 +78,7 @@
                     header('Location: ../dentistingsjhsshs.php');
                 } elseif ($role == '5') {
                     // Handle role 5
-                    header('Location: ../dentistincollege.php');
+                    header('Location: ../dentistcollege/dentistincollege.php');
                 } elseif ($role == '6') {
                     // Handle role 6
                     header('Location: ../physiciangsjhsshs.php');

@@ -72,7 +72,7 @@
                     header('Location: ../nurseshs/nurseinshs.php');
                 } elseif ($role == '3') {
                     // Handle role 3
-                    header('Location: ../nurseincollege.php');
+                    header('Location: ../nursecollege/nurseincollege.php');
                 } elseif ($role == '4') {
                     // Handle role 4
                     header('Location: ../dentistingsjhsshs.php');

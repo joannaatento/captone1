@@ -67,7 +67,7 @@
     
                 $role = $row['role'];
                 if ($role == '1') {
-                    header('Location: ../nurseingsjhs.php');
+                    header('Location: ../nursegsjhs/nurseingsjhs.php');
                 } elseif ($role == '2') {
                     header('Location: ../nurseinshs.php');
                 } elseif ($role == '3') {

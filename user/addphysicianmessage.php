@@ -218,15 +218,9 @@
  </div>
 <br>
  <div class="row">
-  <div class="col-sm-6">
-    <div class="form-group">
-      <label for="gradecourseyear" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year">
-      </div>
-    </div>
-  </div>
-    <div class="col-sm-6">
+
+
+ <div class="col-sm-6">
         <div class="form-group">
             <label for="role" class="col-sm-4 control-label" style="font-size: 16px">Role</label>
             <div class="col-sm-10">
@@ -239,6 +233,16 @@
                 </select>
             </div>
         </div>
+                            </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="gradecourseyear" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section/Course & Year (If Student)</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
+  
     </div>
 
       <p><b><br>Note: </b> The PHYSICIAN will ONLY be available every <b>WEDNESDAY (8:00 A.M to 11:00 A.M)</b>. If your request has been approved, a text message will be sent to you.</p>

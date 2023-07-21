@@ -234,7 +234,7 @@ if (mysqli_num_rows($result) > 0) {
                   </div>
                   <br>
         <div class="form-group">
-            <span>Schedule: <?php echo $row['date_time']; ?></span>
+            <span><b>Schedule:</b> <?php echo $row['date_time']; ?></span>
         </div>
   
         <?php } ?>

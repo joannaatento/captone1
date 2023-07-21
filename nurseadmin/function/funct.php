@@ -75,7 +75,7 @@
                     header('Location: ../nursecollege/nurseincollege.php');
                 } elseif ($role == '4') {
                     // Handle role 4
-                    header('Location: ../dentistingsjhsshs.php');
+                    header('Location: ../dentistgsjhsshs/dentistingsjhsshs.php');
                 } elseif ($role == '5') {
                     // Handle role 5
                     header('Location: ../dentistcollege/dentistincollege.php');
@@ -226,29 +226,6 @@ if(isset($_POST['submit_statusshs'])) {
     }
 }  
 
-
-if(isset($_POST['submit_statuscollege'])) {
-    // Retrieve the submitted form data
-    $status_id = $_POST['status_id'];
-    $statuses1030_1 = $_POST['statuses1030_1'];
-    $statuses1130_2 = $_POST['statuses1130_2'];
-    $statuses230_3 = $_POST['statuses230_3'];
-    $statuses330_4 = $_POST['statuses330_4'];
-    $statuses430_5 = $_POST['statuses430_5'];
-
-    // Step 4: Execute the update query
-    $sql = "UPDATE statuscollege SET statuses1030_1='$statuses1030_1', statuses1130_2='$statuses1130_2', statuses230_3='$statuses230_3', statuses330_4='$statuses330_4', statuses430_5='$statuses430_5' WHERE status_id = $status_id";
-
-    // Execute the query and handle the result
-    if (mysqli_query($conn, $sql)) {
-        // Step 5: Handle the update result
-        echo '<script>alert("Successfully updated!");</script>';
-        echo '<script>window.location.href="../dentalcollege.php";</script>';
-        exit;
-    } else {
-        echo '<script>alert("Error: ' . mysqli_error($conn) . '");</script>';
-    }
-}  
 
 if(isset($_POST['submit_statusmedicalgsjhs'])) {
     // Retrieve the submitted form data

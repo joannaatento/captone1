@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include '../../db.php';
+    include '../db.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>View Student Record</title>
+    <title>View Employee Record</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -85,7 +85,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
-     <header class="app-header fixed-top">	   	            
+   <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -142,8 +142,8 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="studentlistgsjhsshsdentistside.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelistgsjhsshsdentistside.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="studentlistdentistside.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="employeelistdentistside.php">Employees</a></li>
             </ul>
         </div>
     </li>
@@ -165,7 +165,7 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestgsjhsshs.php">Student</a></li>
+            <li class="submenu-item"><a class="submenu-link active" href="dentalrequestgsjhsshs.php">Student</a></li>
             <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeegsjhsshs.php">Employee</a></li>
         </ul>
     </div>

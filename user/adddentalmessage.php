@@ -239,8 +239,7 @@
             <label for="fullname" style="font-size: 16px">Year level that you currently enrolled</label>
             <select id="c_enrolled" name="c_enrolled" class="form-control">
                 <option value="">Select Level of Education</option>
-                <option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
-                <option value="Senior High School">Senior High School</option>
+                <option value="Grade School, JHS or SHS">Grade School/Junior High School/Senior High School</option>
                 <option value="College">College</option>
             </select>
         </div>

@@ -1,35 +1,22 @@
 <?php
     session_start();
-    include '../db.php';
+    include '../../db.php';
+    require '../../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
-    $admin_id = $_SESSION['admin_id'];
-    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
-    $result = $conn->query($sql_query);
-    while($row = $result->fetch_array()){
-        $admin_id = $row['admin_id'];
-        $username = $row['username'];
-        require_once('../db.php');
-        if($_SESSION['role'] == 4){
-            // User type 1 specific code here
-        }
-        else{
-            header('location: ../login.php');
-            exit; // Exit the script to prevent further execution
-        }
-    }
 
+  
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Dental Employee Request</title>
+    <title>View Employee Dental Request</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -45,27 +32,31 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    <link rel="stylesheet" href="assets/msdental.css">
+	<link rel="stylesheet" href="assets/viewdental.css">
 
-  
 </head> 
 
-<body class="app">   	
-<?php
-// Fetch dental records
-$sql = "SELECT * FROM dental";
+<body class="app"> 
+    <?php  	
+$date_created = $_GET['date_created'];
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM dental WHERE date_created = '$date_created'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-    $row = $result->fetch_assoc(); 
-    $dental_id = $row['dental_id'];
-    $name = $row['name'];
-    $message = $row['message'];
-    $date_created = $row['date_created'];
-    $is_read = $row['is_read'];
-    $is_deleted_on_website = $row['is_deleted_on_website'];
-}
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $name = $row['name'];
+  $dental_service = $row['dental_service'];
+  $c_enrolled = $row['c_enrolled'];
+  $gradecourseyear = $row['gradecourseyear'];
+  $c_employee = $row['c_employee'];
+  $message = $row['message'];
+  $date_created = $row['date_created'];
+    }
+ else {
+ } 
 ?>
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
@@ -124,8 +115,8 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlistdentistside.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelistdentistside.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="studentlistgsjhsshsdentistside.php">Students</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="employeelistgsjhsshsdentistside.php">Employees</a></li>
             </ul>
         </div>
     </li>
@@ -171,15 +162,15 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
+    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
 		    <div class="container-xl">
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
-					    <div class="col-auto">
-					        <h1 class="app-page-title mb-0"></h1>
-					    </div>
+					   
+					       
 						
 				    </div>
 			    </div>
@@ -187,57 +178,178 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+                        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
 					        </div>
-							<!--//generate report-->
+                          
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <?php
-    $sql = "SELECT * FROM dental WHERE c_employee = 'Employee in North Campus'";
-    $result = $conn->query($sql);
+                    <div class="app-card-body p-4">
+                  
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" value="<?php echo $row['name']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    while ($row = $result->fetch_array()) {
-        $dental_id = $row['dental_id'];
-        $is_read = $row['is_read'];
-        $is_deleted_on_website = $row['is_deleted_on_website'];
-        ?>
-     
-     <div class="main-content">
-     <?php if ($is_deleted_on_website == 0): ?>
-        <div class="email-list-item <?php echo ($is_read == 0) ? 'unread' : ''; ?>" <?php echo ($is_read == 0) ? 'style="background-color: #F1F1F1;"' : ''; ?>>
+        <br>
 
-        <div class="message">
-                <b><div class="name" style="display: inline;"><?php echo $row['name']; ?></div></b>
-                <div class="message" style="display: inline;"><?php echo $row['message']; ?></div>
-                <div class="timestamp"><?php echo $row['date_created']; ?></div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="date" class="col-sm-4 control-label">Dental Services</label>
+                    <div class="col-sm-10">
+                        <select id="dental_service" name="dental_service" class="form-control" readonly>
+                            <option disabled selected><?= $row['dental_service']; ?></option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
-            <?php if ($is_read == 0): ?>
-                <a href="function/functionemployeegsjhsshs.php?dental_id=<?php echo $dental_id; ?>">Mark as Read</a>
-            <?php endif; ?>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="gradecourse" class="col-sm-8 control-label">Year level that you currently enrolled</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['c_enrolled']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <a href="function/foremployeeshs.php?dental_id=<?php echo $dental_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
+        <br>
+        <div class="row">
+
+        <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="gradecourseyear" class="col-sm-8 control-label">Grade & Section/Course & Year</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?php echo $row['gradecourseyear']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
             
-            <a href="viewdentalrequestemployeegsjhsshs.php?date_created=<?php echo $row['date_created']; ?>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                    <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                </svg>
-            </a>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="c_employee" class="col-sm-8 control-label">For Employee</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="c_employee" name="c_employee" value="<?php echo $row['c_employee']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <?php endif; ?>
+        <div class="row">
+            <div class="form-group">
+                <br>
+                <label for="message" class="col-sm-5 control-label">Message</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." value="<?php echo $row['message']; ?>" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span><?php echo $row['date_created']; ?></span>
+        </div>
+        <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
+<!--Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                    </div>
 
 
-    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="Send">Send</button>
+                    </div>
+                </form>
 
+                <?php
+    /**
+     * Send an SMS message directly by calling HTTP endpoint.
+     *
+     * For your convenience, environment variables are already pre-populated with your account data
+     * like authentication, base URL, and phone number.
+     *
+     * Please find detailed information in the readme file.
+     */
+    
+    
 
-     <?php
+    use GuzzleHttp\Client;
+    use GuzzleHttp\RequestOptions;
+
+    if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $phoneNumber = $_POST['phone'];
+        $message = $_POST['message'];
+
+        $client = new Client([
+            'base_uri' => "https://2kw6nm.api.infobip.com/",
+            'headers' => [
+                'Authorization' => "App 47d7c2b8394b7802f3eb4e49f8da3a40-aee5ec9a-6fae-4e23-b89f-246ee2b98f4a",
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ]
+        ]);
+
+        $response = $client->request(
+            'POST',
+            'sms/2/text/advanced',
+            [
+                RequestOptions::JSON => [
+                    'messages' => [
+                        [
+                            'from' => 'Clinic',
+                            'destinations' => [
+                                ['to' => $phoneNumber]
+                            ],
+                            'text' => $message,
+                        ]
+                    ]
+                ],
+            ]
+        );
+
+        echo("<p>HTTP code: " . $response->getStatusCode() . "</p>");
+        echo("<p>Response body: " . $response->getBody()->getContents() . "</p>");
     }
     ?>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+  
 </div><!--//app-card-body-->
-
-
-
 				</div>			    
 		    </div>
 	    </div>
@@ -261,3 +373,4 @@ if (mysqli_num_rows($result) > 0) {
 
 </body>
 </html> 
+

@@ -15,7 +15,7 @@
         $stmt->execute();
     
         // Redirect the user back to the original page or any other appropriate page
-        header("Location: ../dentalrequestscollege.php");
+        header("Location: ../dentalrequestemployeegsjhsshs.php");
         exit();
     } //for medical delete on website
     

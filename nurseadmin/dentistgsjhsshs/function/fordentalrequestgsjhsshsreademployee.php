@@ -13,9 +13,9 @@
         $stmt->execute();
     
         // Redirect the user back to the original page or any other appropriate page
-        header("Location: ../dentalrequestscollege.php");
+        header("Location: ../dentalrequestsemployeegsjhsshs.php");
         exit();
-    } //for dental mark as read
+    } //for medical mark as read
 
 
     

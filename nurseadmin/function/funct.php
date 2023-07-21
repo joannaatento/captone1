@@ -84,7 +84,7 @@
                     header('Location: ../physiciangsjhsshs/physiciangsjhsshs.php');
                 } elseif ($role == '7') {
                     // Handle role 7
-                    header('Location: ../physiciancollege.php');
+                    header('Location: ../physiciancollege/physiciancollege.php');
                 } else {
                     // Handle other roles or scenarios as needed
                     header('Location: ../dashboard.php');

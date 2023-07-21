@@ -185,7 +185,7 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
                         <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Request Medical Schedule</h4>
+						        <h4 class="notification-title mb-1">Request Physician Consultation Schedule</h4>
 					        </div>
                             <?php
 								if(isset($_SESSION['success'])){

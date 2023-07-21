@@ -236,7 +236,7 @@
 
     <div class="col-sm-6">
         <div class="form-group">
-            <label for="fullname" style="font-size: 16px">Level of Education</label>
+            <label for="fullname" style="font-size: 16px">Year level that you currently enrolled</label>
             <select id="c_enrolled" name="c_enrolled" class="form-control">
                 <option value="">Select Level of Education</option>
                 <option value="Grade School & Grade School & Junior High School">Grade School & Junior High School</option>
@@ -253,7 +253,7 @@
 
 <div class="col-sm-6">
         <div class="form-group">
-            <label for="gradecourseyear" class="col-sm-4 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+            <label for="gradecourseyear" class="col-sm-8 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="igradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year">
             </div>
@@ -262,7 +262,6 @@
 
     <div class="col-sm-6">
         <div class="form-group">
-            <br>
             <label for="fullname" style="font-size: 16px">For Employee</label>
             <select id="c_employee" name="c_employee" class="form-control">
                 <option value="">--Select--</option>

@@ -1,35 +1,22 @@
 <?php
     session_start();
     include '../../db.php';
+    require '../../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
         echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
-    $admin_id = $_SESSION['admin_id'];
-    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
-    $result = $conn->query($sql_query);
-    while($row = $result->fetch_array()){
-        $admin_id = $row['admin_id'];
-        $username = $row['username'];
-        require_once('../../db.php');
-        if($_SESSION['role'] == 5){
-            // User type 1 specific code here
-        }
-        else{
-            header('location: ../login.php');
-            exit; // Exit the script to prevent further execution
-        }
-    }
 
+  
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Dentist Dashboard</title>
+    <title>View Employee Dental Request</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -43,17 +30,35 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
-    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    
-    
+	<link rel="stylesheet" href="assets/viewdental.css">
 
 </head> 
 
-<body class="app">   	
-    <header class="app-header fixed-top">	   	            
+<body class="app"> 
+    <?php  	
+$date_created = $_GET['date_created'];
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM dental WHERE date_created = '$date_created'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $name = $row['name'];
+  $dental_service = $row['dental_service'];
+  $c_enrolled = $row['c_enrolled'];
+  $gradecourseyear = $row['gradecourseyear'];
+  $c_employee = $row['c_employee'];
+  $message = $row['message'];
+  $date_created = $row['date_created'];
+    }
+ else {
+ } 
+?>
+     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -133,7 +138,7 @@
     <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
             <li class="submenu-item"><a class="submenu-link" href="dentalrequestscollege.php">Student</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeecollege.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link active" href="dentalrequestsemployeecollege.php">Employee</a></li>
         </ul>
     </div>
 </li>
@@ -156,16 +161,14 @@
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
 		    <div class="container-xl">
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
-					    <div class="col-auto">
-					        <h1 class="app-page-title mb-0"></h1>
-					    </div>
+					   
+					       
 						
 				    </div>
 			    </div>
@@ -173,15 +176,178 @@
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+                        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
 					        </div>
-							<!--//generate report-->
+                          
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-					   
-				    </div><!--//app-card-body-->
+                    <div class="app-card-body p-4">
+                  
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" value="<?php echo $row['name']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="date" class="col-sm-4 control-label">Dental Services</label>
+                    <div class="col-sm-10">
+                        <select id="dental_service" name="dental_service" class="form-control" readonly>
+                            <option disabled selected><?= $row['dental_service']; ?></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="gradecourse" class="col-sm-8 control-label">Year level that you currently enrolled</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['c_enrolled']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+
+        <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="gradecourseyear" class="col-sm-8 control-label">Grade & Section/Course & Year</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?php echo $row['gradecourseyear']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="c_employee" class="col-sm-8 control-label">For Employee</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="c_employee" name="c_employee" value="<?php echo $row['c_employee']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <br>
+                <label for="message" class="col-sm-5 control-label">Message</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." value="<?php echo $row['message']; ?>" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span><?php echo $row['date_created']; ?></span>
+        </div>
+        <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
+<!--Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="Send">Send</button>
+                    </div>
+                </form>
+
+                <?php
+    /**
+     * Send an SMS message directly by calling HTTP endpoint.
+     *
+     * For your convenience, environment variables are already pre-populated with your account data
+     * like authentication, base URL, and phone number.
+     *
+     * Please find detailed information in the readme file.
+     */
+    
+    
+
+    use GuzzleHttp\Client;
+    use GuzzleHttp\RequestOptions;
+
+    if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $phoneNumber = $_POST['phone'];
+        $message = $_POST['message'];
+
+        $client = new Client([
+            'base_uri' => "https://2kw6nm.api.infobip.com/",
+            'headers' => [
+                'Authorization' => "App 47d7c2b8394b7802f3eb4e49f8da3a40-aee5ec9a-6fae-4e23-b89f-246ee2b98f4a",
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ]
+        ]);
+
+        $response = $client->request(
+            'POST',
+            'sms/2/text/advanced',
+            [
+                RequestOptions::JSON => [
+                    'messages' => [
+                        [
+                            'from' => 'Clinic',
+                            'destinations' => [
+                                ['to' => $phoneNumber]
+                            ],
+                            'text' => $message,
+                        ]
+                    ]
+                ],
+            ]
+        );
+
+        echo("<p>HTTP code: " . $response->getStatusCode() . "</p>");
+        echo("<p>Response body: " . $response->getBody()->getContents() . "</p>");
+    }
+    ?>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+</div><!--//app-card-body-->
 				</div>			    
 		    </div>
 	    </div>
@@ -202,7 +368,6 @@
 			}
 		}, 5000);
 	</script>
-
 
 </body>
 </html> 

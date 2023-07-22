@@ -176,6 +176,7 @@ if (mysqli_num_rows($result) > 0) {
                                     <li class="submenu-item"> <a class="submenu-link" href="viewmedicalapp.php">Medical Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewphysicianapp.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosis.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
+									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationform.php">Consultation</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolasses.php">School Health Assessment</a>
 </li>
 

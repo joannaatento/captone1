@@ -31,7 +31,7 @@
         $bleeding = isset($_POST['bleeding']) ? trim(mysqli_real_escape_string($conn, $_POST['bleeding'])) : "";
         $eyedis = isset($_POST['eyedis']) ? trim(mysqli_real_escape_string($conn, $_POST['eyedis'])) : "";
         $heartailment = trim(mysqli_real_escape_string($conn, $_POST['otherillness']));
-        $otherillness = trim(mysqli_real_escape_string($conn, $_POST['others']));
+        $otherillness = trim(mysqli_real_escape_string($conn, $_POST['otherillness']));
         $yesfood = isset($_POST['yesfood']) ? trim(mysqli_real_escape_string($conn, $_POST['yesfood'])) : "";
         $nofood = isset($_POST['nofood']) ? trim(mysqli_real_escape_string($conn, $_POST['nofood'])) : "";
         $food = trim(mysqli_real_escape_string($conn, $_POST['food']));

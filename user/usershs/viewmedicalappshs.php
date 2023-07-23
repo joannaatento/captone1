@@ -16,7 +16,7 @@
         $fullname = $row['fullname'];
         $idnumber = $row['idnumber'];
         require_once('../../db.php');
-        if($_SESSION['leveleduc'] == 1){
+        if($_SESSION['leveleduc'] == 2){
             // User type 1 specific code here
         }
         else{

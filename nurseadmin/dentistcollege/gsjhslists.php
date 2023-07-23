@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Student Lists</title>
+    <title>Grade School and Junior High School Building</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -30,7 +30,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-    <link rel="stylesheet" href="assets/table.css">
+    <link rel="stylesheet" href="assets/tables.css">
 </head> 
 
 <body class="app">   	
@@ -90,8 +90,9 @@
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="studentlistdentistcollegeside.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelistdentistcollegeside.php">Employees</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="gsjhslists.php">Grade School and Junior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="shslist.php">Senior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="collegelists.php">College Building</a></li>
             </ul>
         </div>
     </li>
@@ -155,7 +156,7 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Students Health Profiles</h4>
+						        <h4 class="notification-title mb-1">Grade School and Junior High School Health Profiles</h4>
 					        </div>
 							<!--//generate report-->
 				        </div><!--//row-->
@@ -174,19 +175,16 @@
     <table>
       <thead>
         <tr>
-          <th>Student Name</th>
-          <th>Student ID Number</th>
-          <th>Level of Education</th>
+          <th>Name</th>
+          <th>ID Number</th>
           <th>Age</th>
-          <th>Name of Person to Contact</th>
-          <th>Person to Contact Number</th>
-          <th>Relationship</th>
+          <th>Contact Person Number</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody id="healthRecordTableBody">
         <?php
-        $sql = "SELECT * FROM healthrecord WHERE role = 'student'";
+        $sql = "SELECT * FROM healthrecordformgsjhs";
         $result = mysqli_query($conn, $sql);
 
         while($row = $result->fetch_assoc()){
@@ -194,13 +192,11 @@
         <tr>
           <td><?php echo $row['fullname']; ?></td>
           <td><?php echo $row['idnumber']; ?></td>
-          <td><?php echo $row['leveleduc']; ?></td>
           <td><?php echo $row['age']; ?></td>
-          <td><?php echo $row['nameperson']; ?></td>
-          <td><?php echo $row['personcp']; ?></td>
-          <td><?php echo $row['relationship']; ?></td>
+          <td><?php echo $row['cguardian']; ?></td>
+          
           <td>
-            <center><a href="viewstudentrecordcollege.php?idnumber=<?php echo $row['idnumber']; ?>">
+            <center><a href="viewgsjhsrecord.php?idnumber=<?php echo $row['idnumber']; ?>">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
                 <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
               </svg>

@@ -391,10 +391,11 @@
             <input name="relationship" type="text">
         </div>
     </div>
-    <div class="app-card-footer px-4 py-3">
+    <div class="app-card-footer px-4 py-3" style="display: flex; justify-content: center;">
 	<input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
-        <button name="submit_data" class="btn btn-success">SUBMIT</button>
+   <button name="submit_data" class="btn btn-success">SUBMIT</button>
     </div>
+                        
 </form>
 
 				    </div><!--//app-card-body-->

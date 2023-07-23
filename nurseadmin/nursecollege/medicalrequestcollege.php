@@ -83,7 +83,7 @@ if (mysqli_num_rows($result) > 0) {
     $is_deleted_on_website = $row['is_deleted_on_website'];
 }
 ?>	
-   <header class="app-header fixed-top">	   	            
+     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -139,8 +139,9 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlistscollege.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelistscollege.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="gsjhslists.php">Grade School and Junior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="shslist.php">Senior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="collegelists.php">College Building</a></li>
             </ul>
         </div>
     </li>
@@ -162,7 +163,7 @@ if (mysqli_num_rows($result) > 0) {
     </a>
     <div id="submenu-5" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link active" href="medicalrequestcollege.php">College</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="medicalrequestcollege.php">College</a></li>
             <li class="submenu-item"><a class="submenu-link" href="medicalrequestsemployeecollege.php">Employee</a></li>
         </ul>
     </div>

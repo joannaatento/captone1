@@ -109,8 +109,9 @@
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlistscollege.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelistscollege.php">Employees</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="gsjhslists.php">Grade School and Junior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="shslist.php">Senior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="collegelists.php">College Building</a></li>
             </ul>
         </div>
     </li>

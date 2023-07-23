@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>CAPSTONE</title>
+    <title>User Dashboard</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -152,8 +152,6 @@
 									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformgsjhs.php">Consultation</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesgsjhs.php">School Health Assessment</a>
 </li>
-
-
 									</ul>
 								</div>
 							</li>

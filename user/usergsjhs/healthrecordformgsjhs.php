@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>CAPSTONE</title>
+    <title>Health Profile Form</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -82,6 +82,8 @@
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+                <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <li class="nav-item has-submenu">
 
     <a class="nav-link submenu-toggle active" href="healthrecordformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
@@ -117,8 +119,8 @@
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
 										<li class="submenu-item"><a class="submenu-link" href="adddentalmessagegsjhs.php">Request Dental Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessage.php">Request Medical Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessage.php">Request Physician Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessagegsjhs.php">Request Medical Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessagegsjhs.php">Request Physician Scheduling</a></li>
 									</ul>
 								</div>
 							</li>
@@ -142,16 +144,14 @@
 								</a>
 								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofile.php">Health Profile Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdentalapp.php">Dental Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalapp.php">Medical Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianapp.php">Physician Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosis.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationform.php">Consultation</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewschoolasses.php">School Health Assessment</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofile.php">Health Profile Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappgsjhs.php">Dental Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappgsjhs.php">Medical Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappgsjhs.php">Physician Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisgsjhs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
+									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformgsjhs.php">Consultation</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesgsjhs.php">School Health Assessment</a>
 </li>
-
-
 									</ul>
 								</div>
 							</li>
@@ -160,6 +160,7 @@
 	        </div>
 	    </div>
     </header>
+    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">

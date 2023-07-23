@@ -30,7 +30,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>CAPSTONE</title>
+    <title>View Diagnosis Records</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -69,7 +69,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
- <header class="app-header fixed-top">	   	            
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -101,30 +101,22 @@ if (mysqli_num_rows($result) > 0) {
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
-    <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
-            <span class="nav-icon">
-                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+                <li class="nav-item has-submenu">
+
+    <a class="nav-link submenu-toggle active" href="healthrecordformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+        <span class="nav-icon">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"/>
                     <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"/>
                 </svg>
-            </span>
-            <span class="nav-link-text">Health Record</span>
-            <span class="submenu-arrow">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                </svg>
-            </span>
-        </a>
-        <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
-            <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link active" href="healthrecordform.php">Health Record Form</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="viewhealthrecord.php">View Health Record</a></li>
-            </ul>
-        </div>
-    </li>
-  
+        </span>
+        <span class="nav-link-text">Health Profile</span>
+    </a>
+</li>
+
 
 
 	<li class="nav-item has-submenu">
@@ -145,9 +137,9 @@ if (mysqli_num_rows($result) > 0) {
 								</a>
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-										<li class="submenu-item"><a class="submenu-link" href="adddentalmessage.php">Request Dental Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessage.php">Request Medical Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessage.php">Request Physician Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="adddentalmessagegsjhs.php">Request Dental Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessagegsjhs.php">Request Medical Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessagegsjhs.php">Request Physician Scheduling</a></li>
 									</ul>
 								</div>
 							</li>
@@ -171,15 +163,14 @@ if (mysqli_num_rows($result) > 0) {
 								</a>
 								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"> <a class="submenu-link" href="viewdentalapp.php">Dental Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalapp.php">Medical Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianapp.php">Physician Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosis.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationform.php">Consultation</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewschoolasses.php">School Health Assessment</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofile.php">Health Profile Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappgsjhs.php">Dental Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappgsjhs.php">Medical Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappgsjhs.php">Physician Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisgsjhs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
+									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformgsjhs.php">Consultation</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesgsjhs.php">School Health Assessment</a>
 </li>
-
-
 									</ul>
 								</div>
 							</li>
@@ -188,6 +179,7 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
+    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">

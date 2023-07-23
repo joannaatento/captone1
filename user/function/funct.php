@@ -71,7 +71,7 @@ if(isset($_POST['signup'])){
                 if ($role == '1') {
                     header('Location: ../usergsjhs/studentandemployeeingsjhs.php');
                 } elseif ($role == '2') {
-                    header('Location: ../studentandemployeeinshs.php');
+                    header('Location: ../usershs/studentandemployeeinshs.php');
                 } elseif ($role == '3') {
                     // Handle role 3
                     header('Location: ../studentandemployeeincollege.php');

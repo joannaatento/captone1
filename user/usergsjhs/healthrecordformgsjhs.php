@@ -259,7 +259,7 @@
     <div class="input_form">
         <div class="input_wrap">
             <label for="fullname">Name of Father</label>
-            <input name="fathername" id="father" type="text">
+            <input name="father" id="father" type="text">
         </div>
 
         <div class="input_wrap">
@@ -271,7 +271,7 @@
     <div class="input_form">
         <div class="input_wrap">
             <label for="fullname">Name of Mother</label>
-            <input name="mothername" id="mother" type="text">
+            <input name="mother" id="mother" type="text">
         </div>
 
         <div class="input_wrap">

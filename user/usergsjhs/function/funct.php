@@ -14,9 +14,9 @@
         $gender = isset($_POST['gender']) ? trim(mysqli_real_escape_string($conn, $_POST['gender'])) : "";
         $address = trim(mysqli_real_escape_string($conn, $_POST['address']));
         $paddress = trim(mysqli_real_escape_string($conn, $_POST['paddress']));
-        $father = isset($_POST['father']) ? trim(mysqli_real_escape_string($conn, $_POST['father'])) : "";
+        $father = trim(mysqli_real_escape_string($conn, $_POST['father']));
         $cfather = trim(mysqli_real_escape_string($conn, $_POST['cfather']));
-        $mother = isset($_POST['mother']) ? trim(mysqli_real_escape_string($conn, $_POST['mother'])) : "";
+        $mother = trim(mysqli_real_escape_string($conn, $_POST['mother']));
         $cmother = trim(mysqli_real_escape_string($conn, $_POST['cmother']));
         $religion = trim(mysqli_real_escape_string($conn, $_POST['religion']));
         $nationality = trim(mysqli_real_escape_string($conn, $_POST['nationality']));

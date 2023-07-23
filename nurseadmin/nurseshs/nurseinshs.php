@@ -53,7 +53,7 @@
 </head> 
 
 <body class="app">   	
-    <header class="app-header fixed-top">	   	            
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -109,8 +109,9 @@
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="studentlistsshs.php">Students</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="employeelistsshs.php">Employees</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="gsjhslists.php">Grade School and Junior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="shslist.php">Senior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="collegelists.php">College Building</a></li>
             </ul>
         </div>
     </li>
@@ -183,6 +184,7 @@
 	        </div>
 	    </div>
     </header>
+    
     
     <div class="app-wrapper">
 	    

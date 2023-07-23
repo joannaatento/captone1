@@ -1,6 +1,7 @@
 <?php
     session_start();
     include '../../../db.php';
+    
 if(isset($_POST['submit_medicalgsjhs'])){ // pag get ng data
     $admin_id = $_POST['admin_id'];
     $idnumber = $_POST['idnumber']; 

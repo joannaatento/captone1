@@ -1,110 +1,53 @@
 <?php
     session_start();
-    include '../../db.php';
+    include '../../../db.php';
 
 
-    if(isset($_POST['submit_data'])){ // pag get ng data 
-        $user_id = $_POST['user_id'];
-        $image = $_FILES['image']['name'];
-        $fullname = trim(mysqli_real_escape_string($conn, $_POST['fullname']));
-        $idnumber = trim(mysqli_real_escape_string($conn, $_POST['idnumber']));
-        $personalcpnum = trim(mysqli_real_escape_string($conn, $_POST['personalcpnum']));
-        $age = trim(mysqli_real_escape_string($conn, $_POST['age']));
-        $birthday = trim(mysqli_real_escape_string($conn, $_POST['birthday']));
-        $gender = trim(mysqli_real_escape_string($conn, $_POST['gender']));
-        $address = trim(mysqli_real_escape_string($conn, $_POST['address']));
-        $role = trim(mysqli_real_escape_string($conn, $_POST['role']));
-        $gradecourse = trim(mysqli_real_escape_string($conn, $_POST['gradecourse']));
-        $leveleduc = trim(mysqli_real_escape_string($conn, $_POST['leveleduc']));
-        $fathername = trim(mysqli_real_escape_string($conn, $_POST['fathername']));
-        $cfather = trim(mysqli_real_escape_string($conn, $_POST['cfather']));
-        $mothername = trim(mysqli_real_escape_string($conn, $_POST['mothername']));
-        $cmother = trim(mysqli_real_escape_string($conn, $_POST['cmother']));
-        $polio = isset($_POST['polio']) ? trim(mysqli_real_escape_string($conn, $_POST['polio'])) : "";
-        $measles = isset($_POST['measles']) ? trim(mysqli_real_escape_string($conn, $_POST['measles'])) : "";
-        $tb = isset($_POST['tb']) ? trim(mysqli_real_escape_string($conn, $_POST['tb'])) : "";
-        $seizure_epilepsy = isset($_POST['seizure_epilepsy']) ? trim(mysqli_real_escape_string($conn, $_POST['seizure_epilepsy'])) : "";
-        $tetanus = isset($_POST['tetanus']) ? trim(mysqli_real_escape_string($conn, $_POST['tetanus'])) : "";
-        $mumps = isset($_POST['mumps']) ? trim(mysqli_real_escape_string($conn, $_POST['mumps'])) : "";
-        $hepatits = isset($_POST['hepatits']) ? trim(mysqli_real_escape_string($conn, $_POST['hepatits'])) : "";
-        $bleeding_tendencies = isset($_POST['bleeding_tendencies']) ? trim(mysqli_real_escape_string($conn, $_POST['bleeding_tendencies'])) : "";
-        $chicken_pox = isset($_POST['chicken_pox']) ? trim(mysqli_real_escape_string($conn, $_POST['chicken_pox'])) : "";
-        $asthma = isset($_POST['asthma']) ? trim(mysqli_real_escape_string($conn, $_POST['asthma'])) : "";
-        $fainting_spells = isset($_POST['fainting_spells']) ? trim(mysqli_real_escape_string($conn, $_POST['fainting_spells'])) : "";
-        $eye_disorder = isset($_POST['eye_disorder']) ? trim(mysqli_real_escape_string($conn, $_POST['eye_disorder'])) : "";
-        $heart = trim(mysqli_real_escape_string($conn, $_POST['heart']));
-        $illness = trim(mysqli_real_escape_string($conn, $_POST['illness']));
-        $allergyfood = trim(mysqli_real_escape_string($conn, $_POST['allergyfood']));
-        $allergymed = trim(mysqli_real_escape_string($conn, $_POST['allergymed']));
-        $allow_not = trim(mysqli_real_escape_string($conn, $_POST['allow_not']));
-        $medications = trim(mysqli_real_escape_string($conn, $_POST['medications']));
-        $nameperson = trim(mysqli_real_escape_string($conn, $_POST['nameperson']));
-        $personcp = trim(mysqli_real_escape_string($conn, $_POST['personcp']));
-        $relationship = trim(mysqli_real_escape_string($conn, $_POST['relationship']));
+   
+if(isset($_POST['signup'])){
+    $fullname = $_POST['fullname'];
+    $leveleduc = $_POST['leveleduc'];
+    $idnumber = $_POST['idnumber'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-        $sql = "INSERT INTO healthrecord VALUES ('','$user_id','$image','$fullname','$idnumber','$personalcpnum','$age','$birthday','$gender','$address','$role','$gradecourse','$leveleduc','$fathername','$cfather','$mothername','$cmother','$polio','$measles','$tb','$seizure_epilepsy','$tetanus','$mumps','$hepatits','$bleeding_tendencies','$chicken_pox','$asthma','$fainting_spells','$eye_disorder','$heart','$illness','$allergyfood','$allergymed','$allow_not','$medications','$nameperson','$personcp','$relationship')";
-      
-    if (mysqli_query($conn, $sql)) {
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], "/xampp/htdocs/CAPSTONE1/upload_image/" . $_FILES["image"]["name"])) {
-            $_SESSION['success'] = "
-                <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
-                    <h2 style='color: #fff; font-size: 16px; margin-left: 10px;'>Your health record has been submitted.</h2>
-                </div>
-            ";
-            header('location: ../healthrecordform.php');
-        } else {
-            // There was an error uploading the file
-            echo "Error: " . $_FILES["image"]["error"];
-        }
-    }
-
-
-    // ...
-}
-    if(isset($_POST['signup'])){
-        $type = $_POST['type'];
-        $fullname = $_POST['fullname'];
-        $idnumber= $_POST['idnumber'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-    
-        if(substr($email, -16) != '@dwc-legazpi.edu'){
+    if(substr($email, -16) != '@dwc-legazpi.edu'){
+        echo $_SESSION['failed'] = "
+            <div>
+                <p style='font-size: 12px; color: red;'>Email is not a valid email. Please try again.</p>
+            </div>
+        ";
+        header('Location: ../signup.php');
+    } else {
+        $query = mysqli_query($conn, "SELECT * FROM users WHERE fullname = '$fullname'");
+        if(mysqli_num_rows($query) > 0){
             echo $_SESSION['failed'] = "
                 <div>
-                    <p style='font-size: 12px; color: red;'>Email is not a valid email. Please try again.</p>
+                    <p style='font-size: 12px; color: red;'>Email is already taken. Please try again.</p>
                 </div>
             ";
             header('Location: ../signup.php');
         } else {
-            $query = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
-            if(mysqli_num_rows($query) > 0){
-                echo $_SESSION['failed'] = "
-                    <div>
-                        <p style='font-size: 12px; color: red;'>Email is already taken. Please try again.</p>
-                    </div>
-                ";
-                header('Location: ../signup.php');
-            } else {
-                // Hash the password
-                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    
-                $sql_add = "INSERT INTO `users`(`type`, `fullname`, `idnumber`, `email`, `password`) VALUES ('$type','$fullname','$idnumber','$email','$hashedPassword')";
-                if($conn->query($sql_add) === TRUE){
-                    $sql = "SELECT * FROM users WHERE email = '$email'";
-                    $result = $conn->query($sql);
-                    if($result->num_rows > 0){
-                        $row = mysqli_fetch_array($result);
-                        $_SESSION['user_id'] = $row['id'];
-                        $_SESSION['type'] = $row['type'];
-                        $_SESSION['fullname'] = $row['fullname'];
-                        $_SESSION['idnumber'] = $row['idnumber'];
-                        $_SESSION['email'] = $row['email'];
-                        header('Location: ../healthrecorddashboard.php');
-                    }
+            // Hash the password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql_add = "INSERT INTO `users`(`fullname`, `leveleduc`, `idnumber`, `email`, `password`) VALUES ('$fullname','$leveleduc','$idnumber','$email','$hashedPassword')";
+            if($conn->query($sql_add) === TRUE){
+                $sql = "SELECT * FROM users WHERE email = '$email'";
+                $result = $conn->query($sql);
+                if($result->num_rows > 0){
+                    $row = mysqli_fetch_array($result);
+                    $_SESSION['user_id'] = $row['id'];
+                    $_SESSION['fullname'] = $row['fullname'];
+                    $_SESSION['leveleduc'] = $row['leveleduc'];
+                    $_SESSION['idnumber'] = $row['idnumber'];
+                    $_SESSION['email'] = $row['email'];
+                    header('Location: ../login.php');
                 }
             }
         }
     }
+}
     
     if (isset($_POST['login'])) {
         $email = $_POST['email'];
@@ -120,25 +63,40 @@
             // Verify the password
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['user_id'] = $row['user_id'];
-                $_SESSION['type'] = $row['type'];
-                $_SESSION['fullname'] = $row['fullname'];
+                $_SESSION['leveleduc'] = $row['leveleduc'];
                 $_SESSION['idnumber'] = $row['idnumber'];
                 $_SESSION['email'] = $row['email'];
-                header('Location: ../healthrecorddashboard.php');
+    
+                $role = $row['leveleduc'];
+                if ($role == '1') {
+                    header('Location: ../usergsjhs/studentandemployeeingsjhs.php');
+                } elseif ($role == '2') {
+                    header('Location: ../studentandemployeeinshs.php');
+                } elseif ($role == '3') {
+                    // Handle role 3
+                    header('Location: ../studentandemployeeincollege.php');
+                } elseif ($role == '4') {
+                    // Handle role 4
+                    header('Location: ../dentistgsjhsshs/dentistingsjhsshs.php');
+                } elseif ($role == '5') {
+                    // Handle role 5
+                    header('Location: ../dentistcollege/dentistincollege.php');
+                } elseif ($role == '6') {
+                    // Handle role 6
+                    header('Location: ../physiciangsjhsshs/physiciangsjhsshs.php');
+                } elseif ($role == '7') {
+                    // Handle role 7
+                    header('Location: ../physiciancollege/physiciancollege.php');
+                } else {
+                    // Handle other roles or scenarios as needed
+                    header('Location: ../dashboard.php');
+                }
             } else {
-                echo $_SESSION['failed'] = "
-                    <div>
-                        <p style='font-size: 12px; color: red;'>Invalid email or password. Please try again.</p>
-                    </div>
-                ";
+                $_SESSION['failed'] = "Invalid username or password. Please try again.";
                 header('Location: ../login.php');
             }
         } else {
-            echo $_SESSION['failed'] = "
-                <div>
-                    <p style='font-size: 12px; color: red;'>Invalid email or password. Please try again.</p>
-                </div>
-            ";
+            $_SESSION['failed'] = "Invalid username or password. Please try again.";
             header('Location: ../login.php');
         }
     }

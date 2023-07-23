@@ -36,6 +36,15 @@
 								<input id="signup-name" name="fullname" type="text" class="form-control signup-name" placeholder="Full name" required="required">
 							</div>
 							<div class="email mb-3">
+							<label class="sr-only" for="signup-email">Level of Education</label>
+							<select id="signup-name" name="leveleduc" class="form-control signup-role" required="required">
+								<option value="" selected disabled>--Select--</option>
+								<option value="1">Grade School/Junior High School</option>
+								<option value="2">Senior High School</option>
+								<option value="3">College</option>
+							</select>
+							</div>
+							<div class="email mb-3">
 								<label class="sr-only" for="signup-email">Your ID Number</label>
 								<input id="signup-name" name="idnumber" type="text" class="form-control signup-idnumber" placeholder="ID Number" required="required">
 							</div>

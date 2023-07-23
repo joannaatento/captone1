@@ -30,7 +30,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-    <link rel="stylesheet" href="assets/table.css">
+    <link rel="stylesheet" href="assets/tables.css">
 </head> 
 
 <body class="app">   	
@@ -204,9 +204,7 @@
           <th>Name</th>
           <th>ID Number</th>
           <th>Age</th>
-          <th>Name of Person to Contact</th>
-          <th>Person to Contact Number</th>
-          <th>Relationship</th>
+          <th>Contact Person Number</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -221,11 +219,10 @@
           <td><?php echo $row['fullname']; ?></td>
           <td><?php echo $row['idnumber']; ?></td>
           <td><?php echo $row['age']; ?></td>
-          <td><?php echo $row['nameperson']; ?></td>
-          <td><?php echo $row['personcp']; ?></td>
-          <td><?php echo $row['relationship']; ?></td>
+          <td><?php echo $row['cguardian']; ?></td>
+          
           <td>
-            <center><a href="viewstudentrecord.php?idnumber=<?php echo $row['idnumber']; ?>">
+            <center><a href="viewgsjhsrecord.php?idnumber=<?php echo $row['idnumber']; ?>">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
                 <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
               </svg>

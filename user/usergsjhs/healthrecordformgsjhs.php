@@ -45,7 +45,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyles.css">
+	<link rel="stylesheet" href="assets/formstyless.css">
 
 </head> 
 
@@ -116,7 +116,7 @@
 								</a>
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-										<li class="submenu-item"><a class="submenu-link" href="adddentalmessage.php">Request Dental Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="adddentalmessagegsjhs.php">Request Dental Scheduling</a></li>
 										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessage.php">Request Medical Scheduling</a></li>
 										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessage.php">Request Physician Scheduling</a></li>
 									</ul>
@@ -142,6 +142,7 @@
 								</a>
 								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofile.php">Health Profile Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdentalapp.php">Dental Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewmedicalapp.php">Medical Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewphysicianapp.php">Physician Record</a>
@@ -207,7 +208,7 @@
         <div class="input_wrap">
                 <label for="fullname">Role</label>
                 <select class="form-select" name="role">
-                    <option value="" disabled selected>Select Role</option>
+                    <option value="" selected>Select Role</option>
                     <option value="Student in GS and JHS">Student</option>
                     <option value="Employee in GS and JHS">Employee</option>
                 </select>
@@ -305,11 +306,11 @@
             <label class="labels" for="bothparents" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Both Parents</label>
         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="checkbox">
-            <input name="livesmother" value="livesmother" type="checkbox" id="mother">
+            <input name="livesmother" value="livesmother" type="checkbox" id="livesmother">
             <label class="labels" for="livesmother" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mother</label>
         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="checkbox">
-            <input name="livesfather" value="livesfather" type="checkbox" id="father">
+            <input name="livesfather" value="livesfather" type="checkbox" id="livesfather">
             <label class="labels" for="livesfather" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Father</label>
         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="checkbox">

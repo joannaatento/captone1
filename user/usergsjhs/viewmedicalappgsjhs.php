@@ -14,12 +14,13 @@
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
+        $idnumber = $row['idnumber'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 1){
             // User type 1 specific code here
         }
         else{
-            header('location: ../login.php');
+            header('location: ../../login.php');
             exit; // Exit the script to prevent further execution
         }
     }
@@ -50,6 +51,26 @@
 </head> 
 
 <body class="app">   	
+<?php
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM dentalapp WHERE idnumber= '$idnumber'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $fullname = $row['fullname'];
+  $role = $row['role'];
+  $cenrolled = $row['cenrolled'];
+  $service = $row['service'];
+  $date_time = $row['date_time'];
+  $dentist_name = $row['dentist_name'];
+  $date_created = $row['date_created'];
+    }
+ else {
+ } 
+?>
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -82,22 +103,30 @@
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
-                <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
-				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
-                <li class="nav-item has-submenu">
-
-    <a class="nav-link submenu-toggle active" href="healthrecordformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <li class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+            <span class="nav-icon">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"/>
                     <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"/>
                 </svg>
-        </span>
-        <span class="nav-link-text">Health Profile</span>
-    </a>
-</li>
-
+            </span>
+            <span class="nav-link-text">Health Record</span>
+            <span class="submenu-arrow">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </span>
+        </a>
+        <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+            <ul class="submenu-list list-unstyled">
+                <li class="submenu-item"><a class="submenu-link active" href="healthrecordform.php">Health Record Form</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="viewhealthrecord.php">View Health Record</a></li>
+            </ul>
+        </div>
+    </li>
+  
 
 
 	<li class="nav-item has-submenu">
@@ -118,9 +147,9 @@
 								</a>
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-										<li class="submenu-item"><a class="submenu-link" href="adddentalmessagegsjhs.php">Request Dental Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessagegsjhs.php">Request Medical Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessagegsjhs.php">Request Physician Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="adddentalmessage.php">Request Dental Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessage.php">Request Medical Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessage.php">Request Physician Scheduling</a></li>
 									</ul>
 								</div>
 							</li>
@@ -144,13 +173,12 @@
 								</a>
 								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofile.php">Health Profile Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappgsjhs.php">Dental Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappgsjhs.php">Medical Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappgsjhs.php">Physician Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisgsjhs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformgsjhs.php">Consultation</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesgsjhs.php">School Health Assessment</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdentalapp.php">Dental Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalapp.php">Medical Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianapp.php">Physician Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosis.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
+									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationform.php">Consultation</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewschoolasses.php">School Health Assessment</a>
 </li>
 
 
@@ -162,32 +190,71 @@
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
-	    
-	    <div class="app-content pt-3 p-md-3 p-lg-4">
-		    <div class="container-xl">
-			    <div class="position-relative mb-3">
-				    <div class="row g-3 justify-content-between">
-					   
-					       
-						
-				    </div>
-			    </div>
-			    
-                <div class="app-card app-card-notification shadow-sm mb-4">
-				    <div class="app-card-header px-4 py-3">
-				        <div class="row g-3 align-items-center">
-					       
-				        </div><!--//row-->
-				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-				
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <div class="position-relative mb-3">
+                <div class="row g-3 justify-content-between">
+                </div>
+            </div>
+            
+            <div class="app-card app-card-notification shadow-sm mb-4">
+                <div class="app-card-header px-4 py-3">
+                    <div class="row g-3 align-items-center">
+                    </div><!--//row-->
+                </div><!--//app-card-header-->
+                <div class="app-card-body p-4">
+                    <?php
+                    $sql = "SELECT * FROM medicalapp WHERE idnumber = '$idnumber'";
+                    $result = $conn->query($sql);
+                    while($row = $result->fetch_array()) {
+                    ?>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="idnumber" class="col-sm-12 control-label">Your ID Number</label>
+                                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="patient_name" class="col-sm-12 control-label">Your name</label>
+                                <input type="text" class="form-control" id="fullname" name="name1" placeholder="Enter your Fullname" value="<?php echo $row['name1']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="gradecourseyear1" class="col-sm-12 control-label">Grade & Section/Course & Year</label>
+                                <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter your Fullname" value="<?php echo $row['gradecourseyear1']; ?>" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="cenrolled" class="col-sm-12 control-label">Role</label>
+                                <input type="text" class="form-control" id="role" name="role" placeholder="If you are an employee, just type Employee" value="<?php echo $row['role']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="onoff" class="col-sm-12 control-label">On-campus Activity or Off-campus Activity</label>
+                                <input type="text" class="form-control" id="onoff" name="onoff" value="<?php echo $row['onoff']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span>Schedule: <?php echo $row['date_time']; ?></span>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div><!--//app-card-body-->
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

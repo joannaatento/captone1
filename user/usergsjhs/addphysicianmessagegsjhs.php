@@ -25,7 +25,6 @@
     }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -45,11 +44,13 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/style.css">
+	<link rel="stylesheet" href="assets/styless.css">
 
+   
+</style>
 </head> 
 
-<body class="app">   	
+<body class="app">   
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -82,22 +83,30 @@
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
-                <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
-				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
-                <li class="nav-item has-submenu">
-
-    <a class="nav-link submenu-toggle active" href="healthrecordformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <li class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+            <span class="nav-icon">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"/>
                     <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"/>
                 </svg>
-        </span>
-        <span class="nav-link-text">Health Profile</span>
-    </a>
-</li>
-
+            </span>
+            <span class="nav-link-text">Health Record</span>
+            <span class="submenu-arrow">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </span>
+        </a>
+        <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+            <ul class="submenu-list list-unstyled">
+                <li class="submenu-item"><a class="submenu-link active" href="healthrecordform.php">Health Record Form</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="viewhealthrecord.php">View Health Record</a></li>
+            </ul>
+        </div>
+    </li>
+  
 
 
 	<li class="nav-item has-submenu">
@@ -118,9 +127,9 @@
 								</a>
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-										<li class="submenu-item"><a class="submenu-link" href="adddentalmessagegsjhs.php">Request Dental Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessagegsjhs.php">Request Medical Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessagegsjhs.php">Request Physician Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="adddentalmessage.php">Request Dental Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessage.php">Request Medical Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessage.php">Request Physician Scheduling</a></li>
 									</ul>
 								</div>
 							</li>
@@ -144,13 +153,12 @@
 								</a>
 								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofile.php">Health Profile Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappgsjhs.php">Dental Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappgsjhs.php">Medical Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappgsjhs.php">Physician Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisgsjhs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformgsjhs.php">Consultation</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesgsjhs.php">School Health Assessment</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdentalapp.php">Dental Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalapp.php">Medical Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianapp.php">Physician Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosis.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
+									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationform.php">Consultation</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewschoolasses.php">School Health Assessment</a>
 </li>
 
 
@@ -162,7 +170,6 @@
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -178,32 +185,109 @@
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-					       
+                        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Request Physician Consultation Schedule</h4>
+					        </div>
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-				
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+<form class="form-horizontal mt-4" method="post" action="function/functions.php">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee ID Number</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" required>
+      </div>
+    </div>
+  </div>
+ </div>
+<br>
+ <div class="row">
+
+
+ <div class="col-sm-6">
+        <div class="form-group">
+            <label for="role" class="col-sm-4 control-label" style="font-size: 16px">Role</label>
+            <div class="col-sm-10">
+                <select id="role" name="role" class="form-control">
+                <option value="">Select Role</option>
+                <option value="Student in North Campus">Student in North Campus</option>
+                <option value="Student in South Campus">Student in South Campus</option>
+                <option value="Employee in North Campus">Employee in North Campus</option>
+                <option value="Employee in South Campus">Employee in South Campus</option>
+                </select>
+            </div>
+        </div>
+                            </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="gradecourseyear" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section/Course & Year (If Student)</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year">
+      </div>
+    </div>
+  </div>
+  
+    </div>
+
+      <p><b><br>Note: </b> The PHYSICIAN will ONLY be available every <b>WEDNESDAY (8:00 A.M to 11:00 A.M)</b>. If your request has been approved, a text message will be sent to you.</p>
     
-    <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
-	
-	<script>
-		// Timer to remove success message after 5 seconds (5000 milliseconds)
-		setTimeout(function(){
-			var successMessage = document.getElementById('success-message');
-			if(successMessage){
-				successMessage.remove();
-			}
-		}, 5000);
-	</script>
+
+<div class="row">
+    <div class="form-group">
+        <br>
+        <label for="message" class="col-sm-10 control-label">Write a message.... (State Date and Time)</label>
+        <div class="col-sm-12">
+            <textarea type="text" class="form-control" id="message" name="message" placeholder="Enter your message.... Ex. July 08, 2023 Monday 8:00AM" required></textarea>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <br>
+        <input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
+        <button name="submit_physician" class="btn btn-success">Send Physician Consultation Appointment</button>
+    </div>
+</div>
+</form>
+</div><!--//app-card-body-->
+</div>			    
+</div>
+</div>
+</div>  					
+<!-- Javascript -->          
+<script src="assets/plugins/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+
+<!-- Page Specific JS -->
+<script src="assets/js/app.js"></script> 
+
+<script>
+    // Timer to remove success message after 5 seconds (5000 milliseconds)
+    setTimeout(function(){
+        var successMessage = document.getElementById('success-message');
+        if(successMessage){
+            successMessage.remove();
+        }
+    }, 5000);
+</script>
+
 
 </body>
 </html> 

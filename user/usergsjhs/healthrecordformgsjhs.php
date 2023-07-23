@@ -45,7 +45,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyless.css">
+	<link rel="stylesheet" href="assets/formstyles.css">
 
 </head> 
 
@@ -190,7 +190,7 @@
 				    <div class="app-card-body p-4">
 					<p class="title_">Personal Information</p>
 					
-					<form class="form-horizontal mt-4" action="function/funct.php" method="post" enctype="multipart/form-data">
+					<form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data">
     <div class="align_form">
 
 	
@@ -198,7 +198,7 @@
 
 		<div class="input_wrap">
                 <label for="image">Upload Image</label>
-                <input type="file" name="image" id="image">
+                <input type="file" name="image" id="image" required>
 			</div>
             <div class="input_wrap">
                 <label for="gradelevel">Grade Level</label>
@@ -216,15 +216,22 @@
                 <label for="fullname">Full Name</label>
                 <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" >
             </div>
+                            </div>
+                            </div>
+        <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">ID Number</label>
                 <input name="idnumber" type="text">
             </div>
             <div class="input_wrap">
+                <label for="fullname">Personal Contact Number</label>
+                <input name="cp" type="text">
+            </div>
+            <div class="input_wrap">
                 <label for="fullname">Age</label>
                 <input name="age" type="text">
             </div>
-            <div class="input_wrap">
+         <div class="input_wrap">
                 <label for="fullname">Gender</label>
                 <select class="form-select" name="gender">
                     <option value="" disabled selected>Select Gender</option>
@@ -232,14 +239,15 @@
                     <option value="Male">Male</option>
                 </select>
             </div>
-            </div>
          </div>
+   
           <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">Home Address</label>
                 <input name="address" id ="address" type="text">
             </div>
      </div>
+                            
      <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">Present Address</label>
@@ -310,10 +318,15 @@
         </div>
         <div class="input_form">
         <div class="input_wrap">
+            <label for="fullname">Guardian's Name (In case the student is living with Guadian)</label>
+            <input name="guardianname" id="guardianname" type="text">
+        </div>
+        <div class="input_wrap">
             <label for="fullname">Guardian's relation to the student/employee</label>
             <input name="guardianrelation" id="guardianrelation" type="text">
         </div>
-
+    </div>
+    <div class="input_form">
         <div class="input_wrap">
             <label for="fullname">Contact</label>
             <input name="cguardian" id="cguardian" type="text">
@@ -322,7 +335,7 @@
     <div class="input_form">
         <div class="input_wrap">
             <label for="fullname">Alternation Person to Contact in Case of Emergency</label>
-            <input name="guardianrelation" id="altrelation" type="text">
+            <input name="altrelation" id="altrelation" type="text">
         </div>
         <div class="input_wrap">
             <label for="fullname">Relationship to the student/employee</label>

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include '../../../db.php';
+    include '../../db.php';
 
 
    
@@ -93,11 +93,11 @@ if(isset($_POST['signup'])){
                 }
             } else {
                 $_SESSION['failed'] = "Invalid username or password. Please try again.";
-                header('Location: ../login.php');
+                header('Location: ../../login.php');
             }
         } else {
             $_SESSION['failed'] = "Invalid username or password. Please try again.";
-            header('Location: ../login.php');
+            header('Location: ../../login.php');
         }
     }
     

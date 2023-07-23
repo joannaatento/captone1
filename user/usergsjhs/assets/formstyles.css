@@ -148,11 +148,8 @@ input[type="text"]:focus {outline:none;}
 #language{
     width: 999px;
 }
-#guardianname{
-    width: 500px;
-}
 #guardianrelation{
-    width: 500px;
+    width: 400px;
 }
 #cguardian{
     width: 300px;
@@ -172,10 +169,14 @@ input[type="text"]:focus {outline:none;}
 #othersmedical{
     width: 400px;
 }
+#guardianname{
+    width: 400px;
+}
 .input_form {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
+    
 }
 .input_form_2 {
     display: grid;

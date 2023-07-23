@@ -6,7 +6,8 @@
 $searchQuery = $_GET['query'];
 
 // Modify the SQL query to include the search condition
-$sql = "SELECT * FROM healthrecord WHERE role = 'student' AND (fullname LIKE '%$searchQuery%' OR idnumber LIKE '%$searchQuery%' OR leveleduc LIKE '%$searchQuery%' OR age LIKE '%$searchQuery%' OR nameperson LIKE '%$searchQuery%' OR personcp LIKE '%$searchQuery%' OR relationship LIKE '%$searchQuery%')";
+$sql = "SELECT * FROM healthrecordformgsjhs WHERE fullname LIKE '%$searchQuery%' OR idnumber LIKE '%$searchQuery%' OR age LIKE '%$searchQuery%' OR cguardian LIKE '%$searchQuery%'";
+
 $result = mysqli_query($conn, $sql);
 
 // Generate the HTML for the filtered table rows

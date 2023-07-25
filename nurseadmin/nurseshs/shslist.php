@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Student Lists</title>
+    <title>Senior High School Building</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -184,7 +184,7 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Grade School and Junior High School Health Profiles</h4>
+						        <h4 class="notification-title mb-1">Senior High School Health Profiles</h4>
 					        </div>
 							<!--//generate report-->
 				        </div><!--//row-->
@@ -213,20 +213,20 @@
       </thead>
       <tbody id="healthRecordTableBody">
         <?php
-        $sql = "SELECT * FROM healthrecordformgsjhs";
+        $sql = "SELECT * FROM healthrecordformshs";
         $result = mysqli_query($conn, $sql);
 
         while($row = $result->fetch_assoc()){
         ?>
         <tr>
-        <td><?php echo $row['fullname']; ?></td>
+          <td><?php echo $row['fullname']; ?></td>
           <td><?php echo $row['idnumber']; ?></td>
           <td><?php echo $row['age']; ?></td>
-          <td><?php echo $row['guardianname']; ?></td>
-          <td><?php echo $row['cguardian']; ?></td>
+          <td><?php echo $row['notified']; ?></td>
+          <td><?php echo $row['contact']; ?></td>
           
           <td>
-            <center><a href="viewgsjhsrecord.php?idnumber=<?php echo $row['idnumber']; ?>">
+            <center><a href="viewshsrecord.php?idnumber=<?php echo $row['idnumber']; ?>">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
                 <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
               </svg>
@@ -248,7 +248,7 @@ function searchRecords() {
       document.getElementById("healthRecordTableBody").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "function/searchqueryforgsjhs.php?query=" + searchQuery, true);
+  xhttp.open("GET", "function/searchqueryforshs.php?query=" + searchQuery, true);
   xhttp.send();
 }
 </script>

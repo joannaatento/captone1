@@ -178,6 +178,7 @@
           <th>Name</th>
           <th>ID Number</th>
           <th>Age</th>
+          <th>Person to Contact</th>
           <th>Contact Person Number</th>
           <th>Action</th>
         </tr>
@@ -193,6 +194,7 @@
           <td><?php echo $row['fullname']; ?></td>
           <td><?php echo $row['idnumber']; ?></td>
           <td><?php echo $row['age']; ?></td>
+          <td><?php echo $row['guardianname']; ?></td>
           <td><?php echo $row['cguardian']; ?></td>
           
           <td>
@@ -218,7 +220,7 @@ function searchRecords() {
       document.getElementById("healthRecordTableBody").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "function/searchqueryforstudent.php?query=" + searchQuery, true);
+  xhttp.open("GET", "function/searchqueryforgsjhs.php?query=" + searchQuery, true);
   xhttp.send();
 }
 </script>

@@ -6,7 +6,7 @@
 $searchQuery = $_GET['query'];
 
 // Modify the SQL query to include the search condition
-$sql = "SELECT * FROM healthrecordformgsjhs WHERE fullname LIKE '%$searchQuery%' OR idnumber LIKE '%$searchQuery%' OR age LIKE '%$searchQuery%' OR cguardian LIKE '%$searchQuery%'";
+$sql = "SELECT * FROM healthrecordformgsjhs WHERE fullname LIKE '%$searchQuery%' OR idnumber LIKE '%$searchQuery%' OR age LIKE '%$searchQuery%' OR guardianname LIKE '%$searchQuery%' OR cguardian LIKE '%$searchQuery%'";
 
 $result = mysqli_query($conn, $sql);
 

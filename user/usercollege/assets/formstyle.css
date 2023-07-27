@@ -256,7 +256,7 @@ select[readonly] {
 
 .checkbox label {
     position: relative;
-    font-size: 200px;
+    font-size: 400px;
     padding-left: 25px;
     cursor: pointer;
 }
@@ -272,7 +272,7 @@ select.form-select:not(:disabled) {
     top: 0;
     left: 0;
     width: 18px;
-    height: 20px;
+    height: 18px;
     border: 2px solid #15a362;
     border-radius: 4px;
 }

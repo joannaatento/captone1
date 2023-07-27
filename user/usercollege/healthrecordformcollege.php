@@ -45,7 +45,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyles.css">
+	<link rel="stylesheet" href="assets/formstyle.css">
 
 </head> 
 
@@ -254,7 +254,7 @@
 
         <div class="input_wrap">
             <label for="fullname">Birthday</label>
-            <input name="birthday" id="birthday" type="text">
+            <input name="birthday" id="birthday" type="date">
         </div>
 
         <div class="input_wrap">
@@ -304,14 +304,14 @@
 
         <div class="input_wrap">
             <label for="fullname">Relation to student/employee</label>
-            <input name="arelation" id="con" type="text">
+            <input name="relation" id="con" type="text">
         </div>
    </div>
 
    <div class="input_form">
    <div class="input_wrap">
             <label for="fullname">Hospital of Choice of referral</label>
-            <input name="creferral" id="referral" type="text">
+            <input name="referral" id="referral" type="text">
         </div>
 
   <div class="input_wrap">
@@ -371,13 +371,14 @@
     </div>
     <br>
     <div class="row-container">
-    <p>Asthma:</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <p>Asthma:</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <div class="checkbox">
     <input name="yesasthma" value="yesasthma" type="checkbox" id="yesasthma">
     <label class="labels" for="yesasthma" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input name="noasthma" value="noasthma" type="checkbox" id="noasthma">
     <label class="labels" for="noasthma" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -391,13 +392,13 @@
     </div>
     <br>
     <div class="row-container">
-    <p>Bleeding Tendency:</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <p style="margin-right: 53px;">Bleeding Tendency:</p>
   <div class="checkbox">
     <input name="yesbleeding" value="yesbleeding" type="checkbox" id="yesbleeding">
     <label class="labels" for="yesbleeding" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input name="nobleeding" value="nobleeding" type="checkbox" id="nobleeding">
     <label class="labels" for="nobleeding" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -407,12 +408,404 @@
   </div>
 </div>
 
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 137px;">Cancer:</p>
+  <div class="checkbox">
+    <input name="yescancer" value="yescancer" type="checkbox" id="yescancer">
+    <label class="labels" for="yescancer" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="nocancer" value="nocancer" type="checkbox" id="nocancer">
+    <label class="labels" for="nocancer" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationcancer" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 125px;">Diabetes:</p>
+  <div class="checkbox">
+    <input name="yesdiabetes" value="yesdiabetes" type="checkbox" id="yesdiabetes">
+    <label class="labels" for="yesdiabetes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="nodiabetes" value="nodiabetes" type="checkbox" id="nodiabetes">
+    <label class="labels" for="nodiabetes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationdiabetes" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 84px;">Heart Disorder:</p>
+  <div class="checkbox">
+    <input name="yesheartdis" value="yesheartdis" type="checkbox" id="yesheartdis">
+    <label class="labels" for="yesheartdis" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="noheartdis" value="noheartdis" type="checkbox" id="noheartdis">
+    <label class="labels" for="noheartdis" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationheartdis" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 45px;">High Blood Pressure:</p>
+  <div class="checkbox">
+    <input name="yesbp" value="yesbp" type="checkbox" id="yesbp">
+    <label class="labels" for="yesbp" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="nobp" value="nobp" type="checkbox" id="nobp">
+    <label class="labels" for="nobp" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationbp" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 78px;">Kidney Problem:</p>
+  <div class="checkbox">
+    <input name="yeskidney" value="yeskidney" type="checkbox" id="yeskidney">
+    <label class="labels" for="yeskidney" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="nokidney" value="nokidney" type="checkbox" id="nokidney">
+    <label class="labels" for="nokidney" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationkidney" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 78px;">Mental Disorder:</p>
+  <div class="checkbox">
+    <input name="yesmental" value="yesmental" type="checkbox" id="yesmental">
+    <label class="labels" for="yesmental" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="nomental" value="nomental" type="checkbox" id="nomental">
+    <label class="labels" for="nomental" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationmental" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 140px;">Obesity:</p>
+  <div class="checkbox">
+    <input name="yesobese" value="yesobese" type="checkbox" id="yesobese">
+    <label class="labels" for="yesobese" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="noobese" value="noobese" type="checkbox" id="noobese">
+    <label class="labels" for="noobese" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationobese" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 79px;">Seizure Disorder:</p>
+  <div class="checkbox">
+    <input name="yesseizure" value="yesseizure" type="checkbox" id="yesseizure">
+    <label class="labels" for="yesseizure" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="noseizure" value="noseizure" type="checkbox" id="noseizure">
+    <label class="labels" for="noseizure" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationseizure" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 150px;">Stroke:</p>
+  <div class="checkbox">
+    <input name="yesstroke" value="yesstroke" type="checkbox" id="yesstroke">
+    <label class="labels" for="yesstroke" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="nostroke" value="nostroke" type="checkbox" id="nostroke">
+    <label class="labels" for="nostroke" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationstroke" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+<div class="input_form">
+    </div>
+    <br>
+    <div class="row-container">
+    <p style="margin-right: 109px;">Tuberculosis:</p>
+  <div class="checkbox">
+    <input name="yestb" value="yestb" type="checkbox" id="yestb">
+    <label class="labels" for="yestb" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="notb" value="notb" type="checkbox" id="notb">
+    <label class="labels" for="notb" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="relationtb" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+  </div>
+</div>
+
+<div>
+    <br>
+     <b><p class="title">C. MEDICAL HISTORY:</b><i> The student/employee has suffered from: (please tick the box)</i></p>
+    </div>
+    <b><p class="vaccine">ILLNESS</p></b>
+<br>
+    <div class="input_form">
+        <div class="checkbox">
+            <input name="allergy" value="allergy" type="checkbox" id="allergy">
+            <label class="label" for="allergy" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALLERGY</label>
+        </div>
+        <div class="checkbox">
+            <input name="anemia" value="anemia" type="checkbox" id="anemia">
+            <label class="anemia" for="anemia" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANEMIA</label>
+        </div>
+        <div class="checkbox">
+            <input name="asthma" value="asthma" type="checkbox" id="asthma">
+            <label class="label" for="asthma" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASTHMA</label>
+        </div>
+        <div class="checkbox">
+            <input name="behavioral" value="behavioral" type="checkbox" id="behavioral">
+            <label class="label" for="behavioral" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEHAVIORAL PROBLEM</label>
+        </div>
+        <div class="checkbox">
+            <input name="bleedingprob" value="bleedingprob" type="checkbox" id="bleedingprob">
+            <label class="label" for="bleedingprob" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BLEEDING PROBLEM</label>
+        </div>
+        <div class="checkbox">
+            <input name="blood" value="blood" type="checkbox" id="blood">
+            <label class="label" for="blood" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BLOOD ABNORMALITY</label>
+        </div>
+        <div class="checkbox">
+            <input name="chickenpox" value="chickenpox" type="checkbox" id="chickenpox">
+            <label class="label" for="chickenpox" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHICKEN POX</label>
+        </div>
+        <div class="checkbox">
+            <input name="convulsion" value="convulsion" type="checkbox" id="convulsion">
+            <label class="label" for="convulsion" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONVULSION</label>
+        </div>
+        <div class="checkbox">
+            <input name="dengue" value="dengue" type="checkbox" id="dengue">
+            <label class="label" for="dengue" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DENGUE</label>
+        </div>
+        <div class="checkbox">
+            <input name="diabetess" value="diabetess" type="checkbox" id="diabetess">
+            <label class="label" for="diabetess" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIABETES</label>
+        </div>
+        <div class="checkbox">
+            <input name="earproblem" value="earproblem" type="checkbox" id="earproblem">
+            <label class="label" for="earproblem" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EAR PROBLEM</label>
+        </div>
+        <div class="checkbox">
+            <input name="eating_disorder" value="eating_disorder" type="checkbox" id="eating_disorder">
+            <label class="label" for="eating_disorder" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EATING DISORDER</label>
+        </div>
+
+        <div class="checkbox">
+            <input name="epilepsy" value="epilepsy" type="checkbox" id="epilepsy">
+            <label class="label" for="epilepsy" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EPILEPSY</label>
+        </div>
+        <div class="checkbox">
+            <input name="eyeproblemm" value="eyeproblemm" type="checkbox" id="eyeproblemm">
+            <label class="label" for="eyeproblemm" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EYE PROBLEM</label>
+        </div>
+        <div class="checkbox">
+            <input name="fracture" value="fracture" type="checkbox" id="fracture">
+            <label class="label" for="fracture" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FRACTURE</label>
+        </div>
+        <div class="checkbox">
+            <input name="hearing_problem" value="hearing_problem" type="checkbox" id="hearing_problem">
+            <label class="label" for="hearing_problem" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HEARING PROBLEM</label>
+        </div>
+        <div class="checkbox">
+            <input name="heart_disorder" value="heart_disorder" type="checkbox" id="heart_disorder">
+            <label class="label" for="heart_disorder" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HEART DISORDER</label>
+        </div>
+        <div class="checkbox">
+            <input name="hyperacidity" value="hyperacidity" type="checkbox" id="hyperacidity">
+            <label class="label" for="hyperacidity" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HYPERACIDITY</label>
+        </div>
+        <div class="checkbox">
+            <input name="indigestion" value="indigestion" type="checkbox" id="indigestion">
+            <label class="label" for="indigestion" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INDIGESTION</label>
+        </div>
+        <div class="checkbox">
+            <input name="insomia" value="insomia" type="checkbox" id="insomia">
+            <label class="label" for="insomia" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INSOMIA</label>
+        </div>
+
+        <div class="checkbox">
+            <input name="kidney_problem" value="kidney_problem" type="checkbox" id="kidney_problem">
+            <label class="label" for="kidney_problem" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KIDNEY PROBLEM</label>
+        </div>
+        <div class="checkbox">
+            <input name="liver_problem" value="liver_problem" type="checkbox" id="liver_problem">
+            <label class="label" for="liver_problem" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIVER PROBLEM</label>
+        </div>
+        <div class="checkbox">
+            <input name="measless" value="measless" type="checkbox" id="measless">
+            <label class="label" for="measless" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEASLES</label>
+        </div>
+        <div class="checkbox">
+            <input name="mumpss" value="mumpss" type="checkbox" id="mumpss">
+            <label class="label" for="mumpss" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MUMPS</label>
+        </div>
+        <div class="checkbox">
+            <input name="parasitism" value="parasitism" type="checkbox" id="parasitism">
+            <label class="label" for="parasitism" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PARASITISM</label>
+        </div>
+        <div class="checkbox">
+            <input name="pneumonia" value="pneumonia" type="checkbox" id="pneumonia">
+            <label class="label" for="pneumonia" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PNEUMONIA</label>
+        </div>
+        <div class="checkbox">
+            <input name="primary_complex" value="primary_complex" type="checkbox" id="primary_complex">
+            <label class="label" for="primary_complex" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRIMARY COMPLEX</label>
+        </div>
+        <div class="checkbox">
+            <input name="scoliosis" value="scoliosis" type="checkbox" id="scoliosis">
+            <label class="label" for="scoliosis" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCOLIOSIS</label>
+        </div>
+
+        <div class="checkbox">
+            <input name="skin_problem" value="skin_problem" type="checkbox" id="skin_problem">
+            <label class="label" for="skin_problem" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKIN PROBLEM</label>
+        </div>
+        <div class="checkbox">
+            <input name="tonsillitis" value="tonsillitis" type="checkbox" id="tonsillitis">
+            <label class="label" for="tonsillitis" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TONSILLITIS</label>
+        </div>
+        <div class="checkbox">
+            <input name="typhoid_fever" value="typhoid_fever" type="checkbox" id="typhoid_fever">
+            <label class="label" for="typhoid_fever" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPHOID FEVER</label>
+        </div>
+        <div class="checkbox">
+            <input name="vision_defect" value="vision_defect" type="checkbox" id="vision_defect">
+            <label class="label" for="vision_defect" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VISION DEFECT</label>
+        </div>
+        
+
+       
+    </div>
+    <div>
+        <br>
+        <p><i>The student/employee has a history of</i></p>
+    </div>
+    <div class="input_form">
+    </div>
+
+    <div class="row-container">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <p style="margin-right: 30px;">Hospitalization</p>
+  <div class="checkbox">
+    <input name="yeshospitalization" value="yeshospitalization" type="checkbox" id="yeshospitalization">
+    <label class="labels" for="yeshospitalization" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="nohospitalization" value="nohospitalization" type="checkbox" id="nohospitalization">
+    <label class="labels" for="nohospitalization" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <p style="margin-right: 30px;">Surgical Operation</p>
+  <div class="checkbox">
+    <input name="yessurgical" value="yessurgical" type="checkbox" id="yessurgical">
+    <label class="labels" for="yessurgical" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="nosurgical" value="nosurgical" type="checkbox" id="nosurgical">
+    <label class="labels" for="nosurgical" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</div>
+<br>
+        <div class="input_wrap">
+            <label>The student/employee is on special medication</label>
+            <input name="specialmed" type="text">
+        </div>
+        <div class="input_wrap">
+            <label>The student/employee is allergic to the following drugs</label>
+            <input name="allergicdrugs" type="text">
+        </div>
+        <div class="input_wrap">
+            <label>Other relevant information</label>
+            <input name="otherrelevant" type="text">
+        </div>
+    </div>
+
  <div class="app-card-footer px-4 py-3" style="display: flex; justify-content: center;">
 	<input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
    <button name="submit_data" class="btn btn-success">SUBMIT</button>
     </div>
 
 
+    
 
 </form>
 

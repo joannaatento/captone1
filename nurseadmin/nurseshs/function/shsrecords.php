@@ -164,4 +164,32 @@ if(isset($_POST['submit_weightmonitor'])){ // pag get ng data
         ";
     }
 } //for weight monitoring shs
+
+if(isset($_POST['submit_vitalsigns'])){ // pag get ng data
+    $admin_id = $_POST['admin_id'];
+    $idnumber = $_POST['idnumber']; 
+    $fullname = $_POST['fullname'];
+    $age = $_POST['age'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $bp = $_POST['bp'];
+    $t = $_POST['t'];
+    $p = $_POST['p'];
+    $r = $_POST['r'];
+
+
+    $sql = "INSERT INTO vitalsigns VALUES ('','$admin_id','$idnumber','$fullname','$age','$date','$time','$bp','$t','$p','$r')";
+    if(mysqli_query($conn, $sql)){
+        // echo "<script>window.history.go(-1);</script>";
+        header('location: ../vitalsignsmonitoringshs.php');
+        echo $_SESSION['success'] ="
+        <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+        <h2 style='
+        color: #fff;
+        font-size: 16px;
+        margin-left: 10px;'>Vital Signs Monitoring Added</h2>
+    </div>
+        ";
+    }
+} //for vital signs shs
 ?>

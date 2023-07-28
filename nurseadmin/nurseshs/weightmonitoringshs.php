@@ -4,7 +4,7 @@
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("login.php");</script>';
+        echo '<script>window.location.replace("../login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
     $admin_id = $_SESSION['admin_id'];
@@ -18,7 +18,7 @@
             // User type 1 specific code here
         }
         else{
-            header('location: ../login.php');
+            header('location: ../../login.php');
             exit; // Exit the script to prevent further execution
         }
     }
@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>School Health Assessment Form</title>
+    <title>Nurse Dashboard</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -179,6 +179,7 @@
         <span class="nav-link-text">School Health Assessment Form</span>
     </a>
 </li>
+
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-6" aria-expanded="false" aria-controls="submenu-5">
         <span class="nav-icon">
@@ -202,12 +203,12 @@
         </ul>
     </div>
 </li>
+
 </ul>
 	</nav>
 	        </div>
 	    </div>
     </header>
-    
     
     <div class="app-wrapper">
 	    
@@ -218,8 +219,6 @@
 					    <div class="col-auto">
 					        <h1 class="app-page-title mb-0"></h1>
 					    </div>
-
-
 						
 				    </div>
 			    </div>
@@ -228,7 +227,9 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">School Health Assessment Form</h4>
+						        <h4 class="notification-title mb-1">
+                                    Weight Monitoring Sheet
+                                </h4>
 					        </div>
                             <?php
 								if(isset($_SESSION['success'])){
@@ -236,281 +237,76 @@
 									unset($_SESSION['success']);
 								}
 							?>
-							<!--//generate report-->
+						
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-                     <form class="form-horizontal mt-4" method="post" action="function/shsrecords.php">
-                    
-                    <div class="row">
-                      
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">Enter the ID Number</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-4 control-label" style="font-size: 16px">Enter the Fullname</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter the Fullname" required>
-            </div>
-        </div>
-    </div>
-</div>
-
-<br>
+                    <form class="form-horizontal mt-4" method="post" action="function/shsrecords.php">
 
 <div class="row">
-<div class="col-sm-6">
-        <div class="form-group">
-            <label for="birthday" class="col-sm-4 control-label" style="font-size: 16px">Birthday</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" required>
-            </div>
-        </div>
-    </div>
- 
-
-    <div class="col-sm-6">
-    <div class="form-group">
-        <label for="gender" class="col-sm-4 control-label" style="font-size: 16px">Gender</label>
-        <div class="col-sm-10">
-            <select class="form-control" id="gender" name="gender" required>
-                <option value="">--Select Gender--</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<p><b><br>A. PHYSICAL EXAMINATION</p></b>
-<div class="row">
-
-<div class="col-md-2">
-      <div class="form-group">
-        <label for="date">Date</label>
-        <input type="date" class="form-control" id="date" name="date" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-      <div class="form-group">
-        <label for="weight">Weight</label>
-        <input type="text" class="form-control" id="weight" name="weight" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-      <div class="form-group">
-        <label for="height">Height (in cm)</label>
-        <input type="text" class="form-control" id="height" name="height" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-      <div class="form-group">
-        <label for="bmi">BMI</label>
-        <input type="text" class="form-control" id="bmi" name="bmi" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-      <div class="form-group">
-        <label for="pr">Pulse Rate</label>
-        <input type="text" class="form-control" id="pr" name="pr" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-      <div class="form-group">
-        <label for="bp">Blood Pressure</label>
-        <input type="text" class="form-control" id="bp" name="bp" required>
-      </div>
-    </div>
-
-
-  <div class="row">
-
-  <div class="col-md-2">
-    <br>
-      <div class="form-group">
-        <label for="scalp">Scalp</label>
-        <input type="text" class="form-control" id="scalp" name="scalp" required>
-      </div>
-   </div>
-
-    <div class="col-md-2">
-    <br>
-      <div class="form-group">
-        <label for="skin_nails">Skin & Nails</label>
-        <input type="text" class="form-control" id="skin_nails" name="skin_nails" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="eyes">Eyes</label>
-        <input type="text" class="form-control" id="eyes" name="eyes" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="visual_acuity">Visual Acuity</label>
-        <input type="text" class="form-control" id="visual_acuity" name="visual_acuity" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="ears">Ears</label>
-        <input type="text" class="form-control" id="ears" name="ears" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="hearing_test">Hearing Test</label>
-        <input type="text" class="form-control" id="hearing_test" name="hearing_test" required>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-
-  <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="nose">Nose</label>
-        <input type="text" class="form-control" id="nose" name="nose" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-    <br>
-      <div class="form-group">
-        <label for="throat">Throat</label>
-        <input type="text" class="form-control" id="throat" name="throat" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="mouth_tongue">Mouth & Tongue</label>
-        <input type="text" class="form-control" id="mouth_tongue" name="mouth_tongue" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="teeth_gums">Teeth & Gums</label>
-        <input type="text" class="form-control" id="teeth_gums" name="teeth_gums" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="chest_breasts">Chest & Breasts</label>
-        <input type="text" class="form-control" id="chest_breasts" name="chest_breasts" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="heart">Heart</label>
-        <input type="text" class="form-control" id="heart" name="heart" required>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-
-  <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="lungs">Lungs</label>
-        <input type="text" class="form-control" id="lungs" name="lungs" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-    <br>
-      <div class="form-group">
-        <label for="abdomen">Abdomen</label>
-        <input type="text" class="form-control" id="abdomen" name="abdomen" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="genitalia">Genitalia</label>
-        <input type="text" class="form-control" id="genitalia" name="genitalia" required>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-        <br>
-      <div class="form-group">
-        <label for="spine_extremities">Spine & Extremities</label>
-        <input type="text" class="form-control" id="spine_extremities" name="spine_extremities" required>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-        <br>
-      <div class="form-group">
-        <label for="sexual">Sexual Maturity Rating</label>
-        <input type="text" class="form-control" id="sexual" name="sexual" required>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-        <br>
-      <div class="form-group">
-        <label for="screening">Screening, Risk Taking Behavior</label>
-        <input type="text" class="form-control" id="screening" name="screening" required>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-        <br>
-      <div class="form-group">
-        <label for="otherfindings">Other Findings</label>
-        <input type="text" class="form-control" id="otherfindings" name="otherfindings">
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-10">
-    <br>
-      <div class="form-group">
-        <label for="remarks">Remarks</label>
-        <input type="text" class="form-control" id="remarks" name="remarks" required>
-      </div>
-    </div>
-  </div>
+                  <div class="col-sm-3">
+                      <div class="form-group">
+                          <label for="idnumber" class="col-sm-7 control-label" style="font-size: 16px">ID Number</label>
+                          <div class="col-sm-11">
+                              <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="form-group">
+                          <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
+                          <div class="col-sm-11">
+                              <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name"required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="form-group">
+                          <label for="age" class="col-sm-4 control-label" style="font-size: 16px">Age</label>
+                          <div class="col-sm-11">
+                              <input type="age" class="form-control" id="age" name="age" placeholder="Enter age" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="form-group">
+                          <label for="gradesection" class="col-sm-10 control-label" style="font-size: 16px">Employee/Grade & Section</label>
+                          <div class="col-sm-11">
+                              <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" required>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            
+              <div class="row">
+                  
+                  <div class="col-sm-3">
+                    <br>
+                      <div class="form-group">
+                          <label for="weight" class="col-sm-5 control-label" style="font-size: 16px">Weight (kg)</label>
+                          <div class="col-sm-11">
+                              <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter weight" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <br>
+                      <div class="form-group">
+                          <label for="remarks" class="col-sm-4 control-label" style="font-size: 16px">Remarks</label>
+                          <div class="col-sm-15">
+                              <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Enter remarks" required>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
 
 <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <br>
-        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_schoolhealthassesform" class="btn btn-success">Submit</button>
-    </div>
+<div class="col-sm-offset-2 col-sm-10">
+    <br>
+    <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+    <button name="submit_weightmonitor" class="btn btn-success">Submit</button>
+</div>
 </div>
 </form>
 

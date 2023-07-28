@@ -136,5 +136,32 @@ if(isset($_POST['submit_schoolhealthassesform'])){ // pag get ng data
     }
 } // for school health assessment form shs
 
+if(isset($_POST['submit_weightmonitor'])){ // pag get ng data
+    $admin_id = $_POST['admin_id'];
+    $idnumber = $_POST['idnumber']; 
+    $fullname = $_POST['fullname'];
+    $age = $_POST['age'];
+    $gradesection = $_POST['gradesection'];
 
+    date_default_timezone_set('Asia/Manila');
+    $date_time = date('Y-m-d h:i A'); 
+
+    $weight = $_POST['weight'];
+    $remarks = $_POST['remarks'];
+
+
+    $sql = "INSERT INTO weightmonitor VALUES ('','$admin_id','$idnumber','$fullname','$age','$gradesection','$date_time','$weight','$remarks')";
+    if(mysqli_query($conn, $sql)){
+        // echo "<script>window.history.go(-1);</script>";
+        header('location: ../weightmonitoringshs.php');
+        echo $_SESSION['success'] ="
+        <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+        <h2 style='
+        color: #fff;
+        font-size: 16px;
+        margin-left: 10px;'>Weight Monitoring Added.</h2>
+    </div>
+        ";
+    }
+} //for weight monitoring shs
 ?>

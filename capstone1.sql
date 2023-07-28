@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2023 at 04:00 AM
+-- Generation Time: Jul 28, 2023 at 05:17 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -48,6 +48,32 @@ INSERT INTO `admins` (`admin_id`, `type`, `username`, `email`, `role`, `password
 (13, '', 'Physician College', 'physiciancollege@dwc-legazpi.edu', 7, '$2y$10$.FIjfm6oWCXbv5uhGqxcy.N/vtM5UwM8./o50pf0RvH6s7fByJ8q6'),
 (14, '', 'Dentist GSJHSSHS', 'dentistgsjhsshs@dwc-legazpi.edu', 4, '$2y$10$OOdBHtUQF38eWUVr9ZjccOlNO8g6ZmtWxkEZu3jLQyEBAipia.p3i'),
 (15, '', 'Dentist College', 'dentistcollege@dwc-legazpi.edu', 5, '$2y$10$8xuw4mycJZ4f1sQeGiyoeOpV0aDXolN1YjXS3dv.4lqIChbF0Vm7O');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consultationformrecord`
+--
+
+CREATE TABLE `consultationformrecord` (
+  `consultform_id` int(11) NOT NULL,
+  `admin_id` int(20) NOT NULL,
+  `idnumber` int(50) NOT NULL,
+  `date` date NOT NULL,
+  `fullname` varchar(200) NOT NULL,
+  `gradesection` varchar(20) NOT NULL,
+  `chiefcomplaint` text NOT NULL,
+  `treatment` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `consultationformrecord`
+--
+
+INSERT INTO `consultationformrecord` (`consultform_id`, `admin_id`, `idnumber`, `date`, `fullname`, `gradesection`, `chiefcomplaint`, `treatment`) VALUES
+(1, 10, 909090, '2023-07-31', 'Vicky Robles', 'Grade 12 Grabsch', 'Headache', ''),
+(2, 10, 6802182, '2023-08-01', 'Joanna Mae Atento', 'Grade 12 Grabsch', 'Headache', 'Bioflu'),
+(3, 11, 999999, '2023-07-28', 'Employee College', 'Employee', 'Menstrual Cramps', 'Advil');
 
 -- --------------------------------------------------------
 
@@ -258,7 +284,8 @@ CREATE TABLE `healthrecordformcollege` (
 --
 
 INSERT INTO `healthrecordformcollege` (`healthcollege_id`, `user_id`, `image`, `fullname`, `courseyear`, `role`, `idnumber`, `gender`, `address`, `pcontact`, `nationality`, `birthday`, `religion`, `fguardian`, `occupation1`, `mother`, `occupation2`, `contactemer`, `contactno`, `address2`, `relation`, `referral`, `contactno2`, `physiciannumcall`, `addresshospital`, `td`, `mmr`, `hepab`, `varicella`, `yesasthma`, `noasthma`, `relationasthma`, `yesbleeding`, `nobleeding`, `relationbleeding`, `yescancer`, `nocancer`, `relationcancer`, `yesdiabetes`, `nodiabetes`, `relationdiabetes`, `yesheartdis`, `noheartdis`, `relationheartdis`, `yesbp`, `nobp`, `relationbp`, `yeskidney`, `nokidney`, `relationkidney`, `yesmental`, `nomental`, `relationmental`, `yesobese`, `noobese`, `relationobese`, `yesseizure`, `noseizure`, `relationseizure`, `yesstroke`, `nostroke`, `relationstroke`, `yestb`, `notb`, `relationtb`, `allergy`, `anemia`, `asthma`, `behavioral`, `bleedingprob`, `blood`, `chickenpox`, `convulsion`, `dengue`, `diabetess`, `earproblem`, `eating_disorder`, `epilepsy`, `eyeproblemm`, `fracture`, `hearing_problem`, `heart_disorder`, `hyperacidity`, `indigestion`, `insomia`, `kidney_problem`, `liver_problem`, `measless`, `mumpss`, `parasitism`, `pneumonia`, `primary_complex`, `scoliosis`, `skin_problem`, `tonsillitis`, `typhoid_fever`, `vision_defect`, `yeshospitalization`, `nohospitalization`, `yessurgical`, `nosurgical`, `specialmed`, `allergicdrugs`, `otherrelevant`) VALUES
-(1, 34, '1_20221028_125623_0000.png', 'Vicky Robles', 'BSIT - 3', 'Student in College', 909090, 'Female', 'Guinobatan Albay', '09156005165', 'Filipino', '2001-12-15', 'Roman Catholic', 'Andres Robles', 'Lineman', 'Andrea Robles', 'Housewife', 'Andrea Robles', '09156005165', 'Guinobatan Albay', 'Daugther', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'noasthma', '', '', 'nobleeding', '', '', 'nocancer', '', '', 'nodiabetes', '', '', 'noheartdis', '', '', 'nobp', '', '', 'nokidney', '', '', 'nomental', '', '', 'noobese', '', '', 'noseizure', '', '', 'nostroke', '', '', 'notb', '', 'allergy', 'anemia', 'asthma', 'behavioral', 'bleedingprob', 'blood', 'chickenpox', 'convulsion', 'dengue', 'diabetess', 'earproblem', 'eating_disorder', 'epilepsy', 'eyeproblemm', 'fracture', 'hearing_problem', 'heart_disorder', 'hyperacidity', 'indigestion', 'insomia', 'kidney_problem', 'liver_problem', 'measless', 'mumpss', 'parasitism', 'pneumonia', 'primary_complex', 'scoliosis', 'skin_problem', 'tonsillitis', 'typhoid_fever', 'vision_defect', '', 'nohospitalization', '', 'nosurgical', 'None', 'None', 'None');
+(1, 34, '1_20221028_125623_0000.png', 'Vicky Robles', 'BSIT - 3', 'Student in College', 909090, 'Female', 'Guinobatan Albay', '09156005165', 'Filipino', '2001-12-15', 'Roman Catholic', 'Andres Robles', 'Lineman', 'Andrea Robles', 'Housewife', 'Andrea Robles', '09156005165', 'Guinobatan Albay', 'Daugther', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'noasthma', '', '', 'nobleeding', '', '', 'nocancer', '', '', 'nodiabetes', '', '', 'noheartdis', '', '', 'nobp', '', '', 'nokidney', '', '', 'nomental', '', '', 'noobese', '', '', 'noseizure', '', '', 'nostroke', '', '', 'notb', '', 'allergy', 'anemia', 'asthma', 'behavioral', 'bleedingprob', 'blood', 'chickenpox', 'convulsion', 'dengue', 'diabetess', 'earproblem', 'eating_disorder', 'epilepsy', 'eyeproblemm', 'fracture', 'hearing_problem', 'heart_disorder', 'hyperacidity', 'indigestion', 'insomia', 'kidney_problem', 'liver_problem', 'measless', 'mumpss', 'parasitism', 'pneumonia', 'primary_complex', 'scoliosis', 'skin_problem', 'tonsillitis', 'typhoid_fever', 'vision_defect', '', 'nohospitalization', '', 'nosurgical', 'None', 'None', 'None'),
+(5, 35, '1.png', 'Employee College', '', 'Employee in College', 999999, 'Male', 'Camalig', '09156005165', 'Filipino', '2002-12-15', 'Roman Catholic', 'Jojo Atento', 'Tricycle Driver', 'Rowena Atento', 'OFW', 'Edita Dela Cruz', '09156005165', 'Camalig Albay', 'Granddaughter', '', '', '', '', '', '', '', '', 'yesasthma', '', 'Daughter', 'yesbleeding', '', 'Daughter', 'yescancer', '', 'Daughter', 'yesdiabetes', '', 'Daughter', 'yesheartdis', '', 'Daughter', 'yesbp', '', 'Daughter', 'yeskidney', '', 'Daughter', 'yesmental', '', 'Daughter', 'yesobese', '', 'Daughter', 'yesseizure', '', 'Daughter', 'yesstroke', '', 'Daughter', 'yestb', '', 'Daughter', '', '', '', '', '', '', '', '', '', 'diabetess', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'vision_defect', 'yeshospitalization', '', 'yessurgical', '', 'None', 'None', 'None');
 
 -- --------------------------------------------------------
 
@@ -483,7 +510,10 @@ INSERT INTO `medicalapp` (`medicalapp_id`, `admin_id`, `idnumber`, `name1`, `gra
 (7, 11, 1234567, 'Camila Salvador', '', 'Employee', 'Off-campus Activity', '2023-07-02 09:00:00', '2023-07-15 06:06:00'),
 (8, 9, 123123, 'Mae Atento', 'Grade 9', 'Student', 'On-campus Activity', '2023-10-24 10:30:00', '2023-07-20 09:32:00'),
 (9, 10, 123123, 'Mae Atento', 'Grade 11 - Grabsch', 'Student', 'On-campus Activity', '2023-12-15 10:30:00', '2023-07-20 10:43:00'),
-(10, 9, 1234, 'Employee GSJHS', '', 'Employee', 'On-campus Activity', '2023-10-30 16:00:00', '2023-07-23 02:23:00');
+(10, 9, 1234, 'Employee GSJHS', '', 'Employee', 'On-campus Activity', '2023-10-30 16:00:00', '2023-07-23 02:23:00'),
+(11, 9, 909090, 'Vicky Robles', 'BSIT - 3', 'Student', 'On-campus Activity', '2023-10-24 10:00:00', '2023-07-28 10:28:00'),
+(12, 10, 6802182, 'Joanna Mae Atento', 'Grade 11 - Grabsch', 'Student', 'On-campus Activity', '2023-10-11 10:00:00', '2023-07-28 09:15:00'),
+(13, 10, 6802182, 'Joanna Mae Atento', '19', 'Grade 12 Grabsch', '2023-07-29T10:30', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -520,7 +550,8 @@ INSERT INTO `patientrecord` (`p_id`, `admin_id`, `idnumber`, `fullname`, `grades
 (15, 10, 1234567, 'Camila Salvador', 'Grade 9', '24/7', 'Rest ', '2023-07-01 09:59:00'),
 (16, 11, 6802182, 'Joanna Mae Atento', 'Employee', 'Not Normal', 'Rest', '2023-07-06 09:02:00'),
 (17, 9, 123123, 'Mae Cruz', 'Grade 9', '60/90', 'Headache', '2023-07-20 09:38:00'),
-(18, 10, 123123, 'Mae Atento', 'Grade 12', '60/90', 'Rest', '2023-07-20 10:49:00');
+(18, 10, 123123, 'Mae Atento', 'Grade 12', '60/90', 'Rest', '2023-07-20 10:49:00'),
+(19, 10, 909090, '2023-07-31', 'Vicky Robles', 'Grade 12 Grabsch', 'Headache', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -809,7 +840,63 @@ INSERT INTO `users` (`user_id`, `fullname`, `leveleduc`, `idnumber`, `email`, `p
 (31, 'Employee GSJHS', 1, 1234, '1234@dwc-legazpi.edu', '$2y$10$ow7RotJ9skoiZalQ6gFtaOulAQregw0YFU4FepO.TZXiR9a/78BGO'),
 (32, 'Joanna Mae Atento', 2, 6802182, '068021821@dwc-legazpi.edu', '$2y$10$leQ0MHbc2sBPAFd45lomtOAHgsfiLjLDh4sOdeBFHw6XdrHk1NzRm'),
 (33, 'Employee SHS', 2, 1919, '1919@dwc-legazpi.edu', '$2y$10$lkDH3vJNUkC2Y2NbT.OzBOQVXwG/BZa66OYK9M29LkhH8HjIlC9pS'),
-(34, 'Vicky Robles', 3, 909090, '909090@dwc-legazpi.edu', '$2y$10$4wSfYPbUXUFtsY7nX/eYWOCNmaeLRHydyF7ibVBZ0jew4Q9JGzuwm');
+(34, 'Vicky Robles', 3, 909090, '909090@dwc-legazpi.edu', '$2y$10$4wSfYPbUXUFtsY7nX/eYWOCNmaeLRHydyF7ibVBZ0jew4Q9JGzuwm'),
+(35, 'Employee College', 3, 999999, '999999@dwc-legazpi.edu', '$2y$10$yVy9jqWM9CYCzxR.uuRxG.m0jN5QlbZmVXMB/eK22Dk9qV322.CK2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vitalsigns`
+--
+
+CREATE TABLE `vitalsigns` (
+  `vital_id` int(11) NOT NULL,
+  `admin_id` int(20) NOT NULL,
+  `idnumber` int(50) NOT NULL,
+  `fullname` varchar(200) NOT NULL,
+  `age` varchar(200) NOT NULL,
+  `date` varchar(200) NOT NULL,
+  `time` varchar(200) NOT NULL,
+  `bp` varchar(200) NOT NULL,
+  `t` varchar(200) NOT NULL,
+  `p` varchar(200) NOT NULL,
+  `r` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vitalsigns`
+--
+
+INSERT INTO `vitalsigns` (`vital_id`, `admin_id`, `idnumber`, `fullname`, `age`, `date`, `time`, `bp`, `t`, `p`, `r`) VALUES
+(1, 10, 6802182, 'Joanna Mae Atento', '19', '2023-07-28', '10:30', '90/70', 'T-38', '70', '80'),
+(2, 10, 6802182, 'Joanna Mae Atento', '19', '2023-07-29', '10:40', '70/90', 'T-38', '70', '30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weightmonitor`
+--
+
+CREATE TABLE `weightmonitor` (
+  `weight_id` int(11) NOT NULL,
+  `admin_id` int(20) NOT NULL,
+  `idnumber` int(50) NOT NULL,
+  `fullname` varchar(200) NOT NULL,
+  `age` varchar(200) NOT NULL,
+  `gradesection` varchar(200) NOT NULL,
+  `date_time` datetime NOT NULL,
+  `weight` varchar(200) NOT NULL,
+  `remarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `weightmonitor`
+--
+
+INSERT INTO `weightmonitor` (`weight_id`, `admin_id`, `idnumber`, `fullname`, `age`, `gradesection`, `date_time`, `weight`, `remarks`) VALUES
+(1, 10, 6802182, 'Joanna Mae Atento', '19', 'Grade 12 Grabsch', '2023-10-15 10:30:00', '45 kg', 'BMI: Normal'),
+(2, 10, 6802182, 'Joanna Mae Atento', '19', 'Grade 12 Grabsch', '2023-07-29 21:31:00', '50 kg', 'BMI: Normal'),
+(3, 10, 6802182, 'Joanna Mae Atento', '18', 'Grade 12 Grabsch', '2023-07-28 09:41:00', '45 kg', 'BMI: Normal');
 
 --
 -- Indexes for dumped tables
@@ -820,6 +907,12 @@ INSERT INTO `users` (`user_id`, `fullname`, `leveleduc`, `idnumber`, `email`, `p
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `consultationformrecord`
+--
+ALTER TABLE `consultationformrecord`
+  ADD PRIMARY KEY (`consultform_id`);
 
 --
 -- Indexes for table `dental`
@@ -924,6 +1017,18 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `vitalsigns`
+--
+ALTER TABLE `vitalsigns`
+  ADD PRIMARY KEY (`vital_id`);
+
+--
+-- Indexes for table `weightmonitor`
+--
+ALTER TABLE `weightmonitor`
+  ADD PRIMARY KEY (`weight_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -932,6 +1037,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `admins`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `consultationformrecord`
+--
+ALTER TABLE `consultationformrecord`
+  MODIFY `consultform_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `dental`
@@ -949,7 +1060,7 @@ ALTER TABLE `dentalapp`
 -- AUTO_INCREMENT for table `healthrecordformcollege`
 --
 ALTER TABLE `healthrecordformcollege`
-  MODIFY `healthcollege_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `healthcollege_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `healthrecordformgsjhs`
@@ -973,13 +1084,13 @@ ALTER TABLE `medical`
 -- AUTO_INCREMENT for table `medicalapp`
 --
 ALTER TABLE `medicalapp`
-  MODIFY `medicalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `medicalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `patientrecord`
 --
 ALTER TABLE `patientrecord`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `physician`
@@ -1033,7 +1144,19 @@ ALTER TABLE `statusshs`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `vitalsigns`
+--
+ALTER TABLE `vitalsigns`
+  MODIFY `vital_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `weightmonitor`
+--
+ALTER TABLE `weightmonitor`
+  MODIFY `weight_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -169,7 +169,7 @@ if (mysqli_num_rows($result) > 0) {
                                     <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappcollege.php">Medical Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappcollege.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappcollege.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformcollege.php">Consultation</a>
+									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformcollege.php">Consultation Form Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassescollege.php">School Health Assessment</a>
 </li>
 									</ul>

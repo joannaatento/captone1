@@ -14,6 +14,7 @@
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
+        $idnumber = $row['idnumber'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 3){
             // User type 1 specific code here
@@ -25,10 +26,11 @@
     }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Request Physician COnsultation Schedule</title>
+    <title>View Consultation Form</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -44,13 +46,29 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/styless.css">
+	<link rel="stylesheet" href="assets/style.css">
 
-   
-</style>
 </head> 
 
-<body class="app">   
+<body class="app">   	
+<?php
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM consultationformrecord WHERE idnumber= '$idnumber'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $date = $row['date'];
+  $fullname = $row['fullname'];
+  $gradesection = $row['gradesection'];
+  $chiefcomplaint = $row['chiefcomplaint'];
+  $treatment = $row['treatment'];
+    }
+ else {
+ } 
+?>
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -162,123 +180,104 @@
 	    </div>
     </header>
     <div class="app-wrapper">
-	    
-	    <div class="app-content pt-3 p-md-3 p-lg-4">
-		    <div class="container-xl">
-			    <div class="position-relative mb-3">
-				    <div class="row g-3 justify-content-between">
-					   
-					       
-						
-				    </div>
-			    </div>
-			    
-                <div class="app-card app-card-notification shadow-sm mb-4">
-				    <div class="app-card-header px-4 py-3">
-				        <div class="row g-3 align-items-center">
-                        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Request Physician Consultation Schedule</h4>
-					        </div>
-                            <?php
-								if(isset($_SESSION['success'])){
-									echo $_SESSION['success'];
-									unset($_SESSION['success']);
-								}
-							?>
-				        </div><!--//row-->
-				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-<form class="form-horizontal mt-4" method="post" action="function/functions.php">
-<div class="row">
-  <div class="col-sm-6">
-    <div class="form-group">
-      <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee ID Number</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" required>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-6">
-    <div class="form-group">
-      <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" required>
-      </div>
-    </div>
-  </div>
- </div>
-<br>
- <div class="row">
-
-
- <div class="col-sm-6">
-        <div class="form-group">
-            <label for="role" class="col-sm-4 control-label" style="font-size: 16px">Role</label>
-            <div class="col-sm-10">
-                <select id="role" name="role" class="form-control">
-                <option value="">Select Role</option>
-                <option value="Student in North Campus">Student in North Campus</option>
-                <option value="Student in South Campus">Student in South Campus</option>
-                <option value="Employee in North Campus">Employee in North Campus</option>
-                <option value="Employee in South Campus">Employee in South Campus</option>
-                </select>
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <div class="position-relative mb-3">
+                <div class="row g-3 justify-content-between">
+                </div>
+            </div>
+            
+            <div class="app-card app-card-notification shadow-sm mb-4">
+                <div class="app-card-header px-4 py-3">
+                    <div class="row g-3 align-items-center">
+                    </div><!--//row-->
+                </div><!--//app-card-header-->
+                <div class="app-card-body p-4">
+                    <?php
+                    $sql = "SELECT * FROM consultationformrecord WHERE idnumber = '$idnumber'";
+                    $result = $conn->query($sql);
+                    while($row = $result->fetch_array()) {
+                    ?>
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">ID Number</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="date" class="col-sm-4 control-label" style="font-size: 16px">Date</label>
+                              <div class="col-sm-11">
+                                  <input type="date" class="form-control" id="date" name="date" required value="<?php echo $row['date']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name" value="<?php echo $row['fullname']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+     <div class="row">
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="gradesection" class="col-sm-8 control-label" style="font-size: 16px">Grade & Section</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" value="<?php echo $row['gradesection']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="chiefcomplaint" class="col-sm-8 control-label" style="font-size: 16px">Chief Complaint</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="chiefcomplaint" name="chiefcomplaint" placeholder="Enter Cheif Complaint" value="<?php echo $row['chiefcomplaint']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="treatment" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="treatment " name="treatment" placeholder="Enter Treatment/Medicine" value="<?php echo $row['treatment']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                    <?php } ?>
+                </div><!--//app-card-body-->
             </div>
         </div>
-                            </div>
-  <div class="col-sm-6">
-    <div class="form-group">
-      <label for="gradecourseyear" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section/Course & Year (If Student)</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year">
-      </div>
     </div>
-  </div>
-  
-    </div>
+</div>
 
-      <p><b><br>Note: </b> The PHYSICIAN will ONLY be available every <b>WEDNESDAY (8:00 A.M to 11:00 A.M)</b>. If your request has been approved, a text message will be sent to you.</p>
+    <!-- Javascript -->          
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
     
-
-<div class="row">
-    <div class="form-group">
-        <br>
-        <label for="message" class="col-sm-10 control-label">Write a message.... (State Date and Time)</label>
-        <div class="col-sm-12">
-            <textarea type="text" class="form-control" id="message" name="message" placeholder="Enter your message.... Ex. July 08, 2023 Monday 8:00AM" required></textarea>
-        </div>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <br>
-        <input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
-        <button name="submit_physician" class="btn btn-success">Send Physician Consultation Appointment</button>
-    </div>
-</div>
-</form>
-</div><!--//app-card-body-->
-</div>			    
-</div>
-</div>
-</div>  					
-<!-- Javascript -->          
-<script src="assets/plugins/popper.min.js"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-
-<!-- Page Specific JS -->
-<script src="assets/js/app.js"></script> 
-
-<script>
-    // Timer to remove success message after 5 seconds (5000 milliseconds)
-    setTimeout(function(){
-        var successMessage = document.getElementById('success-message');
-        if(successMessage){
-            successMessage.remove();
-        }
-    }, 5000);
-</script>
-
+    <!-- Page Specific JS -->
+    <script src="assets/js/app.js"></script> 
+	
+	<script>
+		// Timer to remove success message after 5 seconds (5000 milliseconds)
+		setTimeout(function(){
+			var successMessage = document.getElementById('success-message');
+			if(successMessage){
+				successMessage.remove();
+			}
+		}, 5000);
+	</script>
 
 </body>
 </html> 

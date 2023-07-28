@@ -28,7 +28,7 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/style.css">
-	<link rel="stylesheet" href="assets/formstyle.css">
+	<link rel="stylesheet" href="assets/formstyles.css">
 
 </head> 
 
@@ -45,8 +45,9 @@ if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $image = $row['image'];
   $gradelevel = $row['gradelevel'];
-  $idnumber = $row['role'];
+  $role = $row['role'];
   $fullname= $row['fullname'];
+  $idnumber = $row['idnumber'];
   $cp = $row['cp'];
   $age = $row['idnumber'];
   $gender = $row['gender'];

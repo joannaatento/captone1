@@ -601,7 +601,7 @@
   </div>
 
   <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="notb" value="notb" type="checkbox" id="notb">
+  <input name="notb" value="notb" type="checkbox" id="notb">
     <label class="labels" for="notb" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 

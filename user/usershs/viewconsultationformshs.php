@@ -168,9 +168,10 @@ if (mysqli_num_rows($result) > 0) {
                                     <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappshs.php">Medical Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappshs.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappshs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewweightmonitoringshs.php">Weight Monitoring Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewvitalsignsshs.php">Vital Signs Monitoring Record</a>
 </li>
 									</ul>
 								</div>

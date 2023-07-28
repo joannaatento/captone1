@@ -153,6 +153,10 @@
                       <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
                       <li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment</a></li>
                       <li class="submenu-item"> <a class="submenu-link" href="viewweightmonitoringshs.php">Weight Monitoring Record</a>
+                      <li class="submenu-item"> <a class="submenu-link" href="viewvitalsignsshs.php">Vital Signs Monitoring Record</a>
+                    
+                  
+  </li>
 
 									</ul>
 								</div>

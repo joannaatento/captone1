@@ -30,7 +30,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>View Medical Schedule</title>
+    <title>View Weight Monitoring Record</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -54,18 +54,20 @@
 <?php
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM dentalapp WHERE idnumber= '$idnumber'";
+$sql = "SELECT * FROM vitalsigns WHERE idnumber= '$idnumber'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
   $fullname = $row['fullname'];
-  $role = $row['role'];
-  $cenrolled = $row['cenrolled'];
-  $service = $row['service'];
-  $date_time = $row['date_time'];
-  $date_created = $row['date_created'];
+  $age = $row['age'];
+  $date = $row['date'];
+  $time = $row['time'];
+  $bp = $row['bp'];
+  $t = $row['t'];
+  $p = $row['p'];
+  $r = $row['r'];
     }
  else {
  } 
@@ -173,7 +175,8 @@ if (mysqli_num_rows($result) > 0) {
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewweightmonitoringshs.php">Weight Monitoring Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewvitalsignsshs.php">Vital Signs Monitoring Record</a>
-</li>
+
+                                </li>
 									</ul>
 								</div>
 							</li>
@@ -193,53 +196,102 @@ if (mysqli_num_rows($result) > 0) {
             <div class="app-card app-card-notification shadow-sm mb-4">
                 <div class="app-card-header px-4 py-3">
                     <div class="row g-3 align-items-center">
+                    <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Vital Signs Monitoring Records</h4>
+					        </div>
                     </div><!--//row-->
                 </div><!--//app-card-header-->
                 <div class="app-card-body p-4">
                     <?php
-                    $sql = "SELECT * FROM medicalapp WHERE idnumber = '$idnumber'";
+                    $sql = "SELECT * FROM vitalsigns WHERE idnumber = '$idnumber'";
                     $result = $conn->query($sql);
                     while($row = $result->fetch_array()) {
                     ?>
                     <br>
+        
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="idnumber" class="col-sm-12 control-label">Your ID Number</label>
-                                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="patient_name" class="col-sm-12 control-label">Your name</label>
-                                <input type="text" class="form-control" id="fullname" name="name1" placeholder="Enter your Fullname" value="<?php echo $row['name1']; ?>" readonly>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="gradecourseyear1" class="col-sm-12 control-label">Grade & Section/Course & Year</label>
-                                <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter your Fullname" value="<?php echo $row['gradecourseyear1']; ?>" readonly>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="col-sm-4">
+                      <div class="form-group">
+                          <label for="idnumber" class="col-sm-7 control-label" style="font-size: 16px">ID Number</label>
+                          <div class="col-sm-11">
+                              <input type="text" class="form-control" id="idnumber" name="idnumber" value="<?php echo $row['idnumber']; ?>" readonly>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                      <div class="form-group">
+                          <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
+                          <div class="col-sm-11">
+                              <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $row['fullname']; ?>" readonly>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                      <div class="form-group">
+                          <label for="age" class="col-sm-4 control-label" style="font-size: 16px">Age</label>
+                          <div class="col-sm-11">
+                              <input type="age" class="form-control" id="age" name="age" value="<?php echo $row['age']; ?>" readonly>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            
+              <div class="row">
+                  <div class="col-sm-2">
                     <br>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="cenrolled" class="col-sm-12 control-label">Role</label>
-                                <input type="text" class="form-control" id="role" name="role" placeholder="If you are an employee, just type Employee" value="<?php echo $row['role']; ?>" readonly>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="onoff" class="col-sm-12 control-label">On-campus Activity or Off-campus Activity</label>
-                                <input type="text" class="form-control" id="onoff" name="onoff" value="<?php echo $row['onoff']; ?>" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <span>Schedule: <?php echo $row['date_time']; ?></span>
-                        </div>
-                    </div>
+                      <div class="form-group">
+                          <label for="date" class="col-sm-12 control-label" style="font-size: 16px">Date</label>
+                          <div class="col-sm-12">
+                              <input type="date" class="form-control" id="date" name="date" value="<?php echo $row['date']; ?>" readonly>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <br>
+                      <div class="form-group">
+                          <label for="time" class="col-sm-12 control-label" style="font-size: 16px">Time</label>
+                          <div class="col-sm-12">
+                              <input type="time" class="form-control" id="time" name="time" value="<?php echo $row['time']; ?>" readonly>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <br>
+                      <div class="form-group">
+                          <label for="bp" class="col-sm-12 control-label" style="font-size: 16px">BP</label>
+                          <div class="col-sm-12">
+                              <input type="bp" class="form-control" id="bp" name="bp" value="<?php echo $row['bp']; ?>" readonly>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <br>
+                      <div class="form-group">
+                          <label for="t" class="col-sm-12 control-label" style="font-size: 16px">T</label>
+                          <div class="col-sm-12">
+                              <input type="t" class="form-control" id="t" name="t" value="<?php echo $row['t']; ?>" readonly>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <br>
+                      <div class="form-group">
+                          <label for="p" class="col-sm-12 control-label" style="font-size: 16px">P</label>
+                          <div class="col-sm-12">
+                              <input type="p" class="form-control" id="p" name="p" value="<?php echo $row['p']; ?>" readonly>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <br>
+                      <div class="form-group">
+                          <label for="r" class="col-sm-12 control-label" style="font-size: 16px">R</label>
+                          <div class="col-sm-12">
+                              <input type="r" class="form-control" id="r" name="r" value="<?php echo $row['r']; ?>" readonly>
+                          </div>
+                      </div>
+                  </div>
+              </div>
                     <?php } ?>
                 </div><!--//app-card-body-->
             </div>

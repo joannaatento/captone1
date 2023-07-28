@@ -197,8 +197,7 @@
 					<p class="title_">Personal Information</p>
 					
 					<form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data">
-    <div class="align_form">
-
+   
 	
     <div class="align_form">
 								<div class="input_form">

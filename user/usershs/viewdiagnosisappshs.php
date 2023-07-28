@@ -170,7 +170,8 @@ if (mysqli_num_rows($result) > 0) {
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappshs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
 									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment</a>
-</li>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewweightmonitoringshs.php">Weight Monitoring Record</a>
+                                </li>
 									</ul>
 								</div>
 							</li>

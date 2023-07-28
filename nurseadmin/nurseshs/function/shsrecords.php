@@ -83,7 +83,7 @@ if(isset($_POST['submit_consultationform'])){ // pag get ng data
             </div>
         ";
     }
-} // for patient record management shs
+} // for consultation form shs
 
 if(isset($_POST['submit_schoolhealthassesform'])){ // pag get ng data
     $admin_id = $_POST['admin_id']; 

@@ -230,7 +230,7 @@ if (mysqli_num_rows($result) > 0) {
                       <div class="col-sm-4">
                           <div class="form-group">
                             <br>
-                              <label for="gradesection" class="col-sm-8 control-label" style="font-size: 16px">Grade & Section</label>
+                              <label for="gradesection" class="col-sm-8 control-label" style="font-size: 16px">Course/Year</label>
                               <div class="col-sm-11">
                                   <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" value="<?php echo $row['gradesection']; ?>" readonly>
                               </div>

@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Patient Management Record</title>
+    <title>Consultation Form</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -154,7 +154,7 @@
 </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecordshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="consultationformshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -163,7 +163,7 @@
             <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
             </svg>
         </span>
-        <span class="nav-link-text">Patient's Management Record</span>
+        <span class="nav-link-text">Consultation Form</span>
     </a>
 </li>
 
@@ -184,8 +184,6 @@
 	        </div>
 	    </div>
     </header>
-    
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -205,7 +203,7 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Patient Management Record</h4>
+						        <h4 class="notification-title mb-1">Consultation Form</h4>
 					        </div>
                             <?php
 								if(isset($_SESSION['success'])){
@@ -220,61 +218,69 @@
 					   
                      <form class="form-horizontal mt-4" method="post" action="function/shsrecords.php">
 
-                    <div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">Enter the ID Number</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-4 control-label" style="font-size: 16px">Enter the Fullname</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter the Fullname" required>
-            </div>
-        </div>
-    </div>
-</div>
+    <div class="row">
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">ID Number</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="date" class="col-sm-4 control-label" style="font-size: 16px">Date</label>
+                              <div class="col-sm-11">
+                                  <input type="date" class="form-control" id="date" name="date" required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name"required>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+     <div class="row">
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="gradesection" class="col-sm-8 control-label" style="font-size: 16px">Grade & Section</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="chiefcomplaint" class="col-sm-8 control-label" style="font-size: 16px">Chief Complaint</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="chiefcomplaint" name="chiefcomplaint" placeholder="Enter Cheif Complaint" required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="treatment" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="treatment " name="treatment" placeholder="Enter Treatment/Medicine" required>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
 
-<br>
-
-<div class="row">
-<div class="col-sm-6">
-        <div class="form-group">
-            <label for="gradecsection" class="col-sm-4 control-label" style="font-size: 16px">Course & Year/Employee</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Course & Year" required>
-            </div>
-        </div>
-    </div>
- 
-
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="vitalsigns" class="col-sm-4 control-label" style="font-size: 16px">Vital Signs</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="vitalsigns" name="vitalsigns" placeholder="Enter Vital Signs" required>
-            </div>
-        </div>
-    </div>
-
-<div class="row">
-    <div class="form-group">
-        <br>
-        <label for="diagnosis" class="col-sm-5 control-label">Diagnosis/Chief Complaints, Management & Treatement</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="diagnosis" name="diagnosis" placeholder="Diagnosis/Chief Complaints, Management & Treatement" required>
-        </div>
-    </div>
-</div>
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <br>
         <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_patientmngmt" class="btn btn-success">Submit</button>
+        <button name="submit_consultationform" class="btn btn-success">Submit</button>
     </div>
 </div>
 </form>

@@ -61,28 +61,25 @@ if(isset($_POST['submit_statusmedicalshs'])) {
     }
 }  //for update medical schedules
 
-if(isset($_POST['submit_patientmngmt'])){ // pag get ng data
+if(isset($_POST['submit_consultationform'])){ // pag get ng data
     $admin_id = $_POST['admin_id']; 
     $idnumber = $_POST['idnumber']; 
+    $date = $_POST['date'];
     $fullname = $_POST['fullname']; 
     $gradesection = $_POST['gradesection'];
-    $vitalsigns = $_POST['vitalsigns'];
-    $diagnosis = $_POST['diagnosis'];
+    $chiefcomplaint = $_POST['chiefcomplaint'];
+    $dtreatment = $_POST['treatment'];
 
-    date_default_timezone_set('Asia/Manila');
-    
-    $date_time = date('Y-m-d h:i A'); // Include time in the date with AM/PM format
-
-    $sql = "INSERT INTO patientrecord VALUES ('','$admin_id','$idnumber','$fullname','$gradesection','$vitalsigns','$diagnosis','$date_time')";
+    $sql = "INSERT INTO consultationformrecord VALUES ('','$admin_id','$idnumber','$date','$fullname','$gradesection','$chiefcomplaint','$treatment')";
     if(mysqli_query($conn, $sql)){
         // echo "<script>window.history.go(-1);</script>";
-        header('location: ../patientmanagementrecordshs.php');
+        header('location: ../consultationformshs.php');
         echo $_SESSION['success'] ="
             <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
                 <h2 style='
                 color: #fff;
                 font-size: 16px;
-                margin-left: 10px;'>Dental Appointment Added.</h2>
+                margin-left: 10px;'>Consultation Form Added.</h2>
             </div>
         ";
     }

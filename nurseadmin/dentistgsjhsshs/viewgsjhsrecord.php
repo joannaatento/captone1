@@ -4,7 +4,7 @@
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("login.php");</script>';
+        echo '<script>window.location.replace("../login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
 
@@ -28,7 +28,7 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/style.css">
-	<link rel="stylesheet" href="assets/formstyless.css">
+	<link rel="stylesheet" href="assets/formstyle.css">
 
 </head> 
 

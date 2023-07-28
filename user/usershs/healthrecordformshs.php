@@ -149,7 +149,7 @@
                                     <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappshs.php">Medical Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappshs.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappshs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation</a>
+									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment</a>
 </li>
 									</ul>

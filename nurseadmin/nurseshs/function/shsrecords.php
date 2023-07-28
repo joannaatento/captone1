@@ -68,7 +68,7 @@ if(isset($_POST['submit_consultationform'])){ // pag get ng data
     $fullname = $_POST['fullname']; 
     $gradesection = $_POST['gradesection'];
     $chiefcomplaint = $_POST['chiefcomplaint'];
-    $dtreatment = $_POST['treatment'];
+    $treatment = $_POST['treatment'];
 
     $sql = "INSERT INTO consultationformrecord VALUES ('','$admin_id','$idnumber','$date','$fullname','$gradesection','$chiefcomplaint','$treatment')";
     if(mysqli_query($conn, $sql)){

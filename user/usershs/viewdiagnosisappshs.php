@@ -4,7 +4,7 @@
 
     if (!isset($_SESSION['user_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("login.php");</script>';
+        echo '<script>window.location.replace("../login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
 
@@ -168,7 +168,7 @@ if (mysqli_num_rows($result) > 0) {
                                     <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappshs.php">Medical Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappshs.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappshs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation</a>
+									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment</a>
 </li>
 									</ul>

@@ -4,7 +4,7 @@
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("login.php");</script>';
+        echo '<script>window.location.replace("../login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
     $admin_id = $_SESSION['admin_id'];
@@ -26,10 +26,11 @@
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Physician Dashboard</title>
+    <title>Physical Examination Record</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -43,17 +44,30 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
-    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    
-    
+    <link rel="stylesheet" href="assets/dentalstyles.css">
 
 </head> 
 
 <body class="app">   	
-    <header class="app-header fixed-top">	   	            
+<?php
+$sql = "SELECT * FROM dentalapp";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $fullname = $row['fullname'];
+  $cenrolled = $row['cenrolled'];
+  $role = $row['role'];
+  $date_time = $row['date_time'];
+  $date_created = $row['date_created'];
+    }
+ else {
+ } 
+?>
+     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -172,18 +186,16 @@
     </a>
     <div id="submenu-5" class="collapse submenu submenu-5" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicalexaminationgsjhs.php">Grade School and Junior High School Department</a></li>
+            <li class="submenu-item"><a class="submenu-link active" href="physicalexaminationgsjhs.php">Grade School and Junior High School Department</a></li>
             <li class="submenu-item"><a class="submenu-link" href="physicalexaminationshs.php">Senior High School Department</a></li>
         </ul>
     </div>
 </li>
-
 </ul>
   </nav>
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -201,18 +213,246 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+						        <h4 class="notification-title mb-1">Physical Examination Record</h4>
 					        </div>
-							<!--//generate report-->
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-					   
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
+                    <div class="app-card-body p-4">
+                   
+                   <form class="form-horizontal mt-4" method="post" action="function/physicianrecordsgsjhsshs.php">
+                  
+                   <div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-12 control-label">Patient ID Number</label>
+      <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="form-group">
+      <label for="fullname" class="col-sm-12 control-label">Name</label>
+      <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Last Name, First Name, MI" required>
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <label for="age" class="col-sm-12 control-label">Age</label>
+      <input type="text" class="form-control" id="age" name="cenrolled">
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <label for="sex" class="col-sm-12 control-label">Sex</label>
+      <input type="text" class="form-control" id="sex" name="sex">
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-7">
+                         <div class="form-group">
+                           <label for="levelsection" class="col-sm-12 control-label">Level/Section</label>
+                           <input type="text" id="levelsection" name="levelsection" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+    <br>
+
+   <b><i> <p>Significant Medical History:</b></i></p>
+
+   <div class="row">
+  <div class="col-sm-9">
+                         <div class="form-group">
+                           <label for="pastsurgeries" class="col-sm-12 control-label">Past Illnesses/Surgeries</label>
+                           <input type="text" id="pastsurgeries" name="pastsurgeries" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+   <br> 
+<div class="row">
+  <div class="col-sm-9">
+                         <div class="form-group">
+                           <label for="allergies" class="col-sm-12 control-label">Allergies</label>
+                           <input type="text" id="allergies" name="allergies" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+    
+                  <br> 
+<div class="row">
+  <div class="col-sm-9">
+                         <div class="form-group">
+                           <label for="familyhistory" class="col-sm-12 control-label">Family History</label>
+                           <input type="text" id="familyhistory" name="familyhistory" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+
+<br>
+   <b><i> <p>Physical Examination:</b></i></p>
+
+   <div class="row">
+  <div class="col-sm-2">
+    <div class="form-group" style="margin-right: 20px">
+      <label for="bp" class="col-sm-12 control-label">BP</label>
+      <input type="text" class="form-control" id="bp" name="bp">
+    </div>
+  </div>
+  <div class="col-sm-2" style="margin-right: 20px">
+    <div class="form-group">
+      <label for="pr" class="col-sm-12 control-label">PR</label>
+      <input type="text" class="form-control" id="pr" name="pr">
+    </div>
+  </div>
+  <div class="col-sm-2" style="margin-right: 20px">
+    <div class="form-group">
+      <label for="height" class="col-sm-12 control-label">Height</label>
+      <input type="text" class="form-control" id="height" name="height">
+    </div>
+  </div>
+  <div class="col-sm-2" style="margin-right: 20px">
+    <div class="form-group">
+      <label for="weight" class="col-sm-12 control-label">Weight</label>
+      <input type="text" class="form-control" id="weight" name="weight">
+    </div>
+  </div>
+  <div class="col-sm-2" style="margin-right: 20px">
+    <div class="form-group">
+      <label for="bmi" class="col-sm-12 control-label">BMI</label>
+      <input type="text" class="form-control" id="bmi" name="bmi">
+    </div>
+  </div>
+</div>
+
+<br>
+   <b><i> <p>General Appearance:</b></i></p>
+
+   <div class="row">
+  <div class="col-sm-9">
+                         <div class="form-group">
+                           <label for="heent" class="col-sm-12 control-label">HEENT</label>
+                           <input type="text" id="heent" name="heent" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+   <br> 
+<div class="row">
+  <div class="col-sm-9">
+                         <div class="form-group">
+                           <label for="cvs" class="col-sm-12 control-label">CVS</label>
+                           <input type="text" id="cvs" name="cvs" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+    
+                  <br> 
+<div class="row">
+  <div class="col-sm-9">
+                         <div class="form-group">
+                           <label for="gis" class="col-sm-12 control-label">GIS</label>
+                           <input type="text" id="gis" name="gis" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+
+                  <br> 
+<div class="row">
+  <div class="col-sm-9">
+                         <div class="form-group">
+                           <label for="gus" class="col-sm-12 control-label">GUS</label>
+                           <input type="text" id="gus" name="gus" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+
+                  <br> 
+<div class="row">
+  <div class="col-sm-9">
+                         <div class="form-group">
+                           <label for="extremities" class="col-sm-12 control-label">Extremities</label>
+                           <input type="text" id="extremities" name="extremities" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+                  <br>
+<div class="row">
+  <div class="col-sm-9">
+                         <div class="form-group">
+                           <label for="extremities" class="col-sm-12 control-label"><b>Remarks</b></label>
+                           <input type="text" id="extremities" name="extremities" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+
+                  <br><br><br>
+<div class="row">
+  <div class="col-sm-6">
+                         <div class="form-group">
+                           <label for="medicalexaminer" class="col-sm-12 control-label">Medical Examiner</label>
+                           <input type="text" id="medicalexaminer" name="medicalexaminer" class="form-control" required>
+                         </div>
+                       </div>
+ <div class="col-sm-6">
+                         <div class="form-group">
+                           <label for="dateexamined" class="col-sm-12 control-label">Date Examined</label>
+                           <input type="text" id="dateexamined" name="dateexamined" class="form-control" required>
+                         </div>
+                       </div>
+                  </div>
+
+
+
+                  <br>
+                     <div class="row">
+                       <div class="col-sm-12">
+                       <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+                         <button name="submit_physicalgsjhs" class="btn btn-success">Add Physical Examination</button>
+                       </div>
+                     </div>
+                   </form>
+                   
+                 </div><!--//app-card-body-->
+                 <center>
+                   
+                     <table class="styled-table">
+                         <thead>
+                             <tr>
+                                 <th>Patient ID Number</th>
+                                 <th>Patient Name</th>
+                                 <th>Enrolled in</th>
+                                 <th>Role</th>
+                                 <th>Schedule</th>
+                             </tr>
+                         </thead>
+                         <tbody id="healthRecordTableBody">
+                             <?php
+                             $sql = "SELECT * FROM physicianapp WHERE admin_id = '$admin_id'";
+                             $result = mysqli_query($conn, $sql);
+                             
+                             while ($row = $result->fetch_assoc()) {
+                                 ?>
+                                 <tr>
+                                     <td><?php echo $row['idnumber']; ?></td>
+                                     <td><?php echo $row['fullname']; ?></td>
+                                     <td><?php echo $row['cenrolled']; ?></td>
+                                     <td><?php echo $row['role']; ?></td>
+                                     <td><?php echo $row['date_time']; ?></td>
+                                   
+                                 </tr>
+                             <?php } ?>
+                         </tbody>
+                     </table>
+                     <br>
+                 </center>
+
+
+
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
@@ -229,7 +469,6 @@
 			}
 		}, 5000);
 	</script>
-
 
 </body>
 </html> 

@@ -243,7 +243,7 @@
 <div class="row">
 <div class="col-sm-6">
         <div class="form-group">
-            <label for="gradecsection" class="col-sm-4 control-label" style="font-size: 16px">Grade & Section/Employee</label>
+            <label for="gradecsection" class="col-sm-5 control-label" style="font-size: 16px">Grade & Section/Employee</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" required>
             </div>

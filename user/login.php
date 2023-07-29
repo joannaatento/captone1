@@ -41,7 +41,16 @@
 									unset($_SESSION['failed']);
 								}
 							?>
-							<div class="password mb-3">
+							<div class="email mb-3">
+							<label class="sr-only" for="signup-email">Level of Education</label>
+							<select id="signup-name" name="leveleduc" class="form-control signup-role" required="required">
+								<option value="" selected disabled>--Select--</option>
+								<option value="1">Grade School/Junior High School</option>
+								<option value="2">Senior High School</option>
+								<option value="3">College</option>
+							</select>
+							</div>
+								<div class="password mb-3">
 								<label class="sr-only" for="signin-password">Password</label>
 								<input id="signin-password" name="password" type="password" class="form-control signin-password" placeholder="Password" required="required">
 								<?php
@@ -50,6 +59,7 @@
 										unset($_SESSION['failed']);
 									}
 								?>
+								
 								<div class="extra mt-3 row justify-content-between">
 									<div class="col-6">
 										<div class="form-check">

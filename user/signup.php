@@ -44,6 +44,12 @@
 								<option value="3">College</option>
 							</select>
 							</div>
+							<?php
+								if(isset($_SESSION['failed'])){
+									echo $_SESSION['failed'];
+									unset($_SESSION['failed']);
+								}
+							?>
 							<div class="email mb-3">
 								<label class="sr-only" for="signup-email">Your ID Number</label>
 								<input id="signup-name" name="idnumber" type="text" class="form-control signup-idnumber" placeholder="ID Number" required="required">
@@ -52,12 +58,7 @@
 								<label class="sr-only" for="signup-email">Your Email</label>
 								<input id="signup-email" name="email" type="email" class="form-control signup-email" placeholder="School Email" required="required">
 							</div>
-							<?php
-								if(isset($_SESSION['failed'])){
-									echo $_SESSION['failed'];
-									unset($_SESSION['failed']);
-								}
-							?>
+
 							<div class="password mb-3">
 								<label class="sr-only" for="signup-password">Password</label>
 								<input id="signup-password" name="password" type="password" class="form-control signup-password" placeholder="Create a password" required="required">

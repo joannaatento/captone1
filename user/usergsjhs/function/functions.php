@@ -65,7 +65,7 @@
         '$c_enrolled','$c_employee','$onoff','$message','$date_created','$is_read','$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
-            header('location: ../addmedicalmessage.php');
+            header('location: ../addmedicalmessagegsjhs.php');
             echo $_SESSION['success'] = "
                 <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
                     <h2 style='color: #fff; font-size: 16px; margin-left: 10px;'>Request Medical Appointment Submitted.</h2>
@@ -92,7 +92,7 @@
         $sql = "INSERT INTO physician VALUES ('','$user_id','$idnumber','$name','$gradecourseyear','$role','$message','$date_created','$is_read','$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
-            header('location: ../addphysicianmessage.php');
+            header('location: ../addphysicianmessagegsjhs.php');
             echo $_SESSION['success'] = "
                 <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
                     <h2 style='color: #fff; font-size: 16px; margin-left: 10px;'>Request Physician Consultation Appointment Submitted.</h2>

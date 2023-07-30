@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include '../../db.php';
+    include '../../../db.php';
 
     if (isset($_POST['submit_dental'])) {
         $user_id = $_POST['user_id'];
@@ -22,7 +22,7 @@
         $sql = "INSERT INTO dental VALUES ('','$user_id','$idnumber','$name','$dental_service','$c_enrolled','$gradecourseyear','$c_employee','$message','$date_created','$is_read','$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
-            header('location: ../adddentalmessage.php');
+            header('location: ../adddentalmessagecollege.php');
             echo $_SESSION['success'] = "
                 <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
                     <h2 style='color: #fff; font-size: 16px; margin-left: 10px;'>Dental Appointment Added.</h2>
@@ -67,7 +67,7 @@
         '$c_enrolled','$c_employee','$onoff','$message','$date_created','$is_read','$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
-            header('location: ../addmedicalmessage.php');
+            header('location: ../addmedicalmessagecollege.php');
             echo $_SESSION['success'] = "
                 <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
                     <h2 style='color: #fff; font-size: 16px; margin-left: 10px;'>Request Medical Appointment Submitted.</h2>
@@ -94,7 +94,7 @@
         $sql = "INSERT INTO physician VALUES ('','$user_id','$idnumber','$name','$gradecourseyear','$role','$message','$date_created','$is_read','$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
-            header('location: ../addphysicianmessage.php');
+            header('location: ../addphysicianmessagecollege.php');
             echo $_SESSION['success'] = "
                 <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
                     <h2 style='color: #fff; font-size: 16px; margin-left: 10px;'>Request Physician Consultation Appointment Submitted.</h2>

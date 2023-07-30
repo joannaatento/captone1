@@ -52,6 +52,41 @@
 
 <body class="app">   	
 
+<?php  	
+$idnumber = $_GET['idnumber'];
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM physicalexaminationgsjhs WHERE idnumber = '$idnumber'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    $row = $result->fetch_assoc(); 
+    $idnumber = $row['idnumber'];
+    $fullname = $row['fullname'];
+    $age= $row['age'];
+    $sex = $row['sex'];
+    $levelsection = $row['levelsection'];
+    $pastsurgeries = $row['pastsurgeries'];
+    $familyhistory = $row['familyhistory'];
+    $bp = $row['bp'];
+    $pr = $row['pr'];
+    $height = $row['height'];
+    $weight= $row['weight'];
+    $bmi = $row['bmi'];
+    $heent = $row['heent'];
+    $cvs = $row['cvs'];
+    $gis = $row['gis'];
+    $gus = $row['gus'];
+    $remarks = $row['remarks'];
+    $medicalexaminer = $row['medicalexaminer'];
+    $dateexamined = $row['dateexamined'];
+  
+  
+      }
+   else {
+   } 
+  ?>
+
      <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -210,34 +245,32 @@
 				    </div><!--//app-card-header-->
                     <div class="app-card-body p-4">
                    
-                   <form class="form-horizontal mt-4" method="post" action="function/physicianrecordsgsjhsshs.php">
+             
                   
                    <div class="row">
   <div class="col-sm-3">
     <div class="form-group">
       <label for="idnumber" class="col-sm-12 control-label">Patient ID Number</label>
-      <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+      <input type="text" class="form-control" id="idnumber" name="idnumber" value="<?=$row['idnumber'];?>" readonly>
     </div>
   </div>
   <div class="col-sm-5">
     <div class="form-group">
       <label for="fullname" class="col-sm-12 control-label">Name</label>
-      <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Last Name, First Name, MI" required>
+      <input type="text" class="form-control" id="fullname" name="fullname" value="<?=$row['fullname'];?>" readonly>
     </div>
   </div>
   <div class="col-sm-1">
     <div class="form-group">
       <label for="age" class="col-sm-12 control-label">Age</label>
-      <input type="text" class="form-control" id="age" name="age">
+      <input type="text" class="form-control" id="age" name="age" value="<?=$row['age'];?>" readonly>
     </div>
   </div>
   <div class="col-sm-2">
     <div class="form-group">
     <label for="fullname">Sex</label>
                 <select class="form-select" name="sex">
-                    <option value="" disabled selected>Select Sex</option>
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
+                <option disabled selected><?= $row['sex'];?></option>
                 </select>
     </div>
   </div>
@@ -247,7 +280,7 @@
   <div class="col-sm-7">
                          <div class="form-group">
                            <label for="levelsection" class="col-sm-12 control-label">Level/Section</label>
-                           <input type="text" id="levelsection" name="levelsection" class="form-control" required>
+                           <input type="text" id="levelsection" name="levelsection" class="form-control" value="<?=$row['levelsection'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -259,7 +292,7 @@
   <div class="col-sm-9">
                          <div class="form-group">
                            <label for="pastsurgeries" class="col-sm-12 control-label">Past Illnesses/Surgeries</label>
-                           <input type="text" id="pastsurgeries" name="pastsurgeries" class="form-control" required>
+                           <input type="text" id="pastsurgeries" name="pastsurgeries" class="form-control" value="<?=$row['pastsurgeries'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -268,7 +301,7 @@
   <div class="col-sm-9">
                          <div class="form-group">
                            <label for="allergies" class="col-sm-12 control-label">Allergies</label>
-                           <input type="text" id="allergies" name="allergies" class="form-control" required>
+                           <input type="text" id="allergies" name="allergies" class="form-control" value="<?=$row['allergies'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -278,7 +311,7 @@
   <div class="col-sm-9">
                          <div class="form-group">
                            <label for="familyhistory" class="col-sm-12 control-label">Family History</label>
-                           <input type="text" id="familyhistory" name="familyhistory" class="form-control" required>
+                           <input type="text" id="familyhistory" name="familyhistory" class="form-control" value="<?=$row['familyhistory'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -290,31 +323,31 @@
   <div class="col-sm-2">
     <div class="form-group" style="margin-right: 20px">
       <label for="bp" class="col-sm-12 control-label">BP</label>
-      <input type="text" class="form-control" id="bp" name="bp">
+      <input type="text" class="form-control" id="bp" name="bp" value="<?=$row['bp'];?>" readonly>
     </div>
   </div>
   <div class="col-sm-2" style="margin-right: 20px">
     <div class="form-group">
       <label for="pr" class="col-sm-12 control-label">PR</label>
-      <input type="text" class="form-control" id="pr" name="pr">
+      <input type="text" class="form-control" id="pr" name="pr" value="<?=$row['pr'];?>" readonly>
     </div>
   </div>
   <div class="col-sm-2" style="margin-right: 20px">
     <div class="form-group">
       <label for="height" class="col-sm-12 control-label">Height</label>
-      <input type="text" class="form-control" id="height" name="height">
+      <input type="text" class="form-control" id="height" name="height" value="<?=$row['height'];?>" readonly>
     </div>
   </div>
   <div class="col-sm-2" style="margin-right: 20px">
     <div class="form-group">
       <label for="weight" class="col-sm-12 control-label">Weight</label>
-      <input type="text" class="form-control" id="weight" name="weight">
+      <input type="text" class="form-control" id="weight" name="weight" value="<?=$row['weight'];?>" readonly>
     </div>
   </div>
   <div class="col-sm-2" style="margin-right: 20px">
     <div class="form-group">
       <label for="bmi" class="col-sm-12 control-label">BMI</label>
-      <input type="text" class="form-control" id="bmi" name="bmi">
+      <input type="text" class="form-control" id="bmi" name="bmi" value="<?=$row['bmi'];?>" readonly>
     </div>
   </div>
 </div>
@@ -326,7 +359,7 @@
   <div class="col-sm-9">
                          <div class="form-group">
                            <label for="heent" class="col-sm-12 control-label">HEENT</label>
-                           <input type="text" id="heent" name="heent" class="form-control" required>
+                           <input type="text" id="heent" name="heent" class="form-control" value="<?=$row['heent'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -335,7 +368,7 @@
   <div class="col-sm-9">
                          <div class="form-group">
                            <label for="cvs" class="col-sm-12 control-label">CVS</label>
-                           <input type="text" id="cvs" name="cvs" class="form-control" required>
+                           <input type="text" id="cvs" name="cvs" class="form-control"value="<?=$row['cvs'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -345,7 +378,7 @@
   <div class="col-sm-9">
                          <div class="form-group">
                            <label for="gis" class="col-sm-12 control-label">GIS</label>
-                           <input type="text" id="gis" name="gis" class="form-control" required>
+                           <input type="text" id="gis" name="gis" class="form-control" value="<?=$row['gis'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -355,7 +388,7 @@
   <div class="col-sm-9">
                          <div class="form-group">
                            <label for="gus" class="col-sm-12 control-label">GUS</label>
-                           <input type="text" id="gus" name="gus" class="form-control" required>
+                           <input type="text" id="gus" name="gus" class="form-control" value="<?=$row['gus'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -365,7 +398,7 @@
   <div class="col-sm-9">
                          <div class="form-group">
                            <label for="extremities" class="col-sm-12 control-label">Extremities</label>
-                           <input type="text" id="extremities" name="extremities" class="form-control" required>
+                           <input type="text" id="extremities" name="extremities" class="form-control" value="<?=$row['extremities'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -374,7 +407,7 @@
   <div class="col-sm-9">
                          <div class="form-group">
                            <label for="remarks" class="col-sm-12 control-label"><b>Remarks</b></label>
-                           <input type="text" id="remarks" name="remarks" class="form-control" required>
+                           <input type="text" id="remarks" name="remarks" class="form-control" value="<?=$row['remarks'];?>" readonly>
                          </div>
                        </div>
                   </div>
@@ -384,68 +417,18 @@
   <div class="col-sm-6">
                          <div class="form-group">
                            <label for="medicalexaminer" class="col-sm-12 control-label">Medical Examiner</label>
-                           <input type="text" id="medicalexaminer" name="medicalexaminer" class="form-control" required>
+                           <input type="text" id="medicalexaminer" name="medicalexaminer" class="form-control" value="<?=$row['medicalexaminer'];?>" readonly>
                          </div>
                        </div>
  <div class="col-sm-6">
                          <div class="form-group">
                            <label for="dateexamined" class="col-sm-12 control-label">Date Examined</label>
-                           <input type="date" id="dateexamined" name="dateexamined" class="form-control" required>
+                           <input type="date" id="dateexamined" name="dateexamined" class="form-control" value="<?=$row['dateexamined'];?>" readonly>
                          </div>
                        </div>
                   </div>
 
 
-
-                  <br>
-                     <div class="row">
-                       <div class="col-sm-12">
-                       <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-                         <button name="submit_physicalgsjhs" class="btn btn-success">Add Physical Examination</button>
-                       </div>
-                     </div>
-                   </form>
-                   
-                 </div><!--//app-card-body-->
-                 <center>
-                   
-                     <table class="styled-table">
-                         <thead>
-                             <tr>
-                                 <th>ID Number</th>
-                                 <th>Name</th>
-                                 <th>Age</th>
-                                 <th>Sex</th>
-                                 <th>Level/Section</th>
-                                 <th>Action</th>
-                             </tr>
-                         </thead>
-                         <tbody id="healthRecordTableBody">
-                             <?php
-                             $sql = "SELECT * FROM physicalexaminationgsjhs WHERE admin_id = '$admin_id'";
-                             $result = mysqli_query($conn, $sql);
-                             
-                             while ($row = $result->fetch_assoc()) {
-                                 ?>
-                                 <tr>
-                                     <td><?php echo $row['idnumber']; ?></td>
-                                     <td><?php echo $row['fullname']; ?></td>
-                                     <td><?php echo $row['age']; ?></td>
-                                     <td><?php echo $row['sex']; ?></td>
-                                     <td><?php echo $row['levelsection']; ?></td>
-                                     <td>
-                                        <center><a href="viewphysicalexamniationgsjhs.php?idnumber=<?php echo $row['idnumber']; ?>">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                                            <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                                          </svg>
-                                        </a></center>
-          </td>
-                                 </tr>
-                             <?php } ?>
-                         </tbody>
-                     </table>
-                     <br>
-                 </center>
 
 
 

@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Student Medical Requests</title>
+    <title>Nurse's Notes</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -43,46 +43,15 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
+    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    <link rel="stylesheet" href="assets/msdental.css">
+	<link rel="stylesheet" href="assets/dentalstyles.css">
+    
 
-  
 </head> 
 
-<body class="app">   
-<?php
-
-$sql = "SELECT * FROM medical";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    $row = $result->fetch_assoc(); 
-    $med_id = $row['med_id'];
-    $name1 = $row['name1'];
-    $gradecourseyear1 = $row ['gradecourseyear1'];
-    $idnumber2 = $row['idnumber2'];
-    $name2 = $row['name2'];
-    $gradecourseyear2 = $row ['gradecourseyear2'];
-    $idnumber3 = $row['idnumber3'];
-    $name3 = $row['name3'];
-    $gradecourseyear3 = $row ['gradecourseyear3'];
-    $idnumber4 = $row['idnumber4'];
-    $name4 = $row['name4'];
-    $gradecourseyear4 = $row ['gradecourseyear4'];
-    $idnumber5 = $row['idnumber5'];
-    $name5 = $row['name5'];
-    $gradecourseyear5 = $row ['gradecourseyear5'];
-    $c_enrolled = $row['c_enrolled'];
-    $c_employee = $row['c_employee'];
-    $onoff = $row['onoff'];
-    $message = $row['message'];
-    $date_created = $row['date_created'];
-    $is_read = $row['is_read'];
-    $is_deleted_on_website = $row['is_deleted_on_website'];
-}
-?>	
+<body class="app">   	
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -250,8 +219,6 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
-    
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -261,6 +228,8 @@ if (mysqli_num_rows($result) > 0) {
 					    <div class="col-auto">
 					        <h1 class="app-page-title mb-0"></h1>
 					    </div>
+
+
 						
 				    </div>
 			    </div>
@@ -269,57 +238,125 @@ if (mysqli_num_rows($result) > 0) {
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+						        <h4 class="notification-title mb-1">Nurse's Notes</h4>
 					        </div>
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <?php
-    $sql = "SELECT * FROM medical WHERE c_enrolled = 'Senior High School'";
-    $result = $conn->query($sql);
+				    <div class="app-card-body p-4">
+					   
+                     <form class="form-horizontal mt-4" method="post" action="function/shsrecords.php">
 
-    while ($row = $result->fetch_array()) {
-        $med_id = $row['med_id'];
-        $is_read = $row['is_read'];
-        $is_deleted_on_website = $row['is_deleted_on_website'];
-        ?>
-     
-     <div class="main-content">
-     <?php if ($is_deleted_on_website == 0): ?>
-        <div class="email-list-item <?php echo ($is_read == 0) ? 'unread' : ''; ?>" <?php echo ($is_read == 0) ? 'style="background-color: #F1F1F1;"' : ''; ?>>
+    <div class="row">
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">ID Number</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name"required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="gradesection" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="gradesection" name="gradesection" required>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+     <div class="row">
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="datetime" class="col-sm-8 control-label" style="font-size: 16px">Date/Time</label>
+                              <div class="col-sm-11">
+                                  <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="vitalsigns" class="col-sm-8 control-label" style="font-size: 16px">Vital Signs</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="vitalsigns" name="vitalsigns" placeholder="Enter Vital Signs" required>
+                              </div>
+                          </div>
+                      </div>
+                </div>
+         <div class="row">
+                      <div class="col-sm-17">
+                          <div class="form-group">
+                            <br>
+                              <label for="nursenotes" class="col-sm-8 control-label" style="font-size: 16px">Nurse's Notes</label>
+                              <div class="col-sm-11">
+                                  <textarea class="form-control" id="nursenotes" name="nursenotes" required></textarea>
+                              </div>
+                          </div>
+                      </div> 
+                </div>
 
-        <div class="message">
-                <b><div class="name1" style="display: inline;"><?php echo $row['name1']; ?></div></b>
-                <div class="message" style="display: inline;"><?php echo $row['message']; ?></div>
-                <div class="timestamp"><?php echo $row['date_created']; ?></div>
-            </div>
-
-            <?php if ($is_read == 0): ?>
-                <a href="function/formedicalshsreadstudent.php?med_id=<?php echo $med_id; ?>">Mark as Read</a>
-            <?php endif; ?>
-
-            <a href="function/formedicalshsdeletestudent.php?med_id=<?php echo $med_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
-            
-            <a href="viewmedicalrequestsshs.php?date_created=<?php echo $row['date_created']; ?>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                    <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                </svg>
-            </a>
-
-        <?php endif; ?>
-
-
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <br>
+        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+        <button name="submit_nursenotes" class="btn btn-success">Submit</button>
     </div>
+</div>
+</form>
 
+<center>
+                   
+                   <table class="styled-table">
+                       <thead>
+                           <tr>
+                               <th>ID Number</th>
+                               <th>Name</th>
+                               <th>Grade & Section</th>
+                               <th>Date & Time</th>
+                               <th>Vital Signs</th>
+                               <th>Nurse's Notes</th>
+                           </tr>
+                       </thead>
+                       <tbody id="healthRecordTableBody">
+                           <?php
+                           $sql = "SELECT * FROM nursenotesshs WHERE admin_id = '$admin_id'";
+                           $result = mysqli_query($conn, $sql);
+                           
+                           while ($row = $result->fetch_assoc()) {
+                               ?>
+                               <tr>
+                                   <td><?php echo $row['idnumber']; ?></td>
+                                   <td><?php echo $row['fullname']; ?></td>
+                                   <td><?php echo $row['gradesection']; ?></td>
+                                   <td><?php echo $row['datetime']; ?></td>
+                                   <td><?php echo $row['vitalsigns']; ?></td>
+                                   <td><?php echo $row['nursenotes']; ?></td>
+            
+                               </tr>
+                           <?php } ?>
+                       </tbody>
+                   </table>
+                   <br>
+               </center>
 
-
-     <?php
-    }
-    ?>
-</div><!--//app-card-body-->
-
-
-
+				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>
 	    </div>
@@ -341,5 +378,7 @@ if (mysqli_num_rows($result) > 0) {
 		}, 5000);
 	</script>
 
+
 </body>
 </html> 
+

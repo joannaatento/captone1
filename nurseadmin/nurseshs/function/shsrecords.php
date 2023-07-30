@@ -192,4 +192,32 @@ if(isset($_POST['submit_vitalsigns'])){ // pag get ng data
         ";
     }
 } //for vital signs shs
+
+if(isset($_POST['submit_nursenotes'])){ // pag get ng data
+    $admin_id = $_POST['admin_id'];
+    $idnumber = $_POST['idnumber']; 
+    $fullname = $_POST['fullname'];
+    $gradesection = $_POST['gradesection'];
+    $datetime = $_POST['datetime'];
+    $formattedDatetime = date("Y-m-d h:i A", strtotime($datetime));
+
+    $vitalsigns = $_POST['vitalsigns'];
+    $nursenotes = $_POST['nursenotes'];
+
+
+
+    $sql = "INSERT INTO nursenotesshs VALUES ('','$admin_id','$idnumber','$fullname','$gradesection','$formattedDatetime','$vitalsigns','$nursenotes')";
+    if(mysqli_query($conn, $sql)){
+        // echo "<script>window.history.go(-1);</script>";
+        header('location: ../nursenotesshs.php');
+        echo $_SESSION['success'] ="
+        <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+        <h2 style='
+        color: #fff;
+        font-size: 16px;
+        margin-left: 10px;'>Nurse's Notes Added</h2>
+    </div>
+        ";
+    }
+} //for nurse's notes shs
 ?>

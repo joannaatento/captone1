@@ -14,6 +14,7 @@
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
+        $idnumber = $row['idnumber'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 2){
             // User type 1 specific code here
@@ -29,7 +30,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>User Dashboard</title>
+    <title>Nurse's Notes</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -43,13 +44,32 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
     
+    
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/style.css">
+	<link rel="stylesheet" href="assets/dentalstyles.css">
+    
 
 </head> 
 
-<body class="app">   	
+<body class="app"> 
+<?php 
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM nursenotesshs WHERE idnumber= '$idnumber'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $fullname = $row['fullname'];
+  $gradesection = $row['gradesection'];
+  $datetime = $row['datetime'];
+  $vitalsigns = $row['vitalsigns'];
+  $nursenotes = $row['nursenotes'];
+    }
+ else {
+ } 
+?>
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -155,7 +175,7 @@
 									<li class="submenu-item"> <a class="submenu-link" href="viewweightmonitoringshs.php">Weight Monitoring Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewvitalsignsshs.php">Vital Signs Monitoring Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewphysicalexaminationrecordshs.php">Physical Examination Record</a>	
-									<li class="submenu-item"> <a class="submenu-link" href="viewnursenotesshs.php">Nurse's Notes Record</a>					
+									<li class="submenu-item"> <a class="submenu-link active" href="viewnursenotesshs.php">Nurse's Notes Record</a>					
 								</li>	
 									</ul>
 								</div>
@@ -172,8 +192,11 @@
 		    <div class="container-xl">
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
-					   
-					       
+					    <div class="col-auto">
+					        <h1 class="app-page-title mb-0"></h1>
+					    </div>
+
+
 						
 				    </div>
 			    </div>
@@ -181,16 +204,91 @@
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-					       
+					        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Nurse's Notes</h4>
+					        </div>
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
+							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-				
-				    </div><!--//app-card-body-->
+                    <?php
+							$sql = "SELECT * FROM nursenotesshs WHERE idnumber = '$idnumber'";
+							$result = $conn->query($sql);
+    						while($row = $result->fetch_array()){
+						?>
+    <div class="row">
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">ID Number</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name" value="<?php echo $row['fullname']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="gradesection" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="gradesection" name="gradesection" value="<?php echo $row['gradesection']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+     <div class="row">
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="datetime" class="col-sm-8 control-label" style="font-size: 16px">Date/Time</label>
+                              <div class="col-sm-11">
+                                  <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="<?php echo $row['datetime']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                            <br>
+                              <label for="vitalsigns" class="col-sm-8 control-label" style="font-size: 16px">Vital Signs</label>
+                              <div class="col-sm-11">
+                                  <input type="text" class="form-control" id="vitalsigns" name="vitalsigns" placeholder="Enter Vital Signs" value="<?php echo $row['vitalsigns']; ?>" readonly>
+                              </div>
+                          </div>
+                      </div>
+                </div>
+         <div class="row">
+                      <div class="col-sm-17">
+                          <div class="form-group">
+                            <br>
+                              <label for="nursenotes" class="col-sm-8 control-label" style="font-size: 16px">Nurse's Notes</label>
+                              <div class="col-sm-11">
+                                  <textarea class="form-control" id="nursenotes" name="nursenotes" readonly><?php echo $row['nursenotes']; ?>"</textarea>
+                    
+   
+                                  </div>
+                          </div>
+                      </div>
+                </div>
+                                  <br><br>
+                                  <?php } ?>
+                                  </div><!--//app-card-body-->
 				</div>			    
 		    </div>
 	    </div>
-    </div>  					
+    </div>  				
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
@@ -207,6 +305,7 @@
 			}
 		}, 5000);
 	</script>
+
 
 </body>
 </html> 

@@ -224,7 +224,11 @@ if (mysqli_num_rows($result) > 0) {
 				    </div><!--//app-card-header-->
                     <div class="app-card-body p-4">
                    
-             
+                    <?php
+							$sql = "SELECT * FROM physicalexaminationgsjhs WHERE idnumber = '$idnumber'";
+							$result = $conn->query($sql);
+    						while($row = $result->fetch_array()){
+						?>
                   
                    <div class="row">
   <div class="col-sm-3">
@@ -408,7 +412,7 @@ if (mysqli_num_rows($result) > 0) {
                   </div>
 
 
-
+                  <?php } ?>
 
 
     <!-- Javascript -->          

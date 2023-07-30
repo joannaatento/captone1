@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2023 at 05:17 PM
+-- Generation Time: Jul 30, 2023 at 10:48 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -125,7 +125,10 @@ INSERT INTO `dental` (`dental_id`, `user_id`, `idnumber`, `name`, `dental_servic
 (94, 26, 123123, 'Mae Atento', 'Cleaning', '', '', 'Employee in North Campus', 'sdfghjjhgfdhsgshdfjgkhljkjhd', '2023-07-19 11:04:00', 1, 1),
 (95, 26, 123123, 'Mae Atento', 'Tooth Extraction', '', '', 'Employee in South Campus', 'VBGHNMJHNGFF', '2023-07-21 06:01:00', 1, 1),
 (96, 26, 123123, 'Mae Atento', 'Tooth Extraction', 'Grade School, JHS or SHS', 'Grade 12', '', 'sdfghjkuyjhgfcvn', '2023-07-21 07:30:00', 1, 1),
-(97, 26, 123123, 'Mae Atento', 'Tooth Extraction', '', '', 'Employee in North Campus', 'ghcivobkhnjtrgfbnh', '2023-07-21 07:37:00', 1, 1);
+(97, 26, 123123, 'Mae Atento', 'Tooth Extraction', '', '', 'Employee in North Campus', 'ghcivobkhnjtrgfbnh', '2023-07-21 07:37:00', 1, 1),
+(98, 95, 6802182, 'Joanna Mae Atento', 'Cleaning', 'Grade School, JHS or SHS', 'Grade 12', '', 'JDFGHJKIUYHGTRFED', '2023-07-30 02:52:00', 0, 0),
+(99, 95, 6802182, 'Joanna Mae Atento', 'Tooth Extraction', 'Grade School, JHS or SHS', 'Grade 12', '', 'FGHJKLKJYHTGFED', '2023-07-30 02:53:00', 0, 0),
+(100, 95, 6802182, 'Joanna Mae Atento', 'Cleaning', 'Grade School, JHS or SHS', 'Grade 12', '', 'SDSFGHJK', '2023-07-30 02:56:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -556,6 +559,87 @@ INSERT INTO `patientrecord` (`p_id`, `admin_id`, `idnumber`, `fullname`, `grades
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `physicalexaminationgsjhs`
+--
+
+CREATE TABLE `physicalexaminationgsjhs` (
+  `pe_id` int(11) NOT NULL,
+  `admin_id` int(20) NOT NULL,
+  `idnumber` int(20) NOT NULL,
+  `fullname` varchar(200) NOT NULL,
+  `age` varchar(200) NOT NULL,
+  `sex` varchar(200) NOT NULL,
+  `levelsection` varchar(200) NOT NULL,
+  `pastsurgeries` varchar(200) NOT NULL,
+  `allergies` varchar(200) NOT NULL,
+  `familyhistory` varchar(200) NOT NULL,
+  `bp` varchar(200) NOT NULL,
+  `pr` varchar(200) NOT NULL,
+  `height` varchar(200) NOT NULL,
+  `weight` varchar(200) NOT NULL,
+  `bmi` varchar(200) NOT NULL,
+  `heent` varchar(200) NOT NULL,
+  `cvs` varchar(200) NOT NULL,
+  `gis` varchar(200) NOT NULL,
+  `gus` varchar(200) NOT NULL,
+  `extremities` varchar(200) NOT NULL,
+  `remarks` text NOT NULL,
+  `medicalexaminer` varchar(200) NOT NULL,
+  `dateexamined` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `physicalexaminationgsjhs`
+--
+
+INSERT INTO `physicalexaminationgsjhs` (`pe_id`, `admin_id`, `idnumber`, `fullname`, `age`, `sex`, `levelsection`, `pastsurgeries`, `allergies`, `familyhistory`, `bp`, `pr`, `height`, `weight`, `bmi`, `heent`, `cvs`, `gis`, `gus`, `extremities`, `remarks`, `medicalexaminer`, `dateexamined`) VALUES
+(1, 12, 6802182, 'Atento, Joanna Mae D', '16', 'Female', 'Grade 7 - St. Martha', 'None', 'None', 'Diabetes', '70/90', '70', '150', '42', 'Normal', 'idk', 'idk', 'idk', 'idk', 'idk', 'good', 'Andrew Robles', '2023-07-13'),
+(2, 12, 99090, 'Rica Chan', '10', 'Female', 'Grade 7 - St. Martha', 'None', 'None', 'None', '80/90', '80', '155', '44', 'Normal', 'IDK', 'IDK', 'IDK', 'IDK', 'IDK', 'good', 'Andrew Robles', '2023-07-19'),
+(3, 12, 6802182, 'Joanna Mae Atento', '16', 'Female', 'Grade 7 - St. Martha', 'None', 'None', 'None', '70/90', '30', '150', '50', 'Normal', 'Okay', 'Okay', 'Okay', 'Okay', 'Okay', 'good', 'Andrew Robles', '2023-07-27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `physicalexaminationshs`
+--
+
+CREATE TABLE `physicalexaminationshs` (
+  `peshs_id` int(11) NOT NULL,
+  `admin_id` int(20) NOT NULL,
+  `idnumber` int(50) NOT NULL,
+  `fullname` varchar(200) NOT NULL,
+  `age` varchar(200) NOT NULL,
+  `gradesection` varchar(200) NOT NULL,
+  `sex` varchar(200) NOT NULL,
+  `pastsurgeries` varchar(200) NOT NULL,
+  `allergies` varchar(200) NOT NULL,
+  `familyhistory` varchar(200) NOT NULL,
+  `bp` varchar(200) NOT NULL,
+  `pr` varchar(200) NOT NULL,
+  `height` varchar(200) NOT NULL,
+  `weight` varchar(200) NOT NULL,
+  `heent` varchar(200) NOT NULL,
+  `cvs` varchar(200) NOT NULL,
+  `gis` varchar(200) NOT NULL,
+  `gus` varchar(200) NOT NULL,
+  `skin` varchar(200) NOT NULL,
+  `musculoskeletal` varchar(200) NOT NULL,
+  `remarks` varchar(200) NOT NULL,
+  `medicalexaminer` varchar(200) NOT NULL,
+  `dateexamined` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `physicalexaminationshs`
+--
+
+INSERT INTO `physicalexaminationshs` (`peshs_id`, `admin_id`, `idnumber`, `fullname`, `age`, `gradesection`, `sex`, `pastsurgeries`, `allergies`, `familyhistory`, `bp`, `pr`, `height`, `weight`, `heent`, `cvs`, `gis`, `gus`, `skin`, `musculoskeletal`, `remarks`, `medicalexaminer`, `dateexamined`) VALUES
+(1, 12, 68021821, 'Atento, Joanna Mae D. ', '18', 'Grade 12 Punto', 'Female', 'None', 'None', 'None', '70/90', '70', '153', '46', 'Okay', 'Okay', 'Okay', 'Okay', 'Okay', 'Okay', 'good', 'Andrew Robles', '2023-07-30'),
+(2, 12, 6802182, 'Atento, Joanna Mae D.', '18', 'Grade 12 Punto', 'Female', 'None', 'None', 'None', '80/100', '40', '150', '45', 'Okay', 'Okay', 'Okay', 'Okay', 'Okay', 'Okay', 'good', 'Andrew Robles', '2023-07-31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `physician`
 --
 
@@ -669,6 +753,31 @@ INSERT INTO `schoolhealthasses` (`schoolasses_id`, `admin_id`, `idnumber`, `full
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sms_message`
+--
+
+CREATE TABLE `sms_message` (
+  `message_id` int(11) NOT NULL,
+  `phone` varchar(200) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sms_message`
+--
+
+INSERT INTO `sms_message` (`message_id`, `phone`, `message`) VALUES
+(1, '639156005165', 'Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 11:00 A.M'),
+(2, '639156005165', 'Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M'),
+(3, '639156005165', 'Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M'),
+(4, '639156005165', 'Good Day! Your request for amo po is approved. Your schedule will be on June 30, 2023 at 10:30 A.M'),
+(5, '639156005165', 'Good Day!. Your schedule will be on June 30, 2023 at 10:30 A.M'),
+(6, '639156005165', 'Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M'),
+(7, '639156005165', 'Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `status`
 --
 
@@ -687,7 +796,7 @@ CREATE TABLE `status` (
 --
 
 INSERT INTO `status` (`status_id`, `roles`, `statuses1030_1`, `statuses1130_2`, `statuses230_3`, `statuses330_4`, `statuses430_5`) VALUES
-(8, 0, 'Unavailable', 'Available', 'Available', 'Unavailable', 'Available');
+(8, 0, 'Available', 'Available', 'Available', 'Unavailable', 'Available');
 
 -- --------------------------------------------------------
 
@@ -709,7 +818,7 @@ CREATE TABLE `statuscollege` (
 --
 
 INSERT INTO `statuscollege` (`status_id`, `statuses1030_1`, `statuses1130_2`, `statuses230_3`, `statuses330_4`, `statuses430_5`) VALUES
-(1, 'Unavailable', 'Available', 'Available', 'Unavailable', 'Unavailable');
+(1, 'Available', 'Available', 'Available', 'Unavailable', 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -825,7 +934,7 @@ CREATE TABLE `users` (
   `leveleduc` int(5) NOT NULL,
   `idnumber` int(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(200) NOT NULL
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -836,12 +945,25 @@ INSERT INTO `users` (`user_id`, `fullname`, `leveleduc`, `idnumber`, `email`, `p
 (25, 'Camila Salvador', 0, 1234567, 'camille@dwc-legazpi.edu', '$2y$10$Mt817fi.GicLwj8BLTFHg.AR7VvE14ra4eDj8akuBiv1HNlqx3pm.'),
 (26, 'Mae Atento', 0, 123123, '123123@dwc-legazpi.edu', '$2y$10$BKRDIIR3Ppz.qfDw6Gy6NuTbOHwgcwqpRA.MGGJ.LTZvGMMxauV6W'),
 (29, 'Joanna Atento', 1, 2147483647, '12345678910@dwc-legazpi.edu', '$2y$10$abLEHbiWOYxwaDYOaAIA7.MLAJZUAF2DlW8tSbkIp9fY4Rhiubkpe'),
-(30, 'Rica Chan', 1, 99090, 'ricachan@dwc-legazpi.edu', '$2y$10$qtLW5wQj9joNVIrKSnW9EeqLrVrEmnYNsD1RddnyJfTv13kAwUDUW'),
 (31, 'Employee GSJHS', 1, 1234, '1234@dwc-legazpi.edu', '$2y$10$ow7RotJ9skoiZalQ6gFtaOulAQregw0YFU4FepO.TZXiR9a/78BGO'),
 (32, 'Joanna Mae Atento', 2, 6802182, '068021821@dwc-legazpi.edu', '$2y$10$leQ0MHbc2sBPAFd45lomtOAHgsfiLjLDh4sOdeBFHw6XdrHk1NzRm'),
 (33, 'Employee SHS', 2, 1919, '1919@dwc-legazpi.edu', '$2y$10$lkDH3vJNUkC2Y2NbT.OzBOQVXwG/BZa66OYK9M29LkhH8HjIlC9pS'),
 (34, 'Vicky Robles', 3, 909090, '909090@dwc-legazpi.edu', '$2y$10$4wSfYPbUXUFtsY7nX/eYWOCNmaeLRHydyF7ibVBZ0jew4Q9JGzuwm'),
-(35, 'Employee College', 3, 999999, '999999@dwc-legazpi.edu', '$2y$10$yVy9jqWM9CYCzxR.uuRxG.m0jN5QlbZmVXMB/eK22Dk9qV322.CK2');
+(35, 'Employee College', 3, 999999, '999999@dwc-legazpi.edu', '$2y$10$yVy9jqWM9CYCzxR.uuRxG.m0jN5QlbZmVXMB/eK22Dk9qV322.CK2'),
+(75, 'Atento', 1, 6802182, 'joannamae@dwc-legazpi.edu', '$2y$10$WSPtzEom.wF7Tiblvyl.xutvL5zFGvTMBsFd7yatuDc/BlG7tfvFi'),
+(78, 'Mayi Atento', 2, 1678, '1678@dwc-legazpi.edu', '$2y$10$JboESFfnPRIzy5TKCk2Ng.SE8ysEf4QXzKCEN6bv3cOgIaxkJ9mDq'),
+(79, 'Maejoanna Atento', 2, 1678, '1678@dwc-legazpi.edu', '$2y$10$Y5n6BnR1CXRw2E55AifNr.5SYK3jPC./RmJnz6lScKTiwnqae.lsu'),
+(81, 'Employee College', 2, 999999, '999999@dwc-legazpi.edu', '$2y$10$GBr1uuN9AbKwrOW2iXtU2Ozvj2n8LToYMg1xgmTAmAew26NYNaYfu'),
+(84, 'Mayi Atento', 3, 1678, '1678@dwc-legazpi.edu', '$2y$10$pctGiA/Ok4gVjxtvfHqQTO6CJ5gkzzzipjgT4eZoFzeoSLknt5jRO'),
+(88, 'Rica Chan', 3, 99090, 'ricachan@dwc-legazpi.edu', '$2y$10$Fndd4nh4uf6cBzWkG.jmfewNeDEIyVcxhMIhqldZkdUv58EpSiP0C'),
+(89, 'Camille Mondragon', 1, 242424, '242424@dwc-legazpi.edu', '$2y$10$ZnBYTyFjWBqa0h5oeehftun8A5/Q.oCg2w5KWcmzDdEE3w3LOhD1O'),
+(90, 'Camille Mondragon', 2, 242424, '242424@dwc-legazpi.edu', '$2y$10$cZxz/Y///CGMQxWe9DMyhe1gW5azhlb6HiQAxkgZwtJuV6TuFXRHu'),
+(91, 'Camille Mondragon', 3, 242424, '242424@dwc-legazpi.edu', '$2y$10$quzVZd/eIxBPjI93DCrSe.Ztm.NnT0Acy/Hd53uq9.5CMP5gk4/2C'),
+(92, 'Joanna Mae Atento', 3, 6802182, '068021821@dwc-legazpi.edu', '$2y$10$iFIFUXT5b/hI25PMwx3ukOOgf./bhIPkbKnV98zHLVWM.Fusp/Q5i'),
+(93, 'Jonna Marie Atento', 1, 1888, '1888@dwc-legazpi.edu', '$2y$10$a3agD4HdNSXUB6Sr70A4G.siK2WJptB7UJ0oTBRlbxi0Cab4PaRpm'),
+(94, 'Jonna Marie Atento', 2, 1888, '1888@dwc-legazpi.edu', '$2y$10$EZHnAqbMQ2SBwi3NdngHeu2SMMM9BxncMwqyeVfU219UYzo1XCbL.'),
+(95, 'Joanna Mae Atento', 1, 6802182, '068021821@dwc-legazpi.edu', '$2y$10$Ge4aOP0wZSFBb/fOR/Dw1.B7lm.Ezmq0JE1wXdcCQ911oAitgeYbu'),
+(96, 'Rica Chan', 1, 99090, 'ricachan@dwc-legazpi.edu', '$2y$10$0RFm7n2nncN7NNnJ0hkfduiR0p85bsAjjTrePlnTA2YLQikwfXyie');
 
 -- --------------------------------------------------------
 
@@ -963,6 +1085,18 @@ ALTER TABLE `patientrecord`
   ADD PRIMARY KEY (`p_id`);
 
 --
+-- Indexes for table `physicalexaminationgsjhs`
+--
+ALTER TABLE `physicalexaminationgsjhs`
+  ADD PRIMARY KEY (`pe_id`);
+
+--
+-- Indexes for table `physicalexaminationshs`
+--
+ALTER TABLE `physicalexaminationshs`
+  ADD PRIMARY KEY (`peshs_id`);
+
+--
 -- Indexes for table `physician`
 --
 ALTER TABLE `physician`
@@ -979,6 +1113,12 @@ ALTER TABLE `physicianapp`
 --
 ALTER TABLE `schoolhealthasses`
   ADD PRIMARY KEY (`schoolasses_id`);
+
+--
+-- Indexes for table `sms_message`
+--
+ALTER TABLE `sms_message`
+  ADD PRIMARY KEY (`message_id`);
 
 --
 -- Indexes for table `status`
@@ -1048,7 +1188,7 @@ ALTER TABLE `consultationformrecord`
 -- AUTO_INCREMENT for table `dental`
 --
 ALTER TABLE `dental`
-  MODIFY `dental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `dental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `dentalapp`
@@ -1093,6 +1233,18 @@ ALTER TABLE `patientrecord`
   MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
+-- AUTO_INCREMENT for table `physicalexaminationgsjhs`
+--
+ALTER TABLE `physicalexaminationgsjhs`
+  MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `physicalexaminationshs`
+--
+ALTER TABLE `physicalexaminationshs`
+  MODIFY `peshs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `physician`
 --
 ALTER TABLE `physician`
@@ -1109,6 +1261,12 @@ ALTER TABLE `physicianapp`
 --
 ALTER TABLE `schoolhealthasses`
   MODIFY `schoolasses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `sms_message`
+--
+ALTER TABLE `sms_message`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -1144,7 +1302,7 @@ ALTER TABLE `statusshs`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `vitalsigns`

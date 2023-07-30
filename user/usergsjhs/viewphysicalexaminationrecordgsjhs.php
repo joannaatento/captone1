@@ -411,10 +411,10 @@ if (mysqli_num_rows($result) > 0) {
                        </div>
                   </div>
 
-
+<br><br>
                   <?php } ?>
 
-
+                
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

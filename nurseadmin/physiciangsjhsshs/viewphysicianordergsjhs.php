@@ -7,14 +7,30 @@
         echo '<script>window.location.replace("../login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
+    $admin_id = $_SESSION['admin_id'];
+    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $admin_id = $row['admin_id'];
+        $username = $row['username'];
+        require_once('../../db.php');
+        if($_SESSION['role'] == 6){
+            // User type 1 specific code here
+        }
+        else{
+            header('location: ../login.php');
+            exit; // Exit the script to prevent further execution
+        }
+    }
 
 ?>
+
 
 
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>College Building</title>
+    <title>Physical Examination Record</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -30,12 +46,35 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-    <link rel="stylesheet" href="assets/tableform.css">
+    <link rel="stylesheet" href="assets/dentalstyles.css">
 
 </head> 
 
 <body class="app">   	
-<header class="app-header fixed-top">	   	            
+
+<?php  	
+$idnumber = $_GET['idnumber'];
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM physicianorderprogressgsjhs WHERE idnumber = '$idnumber'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    $row = $result->fetch_assoc(); 
+    $datetime = $row['datetime'];
+    $progressnotes = $row['progressnotes'];
+    $doctorsorder = $row['doctorsorder'];
+    $idnumber = $row['idnumber'];
+    $fullname = $row['fullname'];
+    $age= $row['age'];
+    $levelsection = $row['levelsection'];
+  
+      }
+   else {
+   } 
+  ?>
+
+     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -93,7 +132,7 @@
             <ul class="submenu-list list-unstyled">
             <li class="submenu-item"><a class="submenu-link" href="gsjhslists.php">Grade School and Junior High School Building</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="shslist.php">Senior High School Building</a></li>
-                <li class="submenu-item"><a class="submenu-link active" href="collegelists.php">College Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="collegelists.php">College Building</a></li>
             </ul>
         </div>
     </li>
@@ -135,6 +174,7 @@
         <span class="nav-link-text">Physician Consultation Appointments</span>
     </a>
 </li>
+
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-5" aria-expanded="false" aria-controls="submenu-3">
         <span class="nav-icon">
@@ -153,7 +193,7 @@
     </a>
     <div id="submenu-5" class="collapse submenu submenu-5" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicalexaminationgsjhs.php">Grade School and Junior High School Department</a></li>
+            <li class="submenu-item"><a class="submenu-link active" href="physicalexaminationgsjhs.php">Grade School and Junior High School Department</a></li>
             <li class="submenu-item"><a class="submenu-link" href="physicalexaminationshs.php">Senior High School Department</a></li>
         </ul>
     </div>
@@ -177,7 +217,7 @@
     </a>
     <div id="submenu-6" class="collapse submenu submenu-5" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicianorderandprogressgsjhs.php">Grade School and Junior High School Department</a></li>
+            <li class="submenu-item"><a class="submenu-link active" href="physicianorderandprogressgsjhs.php">Grade School and Junior High School Department</a></li>
             <li class="submenu-item"><a class="submenu-link" href="physicianorderandprogressshs.php">Senior High School Department</a></li>
         </ul>
     </div>
@@ -188,7 +228,6 @@
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -206,77 +245,81 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">College Health Profiles</h4>
+						        <h4 class="notification-title mb-1">Physical Examination Record</h4>
 					        </div>
-							<!--//generate report-->
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-header p-4 pb-2 border-0">
-  <div class="app-search-box col">
-    <form class="app-search-form" onsubmit="event.preventDefault(); searchRecords();">
-      <input type="text" placeholder="Search..." name="query" id="searchQuery" class="form-control search-input">
-      <button type="submit" class="btn search-btn btn-primary"><i class="fas fa-search"></i></button>
-    </form>
+                    <div class="app-card-body p-4">
+                   
+             
+                    <div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="datetime" class="col-sm-12 control-label">Date & Time</label>
+      <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="<?= date('Y-m-d\TH:i', strtotime($datetime)); ?>" readonly>
+
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="progressnotes" class="col-sm-12 control-label">Progress Notes</label>
+      <textarea class="form-control" id="progressnotes" name="progressnotes" readonly><?php echo $row['progressnotes']; ?></textarea>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="doctorsorder" class="col-sm-12 control-label">Doctor's Order</label>
+      <textarea class="form-control" id="doctorsorder" name="doctorsorder" readonly><?php echo $row['doctorsorder']; ?></textarea>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-sm-3">
+    <label for="idnumber" class="col-sm-6 control-label">ID Number</label>
+  </div>
+  <div class="col-sm-3" style="margin-left:-150px">
+    <input type="text" id="idnumber" name="idnumber" class="form-control" value="<?=$row['idnumber'];?>" readonly>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-3">
+    <label for="fullname" class="col-sm-6 control-label">Fullname</label>
+  </div>
+  <div class="col-sm-5" style="margin-left:-150px">
+    <input type="text" id="fullname" name="fullname" class="form-control"  value="<?=$row['fullname'];?>" readonly>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-3">
+    <label for="age" class="col-sm-6 control-label">Age</label>
+  </div>
+  <div class="col-sm-1" style="margin-left:-150px">
+    <input type="text" id="age" name="age" class="form-control"  value="<?=$row['age'];?>" readonly>
+  </div>
+  <div class="col-sm-3">
+    <label for="levelsection" class="col-sm-6 control-label">Level/Section</label>
+  </div>
+  <div class="col-sm-3" style="margin-left:-150px">
+    <input type="text" id="levelsection" name="levelsection" class="form-control" value="<?=$row['levelsection'];?>" readonly>
   </div>
 </div>
 
-<div class="app-card-body p-4">
-  <div id="healthRecordTable">
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>ID Number</th>
-          <th>Course & Year</th>
-          <th>Person to Contact</th>
-          <th>Contact Person Number</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="healthRecordTableBody">
-        <?php
-        $sql = "SELECT * FROM healthrecordformcollege";
-        $result = mysqli_query($conn, $sql);
 
-        while($row = $result->fetch_assoc()){
-        ?>
-        <tr>
-          <td><?php echo $row['fullname']; ?></td>
-          <td><?php echo $row['idnumber']; ?></td>
-          <td><?php echo $row['courseyear']; ?></td>
-          <td><?php echo $row['contactemer']; ?></td>
-          <td><?php echo $row['contactno']; ?></td>
-          
-          <td>
-            <center><a href="viewcollegerecord.php?idnumber=<?php echo $row['idnumber']; ?>">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-              </svg>
-            </a></center>
-          </td>
-        </tr>
-        <?php } ?>
-      </tbody>
-    </table>
-  </div>
-</div>
 
-<script>
-function searchRecords() {
-  var searchQuery = document.getElementById("searchQuery").value;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("healthRecordTableBody").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "function/searchqueryforcollege.php?query=" + searchQuery, true);
-  xhttp.send();
-}
-</script>
 
- <!-- Javascript -->          
- <script src="assets/plugins/popper.min.js"></script>
+
+
+    <!-- Javascript -->          
+    <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
     
     <!-- Page Specific JS -->

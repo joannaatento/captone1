@@ -67,5 +67,47 @@
                 </div>
             ";
         }
-    } // for physician gsjhsshs
+    } // for physical gsjhs
+
+    if(isset($_POST['submit_physicalshs'])){ // pag get ng data
+        $admin_id = $_POST['admin_id'];
+        $idnumber = $_POST['idnumber']; 
+        $fullname = $_POST['fullname'];
+        $age = $_POST['age'];
+        $gradesection = $_POST['gradesection'];
+        $sex = $_POST['sex'];
+        $pastsurgeries = $_POST['pastsurgeries'];
+        $allergies = $_POST['allergies'];
+        $familyhistory = $_POST['familyhistory'];
+        $bp = $_POST['bp'];
+        $pr = $_POST['pr'];
+        $height = $_POST['height'];
+        $weight = $_POST['weight'];
+        $heent = $_POST['heent'];
+        $cvs = $_POST['cvs'];
+        $gis = $_POST['gis'];
+        $gus = $_POST['gus'];
+        $skin = $_POST['skin'];
+        $musculoskeletal = $_POST['musculoskeletal'];
+        $remarks = $_POST['remarks'];
+        $medicalexaminer = $_POST['medicalexaminer'];
+        $dateexamined = $_POST['dateexamined'];
+
+       
+     
+        $sql = "INSERT INTO physicalexaminationshs VALUES ('','$admin_id','$idnumber','$fullname','$age','$gradesection','$sex','$pastsurgeries', '$allergies',
+        '$familyhistory', '$bp', '$pr', '$height', '$weight','$heent', '$cvs', '$gis', '$gus', '$skin','$musculoskeletal','$remarks', '$medicalexaminer', '$dateexamined')";
+        if(mysqli_query($conn, $sql)){
+            // echo "<script>window.history.go(-1);</script>";
+            header('location: ../physicalexaminationshs.php');
+            echo $_SESSION['success'] ="
+                <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+                    <h2 style='
+                    color: #fff;
+                    font-size: 16px;
+                    margin-left: 10px;'>Physical Examination Record Added.</h2>
+                </div>
+            ";
+        }
+    } // for physical shs
 ?>

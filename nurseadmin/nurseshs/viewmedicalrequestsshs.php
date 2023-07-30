@@ -454,57 +454,64 @@ if (mysqli_num_rows($result) > 0) {
                         <button type="submit" value="Send">Send</button>
                     </div>
                 </form>
-
                 <?php
-    /**
-     * Send an SMS message directly by calling HTTP endpoint.
-     *
-     * For your convenience, environment variables are already pre-populated with your account data
-     * like authentication, base URL, and phone number.
-     *
-     * Please find detailed information in the readme file.
-     */
-    
-    
+/**
+ * Send an SMS message directly by calling the HTTP endpoint.
+ *
+ * For your convenience, environment variables are already pre-populated with your account data
+ * like authentication, base URL, and phone number.
+ *
+ * Please find detailed information in the readme file.
+ */
 
-    use GuzzleHttp\Client;
-    use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
-    if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-        $phoneNumber = $_POST['phone'];
-        $message = $_POST['message'];
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $phoneNumber = $_POST['phone'];
+    $message = $_POST['message'];
 
-        $client = new Client([
-            'base_uri' => "https://2kw6nm.api.infobip.com/",
-            'headers' => [
-                'Authorization' => "App 47d7c2b8394b7802f3eb4e49f8da3a40-aee5ec9a-6fae-4e23-b89f-246ee2b98f4a",
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ]
-        ]);
+    // Send the SMS using the Infobip API
+    $client = new Client([
+        'base_uri' => "https://2kw6nm.api.infobip.com/",
+        'headers' => [
+            'Authorization' => "App 47d7c2b8394b7802f3eb4e49f8da3a40-aee5ec9a-6fae-4e23-b89f-246ee2b98f4a",
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ]
+    ]);
 
-        $response = $client->request(
-            'POST',
-            'sms/2/text/advanced',
-            [
-                RequestOptions::JSON => [
-                    'messages' => [
-                        [
-                            'from' => 'Clinic',
-                            'destinations' => [
-                                ['to' => $phoneNumber]
-                            ],
-                            'text' => $message,
-                        ]
+    $response = $client->request(
+        'POST',
+        'sms/2/text/advanced',
+        [
+            RequestOptions::JSON => [
+                'messages' => [
+                    [
+                        'from' => 'Clinic',
+                        'destinations' => [
+                            ['to' => $phoneNumber]
+                        ],
+                        'text' => $message,
                     ]
-                ],
-            ]
-        );
+                ]
+            ],
+        ]
+    );
 
-        echo("<p>HTTP code: " . $response->getStatusCode() . "</p>");
-        echo("<p>Response body: " . $response->getBody()->getContents() . "</p>");
-    }
-    ?>
+    // Prepare the SQL query
+    $sql = "INSERT INTO sms_message (phone, message) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql);
+
+    // Bind the parameters and execute the query
+    $stmt->bind_param("ss", $phoneNumber, $message);
+    $stmt->execute();
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>
 
 
             </div>

@@ -161,7 +161,7 @@ if (mysqli_num_rows($result) > 0) {
 										</svg>
 									</span>
 								</a>
-								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
+                                <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
 									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofileshs.php">Health Profile Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappshs.php">Dental Record</a>
@@ -169,12 +169,13 @@ if (mysqli_num_rows($result) > 0) {
                                     <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappshs.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link active" href="viewdiagnosisappshs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewweightmonitoringshs.php">Weight Monitoring Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewvitalsignsshs.php">Vital Signs Monitoring Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicalexaminationrecordshs.php">Physical Examination Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewnursenotesshs.php">Nurse's Notes Record</a>				
-                                </li>
+									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewweightmonitoringshs.php">Weight Monitoring Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewvitalsignsshs.php">Vital Signs Monitoring Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewphysicalexaminationrecordshs.php">Physical Examination Record</a>	
+									<li class="submenu-item"> <a class="submenu-link" href="viewnursenotesshs.php">Nurse's Notes Record</a>					
+									<li class="submenu-item"> <a class="submenu-link" href="viewphysicianorderandprogressnotesshs.php">Physician's Order Sheet and Progress Notes Record</a>
+								</li>
 									</ul>
 								</div>
 							</li>

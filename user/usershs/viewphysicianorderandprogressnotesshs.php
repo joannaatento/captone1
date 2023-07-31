@@ -16,11 +16,11 @@
         $fullname = $row['fullname'];
         $idnumber = $row['idnumber'];
         require_once('../../db.php');
-        if($_SESSION['leveleduc'] == 1){
+        if($_SESSION['leveleduc'] == 2){
             // User type 1 specific code here
         }
         else{
-            header('location: ../login.php');
+            header('location: ../../login.php');
             exit; // Exit the script to prevent further execution
         }
     }
@@ -30,7 +30,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>View Physician Schedule</title>
+    <title>View Physician's Order Sheet and Progress Notes</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -50,12 +50,12 @@
 
 </head> 
 
-<body class="app">   	
+<body class="app">
 <?php  	
 
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM physicianorderprogressgsjhs WHERE idnumber = '$idnumber'";
+$sql = "SELECT * FROM physicianorderprogressshs WHERE idnumber = '$idnumber'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -66,12 +66,12 @@ if (mysqli_num_rows($result) > 0) {
     $idnumber = $row['idnumber'];
     $fullname = $row['fullname'];
     $age= $row['age'];
-    $levelsection = $row['levelsection'];
+    $grade = $row['grade'];
   
       }
    else {
    } 
-  ?>
+  ?>   	
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -108,7 +108,7 @@ if (mysqli_num_rows($result) > 0) {
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <li class="nav-item has-submenu">
 
-    <a class="nav-link submenu-toggle active" href="healthrecordformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="healthrecordformshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -140,9 +140,9 @@ if (mysqli_num_rows($result) > 0) {
 								</a>
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-										<li class="submenu-item"><a class="submenu-link" href="adddentalmessagegsjhs.php">Request Dental Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessagegsjhs.php">Request Medical Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessagegsjhs.php">Request Physician Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="adddentalmessageshs.php">Request Dental Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessageshs.php">Request Medical Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessageshs.php">Request Physician Scheduling</a></li>
 									</ul>
 								</div>
 							</li>
@@ -166,15 +166,20 @@ if (mysqli_num_rows($result) > 0) {
 								</a>
 								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofile.php">Health Profile Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappgsjhs.php">Dental Record</a>
-                  <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappgsjhs.php">Medical Record</a>
-                  <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappgsjhs.php">Physician Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisgsjhs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesgsjhs.php">School Health Assessment</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewphysicalexaminationrecordgsjhs.php">Physical Examination Record</a>
-                  <li class="submenu-item"> <a class="submenu-link active" href="viewphysicianorderandprogressnotesgsjhs.php">Physician's Order Sheet and Progress Notes Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofileshs.php">Health Profile Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappshs.php">Dental Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappshs.php">Medical Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappshs.php">Physician Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappshs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewweightmonitoringshs.php">Weight Monitoring Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewvitalsignsshs.php">Vital Signs Monitoring Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewphysicalexaminationrecordshs.php">Physical Examination Record</a>	
+									<li class="submenu-item"> <a class="submenu-link" href="viewnursenotesshs.php">Nurse's Notes Record</a>					
+									<li class="submenu-item"> <a class="submenu-link active" href="viewphysicianorderandprogressnotesshs.php">Physician's Order Sheet and Progress Notes Record</a>
 								</li>
+                </li>
 									</ul>
 								</div>
 							</li>
@@ -183,7 +188,6 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -205,7 +209,7 @@ if (mysqli_num_rows($result) > 0) {
 				    <div class="app-card-body p-4">
 
                     <?php
-							$sql = "SELECT * FROM physicianorderprogressgsjhs WHERE idnumber = '$idnumber'";
+							$sql = "SELECT * FROM physicianorderprogressshs WHERE idnumber = '$idnumber'";
 							$result = $conn->query($sql);
     						while($row = $result->fetch_array()){
 						?>
@@ -258,13 +262,16 @@ if (mysqli_num_rows($result) > 0) {
     <input type="text" id="age" name="age" class="form-control"  value="<?=$row['age'];?>" readonly>
   </div>
   <div class="col-sm-3">
-    <label for="levelsection" class="col-sm-6 control-label">Level/Section</label>
+    <label for="grade" class="col-sm-6 control-label">Grade</label>
   </div>
-  <div class="col-sm-3" style="margin-left:-150px">
-    <input type="text" id="levelsection" name="levelsection" class="form-control" value="<?=$row['levelsection'];?>" readonly>
+  <div class="col-sm-2" style="margin-left:-200px">
+                <select class="form-select" name="grade">
+                <option disabled selected><?= $row['grade'];?></option>
+                </select>
   </div>
 </div>
 
+<hr>
   
         <?php } ?>
 				    </div><!--//app-card-body-->

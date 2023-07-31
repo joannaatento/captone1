@@ -14,6 +14,7 @@
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
+        $idnumber = $row['idnumber'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 1){
             // User type 1 specific code here
@@ -29,7 +30,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>User Dashboard</title>
+    <title>View Physician Schedule</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -50,6 +51,27 @@
 </head> 
 
 <body class="app">   	
+<?php  	
+
+
+// Retrieve the health record for the given ID number
+$sql = "SELECT * FROM physicianorderprogressgsjhs WHERE idnumber = '$idnumber'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    $row = $result->fetch_assoc(); 
+    $datetime = $row['datetime'];
+    $progressnotes = $row['progressnotes'];
+    $doctorsorder = $row['doctorsorder'];
+    $idnumber = $row['idnumber'];
+    $fullname = $row['fullname'];
+    $age= $row['age'];
+    $levelsection = $row['levelsection'];
+  
+      }
+   else {
+   } 
+  ?>
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -147,12 +169,12 @@
 									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofile.php">Health Profile Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappgsjhs.php">Dental Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappgsjhs.php">Medical Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappgsjhs.php">Physician Record</a>
+                                    <li class="submenu-item"> <a class="submenu-link active" href="viewphysicianappgsjhs.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisgsjhs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesgsjhs.php">School Health Assessment Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewconsultationformgsjhs.php">Consultation</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesgsjhs.php">School Health Assessment</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewphysicalexaminationrecordgsjhs.php">Physical Examination Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewphysicianorderandprogressnotesgsjhs.php">Physician's Order Sheet and Progress Notes Record</a>
-								</li>		
+								</li>
 									</ul>
 								</div>
 							</li>
@@ -181,7 +203,70 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-				
+
+                    <?php
+							$sql = "SELECT * FROM physicianorderprogressgsjhs WHERE idnumber = '$idnumber'";
+							$result = $conn->query($sql);
+    						while($row = $result->fetch_array()){
+						?>
+                        <br>
+                        <div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="datetime" class="col-sm-12 control-label">Date & Time</label>
+      <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="<?= date('Y-m-d\TH:i', strtotime($datetime)); ?>" readonly>
+
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="progressnotes" class="col-sm-12 control-label">Progress Notes</label>
+      <textarea class="form-control" id="progressnotes" name="progressnotes" readonly><?php echo $row['progressnotes']; ?></textarea>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="doctorsorder" class="col-sm-12 control-label">Doctor's Order</label>
+      <textarea class="form-control" id="doctorsorder" name="doctorsorder" readonly><?php echo $row['doctorsorder']; ?></textarea>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-sm-3">
+    <label for="idnumber" class="col-sm-6 control-label">ID Number</label>
+  </div>
+  <div class="col-sm-3" style="margin-left:-150px">
+    <input type="text" id="idnumber" name="idnumber" class="form-control" value="<?=$row['idnumber'];?>" readonly>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-3">
+    <label for="fullname" class="col-sm-6 control-label">Fullname</label>
+  </div>
+  <div class="col-sm-5" style="margin-left:-150px">
+    <input type="text" id="fullname" name="fullname" class="form-control"  value="<?=$row['fullname'];?>" readonly>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-3">
+    <label for="age" class="col-sm-6 control-label">Age</label>
+  </div>
+  <div class="col-sm-1" style="margin-left:-150px">
+    <input type="text" id="age" name="age" class="form-control"  value="<?=$row['age'];?>" readonly>
+  </div>
+  <div class="col-sm-3">
+    <label for="levelsection" class="col-sm-6 control-label">Level/Section</label>
+  </div>
+  <div class="col-sm-3" style="margin-left:-150px">
+    <input type="text" id="levelsection" name="levelsection" class="form-control" value="<?=$row['levelsection'];?>" readonly>
+  </div>
+</div>
+
+  
+        <?php } ?>
 				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>

@@ -30,7 +30,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Physical Examination Record</title>
+    <title>Physician's Order Sheet and Progress Notes</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -53,10 +53,10 @@
 <body class="app">   	
 
 <?php  	
-$idnumber = $_GET['idnumber'];
+$datetime = $_GET['datetime'];
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM physicianorderprogressgsjhs WHERE idnumber = '$idnumber'";
+$sql = "SELECT * FROM physicianorderprogressgsjhs WHERE datetime = '$datetime'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -258,7 +258,7 @@ if (mysqli_num_rows($result) > 0) {
                     <div class="app-card-body p-4">
                    
              
-                    <div class="row">
+<div class="row">
   <div class="col-sm-4">
     <div class="form-group">
       <label for="datetime" class="col-sm-12 control-label">Date & Time</label>
@@ -316,7 +316,11 @@ if (mysqli_num_rows($result) > 0) {
 
 
 
-
+</div><!--//app-card-body-->
+				</div>			    
+		    </div>
+	    </div>
+    </div>  		
 
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>

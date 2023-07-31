@@ -182,9 +182,9 @@ if (mysqli_num_rows($result) > 0) {
                   <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappgsjhs.php">Medical Record</a>
                   <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappgsjhs.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisgsjhs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewconsultationformgsjhs.php">Consultation</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesgsjhs.php">School Health Assessment</a>
 									<li class="submenu-item"> <a class="submenu-link active" href="viewphysicalexaminationrecordgsjhs.php">Physical Examination Record</a>
+                  <li class="submenu-item"> <a class="submenu-link" href="viewphysicianorderandprogressnotesgsjhs.php">Physician's Order Sheet and Progress Notes Record</a>
 </li>		
 									</ul>
 								</div>

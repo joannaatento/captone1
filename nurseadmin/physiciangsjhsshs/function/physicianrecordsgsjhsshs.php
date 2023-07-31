@@ -138,4 +138,32 @@
             ";
         }
     } // for physician gsjhsshs
+
+    if(isset($_POST['submit_pysicianordershs'])){ // pag get ng data
+        $admin_id = $_POST['admin_id'];
+        $datetime = $_POST['datetime'];
+        $formattedDatetime = date("Y-m-d h:i A", strtotime($datetime));
+
+        $progressnotes = $_POST['progressnotes']; 
+        $doctorsorder = $_POST['doctorsorder'];
+        $idnumber = $_POST['idnumber'];
+        $fullname = $_POST['fullname'];
+        $age = $_POST['age'];
+        $grade = $_POST['grade'];
+    
+    
+        $sql = "INSERT INTO physicianorderprogressshs VALUES ('','$admin_id','$formattedDatetime','$progressnotes','$doctorsorder','$idnumber','$fullname','$age','$grade')";
+        if(mysqli_query($conn, $sql)){
+            // echo "<script>window.history.go(-1);</script>";
+            header('location: ../physicianorderandprogressshs.php');
+            echo $_SESSION['success'] ="
+                <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+                    <h2 style='
+                    color: #fff;
+                    font-size: 16px;
+                    margin-left: 10px;'>Physician's Order Sheet and Progress Notes Added.</h2>
+                </div>
+            ";
+        }
+    } // for physician shs
 ?>

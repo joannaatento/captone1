@@ -196,8 +196,8 @@
     </a>
     <div id="submenu-6" class="collapse submenu submenu-5" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link active" href="physicianorderandprogressgsjhs.php">Grade School and Junior High School Department</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="physicianorderandprogressshs.php">Senior High School Department</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="physicianorderandprogressgsjhs.php">Grade School and Junior High School Department</a></li>
+            <li class="submenu-item"><a class="submenu-link active" href="physicianorderandprogressshs.php">Senior High School Department</a></li>
         </ul>
     </div>
 </li>
@@ -223,7 +223,7 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Physician's Order Sheet and Progress Notes (Grade School and Junior High School)</h4>
+						        <h4 class="notification-title mb-1">Physician's Order Sheet and Progress Notes (Senior High School)</h4>
 					        </div>
                             <?php
 								if(isset($_SESSION['success'])){
@@ -284,20 +284,22 @@
     <input type="text" id="age" name="age" class="form-control" required>
   </div>
   <div class="col-sm-3">
-    <label for="levelsection" class="col-sm-6 control-label">Level/Section</label>
+    <label for="grade" class="col-sm-6 control-label">Grade</label>
   </div>
-  <div class="col-sm-3" style="margin-left:-150px">
-    <input type="text" id="levelsection" name="levelsection" class="form-control" required>
+  <div class="col-sm-2" style="margin-left:-200px">
+                <select class="form-select" name="grade">
+                    <option value="" disabled selected>Select Grade</option>
+                    <option value="Grade 11">Grade 11</option>
+                    <option value="Grade 12">Grade 12</option>
+                </select>
   </div>
 </div>
 
-
     <br>
-
                      <div class="row">
                        <div class="col-sm-12">
                        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-                         <button name="submit_pysicianordergsjhs" class="btn btn-success">Add Physical Examination</button>
+                         <button name="submit_pysicianordershs" class="btn btn-success">Add Physical Examination</button>
                        </div>
                      </div>
                    </form>
@@ -311,13 +313,13 @@
                                  <th>ID Number</th>
                                  <th>Name</th>
                                  <th>Age</th>
-                                 <th>Level/Section</th>
+                                 <th>Grade</th>
                                  <th>Action</th>
                              </tr>
                          </thead>
                          <tbody id="healthRecordTableBody">
                              <?php
-                             $sql = "SELECT * FROM physicianorderprogressgsjhs WHERE admin_id = '$admin_id'";
+                             $sql = "SELECT * FROM physicianorderprogressshs WHERE admin_id = '$admin_id'";
                              $result = mysqli_query($conn, $sql);
                              
                              while ($row = $result->fetch_assoc()) {
@@ -326,9 +328,9 @@
                                      <td><?php echo $row['idnumber']; ?></td>
                                      <td><?php echo $row['fullname']; ?></td>
                                      <td><?php echo $row['age']; ?></td>
-                                     <td><?php echo $row['levelsection']; ?></td>
+                                     <td><?php echo $row['grade']; ?></td>
                                      <td>
-                                        <a href="viewphysicianordergsjhs.php?datetime=<?php echo $row['datetime']; ?>">
+                                        <a href="viewphysicianordershs.php?datetime=<?php echo $row['datetime']; ?>">
                                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
                                             <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
                                           </svg>

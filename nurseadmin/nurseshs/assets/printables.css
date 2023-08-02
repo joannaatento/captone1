@@ -1,0 +1,218 @@
+.styled-box {
+    position: relative;
+    width: 98px;
+    height: 98px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin-left: -250px
+  }
+  .picture {
+    position: relative;
+    text-align: center; 
+    margin-top: 14px;
+
+  }
+  .gradelevel {
+    /* Set the position and adjust values as needed */
+    position: absolute;
+    top: 245px;
+    left: 63%;
+}
+.name{
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 110px;
+}
+.underline_name{
+    position: absolute;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    margin-left: 7px;
+    width: 300px;
+}
+.names{
+  position: absolute;
+  margin-top: -34px;
+  margin-left: 500px;
+}
+.underline_names{
+  position: absolute;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  margin-left: 7px;
+  width: 100px;
+}
+
+.underline {
+    position: absolute;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    margin-left: 7px;
+    width: 153px;
+}
+
+.sex{
+  position: absolute;
+  margin-top: -33px;
+  margin-left: 670px;
+}
+.underline_sex{
+  position: absolute;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  margin-left: 7px;
+  width: 100px;
+}
+
+.home{
+  position: absolute;
+  margin-top: -33px;
+  margin-left: -250px;
+}
+.underline_home{
+  position: absolute;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  margin-left: 7px;
+  width: 705px;
+}
+
+
+
+  @media print {
+    header.app-header,
+    footer.app-footer {
+      display: none;
+    }
+      @page {
+          size: letter;
+          margin: 1cm; /* Adjust the margin as per your requirement */
+      }
+  
+    .print-button {
+        display: none;
+    }
+    .underline {
+        border: none;
+        border-bottom: 2px solid black;
+        outline: none;
+        margin-left: 7px;
+        width: 160px;
+    }
+    .picture {
+        position: relative;
+        text-align: center; 
+        margin-top: 14px;
+      }
+     
+
+    .underline_name{
+        border: none;
+        border-bottom: 2px solid black;
+        outline: none;
+        margin-left: 50px;
+        width: 250px;
+    }
+
+    body {
+      font-size: 20px; /* Example font size for print */
+  }
+  
+  .name{
+    
+    margin-top: -37px;
+    margin-left: 110px;
+}
+    .names{
+   
+      margin-top: -37px;
+      margin-left: 450px;
+    }
+    .underline_names{
+      border: none;
+      border-bottom: 2px solid black;
+      outline: none;
+      margin-left: 7px;
+      width: 70px;
+    }
+    
+      p, input {
+        /* Adjust font size for printing */
+        font-size: 12px; /* Adjust as needed */
+      }
+      .name p {
+        font-size: 11px;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 10px;
+        align-items: center;
+    }
+
+    .sex{
+   
+      margin-top: -38px;
+      margin-left: 580px;
+    }
+    .underline_sex{
+     
+      border: none;
+      border-bottom: 2px solid black;
+      outline: none;
+      margin-left: 7px;
+      width: 100px;
+    }
+    .styled-box {
+      width: 98px;
+      height: 98px;
+      background-color: white;
+      border: 2px solid black;
+      padding: 10px;
+      margin-top: -50px;
+      margin-left:-221px;
+    }
+
+
+    .gradelevel {
+      /* Set the position and adjust values as needed */
+      position: absolute;
+      top: 210px;
+      left: 63%;
+  }
+    .app-card {
+      /* Adjust card size to fit letter-size page */
+      width: 800px; /* Adjust as needed */
+      height: 1100px; /* Adjust as needed */
+    }
+    
+    .app-card-body {
+      /* Adjust padding for content within the card */
+      padding: 10px;
+    }
+  
+    .top {
+      display: flex;
+      align-items: center;
+      width: 10; /* Adjust the width as needed */
+      padding: -600px; /* Adjust the padding as needed */
+    }
+
+    
+.home{
+  margin-top: -33px;
+  margin-left: -220px;
+}
+.underline_home{
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+  margin-left: 7px;
+  width: 615px;
+}
+
+  }

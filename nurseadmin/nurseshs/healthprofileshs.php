@@ -47,7 +47,7 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/table.css">
-    <link rel="stylesheet" href="assets/printable.css">
+    <link rel="stylesheet" href="assets/printables.css">
     
 
 </head> 
@@ -287,37 +287,40 @@
             <div class="app-card app-card-notification shadow-sm mb-4">
   <div style="display: flex; justify-content: center; align-items: center;">
     <div class="app-card-body p-4">
-      <div style="display: flex; align-items: center;">
+      <div style="display: flex; align-items: center;" class="top">
         <img style="width: 80px; margin-right: 10px;" src="assets/images/dwcl.png" alt="logo">
-        <p style="font-size: 18px;">DIVINE WORD COLLEGE OF LEGAZPI<br>Senior High School Department<br>HEALTH SERVICES UNIT</p>
+        <p style="font-size: 14px;">DIVINE WORD COLLEGE OF LEGAZPI<br>Senior High School Department<br>HEALTH SERVICES UNIT</p>
       </div>
-    </div>
-  </div>
-  <div>
-    <br>
-    <center><p style="font-size: 20px;"><b>STUDENT'S MEDICAL RECORD</b></p></center>
-    <br>
-    <p class="gradelevel"> Grade Level: <input type="text" name="father" value="" class="underline"></p>
-    <br><br><br>
-    <div class="styled-box">
-      <div class="picture">
-        1x1 <br>picture
-      </div>
-      <div class="name">
-        <p style="font-size: 16px;">Name: <input type="text" name="father" value="" class="underline_name"></p>
-    
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-                
-                <button class="print-button" onclick="window.print()">Print</button>
-            </div>
+      <br>
+      <center><p style="font-size: 20px;"><b>STUDENT'S MEDICAL RECORD</b></p></center>
+      <br>
+      <p class="gradelevel" style="font-size: 15px;"> Grade Level: <input type="text" name="father" value="" class="underline"></p>
+      <br><br><br><br>
+      <div class="styled-box">
+        <div class="picture" style="font-size: 15px">
+          1x1 <br>picture
         </div>
+        <div class="name">
+          <p style="font-size: 15px;">Name: <input type="text" name="father" value="" class="underline_name"></p>
+        </div>
+        <div class="names">
+          <p style="font-size: 15px;">Age: <input type="text" name="father" value="" class="underline_names"></p>
+        </div>
+        <div class="sex">
+          <p style="font-size: 15px;">Sex: <input type="text" name="father" value="" class="underline_sex"></p>
+        </div>
+      </div>
+<br><br><br>
+      <div class="second_line">
+        <div class="home">
+        <p style="font-size: 15px; white-space: nowrap;">Home Address: <input type="text" name="father" value="" class="underline_home"></p>
+        </div>
+      </div>
+    
+        <button class="print-button" onclick="window.print()">Print</button>
+     
     </div>
+  </div>
 </div>
 
 

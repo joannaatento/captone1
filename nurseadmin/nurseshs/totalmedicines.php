@@ -4,7 +4,7 @@
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("../login.php");</script>';
+        echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
     $admin_id = $_SESSION['admin_id'];
@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Nurse's Notes</title>
+    <title>Nurse Dashboard</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -42,11 +42,13 @@
     
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/dentalstyles.css">
+	<link rel="stylesheet" href="assets/generate.css">
+    
     
 
 </head> 
@@ -281,8 +283,6 @@
 					    <div class="col-auto">
 					        <h1 class="app-page-title mb-0"></h1>
 					    </div>
-
-
 						
 				    </div>
 			    </div>
@@ -291,132 +291,109 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Nurse's Notes</h4>
+						        <h4 class="notification-title mb-1">Dynamic Reports</h4>
 					        </div>
-                            <?php
-								if(isset($_SESSION['success'])){
-									echo $_SESSION['success'];
-									unset($_SESSION['success']);
-								}
-							?>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-					   
-                     <form class="form-horizontal mt-4" method="post" action="function/shsrecords.php">
+                    <?php
 
-    <div class="row">
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">ID Number</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name"required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="gradesection" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="gradesection" name="gradesection" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-     <div class="row">
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="datetime" class="col-sm-8 control-label" style="font-size: 16px">Date/Time</label>
-                              <div class="col-sm-11">
-                                  <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="vitalsigns" class="col-sm-8 control-label" style="font-size: 16px">Vital Signs</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="vitalsigns" name="vitalsigns" placeholder="Enter Vital Signs" required>
-                              </div>
-                          </div>
-                      </div>
-                </div>
-         <div class="row">
-                      <div class="col-sm-17">
-                          <div class="form-group">
-                            <br>
-                              <label for="nursenotes" class="col-sm-8 control-label" style="font-size: 16px">Nurse's Notes</label>
-                              <div class="col-sm-11">
-                                  <textarea class="form-control" id="nursenotes" name="nursenotes" required></textarea>
-                              </div>
-                          </div>
-                      </div> 
-                </div>
+// Define a variable to store the selected year (default to 2023).
+$selected_year = isset($_POST['selected_year']) ? $_POST['selected_year'] : '2023';
 
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <br>
-        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_nursenotes" class="btn btn-success">Submit</button>
-    </div>
-</div>
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['report_type']) && isset($_POST['selected_year'])) {
+        $report_type = $_POST['report_type'];
+        $selected_year = $_POST['selected_year'];
+
+        switch ($report_type) {
+            case 'week':
+                $sql = "SELECT CONCAT(YEAR(date_created), '-', WEEK(date_created)) AS label,
+                        medicine_name,
+                        COUNT(medicine_name) AS total_medicine,
+                        SUM(quantity) AS total_quantity
+                        FROM medicine
+                        WHERE admin_id = '10' AND YEAR(date_created) = $selected_year
+                        GROUP BY label, medicine_name";
+                $report_label = 'Weekly';
+                break;
+
+            case 'month':
+                $sql = "SELECT CONCAT(YEAR(date_created), '-', MONTHNAME(date_created)) AS label,
+                        medicine_name,
+                        COUNT(medicine_name) AS total_medicine,
+                        SUM(quantity) AS total_quantity
+                        FROM medicine
+                        WHERE admin_id = '10' AND YEAR(date_created) = $selected_year
+                        GROUP BY label, medicine_name";
+                $report_label = 'Monthly';
+                break;
+
+            case 'year':
+                $sql = "SELECT CONCAT(YEAR(date_created)) AS label,
+                        medicine_name,
+                        COUNT(medicine_name) AS total_medicine,
+                        SUM(quantity) AS total_quantity
+                        FROM medicine
+                        WHERE admin_id = '10' AND YEAR(date_created) = $selected_year
+                        GROUP BY label, medicine_name";
+                $report_label = 'Yearly';
+                break;
+
+            default:
+                echo "Invalid report type selection.";
+                exit;
+        }
+
+        $result = $conn->query($sql);
+?>
+
+<table>
+    <thead>
+        <tr>
+            <th><?php echo $report_label; ?></th>
+            <th>Medicine Name</th>
+            <th>Total Quantity</th>
+        </tr>
+    </thead>
+    <tbody id="healthRecordTableBody">
+        <?php while ($row = $result->fetch_object()): ?>
+            <tr>
+                <td><?php echo $row->label; ?></td>
+                <td><?php echo $row->medicine_name; ?></td>
+                <td><?php echo $row->total_quantity; ?></td>
+            </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
+
+         
+<?php
+    }
+}
+?>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <select id="tableSelect" name="report_type">
+        <option value="week">Week</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
+    </select>
+
+    <select id="yearSelect" name="selected_year">
+        <option value="2023" <?php echo $selected_year === '2023' ? 'selected' : ''; ?>>2023</option>
+        <option value="2024" <?php echo $selected_year === '2024' ? 'selected' : ''; ?>>2024</option>
+        <option value="2025" <?php echo $selected_year === '2025' ? 'selected' : ''; ?>>2025</option>
+    </select>
+
+    <button type="submit">Generate Report</button>
 </form>
 
-<center>
-                   
-                   <table class="styled-table">
-                       <thead>
-                           <tr>
-                               <th>ID Number</th>
-                               <th>Name</th>
-                               <th>Grade & Section</th>
-                               <th>Date & Time</th>
-                               <th>Vital Signs</th>
-                               <th>Nurse's Notes</th>
-                           </tr>
-                       </thead>
-                       <tbody id="healthRecordTableBody">
-                           <?php
-                           $sql = "SELECT * FROM nursenotesshs WHERE admin_id = '$admin_id'";
-                           $result = mysqli_query($conn, $sql);
-                           
-                           while ($row = $result->fetch_assoc()) {
-                               ?>
-                               <tr>
-                                   <td><?php echo $row['idnumber']; ?></td>
-                                   <td><?php echo $row['fullname']; ?></td>
-                                   <td><?php echo $row['gradesection']; ?></td>
-                                   <td><?php echo $row['datetime']; ?></td>
-                                   <td><?php echo $row['vitalsigns']; ?></td>
-                                   <td><?php echo $row['nursenotes']; ?></td>
-            
-                               </tr>
-                           <?php } ?>
-                       </tbody>
-                   </table>
-                   <br>
-               </center>
-
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
+    </script>			
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+   
+
     
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 
@@ -433,5 +410,4 @@
 
 
 </body>
-</html> 
-
+</html>

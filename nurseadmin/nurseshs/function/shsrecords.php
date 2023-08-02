@@ -9,11 +9,12 @@ if(isset($_POST['submit_medicalshs'])){ // pag get ng data
     $role = $_POST['role'];
     $onoff = $_POST['onoff'];
     $date_time = $_POST['date_time'];
+    $formattedDatetime = date("Y-m-d h:i A", strtotime($date_time));
 
     date_default_timezone_set('Asia/Manila');
-    $date_created = date('Y-m-d h:i A'); 
+    $date_created = date('Y-m-d'); 
 
-    $sql = "INSERT INTO medicalapp VALUES ('','$admin_id','$idnumber','$name1','$gradecourseyear1','$role','$onoff','$date_time','$date_created')";
+    $sql = "INSERT INTO medicalapp VALUES ('','$admin_id','$idnumber','$name1','$gradecourseyear1','$role','$onoff','$formattedDatetime','$date_created')";
     if(mysqli_query($conn, $sql)){
         // echo "<script>window.history.go(-1);</script>";
         header('location: ../medicalshs.php');
@@ -23,6 +24,29 @@ if(isset($_POST['submit_medicalshs'])){ // pag get ng data
                 color: #fff;
                 font-size: 16px;
                 margin-left: 10px;'>Medical Appointment Added.</h2>
+            </div>
+        ";
+    }
+} //for medical appointment shs
+
+if(isset($_POST['submit_medicine'])){ // pag get ng data
+    $admin_id = $_POST['admin_id'];
+    $medicine_name = $_POST['medicine_name']; 
+    $quantity = $_POST['quantity']; 
+
+    date_default_timezone_set('Asia/Manila');
+    $date_created = date('Y-m-d h:i A'); 
+
+    $sql = "INSERT INTO medicine VALUES ('','$admin_id','$medicine_name','$quantity','$date_created')";
+    if(mysqli_query($conn, $sql)){
+        // echo "<script>window.history.go(-1);</script>";
+        header('location: ../consultationformshs.php');
+        echo $_SESSION['success'] ="
+            <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+                <h2 style='
+                color: #fff;
+                font-size: 16px;
+                margin-left: 10px;'>Medicine Added.</h2>
             </div>
         ";
     }

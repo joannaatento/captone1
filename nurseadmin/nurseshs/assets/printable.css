@@ -1,0 +1,108 @@
+.styled-box {
+    position: relative;
+    width: 98px;
+    height: 98px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 20px;
+  }
+  .picture {
+    position: relative;
+    text-align: center; 
+    margin-top: 14px;
+  }
+  .gradelevel {
+    /* Set the position and adjust values as needed */
+    position: absolute;
+    top: 245px;
+    left: 63%;
+}
+.name{
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 100px;
+}
+.underline_name{
+    position: absolute;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    margin-left: 7px;
+    width: 300px;
+}
+.underline {
+    position: absolute;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    margin-left: 7px;
+    width: 150px;
+}
+.age{
+    position: absolute;
+    margin-top: -3px;
+    margin-right: 700px;
+}
+.underline_age{
+    position: absolute;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    margin-left: 400px;
+    width: 100px;
+}
+
+  @media print {
+    header.app-header,
+    footer.app-footer {
+      display: none;
+    }
+    .print-button {
+        display: none;
+    }
+    .underline {
+        border: none;
+        border-bottom: 2px solid black;
+        outline: none;
+        margin-left: 7px;
+        width: 150px;
+    }
+    .picture {
+        position: relative;
+        text-align: center; 
+        margin-top: 14px;
+      }
+      .styled-box {
+        position: relative;
+        width: 98px;
+        height: 98px;
+        background-color: white;
+        border: 2px solid black;
+        padding: 10px;
+        margin: 20px;
+      }
+
+    .underline_name{
+        border: none;
+        border-bottom: 2px solid black;
+        outline: none;
+        margin-left: 7px;
+        width: 300px;
+    }
+    .app-card {
+        /* Adjust card size to fit letter-size page */
+        width: 800px; /* Adjust as needed */
+        height: 1100px; /* Adjust as needed */
+      }
+      .app-card-body {
+        /* Adjust padding for content within the card */
+        padding: 10px;
+      }
+    
+      p, input {
+        /* Adjust font size for printing */
+        font-size: 12px; /* Adjust as needed */
+      }
+
+}

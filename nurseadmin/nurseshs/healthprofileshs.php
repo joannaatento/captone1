@@ -4,7 +4,7 @@
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("../login.php");</script>';
+        echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
     $admin_id = $_SESSION['admin_id'];
@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Nurse's Notes</title>
+    <title>Nurse Dashboard</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -46,7 +46,8 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/dentalstyles.css">
+	<link rel="stylesheet" href="assets/table.css">
+    <link rel="stylesheet" href="assets/printable.css">
     
 
 </head> 
@@ -273,147 +274,53 @@
 	    </div>
     </header>
     <div class="app-wrapper">
-	    
-	    <div class="app-content pt-3 p-md-3 p-lg-4">
-		    <div class="container-xl">
-			    <div class="position-relative mb-3">
-				    <div class="row g-3 justify-content-between">
-					    <div class="col-auto">
-					        <h1 class="app-page-title mb-0"></h1>
-					    </div>
-
-
-						
-				    </div>
-			    </div>
-			    
-                <div class="app-card app-card-notification shadow-sm mb-4">
-				    <div class="app-card-header px-4 py-3">
-				        <div class="row g-3 align-items-center">
-					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Nurse's Notes</h4>
-					        </div>
-                            <?php
-								if(isset($_SESSION['success'])){
-									echo $_SESSION['success'];
-									unset($_SESSION['success']);
-								}
-							?>
-							<!--//generate report-->
-				        </div><!--//row-->
-				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
-					   
-                     <form class="form-horizontal mt-4" method="post" action="function/shsrecords.php">
-
-    <div class="row">
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">ID Number</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name"required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="gradesection" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="gradesection" name="gradesection" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-     <div class="row">
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="datetime" class="col-sm-8 control-label" style="font-size: 16px">Date/Time</label>
-                              <div class="col-sm-11">
-                                  <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="vitalsigns" class="col-sm-8 control-label" style="font-size: 16px">Vital Signs</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="vitalsigns" name="vitalsigns" placeholder="Enter Vital Signs" required>
-                              </div>
-                          </div>
-                      </div>
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl" style="max-width: 1000px; margin: 0 auto;">
+            <div class="position-relative mb-3">
+                <div class="row g-3 justify-content-between">
+                    <div class="col-auto">
+                        <h1 class="app-page-title mb-0"></h1>
+                    </div>
                 </div>
-         <div class="row">
-                      <div class="col-sm-17">
-                          <div class="form-group">
-                            <br>
-                              <label for="nursenotes" class="col-sm-8 control-label" style="font-size: 16px">Nurse's Notes</label>
-                              <div class="col-sm-11">
-                                  <textarea class="form-control" id="nursenotes" name="nursenotes" required></textarea>
-                              </div>
-                          </div>
-                      </div> 
-                </div>
+            </div>
 
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <br>
-        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_nursenotes" class="btn btn-success">Submit</button>
+            <div class="app-card app-card-notification shadow-sm mb-4">
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <div class="app-card-body p-4">
+      <div style="display: flex; align-items: center;">
+        <img style="width: 80px; margin-right: 10px;" src="assets/images/dwcl.png" alt="logo">
+        <p style="font-size: 18px;">DIVINE WORD COLLEGE OF LEGAZPI<br>Senior High School Department<br>HEALTH SERVICES UNIT</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <br>
+    <center><p style="font-size: 20px;"><b>STUDENT'S MEDICAL RECORD</b></p></center>
+    <br>
+    <p class="gradelevel"> Grade Level: <input type="text" name="father" value="" class="underline"></p>
+    <br><br><br>
+    <div class="styled-box">
+      <div class="picture">
+        1x1 <br>picture
+      </div>
+      <div class="name">
+        <p style="font-size: 16px;">Name: <input type="text" name="father" value="" class="underline_name"></p>
+    
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+                
+                <button class="print-button" onclick="window.print()">Print</button>
+            </div>
+        </div>
     </div>
 </div>
-</form>
 
-<center>
-                   
-                   <table class="styled-table">
-                       <thead>
-                           <tr>
-                               <th>ID Number</th>
-                               <th>Name</th>
-                               <th>Grade & Section</th>
-                               <th>Date & Time</th>
-                               <th>Vital Signs</th>
-                               <th>Nurse's Notes</th>
-                           </tr>
-                       </thead>
-                       <tbody id="healthRecordTableBody">
-                           <?php
-                           $sql = "SELECT * FROM nursenotesshs WHERE admin_id = '$admin_id'";
-                           $result = mysqli_query($conn, $sql);
-                           
-                           while ($row = $result->fetch_assoc()) {
-                               ?>
-                               <tr>
-                                   <td><?php echo $row['idnumber']; ?></td>
-                                   <td><?php echo $row['fullname']; ?></td>
-                                   <td><?php echo $row['gradesection']; ?></td>
-                                   <td><?php echo $row['datetime']; ?></td>
-                                   <td><?php echo $row['vitalsigns']; ?></td>
-                                   <td><?php echo $row['nursenotes']; ?></td>
-            
-                               </tr>
-                           <?php } ?>
-                       </tbody>
-                   </table>
-                   <br>
-               </center>
 
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

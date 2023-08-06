@@ -28,6 +28,28 @@ if(isset($_POST['submit_medicalcollege'])){ // pag get ng data
     }
 } //for medical appointment college
 
+if(isset($_POST['submit_medicine'])){ // pag get ng data
+    $admin_id = $_POST['admin_id'];
+    $medicine_name = $_POST['medicine_name']; 
+    $quantity = $_POST['quantity']; 
+
+    date_default_timezone_set('Asia/Manila');
+    $date_created = date('Y-m-d h:i A'); 
+
+    $sql = "INSERT INTO medicine VALUES ('','$admin_id','$medicine_name','$quantity','$date_created')";
+    if(mysqli_query($conn, $sql)){
+        // echo "<script>window.history.go(-1);</script>";
+        header('location: ../consultationformcollege.php');
+        echo $_SESSION['success'] ="
+            <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+                <h2 style='
+                color: #fff;
+                font-size: 16px;
+                margin-left: 10px;'>Medicine Added.</h2>
+            </div>
+        ";
+    }
+} //for medical appointment shs
 
 if(isset($_POST['submit_statusmedicalcollege'])) {
     // Retrieve the submitted form data

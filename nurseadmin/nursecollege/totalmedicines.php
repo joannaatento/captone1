@@ -4,8 +4,23 @@
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("../login.php");</script>';
+        echo '<script>window.location.replace("login.php");</script>';
         exit; // Exit the script to prevent further execution
+    }
+    $admin_id = $_SESSION['admin_id'];
+    $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
+    $result = $conn->query($sql_query);
+    while($row = $result->fetch_array()){
+        $admin_id = $row['admin_id'];
+        $username = $row['username'];
+        require_once('../../db.php');
+        if($_SESSION['role'] == 3){
+            // User type 1 specific code here
+        }
+        else{
+            header('location: ../login.php');
+            exit; // Exit the script to prevent further execution
+        }
     }
 
 ?>
@@ -14,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Grade School and Junior High School Building</title>
+    <title>Nurse Dashboard</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -27,10 +42,15 @@
     
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-    <link rel="stylesheet" href="assets/tables.css">
+	<link rel="stylesheet" href="assets/generate.css">
+    
+    
+
 </head> 
 
 <body class="app">   	
@@ -209,78 +229,109 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Grade School and Junior High School Health Profiles</h4>
+						        <h4 class="notification-title mb-1">Dynamic Reports</h4>
 					        </div>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-header p-4 pb-2 border-0">
-  <div class="app-search-box col">
-    <form class="app-search-form" onsubmit="event.preventDefault(); searchRecords();">
-      <input type="text" placeholder="Search..." name="query" id="searchQuery" class="form-control search-input">
-      <button type="submit" class="btn search-btn btn-primary"><i class="fas fa-search"></i></button>
-    </form>
-  </div>
-</div>
+                    <?php
 
-<div class="app-card-body p-4">
-  <div id="healthRecordTable">
-    <table>
-      <thead>
+// Define a variable to store the selected year (default to 2023).
+$selected_year = isset($_POST['selected_year']) ? $_POST['selected_year'] : '2023';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['report_type']) && isset($_POST['selected_year'])) {
+        $report_type = $_POST['report_type'];
+        $selected_year = $_POST['selected_year'];
+
+        switch ($report_type) {
+            case 'week':
+                $sql = "SELECT CONCAT(YEAR(date_created), '-', WEEK(date_created)) AS label,
+                        medicine_name,
+                        COUNT(medicine_name) AS total_medicine,
+                        SUM(quantity) AS total_quantity
+                        FROM medicine
+                        WHERE admin_id = '11' AND YEAR(date_created) = $selected_year
+                        GROUP BY label, medicine_name";
+                $report_label = 'Weekly';
+                break;
+
+            case 'month':
+                $sql = "SELECT CONCAT(YEAR(date_created), '-', MONTHNAME(date_created)) AS label,
+                        medicine_name,
+                        COUNT(medicine_name) AS total_medicine,
+                        SUM(quantity) AS total_quantity
+                        FROM medicine
+                        WHERE admin_id = '11' AND YEAR(date_created) = $selected_year
+                        GROUP BY label, medicine_name";
+                $report_label = 'Monthly';
+                break;
+
+            case 'year':
+                $sql = "SELECT CONCAT(YEAR(date_created)) AS label,
+                        medicine_name,
+                        COUNT(medicine_name) AS total_medicine,
+                        SUM(quantity) AS total_quantity
+                        FROM medicine
+                        WHERE admin_id = '11' AND YEAR(date_created) = $selected_year
+                        GROUP BY label, medicine_name";
+                $report_label = 'Yearly';
+                break;
+
+            default:
+                echo "Invalid report type selection.";
+                exit;
+        }
+
+        $result = $conn->query($sql);
+?>
+
+<table>
+    <thead>
         <tr>
-          <th>Name</th>
-          <th>ID Number</th>
-          <th>Age</th>
-          <th>Person to Contact</th>
-          <th>Contact Person Number</th>
-          <th>Action</th>
+            <th><?php echo $report_label; ?></th>
+            <th>Medicine Name</th>
+            <th>Total Quantity</th>
         </tr>
-      </thead>
-      <tbody id="healthRecordTableBody">
-        <?php
-        $sql = "SELECT * FROM healthrecordformgsjhs";
-        $result = mysqli_query($conn, $sql);
+    </thead>
+    <tbody id="healthRecordTableBody">
+        <?php while ($row = $result->fetch_object()): ?>
+            <tr>
+                <td><?php echo $row->label; ?></td>
+                <td><?php echo $row->medicine_name; ?></td>
+                <td><?php echo $row->total_quantity; ?></td>
+            </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
 
-        while($row = $result->fetch_assoc()){
-        ?>
-        <tr>
-          <td><?php echo $row['fullname']; ?></td>
-          <td><?php echo $row['idnumber']; ?></td>
-          <td><?php echo $row['age']; ?></td>
-          <td><?php echo $row['guardianname']; ?></td>
-          <td><?php echo $row['cguardian']; ?></td>
-          
-          <td>
-            <center><a href="viewgsjhsrecord.php?idnumber=<?php echo $row['idnumber']; ?>">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-              </svg>
-            </a></center>
-          </td>
-        </tr>
-        <?php } ?>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<script>
-function searchRecords() {
-  var searchQuery = document.getElementById("searchQuery").value;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("healthRecordTableBody").innerHTML = this.responseText;
+         
+<?php
     }
-  };
-  xhttp.open("GET", "function/searchqueryforgsjhs.php?query=" + searchQuery, true);
-  xhttp.send();
 }
-</script>
+?>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <select id="tableSelect" name="report_type">
+        <option value="week">Week</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
+    </select>
 
- <!-- Javascript -->          
- <script src="assets/plugins/popper.min.js"></script>
+    <select id="yearSelect" name="selected_year">
+        <option value="2023" <?php echo $selected_year === '2023' ? 'selected' : ''; ?>>2023</option>
+        <option value="2024" <?php echo $selected_year === '2024' ? 'selected' : ''; ?>>2024</option>
+        <option value="2025" <?php echo $selected_year === '2025' ? 'selected' : ''; ?>>2025</option>
+    </select>
+
+    <button type="submit">Generate Report</button>
+</form>
+
+    </script>			
+    <!-- Javascript -->          
+    <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+   
+
     
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 
@@ -295,6 +346,6 @@ function searchRecords() {
 		}, 5000);
 	</script>
 
-</body>
-</html> 
 
+</body>
+</html>

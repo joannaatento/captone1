@@ -16,13 +16,72 @@
         require_once('../../db.php');
         if($_SESSION['role'] == 7){
             // User type 1 specific code here
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['report_type']) && isset($_POST['selected_year'])) {
+                    $report_type = $_POST['report_type'];
+                    $selected_year = $_POST['selected_year'];
+            
+                    $chartData = array();
+            
+                    switch ($report_type) {
+                        case 'week':
+                            $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
+                                    SUM(role = 'Student in College') AS total_student,
+                                    SUM(role = 'Employee in College') AS total_employee
+                                    FROM physicianapp
+                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    GROUP BY label";
+                            $report_label = 'Weekly';
+                            break;
+            
+                        case 'month':
+                            $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
+                                    SUM(role = 'Student in College') AS total_student,
+                                    SUM(role = 'Employee in College') AS total_employee
+                                    FROM physicianapp
+                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    GROUP BY label";
+                            $report_label = 'Monthly';
+                            break;
+            
+                        case 'year':
+                            $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
+                                   SUM(role = 'Student in College') AS total_student,
+                                    SUM(role = 'Employee in College') AS total_employee
+                                    FROM physicianapp
+                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    GROUP BY label";
+                            $report_label = 'Yearly';
+                            break;
+            
+                        default:
+                            echo "Invalid report type selection.";
+                            exit;
+                    }
+            
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("ii", $admin_id, $selected_year);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+            
+                    while ($row = $result->fetch_object()) {
+                        $chartData['labels'][] = $row->label;
+                        $chartData['total_student'][] = $row->total_student;
+                        $chartData['total_employee'][] = $row->total_employee;
+                    }
+            
+                    header("Content-Type: application/json");
+                    echo json_encode($chartData);
+                    exit;
+                }
+            }
+        
         }
         else{
             header('location: ../login.php');
             exit; // Exit the script to prevent further execution
         }
     }
-
 ?>
 
 
@@ -42,18 +101,61 @@
     
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    
+	<link rel="stylesheet" href="assets/generate.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Style the container to have fixed size and enable scrolling */
+        .chart-container {
+            width: 800px;
+            height: 400px;
+            overflow: auto;
+        }
+
+        #reportForm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    #generateReport {
+        background-color: #007bff; /* Clinic blue */
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Clinic chart title styling */
+    .chart-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #007bff; /* Clinic blue */
+        margin-bottom: 10px;
+    }
+
+    /* Clinic chart container styling */
+    .chart-container {
+        background-color: #f8f9fa; /* Clinic light gray */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    </style>
     
 
 </head> 
 
 <body class="app">   	
-    <header class="app-header fixed-top">	   	            
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -91,6 +193,29 @@
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+
+
+                <li class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+            <span class="nav-icon">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"/>
+                </svg>
+            </span>
+            <span class="nav-link-text">Report Generation</span>
+            <span class="submenu-arrow">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </span>
+        </a>
+        <div id="submenu-3" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+            <ul class="submenu-list list-unstyled">
+            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
+            </ul>
+        </div>
+    </li>
     <li class="nav-item has-submenu">
         <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
@@ -153,15 +278,10 @@
     </a>
 </li>
 </ul>
-
-	
-			    </nav>
-				
-				
+ </nav>
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -185,8 +305,129 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-					   
+                        
+                    <form id="reportForm">
+        <select id="tableSelect" name="report_type">
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="year">Year</option>
+        </select>
+
+        <select id="yearSelect" name="selected_year">
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2039</option>
+        </select>
+
+        <!-- Replace the submit button with a regular button -->
+        <button type="button" id="generateReport">Generate Report</button>
+    </form>
+    <br>
+    <p>Total Physician Consultation Appointment Reports</p>
+    <!-- Fixed-sized container for the graph -->
+    <div class="chart-container">
+        <canvas id="barChart" width="2000" height="800" text-align="center"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const generateButton = document.getElementById("generateReport");
+            generateButton.addEventListener("click", function () {
+                fetchChartData();
+            });
+
+            function fetchChartData() {
+                const form = document.getElementById("reportForm");
+                const formData = new FormData(form);
+
+                fetch("physiciancollege.php", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    drawBarChart(data);
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+            }
+
+            function drawBarChart(data) {
+                const ctx = document.getElementById("barChart").getContext("2d");
+
+                const chartData = {
+                    labels: data.labels,
+                    datasets: [
+                        {
+                            label: "Total of Student",
+                            data: data.total_student,
+                            backgroundColor: "rgba(0, 0, 128, 0.5)", // You can change the color here
+                        },
+                        {
+                            label: "Total of Employees",
+                            data: data.total_employee,
+                            backgroundColor: "rgba(139, 0, 0, 0.5)", // You can change the color here
+                        },
+                    ],
+                };
+    const options = {
+    responsive: true,
+    scales: {
+        x: {
+            stacked: true,
+        },
+        y: {
+            beginAtZero: true,
+            stacked: true,
+            ticks: {
+                stepSize: 5,
+                max: 80,
+                callback: function (value, index, values) {
+                    // Define the custom labels
+                    const customLabels = ['0','5','10','15','20','25','30','35'];
+                    return customLabels[index];
+                },
+            },
+        },
+    },
+};
+
+// Destroy the previous chart if it exists
+const existingChart = window.myChart;
+if (existingChart) {
+    existingChart.destroy();
+}
+
+// Create a new chart instance
+window.myChart = new Chart(ctx, {
+    type: "bar",
+    data: chartData,
+    options: options,
+});
+
+            }
+
+            // Fetch and draw the chart when the page loads
+            fetchChartData();
+        });
+    </script>
+
+    
 				    </div><!--//app-card-body-->
+
+
+    
 				</div>			    
 		    </div>
 	    </div>

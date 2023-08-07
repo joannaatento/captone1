@@ -9,11 +9,12 @@
         $cenrolled = $_POST['cenrolled'];
         $service = $_POST['service'];
         $date_time = $_POST['date_time'];
+        $formattedDatetime = date("Y-m-d h:i A", strtotime($date_time));
 
         date_default_timezone_set('Asia/Manila');
         $date_created = date('Y-m-d h:i A'); 
 
-        $sql = "INSERT INTO dentalapp VALUES ('','$admin_id','$idnumber','$fullname','$role','$cenrolled','$service','$date_time','$date_created')";
+        $sql = "INSERT INTO dentalapp VALUES ('','$admin_id','$idnumber','$fullname','$role','$cenrolled','$service','$formattedDatetime','$date_created')";
         if(mysqli_query($conn, $sql)){
             // echo "<script>window.history.go(-1);</script>";
             header('location: ../dentalcollege.php');

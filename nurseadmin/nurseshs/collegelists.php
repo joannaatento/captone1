@@ -1,6 +1,7 @@
 <?php
     session_start();
     include '../../db.php';
+    require '../../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -318,7 +319,14 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
                 <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
               </svg>
-            </a></center>
+            </a>
+            <a href="#" class="modal-link" data-bs-toggle="modal" data-bs-target="#openModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+</svg>
+    </a>
+
+</center>
           </td>
         </tr>
         <?php } ?>
@@ -326,6 +334,90 @@
     </table>
   </div>
 </div>
+<div class="modal fade" id="openModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4"></textarea>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="Send">Send</button>
+                    </div>
+                </form>
+
+                <?php
+/**
+ * Send an SMS message directly by calling the HTTP endpoint.
+ *
+ * For your convenience, environment variables are already pre-populated with your account data
+ * like authentication, base URL, and phone number.
+ *
+ * Please find detailed information in the readme file.
+ */
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
+
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $phoneNumber = $_POST['phone'];
+    $message = $_POST['message'];
+    date_default_timezone_set('Asia/Manila');
+    $date_created = date('Y-m-d h:i A'); 
+
+    // Send the SMS using the Infobip API
+    $client = new Client([
+        'base_uri' => "https://k3n5n1.api.infobip.com",
+        'headers' => [
+            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ]
+    ]);
+
+    $response = $client->request(
+        'POST',
+        'sms/2/text/advanced',
+        [
+            RequestOptions::JSON => [
+                'messages' => [
+                    [
+                        'from' => 'Clinic DWCL',
+                        'destinations' => [
+                            ['to' => $phoneNumber]
+                        ],
+                        'text' => $message,
+                    ]
+                ]
+            ],
+        ]
+    );
+
+    // Prepare the SQL query
+    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+
+    // Bind the parameters and execute the query
+    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
+    $stmt->execute();
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>
 
 <script>
 function searchRecords() {
@@ -336,7 +428,7 @@ function searchRecords() {
       document.getElementById("healthRecordTableBody").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "function/searchqueryforcollege.php?query=" + searchQuery, true);
+  xhttp.open("GET", "function/searchqueryforgsjhs.php?query=" + searchQuery, true);
   xhttp.send();
 }
 </script>
@@ -344,7 +436,7 @@ function searchRecords() {
  <!-- Javascript -->          
  <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    
+    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 
 	

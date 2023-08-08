@@ -1,7 +1,7 @@
 <?php
     session_start();
     include '../../db.php';
-    require '../../vendor/autoload2.php';
+    require '../../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -348,7 +348,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="messagesms" class="form-label">Message</label>
-                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4"></textarea>
                     </div>
 
 

@@ -42,12 +42,14 @@
     
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/table.css">
-    <link rel="stylesheet" href="assets/printables.css">
+  <link rel="stylesheet" href="assets/printable.css">
+
  
 </head> 
 
@@ -286,244 +288,42 @@
  <div class="app-card app-card-notification shadow-sm mb-4">
   <div style="display: flex; justify-content: center; align-items: center;">
     <div class="app-card-body p-4">
-      <div style="display: flex; align-items: center;" class="top">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <img style="width: 80px;" src="assets/images/dwcl.png" alt="logo">
-        <p style="font-size: 21px; margin-left: 10px;"><br>DIVINE WORD COLLEGE OF LEGAZPI<br>Senior High School Department<br>HEALTH SERVICES UNIT</p>
-      </div>
-      <br>
-      <center><p style="font-size: 20px;" class="title"><b>STUDENT'S MEDICAL RECORD</b></p></center>
-      <br>
-      <p class="gradelevel" style="font-size: 21px;"> Grade Level: <input type="text" name="father" value="" class="underline"></p>
-      <br><br><br>
-      <div class="styled-box">
-        <div class="picture" style="font-size: 21px">
-          1x1 <br>picture
-        </div>
-        <div class="name">
-          <p style="font-size: 21px;">Name: <input type="text" name="father" value="" class="underline_name"></p>
-        </div>
-        <div class="names">
-          <p style="font-size: 21px;">Age: <input type="text" name="father" value="" class="underline_names"></p>
-        </div>
-        <div class="sex">
-          <p style="font-size: 21px;">Sex: <input type="text" name="father" value="" class="underline_sex"></p>
-        </div>
-      </div>
-<br><br><br>
-      <div class="second_line">
-        <div class="home">
-        <p style="font-size: 21px; white-space: nowrap;">Home Address: <input type="text" name="father" value="" class="underline_home"></p>
-        </div>
-      </div>
-      <br><br>
-      <div class="third_line">
-        <div class="home">
-        <p style="font-size: 21px; white-space: nowrap;">Temporary Address: <input type="text" name="father" value="" class="underline_temporary"></p>
-        </div>
-      </div>
-      <br><br>
-      <div class="fourth_line">
-        <div class="father">
-          <p style="font-size: 21px;">Father: <input type="text" name="father" value="" class="underline_fname"></p>
-        <div class="contact">
-          <p style="font-size: 21px; white-space: nowrap;">Contact No.: <input type="text" name="father" value="" class="underline_fcontact"></p>
-        </div>
-      </div>
-      <br><br>
-      <div class="fifth_line">
-        <div class="father">
-          <p style="font-size: 21px;">Mother: <input type="text" name="father" value="" class="underline_mname"></p>
-        <div class="contact">
-          <p style="font-size: 21px; white-space: nowrap;">Contact No.: <input type="text" name="father" value="" class="underline_fcontact"></p>
-        </div>
-      </div>
-      <br><br>
-      <div class="sixth_line">
-        <div class="father"><br>
-          <p style="font-size: 21px;">Please check if you have/had any of the following illnesses:</p>
-      </div>
-      </div>
-     <br><br>
-     <div class="seventh_line">
-  <div class="disease-container">
-    <div class="disease-column">
-      <input type="text" name="father" value="" class="underline_disease">
-      <p class="disease-name">Polio</p>
-    </div>
-    <div class="disease-column">
-      <input type="text" name="father" value="" class="underline_disease">
-      <p class="disease-name">Tetanus</p>
-    </div>
-    <div class="disease-column">
-      <input type="text" name="father" value="" class="underline_disease">
-      <p class="disease-name">Chicken Pox</p>
-    </div>
-  </div>
-</div>
 
-<div class="seventh_line">
-  <div class="disease-container">
-  <div class="disease-column">
-      <input type="text" name="father" value="" class="underline_disease">
-      <p class="disease-name">Measles</p>
-    </div>
-    <div class="disease-column">
-      <input type="text" name="father" value="" class="underline_disease">
-      <p class="disease-name">Mumps</p>
-    </div>
-    <div class="disease-column">
-  <input type="text" name="pt" value="" class="underline_diseases">
-  <p class="disease-name" style="margin-left: 10px; width: 30px;">Pulmonary Tuberculosis</p>
-</div>
-  </div>
-</div>
+    <button id="printButton">Print PDF</button>
+<div id="pdfContainer"></div>
 
-<div class="seventh_line">
-  <div class="disease-container">
-  <div class="disease-column">
-  <input type="text" name="father" value="" class="underline_disease">
-  <p class="disease-name" style="white-space: nowrap;">Fainting Spells</p>
-</div>
-<div class="disease-column">
-  <input type="text" name="father" value="" class="underline_diseases">
-  <p class="disease-name" style="margin-left: 4px;">Seizure/<br>Epilepsy</p>
-</div>
-    <div class="disease-column">
-      <input type="text" name="father" value="" class="underline_disease" style="width: 30px;">
-      <p class="disease-name">Bleeding<br> Tendencies</p>
-    </div>
-  </div>
-</div>
+<script>
+    var pdfLink = "SHSHEALTHFORM.pdf";
+    var pdfContainer = document.getElementById("pdfContainer");
+    var printButton = document.getElementById("printButton");
 
-<div class="seventh_line">
-  <div class="disease-container">
-    <div class="disease-column">
-      <input type="text" name="father" value="" class="underline_disease" style="width: 45px; margin-left: 50px;">
-      <p class="disease-name">Eye Disorder</p>
-    </div>
-  </div>
-</div>
-<div class="seventh_lines">
-  <div class="disease-containers">
-    <div class="disease-columns">
-      <input type="text" name="father" value="" class="underline_diseases" style="width: 35px; margin-left: 50px;">
-      <p class="disease-names">Heart Ailment (pls. specify)</p><input type="text" name="father" value="" class="underline_diseases"></p>
-    </div>
-  </div>
-</div>
+    // Load and display the PDF
+    var loadingTask = pdfjsLib.getDocument(pdfLink);
+    loadingTask.promise.then(function(pdfDocument) {
+        for (var pageNum = 1; pageNum <= pdfDocument.numPages; pageNum++) {
+            pdfDocument.getPage(pageNum).then(function(page) {
+                var scale = 1.5;
+                var viewport = page.getViewport({ scale: scale });
+                var canvas = document.createElement("canvas");
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
 
-<div class="seventh_line">
-  <div class="disease-containerss">
-    <div class="disease-columnss">
-      <input type="text" name="father" value="" class="underline_diseasess" style="width: 35px; margin-left: 50px;">
-      <p class="disease-namess">Other Illness (pls. specify)</p><input type="text" name="father" value="" class="underline_diseasess">
-    </div>
-  </div>
-</div>
-<br>
- <div class="sixth_line">
-        <div class="father"><br>
-          <p style="font-size: 21px;">Do you have any allergy to:</p>
-      </div>
-      </div>
-<br>
-<div class="sixth_line">
-        <div class="food"><br>
-          <p style="font-size: 21px;">1. Food:
-      </div>
-      </div>
+                var renderContext = {
+                    canvasContext: canvas.getContext("2d"),
+                    viewport: viewport
+                };
 
-      <div class="sixth_line">
-  <div class="yesfood" style="display: flex; align-items: center;">
-    <input type="text" name="father" value="" class="underline_food" style="margin-left: 160px;">
-    <span style="font-size: 21px; margin-left: 10px; margin-top:27px;">Yes</span>
-  </div>
-</div>
+                page.render(renderContext);
+                pdfContainer.appendChild(canvas);
+            });
+        }
+    });
 
-<div class="sixth_line">
-  <div class="yesfood" style="display: flex; align-items: center;">
-    <input type="text" name="father" value="" class="underline_foods" style="margin-left: 300px;">
-    <span style="font-size: 21px; margin-left: 10px; margin-top:27px;">No</span>
-  </div>
-</div>
-<br>
-<div class="tenth_line">
-        <div class="pleasespecify">
-        <p style="font-size: 21px; white-space: nowrap;">Please specify: <input type="text" name="father" value="" class="underline_specify" style="margin-top: -7px"></p>
-        </div>
-      </div>
-<div class="sixth_line">
-        <div class="medicine"><br><br>
-          <p style="font-size: 21px; margin-left: -1px; margin-top: -15px;">2. Medicine:
-      </div>
-      </div>
-
-      <div class="sixth_line">
-  <div class="yesmed" style="display: flex; align-items: center;">
-    <input type="text" name="father" value="" class="underline_med" style="margin-left: 160px;">
-    <span class="yessmed">Yes</span>
-  </div>
-</div>
-
-<div class="sixth_line">
-  <div class="yesmed" style="display: flex; align-items: center;">
-    <input type="text" name="father" value="" class="underline_meds" style="margin-left: 300px;">
-    <span class="nomed">No</span>
-  </div>
-</div>
-<br><br>
-<div class="tenth_line">
-        <div class="pleasespecifys">
-        <p style="font-size: 21px; white-space: nowrap;">Please specify: <input type="text" name="father" value="" class="underline_specifys" style="margin-top: -7px"></p>
-                   </div>
-      <br>
-      <div class="seventh_line">
-    <p style="font-size: 21px; margin-left:50px;">Would you allow your child to be given medicine (as needed) while here in school?</p>
-  <div class="disease-container">
-    <div class="disease-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="text" name="father" value="" class="underline_disease">
-      <p class="disease-name">Yes</p>
-    </div>
-    <div class="disease-column">
-      <input type="text" name="father" value="" class="underline_disease">
-      <p class="disease-name">No</p>
-    </div>
-  </div>
-</div>
-
-<div class="seventh_line">
-    <p style="font-size: 21px; margin-left:50px;">Is your child taking any medications at present? If YES, please list the name of the medicines?</p>
-<br><br><br><br>
-</div>
-
-<div class="four_line">
-        <div class="notified">
-          <p style="font-size: 21px;">Person to be notified in case of emergency: <input type="text" name="father" value="" class="underline_notified"></p>
-</div>
-      </div>
-<br><br>
-<div class="fift_line">
-<div class="contacts">
-          <p style="font-size: 21px; white-space: nowrap;">Contact No.: <input type="text" name="father" value="" class="underline_contacts"></p>
-      </div>
-      <br><br>
-      <div class="fift_line">
-        <div class="rs">
-          <p style="font-size: 21px;">Relationship: <input type="text" name="father" value="" class="underline_rs"></p>
-        </div>
-      </div>
-      <br><br>
-      <button class="print-button" onclick="window.print()">Print</button>
+    // Print the PDF when the button is clicked
+    printButton.addEventListener("click", function() {
+        window.print();
+    });
+</script>
       </div>
       
       </div>

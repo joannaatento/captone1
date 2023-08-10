@@ -380,6 +380,14 @@ if (mysqli_num_rows($result) > 0) {
       </div>
     </div>
   </div>
+  <div class="col-sm-4">
+    <div class="form-group"><br>
+      <label for="phoneNumber" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+      </div>
+    </div>
+  </div>
 </div>
  </br>
     <div class="row">

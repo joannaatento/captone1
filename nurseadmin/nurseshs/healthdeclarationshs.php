@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Print Health Record Form</title>
+    <title>Print Health Declaration</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -293,7 +293,7 @@
 <div id="pdfContainer"></div>
 
 <script>
-    var pdfLink = "SHSHEALTHFORM.pdf";
+    var pdfLink = "healthdeclarationshs.pdf";
     var pdfContainer = document.getElementById("pdfContainer");
     var printButton = document.getElementById("printButton");
 

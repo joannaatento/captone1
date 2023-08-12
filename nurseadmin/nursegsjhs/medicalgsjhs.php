@@ -4,7 +4,7 @@
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("login.php");</script>';
+        echo '<script>window.location.replace("../login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
     $admin_id = $_SESSION['admin_id'];
@@ -313,6 +313,14 @@ if (mysqli_num_rows($result) > 0) {
       <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
       <div class="col-sm-12">
         <input type="datetime-local" class="form-control" id="datetime" name="date_time">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group"><br>
+      <label for="phoneNumber" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
       </div>
     </div>
   </div>

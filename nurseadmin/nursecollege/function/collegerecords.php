@@ -16,6 +16,7 @@
         $onoff = $_POST['onoff'];
         $date_time = $_POST['date_time'];
         $phoneNumber = $_POST['phoneNumber'];
+        $is_deleted_on_website = $_POST['is_deleted_on_website'];
     
         // Validate and sanitize inputs here...
     
@@ -29,7 +30,7 @@
         $reminderDateTime->modify("-2 hour");
     
         // Insert the sanitized data into the database
-        $sql = "INSERT INTO medicalapp VALUES ('','$admin_id','$idnumber','$name1','$gradecourseyear1','$role','$onoff','$formattedDatetime', NOW(), '$phoneNumber')";
+        $sql = "INSERT INTO medicalapp VALUES ('','$admin_id','$idnumber','$name1','$gradecourseyear1','$role','$onoff','$formattedDatetime', NOW(), '$phoneNumber', '$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
             // Check if it's time to send a reminder

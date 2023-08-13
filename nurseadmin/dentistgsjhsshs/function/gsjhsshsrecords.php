@@ -67,9 +67,9 @@
                 );
     
                 if ($response->getStatusCode() == 200) {
-                    echo "SMS reminder sent to {$name1} successfully.\n";
+                    echo "SMS reminder sent to {$fullname} successfully.\n";
                 } else {
-                    echo "Failed to send SMS reminder to {$name1}.\n";
+                    echo "Failed to send SMS reminder to {$fullname}.\n";
                 }
             }
     

@@ -301,7 +301,7 @@ if (mysqli_num_rows($result) > 0) {
                  
                  
                  <?php
-// Fetch and display medical records
+// Fetch and display dental records
 $sql = "SELECT * FROM dentalapp WHERE admin_id = '14' AND is_deleted_on_website = 0";
 $result = $conn->query($sql);
 ?>

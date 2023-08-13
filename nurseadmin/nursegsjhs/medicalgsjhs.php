@@ -218,6 +218,31 @@ if (mysqli_num_rows($result) > 0) {
         <span class="nav-link-text">School Health Assessment Form</span>
     </a>
 </li>
+
+<li class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
+        <span class="nav-icon">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+            </svg>
+        </span>
+        <span class="nav-link-text">Printable Papers</span>
+        <span class="submenu-arrow">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </span>
+    </a>
+    <div id="submenu-8" class="collapse submenu submenu-8" data-bs-parent="#menu-accordion">
+        <ul class="submenu-list list-unstyled">
+            <li class="submenu-item"><a class="submenu-link" href="healthprofilegsjhs.php">Health Profile</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="healthdeclarationgsjhs.php">Health Declaration</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="medicalcertificategsjhs.php">Medical Certificate</a></li>
+        </ul>
+    </div>
+</li>
 </ul>
 	</nav>
 	        </div>
@@ -341,40 +366,56 @@ if (mysqli_num_rows($result) > 0) {
         Update Medical Schedule
     </button>
 </div>
-
-<center>
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>ID Number</th>
-        <th>Fullname</th>
-        <th>Grade & Section/Course & Year</th>
-        <th>Role</th>
-        <th>On-campus Activity or Off-campus Activity</th>
-        <th>Time & Date</th>
-      </tr>
-    </thead>
-    <tbody id="healthRecordTableBody">
-      <?php
-      $sql = "SELECT * FROM medicalapp WHERE admin_id = '$admin_id'";
-      $result = mysqli_query($conn, $sql);
-
-      while ($row = $result->fetch_assoc()) {
-        ?>
-        <tr>
-          <td><?php echo $row['idnumber']; ?></td>
-          <td><?php echo $row['name1']; ?></td>
-          <td><?php echo $row['gradecourseyear1']; ?></td>
-          <td><?php echo $row['role']; ?></td>
-          <td><?php echo $row['onoff']; ?></td>
-          <td><?php echo $row['date_time']; ?></td>
-        </tr>
+<?php
+// Fetch and display medical records
+$sql = "SELECT * FROM medicalapp WHERE admin_id = '9' AND is_deleted_on_website = 0";
+$result = $conn->query($sql);
+?>
+<div class="main-content">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>ID Number</th>
+                <th>Fullname</th>
+                <th>Grade & Section/Course & Year</th>
+                <th>Role</th>
+                <th>On-campus Activity or Off-campus Activity</th>
+                <th>Time & Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="healthRecordTableBody">
+            <?php
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <tr>
+                    <td><?php echo $row['idnumber']; ?></td>
+                    <td><?php echo $row['name1']; ?></td>
+                    <td><?php echo $row['gradecourseyear1']; ?></td>
+                    <td><?php echo $row['role']; ?></td>
+                    <td><?php echo $row['onoff']; ?></td>
+                    <td><?php echo $row['date_time']; ?></td>
+                 
+                    <td>
+                    <center>   
+                        <a href="function/formedicalappstudentdone.php?medicalapp_id=<?php echo $row['medicalapp_id']; ?>"
+                        onclick="return confirm('Are you sure you want to delete this record?')">
+                            <!-- Replace the anchor element with SVG icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                            </svg>
+                        </a>
+                        </center>
+                    </td>
         
-      <?php } ?>
-    </tbody>
-  </table>
-  <br><br>
-</center>
+                </tr>
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

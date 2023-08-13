@@ -1,32 +1,94 @@
 <?php
     session_start();
     include '../../../db.php';
-if(isset($_POST['submit_medicalcollege'])){ // pag get ng data
-    $admin_id = $_POST['admin_id'];
-    $idnumber = $_POST['idnumber']; 
-    $name1 = $_POST['name1'];
-    $gradecourseyear1 = $_POST['gradecourseyear1'];
-    $role = $_POST['role'];
-    $onoff = $_POST['onoff'];
-    $date_time = $_POST['date_time'];
-
-    date_default_timezone_set('Asia/Manila');
-    $date_created = date('Y-m-d h:i A'); 
-
-    $sql = "INSERT INTO medicalapp VALUES ('','$admin_id','$idnumber','$name1','$gradecourseyear1','$role','$onoff','$date_time','$date_created')";
-    if(mysqli_query($conn, $sql)){
-        // echo "<script>window.history.go(-1);</script>";
-        header('location: ../medicalcollege.php');
-        echo $_SESSION['success'] ="
-            <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
-                <h2 style='
-                color: #fff;
-                font-size: 16px;
-                margin-left: 10px;'>Medical Appointment Added.</h2>
-            </div>
-        ";
-    }
-} //for medical appointment college
+    require '../../../vendor/autoload.php';
+    
+    use GuzzleHttp\Client;
+    use GuzzleHttp\RequestOptions;
+    
+    if (isset($_POST['submit_medicalcollege'])) {
+        // Sanitize and validate user inputs
+        $admin_id = $_POST['admin_id'];
+        $idnumber = $_POST['idnumber'];
+        $name1 = $_POST['name1'];
+        $gradecourseyear1 = $_POST['gradecourseyear1'];
+        $role = $_POST['role'];
+        $onoff = $_POST['onoff'];
+        $date_time = $_POST['date_time'];
+        $phoneNumber = $_POST['phoneNumber'];
+    
+        // Validate and sanitize inputs here...
+    
+        // Convert appointment datetime to a DateTime object
+        date_default_timezone_set('Asia/Manila');
+        $appointmentDateTime = new DateTime($date_time);
+        $formattedDatetime = $appointmentDateTime->format("Y-m-d h:i A");
+    
+        // Calculate the reminder time (1 hour before appointment)
+        $reminderDateTime = clone $appointmentDateTime;
+        $reminderDateTime->modify("-2 hour");
+    
+        // Insert the sanitized data into the database
+        $sql = "INSERT INTO medicalapp VALUES ('','$admin_id','$idnumber','$name1','$gradecourseyear1','$role','$onoff','$formattedDatetime', NOW(), '$phoneNumber')";
+    
+        if (mysqli_query($conn, $sql)) {
+            // Check if it's time to send a reminder
+            $currentTime = new DateTime(); // Current time in the specified timezone
+    
+            // Check if the reminder time is within 2 hour before the appointment time
+            if ($currentTime >= $reminderDateTime && $currentTime < $appointmentDateTime) {
+                // Send SMS reminder
+                $message = "Hi {$name1}, this is a reminder for your medical appointment on {$formattedDatetime}. It's just 1 hour away. See you soon!";
+    
+                $client = new Client([
+                    'base_uri' => "https://k3n5n1.api.infobip.com",
+                    'headers' => [
+                        'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                    ]
+                ]);
+    
+                $response = $client->request(
+                    'POST',
+                    'sms/2/text/advanced',
+                    [
+                        RequestOptions::JSON => [
+                            'messages' => [
+                                [
+                                    'from' => 'Clinic DWCL',
+                                    'destinations' => [
+                                        ['to' => $phoneNumber]
+                                    ],
+                                    'text' => $message,
+                                ]
+                            ]
+                        ],
+                    ]
+                );
+    
+                if ($response->getStatusCode() == 200) {
+                    echo "SMS reminder sent to {$name1} successfully.\n";
+                } else {
+                    echo "Failed to send SMS reminder to {$name1}.\n";
+                }
+            }
+    
+            header('location: ../medicalcollege.php');
+            $_SESSION['success'] = "
+                <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
+                    <h2 style='
+                    color: #fff;
+                    font-size: 16px;
+                    margin-left: 10px;'>Medical Appointment Added.</h2>
+                </div>
+            ";
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
+    
+        mysqli_close($conn);
+    } //for medical appointment college
 
 if(isset($_POST['submit_medicine'])){ // pag get ng data
     $admin_id = $_POST['admin_id'];

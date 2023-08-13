@@ -26,10 +26,11 @@
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Student Medical Request</title>
+    <title>Medical Appointments</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -42,47 +43,18 @@
     
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    <link rel="stylesheet" href="assets/msdental.css">
+    <link rel="stylesheet" href="assets/dentalstyles.css">
+    <link rel="stylesheet" href="assets/printable.css">
+    
 
-  
 </head> 
 
-<body class="app">   
-<?php
+<body class="app">   	
 
-$sql = "SELECT * FROM medical";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    $row = $result->fetch_assoc(); 
-    $med_id = $row['med_id'];
-    $name1 = $row['name1'];
-    $gradecourseyear1 = $row ['gradecourseyear1'];
-    $idnumber2 = $row['idnumber2'];
-    $name2 = $row['name2'];
-    $gradecourseyear2 = $row ['gradecourseyear2'];
-    $idnumber3 = $row['idnumber3'];
-    $name3 = $row['name3'];
-    $gradecourseyear3 = $row ['gradecourseyear3'];
-    $idnumber4 = $row['idnumber4'];
-    $name4 = $row['name4'];
-    $gradecourseyear4 = $row ['gradecourseyear4'];
-    $idnumber5 = $row['idnumber5'];
-    $name5 = $row['name5'];
-    $gradecourseyear5 = $row ['gradecourseyear5'];
-    $c_enrolled = $row['c_enrolled'];
-    $c_employee = $row['c_employee'];
-    $onoff = $row['onoff'];
-    $message = $row['message'];
-    $date_created = $row['date_created'];
-    $is_read = $row['is_read'];
-    $is_deleted_on_website = $row['is_deleted_on_website'];
-}
-?>	
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -266,77 +238,25 @@ if (mysqli_num_rows($result) > 0) {
 	    </div>
     </header>
     <div class="app-wrapper">
-	    
-	    <div class="app-content pt-3 p-md-3 p-lg-4">
-		    <div class="container-xl">
-			    <div class="position-relative mb-3">
-				    <div class="row g-3 justify-content-between">
-					    <div class="col-auto">
-					        <h1 class="app-page-title mb-0"></h1>
-					    </div>
-						
-				    </div>
-			    </div>
-			    
-                <div class="app-card app-card-notification shadow-sm mb-4">
-				    <div class="app-card-header px-4 py-3">
-				        <div class="row g-3 align-items-center">
-					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
-					        </div>
-							<!--//generate report-->
-				        </div><!--//row-->
-				    </div><!--//app-card-header-->
-                    <?php
-    $sql = "SELECT * FROM medical WHERE c_enrolled = 'College'";
-    $result = $conn->query($sql);
-
-    while ($row = $result->fetch_array()) {
-        $med_id = $row['med_id'];
-        $is_read = $row['is_read'];
-        $is_deleted_on_website = $row['is_deleted_on_website'];
-        ?>
-     
-     <div class="main-content">
-     <?php if ($is_deleted_on_website == 0): ?>
-        <div class="email-list-item <?php echo ($is_read == 0) ? 'unread' : ''; ?>" <?php echo ($is_read == 0) ? 'style="background-color: #F1F1F1;"' : ''; ?>>
-
-        <div class="message">
-                <b><div class="name1" style="display: inline;"><?php echo $row['name1']; ?></div></b>
-                <div class="message" style="display: inline;"><?php echo $row['message']; ?></div>
-                <div class="timestamp"><?php echo $row['date_created']; ?></div>
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl" style="max-width: 1000px; margin: 0 auto;">
+            <div class="position-relative mb-3">
+                <div class="row g-3 justify-content-between">
+                    <div class="col-auto">
+                        <h1 class="app-page-title mb-0"></h1>
+                    </div>
+                </div>
             </div>
 
-            <?php if ($is_read == 0): ?>
-                <a href="function/formedicalcollegereadstudent.php?med_id=<?php echo $med_id; ?>">Mark as Read</a>
-            <?php endif; ?>
+ <div class="app-card app-card-notification shadow-sm mb-4">
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <div class="app-card-body p-4">
 
-            <a href="function/formedicaldeletestudent.php?med_id=<?php echo $med_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
-            
-            <a href="viewmedicalrequestscollege.php?date_created=<?php echo $row['date_created']; ?>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                    <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                </svg>
-            </a>
-
-        <?php endif; ?>
-
-
-    </div>
-
-
-
-     <?php
-    }
-    ?>
-</div><!--//app-card-body-->
-
-
-
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
+   
+      </div>
+      
+      </div>
+      </div>
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
@@ -354,5 +274,7 @@ if (mysqli_num_rows($result) > 0) {
 		}, 5000);
 	</script>
 
+
 </body>
 </html> 
+

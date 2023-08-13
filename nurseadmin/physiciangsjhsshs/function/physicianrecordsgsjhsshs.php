@@ -227,4 +227,25 @@
             ";
         }
     } // for physician shs
+
+    if(isset($_POST['submit_statusphysiciangsjhsshs'])) {
+        // Retrieve the submitted form data
+        $statphysician_id = $_POST['statphysician_id'];
+        $status811 = $_POST['status811'];
+       
+    
+        // Step 4: Execute the update query
+        $sql = "UPDATE statusphysiciangsjhsshs SET status811='$status811'
+        WHERE statphysician_id = $statphysician_id";
+    
+        // Execute the query and handle the result
+        if (mysqli_query($conn, $sql)) {
+            // Step 5: Handle the update result
+            echo '<script>alert("Successfully updated!");</script>';
+            echo '<script>window.location.href="../physicianapproved.php";</script>';
+            exit;
+        } else {
+            echo '<script>alert("Error: ' . mysqli_error($conn) . '");</script>';
+        }
+    }
 ?>

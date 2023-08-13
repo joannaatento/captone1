@@ -255,7 +255,7 @@ if (mysqli_num_rows($result) > 0) {
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
                     <div class="app-card-body p-4">
-<form class="form-horizontal mt-4" method="post" action="function/functions.php">
+<form class="form-horizontal mt-4" method="post" action="">
 <div class="row">
   <div class="col-sm-6">
     <div class="form-group">

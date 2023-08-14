@@ -78,7 +78,7 @@
                     <h2 style='
                     color: #fff;
                     font-size: 16px;
-                    margin-left: 10px;'>Dental Appointment Added.</h2>
+                    margin-left: 10px;'>Physician Consultation Appointment Added.</h2>
                 </div>
             ";
         } else {

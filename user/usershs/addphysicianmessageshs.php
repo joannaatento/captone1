@@ -244,7 +244,7 @@
 
       <p><b><br>Note: </b> The PHYSICIAN will ONLY be available every <b>WEDNESDAY (8:00 A.M to 11:00 A.M)</b>. If your request has been approved, a text message will be sent to you.</p>
     
-      <br><br>
+    
 
 <div class="container">
   <div class="text-box">

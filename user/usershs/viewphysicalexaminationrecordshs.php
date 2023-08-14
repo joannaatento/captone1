@@ -4,7 +4,7 @@
 
     if (!isset($_SESSION['user_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("login.php");</script>';
+        echo '<script>window.location.replace("../login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
 
@@ -20,7 +20,7 @@
             // User type 1 specific code here
         }
         else{
-            header('location: ../../login.php');
+            header('location: ../login.php');
             exit; // Exit the script to prevent further execution
         }
     }

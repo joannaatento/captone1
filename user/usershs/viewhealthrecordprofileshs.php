@@ -19,7 +19,7 @@
             // User type 1 specific code here
         }
         else{
-            header('location: ../../login.php');
+            header('location: ../login.php');
             exit; // Exit the script to prevent further execution
         }
     }

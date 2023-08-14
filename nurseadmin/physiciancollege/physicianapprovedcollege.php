@@ -356,8 +356,8 @@ $result = $conn->query($sql);
 
                 if (mysqli_num_rows($result1) > 0) {
                     while ($row1 = $result1->fetch_assoc()) {
-                        $statusphycollege_id = $row['statusphycollege_id'];
-                        $status812 = $row['status812'];
+                        $statusphycollege_id = $row1['statusphycollege_id'];
+                        $status812 = $row1['status812'];
                     }
                 } else {
 
@@ -370,18 +370,18 @@ $result = $conn->query($sql);
                 }
 
                 ?>
-                <form action="function/physicianrecordsgsjhsshs.php" method="POST">
+                <form action="function/physicianrecordcollege.php" method="POST">
                     <input type="hidden" name="statusphycollege_id" value="<?php echo $statusphycollege_id; ?>">
                     <div class="mb-3">
                         <label for="inputStatus811" class="form-label">Wendesday - 8:00 A.M - 12:00 P.M.</label>
                         <select class="form-select" id="inputStatus811" name="status812">
-                            <option value="Available" <?php if ($status811 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($status811 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                            <option value="Available" <?php if ($status812 == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($status812 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit_statusphysiciangsjhsshs" class="btn btn-light">Update</button>
+                        <button type="submit" name="submit_statusphysiciancollege" class="btn btn-light">Update</button>
                     </div>
                 </form>
             </div>

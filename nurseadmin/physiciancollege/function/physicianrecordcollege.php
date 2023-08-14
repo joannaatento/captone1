@@ -88,14 +88,14 @@
         mysqli_close($conn);
     } // for physician college
 
-    if(isset($_POST['submit_statusphysiciancolleges'])) {
+    if(isset($_POST['submit_statusphysiciancollege'])) {
         // Retrieve the submitted form data
         $statusphycollege_id = $_POST['statusphycollege_id'];
-        $status811 = $_POST['status811'];
+        $status812 = $_POST['status812'];
        
     
         // Step 4: Execute the update query
-        $sql = "UPDATE statusphysiciancollege SET status812='$status812'
+        $sql1 = "UPDATE statusphysiciancollege SET status812='$status812'
         WHERE statusphycollege_id = $statusphycollege_id";
     
         // Execute the query and handle the result

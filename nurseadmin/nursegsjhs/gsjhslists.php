@@ -252,6 +252,7 @@
     <table>
       <thead>
         <tr>
+          <th>Number</th>
           <th>Name</th>
           <th>ID Number</th>
           <th>Age</th>
@@ -266,8 +267,10 @@
         $result = mysqli_query($conn, $sql);
 
         while($row = $result->fetch_assoc()){
+            $healthnogsjhs_id = $row['healthnogsjhs_id'];
         ?>
         <tr>
+          <td><?php echo $row['healthnogsjhs_id']; ?></td>
           <td><?php echo $row['fullname']; ?></td>
           <td><?php echo $row['idnumber']; ?></td>
           <td><?php echo $row['age']; ?></td>
@@ -275,11 +278,18 @@
           <td><?php echo $row['cguardian']; ?></td>
           
           <td>
-            <center><a href="viewgsjhsrecord.php?idnumber=<?php echo $row['idnumber']; ?>">
+            <center>
+            <a href="editrecordgsjhslist.php?healthnogsjhs_id=<?php echo $healthnogsjhs_id; ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+            </a>  
+            <a href="viewgsjhsrecord.php?idnumber=<?php echo $row['idnumber']; ?>">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
                 <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
               </svg>
-            </a>  
+            </a> 
         <a href="#" class="modal-link" data-bs-toggle="modal" data-bs-target="#openModal">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
   <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>

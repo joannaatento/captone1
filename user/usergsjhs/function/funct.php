@@ -22,8 +22,8 @@
         $nationality = trim(mysqli_real_escape_string($conn, $_POST['nationality']));
         $language = trim(mysqli_real_escape_string($conn, $_POST['language']));
         $bothparents = isset($_POST['bothparents']) ? trim(mysqli_real_escape_string($conn, $_POST['bothparents'])) : "";
-        $livesfather = isset($_POST['livesfather']) ? trim(mysqli_real_escape_string($conn, $_POST['livesfather'])) : "";
         $livesmother = isset($_POST['livesmother']) ? trim(mysqli_real_escape_string($conn, $_POST['livesmother'])) : "";
+        $livesfather = isset($_POST['livesfather']) ? trim(mysqli_real_escape_string($conn, $_POST['livesfather'])) : "";
         $guardian = isset($_POST['guardian']) ? trim(mysqli_real_escape_string($conn, $_POST['guardian'])) : "";
         $guardianname = trim(mysqli_real_escape_string($conn, $_POST['guardianname']));
         $guardianrelation = trim(mysqli_real_escape_string($conn, $_POST['guardianrelation']));

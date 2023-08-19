@@ -423,19 +423,19 @@ if (mysqli_num_rows($result) > 0) {
     <label for="fullname">Student lives with: </label>
 </div><br>
 <div class="checkbox">
-    <input name="bothparents" value="bothparents" type="checkbox" id="bothparents" value="<?= $row['bothparents'];?>" <?php if ($row['bothparents']) echo "checked"; ?>>
+<input name="bothparents"  type="checkbox" id="bothparents" value="<?= $row['bothparents'];?>" <?php if ($row['bothparents']) echo "checked"; ?>>
     <label class="labels" for="bothparents" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Both Parents</label>
 </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <div class="checkbox">
-    <input name="livesmother" value="livesmother" type="checkbox" id="mother" value="<?= $row['mother'];?>" <?php if ($row['mother']) echo "checked"; ?>>
+<input name="livesmother"  type="checkbox" id="livesmother" value="<?= $row['livesmother'];?>" <?php if ($row['livesmother']) echo "checked"; ?>>
     <label class="labels" for="livesmother" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mother</label>
 </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <div class="checkbox">
-    <input name="livesfather" value="livesfather" type="checkbox" id="father" value="<?= $row['father'];?>" <?php if ($row['father']) echo "checked"; ?>>
+<input name="livesfather"  type="checkbox" id="livesfather" value="<?= $row['livesfather'];?>" <?php if ($row['livesfather']) echo "checked"; ?>>
     <label class="labels" for="livesfather" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Father</label>
 </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <div class="checkbox">
-    <input name="guardian" value="guardian" type="checkbox" id="guardian" value="<?= $row['guardian'];?>" <?php if ($row['guardian']) echo "checked"; ?>>
+<input name="guardian"  type="checkbox" id="guardian" value="<?= $row['guardian'];?>" <?php if ($row['guardian']) echo "checked"; ?>>
     <label class="labels" for="guardian" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Guardian</label>
 </div>
 <div class="input_form">

@@ -58,7 +58,7 @@ include '../../../db.php';
            
         // Get the existing image name from the database
    
-           $sqlImage = "SELECT imagevac FROM healthrecordformgsjhs WHERE healthnogsjhs_id = '$healthnogsjhs_id'";
+ $sqlImage = "SELECT imagevac FROM healthrecordformgsjhs WHERE healthnogsjhs_id = '$healthnogsjhs_id'";
     $resultImage = $conn->query($sqlImage);
     $rowImage = $resultImage->fetch_assoc();
     $existingImage = $rowImage['imagevac'];
@@ -147,7 +147,7 @@ include '../../../db.php';
               // Both files were uploaded successfully
               $_SESSION['success'] = "
                   <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>
-                      <h2 style='color: #fff; font-size: 16px; margin-left: 10px;'>Your health record has been submitted.</h2>
+                      <h2 style='color: #fff; font-size: 16px; margin-left: 10px;'>The health profile record has been updated.</h2>
                   </div>
               ";
               $healthnogsjhs_id = /* Logic to retrieve the value */
@@ -176,4 +176,7 @@ include '../../../db.php';
         }
         
     }
+
+    
+    
   ?>

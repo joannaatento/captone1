@@ -231,8 +231,14 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Please fill-up honestly.</h4>
-					        </div><!--//col-->
+						        <h4 class="notification-title mb-1">Fill-up the Form</h4>
+					        </div>
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">

@@ -276,15 +276,26 @@ if (mysqli_num_rows($result) > 0) {
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
+                   
                     <b><p>Note: We will accommodate 1 to 5 students/employees per year level. Only one (1) student/employee will message to have a medical request scheduling appointment.</p></b>
-  <form class="form-horizontal mt-4" method="post" action="function/gsjhsrecords.php">
+  
+    <?php  	
+    $medicalapp_id = $_GET['medicalapp_id'];
+    $sql = "SELECT * FROM medicalapp WHERE medicalapp_id='$medicalapp_id'";
+
+    $result = mysqli_query($conn, $sql);
+
+    while($row = $result->fetch_assoc()){
+        $medicalapp_id = $row['medicalapp_id'];
+    ?>
+                    <form class="form-horizontal mt-4" method="post" action="function/editmedical.php">
  
   <div class="row">
   <div class="col-sm-4">
     <div class="form-group">
       <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee ID Number</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" required>
+        <input type="text" class="form-control" id="idnumber" name="idnumber" value="<?=$row['idnumber'];?>">
       </div>
     </div>
   </div>
@@ -293,7 +304,7 @@ if (mysqli_num_rows($result) > 0) {
     <div class="form-group">
       <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" required>
+        <input type="text" class="form-control" id="name" name="name1" value="<?=$row['name1'];?>">
       </div>
     </div>
   </div>
@@ -302,7 +313,7 @@ if (mysqli_num_rows($result) > 0) {
     <div class="form-group">
       <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter Grade & Section/Course & Year">
+        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" value="<?=$row['gradecourseyear1'];?>">
       </div>
     </div>
   </div>
@@ -313,10 +324,10 @@ if (mysqli_num_rows($result) > 0) {
         <div class="form-group">
             <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
             <div class="col-sm-12">
-                <select id="role" name="role" class="form-control" required>
-                <option value="">Select</option>
-                <option value="Student">Student</option>
-                <option value="Employee">Employee</option>
+                <select id="role" name="role" class="form-control">
+                <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
+                <option value="Student" <?php if($row['role'] == "Student") echo "selected"; ?>>Student</option>
+                <option value="Employee" <?php if($row['role'] == "Employee ") echo "selected"; ?>>Employee</option>
                 </select>
             </div>
         </div>
@@ -325,27 +336,28 @@ if (mysqli_num_rows($result) > 0) {
         <div class="form-group">
             <label for="onoff" class="col-sm-12 control-label" style="font-size: 16px">On-campus Activity or Off-campus Activity</label>
             <div class="col-sm-12">
-                <select id="onoff" name="onoff" class="form-control" required>
-                <option value="">Select</option>
-                <option value="On-campus Activity">On-campus Activity</option>
-                <option value="Off-campus Activity">Off-campus Activity</option>
+                <select id="onoff" name="onoff" class="form-control">
+                <option value="" <?php if(empty($row['onoff'])) echo "selected"; ?>>Select</option>
+                <option value="On-campus Activity" <?php if($row['onoff'] == "On-campus Activity") echo "selected"; ?>>On-campus Activity</option>
+                <option value="Off-campus Activity" <?php if($row['onoff'] == "Off-campus Activity") echo "selected"; ?>>Off-campus Activity</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="col-sm-4">
-    <div class="form-group">
-      <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
-      <div class="col-sm-12">
-        <input type="datetime-local" class="form-control" id="datetime" name="date_time">
-      </div>
+        <div class="form-group">
+            <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
+            <div class="col-sm-12">
+                <input type="datetime-local" class="form-control" id="datetime" name="date_time" value="<?php echo date('Y-m-d\TH:i', strtotime($row['date_time'])); ?>">
+            </div>
+        </div>
     </div>
-  </div>
+
   <div class="col-sm-4">
     <div class="form-group"><br>
       <label for="phoneNumber" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="<?=$row['phoneNumber'];?>">
       </div>
     </div>
   </div>
@@ -353,197 +365,20 @@ if (mysqli_num_rows($result) > 0) {
  </br>
     <div class="row">
       <div class="col-sm-12">
-      <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_medicalgsjhs" class="btn btn-success">Add Medical Appointment</button>
+      <input type="hidden" name="medicalapp_id" value="<?php echo $medicalapp_id; ?>">
+                    <input type="submit" name="update_medicalrecord" value="Update">
       </div>
     </div>
   </form>
-  
+  <?php
+
+    }
+
+    ?>
 </div><!--//app-card-body-->
-<br>
-<div style="text-align: right; margin-right: 48px;">
-    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Update Medical Schedule
-    </button>
-</div>
-
-<div class="main-content">
-    <table class="styled-table">
-        <thead>
-            <tr>
-                <th>Number</th>
-                <th>ID Number</th>
-                <th>Fullname</th>
-                <th>Grade & Section</th>
-                <th>Role</th>
-                <th>On-campus Activity or Off-campus Activity</th>
-                <th>Time & Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="healthRecordTableBody">
-        <?php
-        $sql = "SELECT * FROM medicalapp WHERE admin_id = '9' AND is_deleted_on_website = 0";
-        $result = mysqli_query($conn, $sql);
-
-        while($row = $result->fetch_assoc()){
-            $medicalapp_id = $row['medicalapp_id'];
-        ?>
-                <tr>
-                    <td><?php echo $row['medicalapp_id']; ?></td>
-                    <td><?php echo $row['idnumber']; ?></td>
-                    <td><?php echo $row['name1']; ?></td>
-                    <td><?php echo $row['gradecourseyear1']; ?></td>
-                    <td><?php echo $row['role']; ?></td>
-                    <td><?php echo $row['onoff']; ?></td>
-                    <td><?php echo $row['date_time']; ?></td>
-                 
-                    <td>
-                    <center>   
-                    <a href="editmedicals.php?medicalapp_id=<?php echo $medicalapp_id; ?>">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                            </svg>
-                        </a>  
-                        <a href="function/formedicalappstudentdone.php?medicalapp_id=<?php echo $row['medicalapp_id']; ?>"
-                        onclick="return confirm('Are you sure you want to delete this record?')">
-                            <!-- Replace the anchor element with SVG icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                            </svg>
-                        </a>
-                        </center>
-                    </td>
-        
-                   
-                </tr>
-                <?php
-            }
-            ?>
-
-        </tbody>
-    </table>
-    <br><br>
-</div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Schedule</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <?php
-                $sql1 = "SELECT * FROM statusmedicalgsjhs";
-                $result1 = mysqli_query($conn, $sql1);
 
-                if (mysqli_num_rows($result1) > 0) {
-                    while ($row1 = $result1->fetch_assoc()) {
-                        $medical_id = $row1['medical_id'];
-                        $statusmedmonam_1 = $row1['statusmedmonam_1'];
-                        $statusmedtueam_2 = $row1['statusmedtueam_2'];
-                        $statusmedwedam_3 = $row1['statusmedwedam_3'];
-                        $statusmedthuam_4 = $row1['statusmedthuam_4'];
-                        $statusmedfriam_5 = $row1['statusmedfriam_5'];
-                        $statusmedmonpm_6 = $row1['statusmedmonpm_6'];
-                        $statusmedtuepm_7 = $row1['statusmedtuepm_7'];
-                        $statusmedwedpm_8 = $row1['statusmedwedpm_8'];
-                        $statusmedthupm_9 = $row1['statusmedthupm_9'];
-                        $statusmedfripm_10 = $row1['statusmedfripm_10'];
-                    }
-                } else {
-
-                }
-                ?>
-                <?php
-                // Step 1: Retrieve the data to be updated
-                if (isset($_GET['medical_id'])) {
-                    $medical_id = $_GET['medical_id'];
-                }
-
-                ?>
-                <form action="function/gsjhsrecords.php" method="POST">
-                    <input type="hidden" name="medical_id" value="<?php echo $medical_id; ?>">
-                    <div class="mb-3">
-                        <label for="inputStatus1030_1" class="form-label">Monday - 8:00 A.M - 11:00 A.M.</label>
-                        <select class="form-select" id="inputStatus1030_1" name="statusmedmonam_1">
-                            <option value="Available" <?php if ($statusmedmonam_1 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedmonam_1 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus1130" class="form-label">Tuesday - 8:00 A.M - 11:00 A.M.</label>
-                        <select class="form-select" id="inputStatus1130" name="statusmedtueam_2">
-                            <option value="Available" <?php if ($statusmedtueam_2 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedtueam_2 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus230" class="form-label">Wednesday - 8:00 A.M - 11:00 A.M.</label>
-                        <select class="form-select" id="inputStatus230" name="statusmedwedam_3">
-                            <option value="Available" <?php if ($statusmedwedam_3 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedwedam_3 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus330" class="form-label">Thursday - 8:00 A.M - 11:00 A.M.</label>
-                        <select class="form-select" id="inputStatus330" name="statusmedthuam_4">
-                            <option value="Available" <?php if ($statusmedthuam_4 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedthuam_4 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">Friday - 8:00 A.M - 11:00 A.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmedfriam_5">
-                            <option value="Available" <?php if ($statusmedfriam_5  == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedfriam_5  == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">Monday - 1:30 P.M - 4:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmedmonpm_6">
-                            <option value="Available" <?php if ($statusmedmonpm_6 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedmonpm_6 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">Tuesday - 1:30 P.M - 4:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmedtuepm_7">
-                            <option value="Available" <?php if ($statusmedtuepm_7 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedtuepm_7 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">Wednesday - 1:30 P.M - 4:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmedwedpm_8">
-                            <option value="Available" <?php if ($statusmedwedpm_8 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedwedpm_8 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">Thursday - 1:30 P.M - 4:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmedthupm_9">
-                            <option value="Available" <?php if ($statusmedthupm_9 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedthupm_9 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">Friday - 1:30 P.M - 4:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmedfripm_10">
-                            <option value="Available" <?php if ($statusmedfripm_10 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmedfripm_10 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button>
-                        <button type="submit" name="submit_statusmedicalgsjhs" class="btn btn-light">Update</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

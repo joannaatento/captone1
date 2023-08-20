@@ -6,7 +6,19 @@ include '../../../db.php';
     if (isset($_POST['update_record'])){
         $healthnogsjhs_id = $_POST['healthnogsjhs_id'];
         $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
-        $image = $_FILES['image']['name'];
+       
+        
+         // Get the existing image name from the database
+    $sqlImage = "SELECT image FROM healthrecordformgsjhs WHERE healthnogsjhs_id = '$healthnogsjhs_id'";
+    $resultImage = $conn->query($sqlImage);
+    $rowImage = $resultImage->fetch_assoc();
+    $existingImage = $rowImage['image'];
+
+    $image = $_FILES['image']['name'];
+    if (empty($image)) {
+        // If no new image provided, use the existing image name
+        $image = $existingImage;
+    }
         $gradelevel = trim(mysqli_real_escape_string($conn, $_POST['gradelevel']));
         $role = isset($_POST['role']) ? trim(mysqli_real_escape_string($conn, $_POST['role'])) : "";
         $fullname = trim(mysqli_real_escape_string($conn, $_POST['fullname']));
@@ -43,7 +55,19 @@ include '../../../db.php';
         $seconddose = isset($_POST['seconddose']) ? trim(mysqli_real_escape_string($conn, $_POST['seconddose'])) : "";
         $boosterdose = isset($_POST['boosterdose']) ? trim(mysqli_real_escape_string($conn, $_POST['boosterdose'])) : "";
         $no = isset($_POST['no']) ? trim(mysqli_real_escape_string($conn, $_POST['no'])) : "";
-        $imagevac = $_FILES['imagevac']['name'];
+           
+        // Get the existing image name from the database
+   
+           $sqlImage = "SELECT imagevac FROM healthrecordformgsjhs WHERE healthnogsjhs_id = '$healthnogsjhs_id'";
+    $resultImage = $conn->query($sqlImage);
+    $rowImage = $resultImage->fetch_assoc();
+    $existingImage = $rowImage['imagevac'];
+
+    $imagevac = $_FILES['imagevac']['name'];
+    if (empty($imagevac)) {
+        // If no new image provided, use the existing image name
+        $imagevac = $existingImage;
+    }
         $asthma = isset($_POST['asthma']) ? trim(mysqli_real_escape_string($conn, $_POST['asthma'])) : "";
         $faintingspells = isset($_POST['faintingspells']) ? trim(mysqli_real_escape_string($conn, $_POST['faintingspells'])) : "";
         $allergicrhinitis = isset($_POST['allergicrhinitis']) ? trim(mysqli_real_escape_string($conn, $_POST['allergicrhinitis'])) : "";
@@ -69,19 +93,25 @@ include '../../../db.php';
         $firstaid = trim(mysqli_real_escape_string($conn, $_POST['firstaid']));
         $concernshealth = trim(mysqli_real_escape_string($conn, $_POST['concernshealth']));
 
-        $sql = "UPDATE healthrecordformgsjhs SET user_id='$user_id', image='$image', gradelevel='$gradelevel', role='$role',
-        fullname='$fullname', idnumber='$idnumber', cp='$cp', age='$age', gender='$gender', address='$address',
-        paddress='$paddress', father='$father', cfather='$cfather', mother='$mother', cmother='$cmother', 
-        religion='$religion', nationality='$nationality', language='$language', bothparents='$bothparents',
-        livesmother = '$livesmother', livesfather='$livesfather', guardian='$guardian', guardianname='$guardianname',
-        guardianrelation = '$guardianrelation', cguardian='$cguardian', altrelation='$altrelation', altrel='$altrel',
-        acontact = '$acontact', bcg='$bcg', dpt='$dpt', opv='$opv', hepa='$hepa', measles='$measles', others='$others',
-        firstdose='$firstdose', seconddose = '$seconddose', boosterdose='$boosterdose', no='$no', imagevac='$imagevac',
-        asthma='$asthma',faintingspells='$faintingspells', allergicrhinitis='$allergicrhinitis', freqheadache='$freqheadache',
-        anxietydis='$anxietydis', g6pd='$g6pd', bleedingclotting='$bleedingclotting', hearingprob='$hearingprob',
-        hypergas='$hypergas', derma='$derma', hypertension='$hypertension', diabetes='$diabetes',hyperventilation='$hyperventilation',
-        mens='$mens', othersmedical='$othersmedical', heartcondition='$heartcondition', eyeproblem='$eyeproblem',
-        illness='$illness', injuries='$injuries', treatment='$treatment', medication='$medication',food='$food', firstaid='$firstaid', concernshealth='$concernshealth' WHERE healthnogsjhs_id = '$healthnogsjhs_id'";
+        $sql = "UPDATE healthrecordformgsjhs SET
+        image='$image', gradelevel='$gradelevel', role='$role', fullname='$fullname', idnumber='$idnumber',
+        cp='$cp', age='$age', gender='$gender', address='$address', paddress='$paddress', father='$father',
+        cfather='$cfather', mother='$mother', cmother='$cmother', religion='$religion', nationality='$nationality',
+        language='$language', bothparents='$bothparents', livesmother='$livesmother', livesfather='$livesfather',
+        guardian='$guardian', guardianname='$guardianname', guardianrelation='$guardianrelation',
+        cguardian='$cguardian', altrelation='$altrelation', altrel='$altrel', acontact='$acontact',
+        bcg='$bcg', dpt='$dpt', opv='$opv', hepa='$hepa', measles='$measles', others='$others',
+        firstdose='$firstdose', seconddose='$seconddose', boosterdose='$boosterdose', no='$no',
+        imagevac='$imagevac', asthma='$asthma', faintingspells='$faintingspells',
+        allergicrhinitis='$allergicrhinitis', freqheadache='$freqheadache', anxietydis='$anxietydis',
+        g6pd='$g6pd', bleedingclotting='$bleedingclotting', hearingprob='$hearingprob',
+        hypergas='$hypergas', derma='$derma', hypertension='$hypertension', diabetes='$diabetes',
+        hyperventilation='$hyperventilation', mens='$mens', othersmedical='$othersmedical',
+        heartcondition='$heartcondition', eyeproblem='$eyeproblem', illness='$illness', injuries='$injuries',
+        treatment='$treatment', medication='$medication', food='$food', firstaid='$firstaid',
+        concernshealth='$concernshealth'
+        WHERE healthnogsjhs_id = '$healthnogsjhs_id'";
+    
       
       $imageUploadSuccess = false;
       $secondFileUploadSuccess = false;

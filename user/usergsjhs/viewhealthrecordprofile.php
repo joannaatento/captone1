@@ -181,7 +181,7 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-						<?php
+                    <?php
 							$sql = "SELECT * FROM healthrecordformgsjhs WHERE user_id = '$user_id'";
 							$result = $conn->query($sql);
     						while($row = $result->fetch_array()){
@@ -539,7 +539,7 @@
 </div>
                     </div>
 
-						<?php
+					<?php
 							}
 						?>
 				    </div><!--//app-card-body-->

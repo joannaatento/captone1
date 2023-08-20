@@ -23,4 +23,5 @@ if (isset($_GET['medicalapp_id'])) {
 }
 
 
+
 ?>

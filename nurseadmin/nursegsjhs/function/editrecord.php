@@ -158,4 +158,22 @@ include '../../../db.php';
       }
   
     }
+
+    if(isset($_GET['healthnogsjhs_id'])){
+	
+        $healthnogsjhs_id = $_GET['healthnogsjhs_id'];
+    
+        $query = "DELETE FROM healthrecordformgsjhs WHERE healthnogsjhs_id = '$healthnogsjhs_id' ";
+    
+        if($conn->query($query) === TRUE){
+    
+            header('Location: ../gsjhslists.php?msg=Successfully Deleted!');
+            
+        }else{
+            
+            // echo"Error!!!";
+            echo '<script>window.alert("ERROR!")</script>';
+        }
+        
+    }
   ?>

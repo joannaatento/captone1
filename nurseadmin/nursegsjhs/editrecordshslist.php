@@ -1,7 +1,6 @@
 <?php
     session_start();
     include '../../db.php';
-    require '../../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -9,21 +8,18 @@
         exit; // Exit the script to prevent further execution
     }
 
+  
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Senior High School Building</title>
+    <title>View Health Profile Record</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
     <link rel="shortcut icon" href="assets/images/dwcl.png"> 
     
     <!-- FontAwesome JS-->
@@ -31,10 +27,14 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-    <link rel="stylesheet" href="assets/tables.css">
+	<link rel="stylesheet" href="assets/style.css">
+	<link rel="stylesheet" href="assets/formstyles.css">
+
 </head> 
 
-<body class="app">   	
+<body class="app">   
+    
+
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -225,7 +225,7 @@
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
 					    <div class="col-auto">
-					        <h1 class="app-page-title mb-0"></h1>
+					        <h1 class="app-page-title mb-0">Fill-up Health Record Form</h1>
 					    </div>
 						
 				    </div>
@@ -235,175 +235,284 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Senior High School Health Profiles</h4>
+						        <h4 class="notification-title mb-1">Please fill-up honestly.</h4>
 					        </div>
-							<!--//generate report-->
+							<?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
+							
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-header p-4 pb-2 border-0">
-  <div class="app-search-box col">
-    <form class="app-search-form" onsubmit="event.preventDefault(); searchRecords();">
-      <input type="text" placeholder="Search..." name="query" id="searchQuery" class="form-control search-input">
-      <button type="submit" class="btn search-btn btn-primary"><i class="fas fa-search"></i></button>
-    </form>
-  </div>
-</div>
+				    <div class="app-card-body p-4">
 
-<div class="app-card-body p-4">
-  <div id="healthRecordTable">
-    <table>
-      <thead>
-        <tr>
-          <th>Number</th>
-          <th>Name</th>
-          <th>ID Number</th>
-          <th>Age</th>
-          <th>Person to Contact</th>
-          <th>Contact Person Number</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="healthRecordTableBody">
-        <?php
-        $sql = "SELECT * FROM healthrecordformshs";
-        $result = mysqli_query($conn, $sql);
+                    <?php  	
+    $healthshs_id = $_GET['healthshs_id'];
+    $sql = "SELECT * FROM healthrecordformshs WHERE healthshs_id='$healthshs_id'";
 
-        while($row = $result->fetch_assoc()){
-            $healthshs_id = $row['healthshs_id'];
+    $result = mysqli_query($conn, $sql);
 
-        ?>
-        <tr>
-          <td><?php echo $row['healthshs_id']; ?></td>
-          <td><?php echo $row['fullname']; ?></td>
-          <td><?php echo $row['idnumber']; ?></td>
-          <td><?php echo $row['age']; ?></td>
-          <td><?php echo $row['notified']; ?></td>
-          <td><?php echo $row['contact']; ?></td>
-          
-          <td>
-            <center>
-            <a href="viewshsrecord.php?idnumber=<?php echo $row['idnumber']; ?>">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-              </svg>
-            </a>
-            <a href="#" class="modal-link" data-bs-toggle="modal" data-bs-target="#openModal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-</svg>
-    </a>
+    while($row = $result->fetch_assoc()){
+        $healthshs_id = $row['healthshs_id'];
+    ?>
 
-</center>
-          </td>
-        </tr>
-        <?php } ?>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="modal fade" id="openModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+					<p class="title_">Personal Information</p>
+					
+					<form class="form-horizontal mt-4" action="function/editrecord.php" method="POST" enctype="multipart/form-data">
+                    <div class="align_form">
+								<div class="input_form">
+								<div class="input_wrap">
+							<label></label>
+							<div class="image_container">
+							<br>
+								<img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
+                                <input type="file" name="image" id="image">
+							</div>
+						</div>
+            <div class="input_wrap">
+                <label for="gradelevel">Grade Level</label>
+                <input id="gradelevel" name="gradelevel" type="text" value="<?=$row['gradelevel'];?>">
             </div>
-            <div class="modal-body">
-                <form action="" method="POST">
-                    <div class="mb-3">
-                        <label for="inputTo" class="form-label">To</label>
-                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
-                    </div>
-                    <div class="mb-3">
-                        <label for="messagesms" class="form-label">Message</label>
-                        <textarea class="form-control" id="messagesms" name="message" rows="4"></textarea>
-                    </div>
+            <div class="input_wrap">
+                <label for="fullname">Full Name</label>
+                <input id="fullname" name="fullname" type="text" value="<?=$row['fullname'];?>" >
+            </div>
+            <div class="input_wrap">
+    <label for="fullname">Role</label>
+    <select class="form-select" name="role">
+        <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
+        <option value="Student in SHS" <?php if($row['role'] == "Student in SHS") echo "selected"; ?>>Student in GS/JHS</option>
+        <option value="Employee in SHS" <?php if($row['role'] == "Employee in SHS") echo "selected"; ?>>Employee in GS/JHS</option>
+    </select>
+</div>
+       
+                            </div>
+                            </div><br><br>
+        <div class="input_form">
+            <div class="input_wrap">
+                <label for="fullname">ID Number</label>
+                <input name="idnumber" type="text" value="<?=$row['idnumber'];?>">
+            </div>
+            <div class="input_wrap">
+                <label for="fullname">Age</label>
+                <input name="age" type="text" value="<?=$row['age'];?>">
+            </div>
+            <div class="input_wrap">
+                <label for="fullname">Personal Contact No</label>
+                <input name="pcontact" type="text" value="<?=$row['pcontact'];?>">
+            </div>
+            <div class="input_wrap">
+                <label for="fullname">Gender</label>
+                <select class="form-select" name="gender">
+                    <option value="" <?php if(empty($row['gender'])) echo "selected"; ?>>Select Gender</option>
+                    <option value="Female" <?php if($row['gender'] == "Female") echo "selected"; ?>>Female</option>
+                    <option value="Male" <?php if($row['gender'] == "Male") echo "selected"; ?>>Male</option>
+                </select>
+            </div>
+         </div>
+   
+          <div class="input_form">
+            <div class="input_wrap">
+                <label for="fullname">Home Address</label>
+                <input name="address" id ="address" type="text" value="<?=$row['address'];?>">
+            </div>
+     </div>
+                            
+     <div class="input_form">
+            <div class="input_wrap">
+                <label for="fullname">Temporary Address</label>
+                <input name="paddress" id="paddress" type="text" value="<?=$row['paddress'];?>">
+            </div>
+         </div>
+    <div class="input_form">
+        <div class="input_wrap">
+            <label for="fullname">Father</label>
+            <input name="father" id="father" type="text" value="<?=$row['father'];?>">
+        </div>
+
+        <div class="input_wrap">
+            <label for="fullname">Contact</label>
+            <input name="cfather" id="cfather" type="text" value="<?=$row['cfather'];?>">
+        </div>
+    </div>
+
+    <div class="input_form">
+        <div class="input_wrap">
+            <label for="fullname">Mother</label>
+            <input name="mother" id="mother" type="text">
+        </div>
+
+        <div class="input_wrap">
+            <label for="fullname">Contact</label>
+            <input name="cmother" id="cmother" type="text">
+        </div>
+    </div>
+<br>
+    <p>Please select box if you have/had any of the following illnesses:</p>
+   <div class="input_form">
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="polio" value="polio" type="checkbox" id="polio">
+        <label class="labels" for="polio" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Polio</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="tetanus" value="tetanus" type="checkbox" id="tetanus">
+        <label class="labels" for="tetanus" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tetanus</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="chickenpox" value="chickenpox" type="checkbox" id="chickenpox">
+        <label class="labels" for="chickenpox" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chicken Pox</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="measles" value="measles" type="checkbox" id="measles">
+        <label class="labels" for="measles" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Measles</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="input_form">
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="mumps" value="mumps" type="checkbox" id="mumps">
+        <label class="labels" for="mumps" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mumps</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="tb" value="tb" type="checkbox" id="tb">
+        <label class="labels" for="tb" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pulmonary Tuberculosis</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="asthma" value="asthma" type="checkbox" id="asthma">
+        <label class="labels" for="asthma" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asthma</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="hepatitis" value="hepatitis" type="checkbox" id="hepatitis">
+        <label class="labels" for="hepatitis" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hepatitis</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="input_form">
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="faintingspells" value="faintingspells" type="checkbox" id="faintingspells">
+        <label class="labels" for="faintingspells" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fainting Spells</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="seizure" value="seizure" type="checkbox" id="seizure">
+        <label class="labels" for="seizure" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seizure/Epilepsy</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="bleeding" value="bleeding" type="checkbox" id="bleeding">
+        <label class="labels" for="bleeding" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bleeding Tendencies</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="eyedis" value="eyedis" type="checkbox" id="eyedis">
+        <label class="labels" for="eyedis" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Eye Disorder</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="input_wrap">
+                <label for="fullname">Heart Ailment (please specify)</label>
+                <input name="heartailment" id ="heartailment" type="text" placeholder="Please Specify">
+            </div>
+            <div class="input_wrap">
+                <label for="fullname">Other Illness (please specify)</label>
+                <input name="otherillness" id ="otherillness" type="text" placeholder="Please Specify">
+            </div>
+        <br>
+            <p>Do you have any allergy to:</p>
+   <div class="input_form">
+    </div>
+    <div class="row-container">
+    <p><b>Food:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="checkbox">
+    <input name="yesfood" value="yesfood" type="checkbox" id="yesfood">
+    <label class="labels" for="yesfood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">
+    <input name="nofood" value="nofood" type="checkbox" id="nofood">
+    <label class="labels" for="nofood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="food" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
+
+<div class="input_form">
+    </div>
+    <div class="row-container">
+    <p><b>Medicine:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="checkbox">
+    <input name="yesmed" value="yesmed" type="checkbox" id="yesmed">
+    <label class="labels" for="yesme" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">
+    <input name="nomed" value="nomed" type="checkbox" id="nomed">
+    <label class="labels" for="nomed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="med" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
+
+<div class="input_form"> 
+  <div class="input_wrap">
+    <label for="fullname" id="language">Would you allow your child to be given medicine (as needed) while here in the school?</label>
+  </div>
+                            </div>
+  <div class="input_form">
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="allow" value="allow" type="checkbox" id="allow">
+        <label class="labels" for="allow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="checkbox">
+        <input name="notallow" value="notallow" type="checkbox" id="notallow">
+        <label class="labels" for="notallow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+    </div>
+   <div class="input_form"> 
+            <div class="input_wrap">
+                <label for="fullname">Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>
+                <input name="medpresent" id ="language" type="text">
+            </div>
+   </div>
+
+   <div class="input_form"> 
+            <div class="input_wrap">
+                <label for="fullname" >Person to be notified in case of emergency:</label>
+                <input name="notified" id ="languages" type="text">
+            </div>
+            <div class="input_wrap">
+                <label for="fullname">Contact Number</label>
+                <input name="contact" id ="languagess" type="text">
+            </div>
+            <div class="input_wrap">
+                <label for="fullname">Relationship</label>
+                <input name="relationship" id ="relationship" type="text">
+            </div>
+            </div>
+                            <input type="hidden" id ="language" name="hidden" value="<?=$row['user_id'];?>">
+                            <input type="hidden" name="healthshs_id" value="<?php echo $healthshs_id; ?>">
+                    <input type="submit" name="update_recordshs" value="Update">
 
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" value="Send">Send</button>
-                    </div>
-                </form>
+</form>
 
-                <?php
-/**
- * Send an SMS message directly by calling the HTTP endpoint.
- *
- * For your convenience, environment variables are already pre-populated with your account data
- * like authentication, base URL, and phone number.
- *
- * Please find detailed information in the readme file.
- */
-use GuzzleHttp\Client;
-use GuzzleHttp\RequestOptions;
+<?php
 
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $phoneNumber = $_POST['phone'];
-    $message = $_POST['message'];
-    date_default_timezone_set('Asia/Manila');
-    $date_created = date('Y-m-d h:i A'); 
-
-    // Send the SMS using the Infobip API
-    $client = new Client([
-        'base_uri' => "https://k3n5n1.api.infobip.com",
-        'headers' => [
-            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-        ]
-    ]);
-
-    $response = $client->request(
-        'POST',
-        'sms/2/text/advanced',
-        [
-            RequestOptions::JSON => [
-                'messages' => [
-                    [
-                        'from' => 'Clinic DWCL',
-                        'destinations' => [
-                            ['to' => $phoneNumber]
-                        ],
-                        'text' => $message,
-                    ]
-                ]
-            ],
-        ]
-    );
-
-    // Prepare the SQL query
-    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-
-    // Bind the parameters and execute the query
-    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
-    $stmt->execute();
-
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
-}
+    }
 ?>
 
-<script>
-function searchRecords() {
-  var searchQuery = document.getElementById("searchQuery").value;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("healthRecordTableBody").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "function/searchqueryforgsjhs.php?query=" + searchQuery, true);
-  xhttp.send();
-}
-</script>
-
- <!-- Javascript -->          
- <script src="assets/plugins/popper.min.js"></script>
+				    </div><!--//app-card-body-->
+				</div>			    
+		    </div>
+	    </div>
+    </div>  					
+    <!-- Javascript -->          
+    <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
+    
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 
 	
@@ -419,4 +528,5 @@ function searchRecords() {
 
 </body>
 </html> 
+
 

@@ -253,8 +253,8 @@ if (mysqli_num_rows($result) > 0) {
       <div class="col-sm-12">
         <select id="role" name="role" class="form-control" required>
           <option value="">Select</option>
-          <option value="Student in College">Student</option>
-          <option value="Employee in College">Employee</option>
+          <option value="Student">Student</option>
+          <option value="Employee">Employee</option>
         </select>
       </div>
     </div>

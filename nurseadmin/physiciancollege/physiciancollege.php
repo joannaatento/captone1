@@ -26,8 +26,8 @@
                     switch ($report_type) {
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
-                                    SUM(role = 'Student in College') AS total_student,
-                                    SUM(role = 'Employee in College') AS total_employee
+                                    SUM(role = 'student') AS total_student,
+                                    SUM(role = 'employee') AS total_employee
                                     FROM physicianapp
                                     WHERE admin_id = ? AND YEAR(date_time) = ?
                                     GROUP BY label";
@@ -36,8 +36,8 @@
             
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
-                                    SUM(role = 'Student in College') AS total_student,
-                                    SUM(role = 'Employee in College') AS total_employee
+                                    SUM(role = 'student') AS total_student,
+                                    SUM(role = 'employee') AS total_employee
                                     FROM physicianapp
                                     WHERE admin_id = ? AND YEAR(date_time) = ?
                                     GROUP BY label";
@@ -46,8 +46,8 @@
             
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
-                                   SUM(role = 'Student in College') AS total_student,
-                                    SUM(role = 'Employee in College') AS total_employee
+                                   SUM(role = 'student') AS total_student,
+                                    SUM(role = 'employee') AS total_employee
                                     FROM physicianapp
                                     WHERE admin_id = ? AND YEAR(date_time) = ?
                                     GROUP BY label";

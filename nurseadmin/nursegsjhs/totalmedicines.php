@@ -49,7 +49,48 @@
 	<link rel="stylesheet" href="assets/table.css">
     <link rel="stylesheet" href="assets/generate.css">
     
-    
+    <style>
+
+/* Clinic-themed CSS */
+.clinic-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.clinic-table th, .clinic-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.clinic-table th {
+    background-color: #f2f2f2;
+}
+
+.clinic-form {
+    margin-bottom: 20px;
+}
+
+.clinic-form select, .clinic-form button {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.clinic-form button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.clinic-form button:hover {
+    background-color: #0056b3;
+}
+
+
+</style>
 
 </head> 
 
@@ -110,7 +151,9 @@
         </a>
         <div id="submenu-3" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="totaldentalappointments.php">Total Dental Appointment Reports</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="totalphysicianappointments.php">Total Physician Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalvisitors.php">Total Clinic Visitors</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalmedicines.php">Total Medicine Cosumes</a></li>
             </ul>
@@ -259,7 +302,7 @@
 				    </div><!--//app-card-header-->
                     <?php
 
-// Define a variable to store the selected year (default to 2023).
+
 $selected_year = isset($_POST['selected_year']) ? $_POST['selected_year'] : '2023';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -308,53 +351,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $result = $conn->query($sql);
 ?>
-
-<table>
-    <thead>
-        <tr>
-            <th><?php echo $report_label; ?></th>
-            <th>Medicine Name</th>
-            <th>Total Quantity</th>
-        </tr>
-    </thead>
-    <tbody id="healthRecordTableBody">
-        <?php while ($row = $result->fetch_object()): ?>
+<table class="clinic-table">
+        <thead>
             <tr>
-                <td><?php echo $row->label; ?></td>
-                <td><?php echo $row->medicine_name; ?></td>
-                <td><?php echo $row->total_quantity; ?></td>
+                <th><?php echo $report_label; ?></th>
+                <th>Medicine Name</th>
+                <th>Total Quantity</th>
             </tr>
-        <?php endwhile; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody id="healthRecordTableBody">
+            <?php while ($row = $result->fetch_object()): ?>
+                <tr>
+                    <td><?php echo $row->label; ?></td>
+                    <td><?php echo $row->medicine_name; ?></td>
+                    <td><?php echo $row->total_quantity; ?></td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
 
-         
-<?php
+    <?php
+        }
     }
-}
-?>
-<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <select id="tableSelect" name="report_type">
-        <option value="week">Week</option>
-        <option value="month">Month</option>
-        <option value="year">Year</option>
-    </select>
+    ?>
+    <form class="clinic-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <select id="tableSelect" name="report_type">
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="year">Year</option>
+        </select>
 
-    <select id="yearSelect" name="selected_year">
-        <option value="2023" <?php echo $selected_year === '2023' ? 'selected' : ''; ?>>2023</option>
-        <option value="2024" <?php echo $selected_year === '2024' ? 'selected' : ''; ?>>2024</option>
-        <option value="2025" <?php echo $selected_year === '2025' ? 'selected' : ''; ?>>2025</option>
-    </select>
+        <select id="yearSelect" name="selected_year">
+            <option value="2023" <?php echo $selected_year === '2023' ? 'selected' : ''; ?>>2023</option>
+            <option value="2024" <?php echo $selected_year === '2024' ? 'selected' : ''; ?>>2024</option>
+            <option value="2025" <?php echo $selected_year === '2025' ? 'selected' : ''; ?>>2025</option>
+        </select>
 
-    <button type="submit">Generate Report</button>
-</form>
+        <button type="submit">Generate Report</button>
+    </form>
 
-    </script>			
-    <!-- Javascript -->          
+    <!-- Include your JavaScript dependencies here -->
     <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-   
-
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 

@@ -379,7 +379,7 @@ if (mysqli_num_rows($result) > 0) {
                 <th>Grade & Section</th>
                 <th>Role</th>
                 <th>On-campus Activity or Off-campus Activity</th>
-                <th>Time & Date</th>
+                <th>Schedule</th>
                 <th>Action</th>
             </tr>
         </thead>

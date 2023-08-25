@@ -457,8 +457,38 @@ if (mysqli_num_rows($result) > 0) {
             <span><?php echo $row['date_created']; ?></span>
         </div>
         <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
+
+        &nbsp;&nbsp;&nbsp;
+        &nbsp;<a href="" data-bs-toggle="modal" data-bs-target="#myModals">Reject</a>
         
 <!--Modal-->
+<div class="modal fade" id="myModals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request has been rejected, please choose another appointment day and time. Thank you.</textarea>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="Send">Send</button>
+                    </div>
+                </form>
+
+
+                <!--Modal-->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

@@ -1,6 +1,7 @@
 <?php
     session_start();
     include '../../db.php';
+    require '../../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -26,10 +27,12 @@
 ?>
 
 
+
+
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Dental Employee Request</title>
+    <title>Medical Appointments</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -45,27 +48,27 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    <link rel="stylesheet" href="assets/msdental.css">
+    <link rel="stylesheet" href="assets/dentalstyles.css">
 
-  
 </head> 
 
 <body class="app">   	
 <?php
-// Fetch dental records
-$sql = "SELECT * FROM dental";
+$sql = "SELECT * FROM dentalapp";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-    $row = $result->fetch_assoc(); 
-    $dental_id = $row['dental_id'];
-    $name = $row['name'];
-    $message = $row['message'];
-    $date_created = $row['date_created'];
-    $is_read = $row['is_read'];
-    $is_deleted_on_website = $row['is_deleted_on_website'];
-}
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $fullname = $row['fullname'];
+  $service = $row['service'];
+  $phoneno = $row['phoneno'];
+  $gradecourseyear = $row['gradecourseyear'];
+  $role = $row['role'];
+  $date_time = $row['date_time'];
+    }
+ else {
+ } 
 ?>
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
@@ -153,7 +156,7 @@ if (mysqli_num_rows($result) > 0) {
             </ul>
         </div>
     </li>
-    
+
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="dentalgsjhsshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
@@ -171,7 +174,6 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -189,60 +191,127 @@ if (mysqli_num_rows($result) > 0) {
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1"></h4>
+						        <h4 class="notification-title mb-1">Edit Dental Appointments</h4>
 					        </div>
-							<!--//generate report-->
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <?php
-    $sql = "SELECT * FROM dental WHERE c_employee = 'Employee in North Campus'";
-    $result = $conn->query($sql);
+				    <div class="app-card-body p-4">
+                   
+  
+    <?php  	
+    $dentalapp_id = $_GET['dentalapp_id'];
+    $sql = "SELECT * FROM dentalapp WHERE dentalapp_id='$dentalapp_id'";
 
-    while ($row = $result->fetch_array()) {
-        $dental_id = $row['dental_id'];
-        $is_read = $row['is_read'];
-        $is_deleted_on_website = $row['is_deleted_on_website'];
-        ?>
-     
-     <div class="main-content">
-     <?php if ($is_deleted_on_website == 0): ?>
-        <div class="email-list-item <?php echo ($is_read == 0) ? 'unread' : ''; ?>" <?php echo ($is_read == 0) ? 'style="background-color: #F1F1F1;"' : ''; ?>>
+    $result = mysqli_query($conn, $sql);
 
-        <div class="message">
-                <b><div class="name" style="display: inline;"><?php echo $row['name']; ?></div></b>
-                <div class="message" style="display: inline;"><?php echo $row['message']; ?></div>
-                <div class="timestamp"><?php echo $row['date_created']; ?></div>
+    while($row = $result->fetch_assoc()){
+        $dentalapp_id = $row['dentalapp_id'];
+    ?>
+                    <form class="form-horizontal mt-4" method="post" action="function/editdentals.php">
+ 
+  <div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee ID Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="idnumber" name="idnumber" value="<?=$row['idnumber'];?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="fullname" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="fullname" name="fullname" value="<?=$row['fullname'];?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="gradecourseyear" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?=$row['gradecourseyear'];?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="phoneno" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="phoneno" name="phoneno" value="<?=$row['phoneno'];?>">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
+            <div class="col-sm-12">
+                <input type="datetime-local" class="form-control" id="datetime" name="date_time" value="<?php echo date('Y-m-d\TH:i', strtotime($row['date_time'])); ?>">
             </div>
-
-            <?php if ($is_read == 0): ?>
-                <a href="function/fordentalrequestgsjhsshsreademployee.php?dental_id=<?php echo $dental_id; ?>">Mark as Read</a>
-            <?php endif; ?>
-
-            <a href="function/fordentalgsjhsshsdeleteemployee.php?dental_id=<?php echo $dental_id; ?>" onclick="return confirm('Are you sure you want to delete this message?')">Deleted</a>
-            
-            <a href="viewdentalrequestemployeegsjhsshs.php?date_created=<?php echo $row['date_created']; ?>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                    <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                </svg>
-            </a>
-
-        <?php endif; ?>
-
-
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
+            <div class="col-sm-12">
+                <select id="role" name="role" class="form-control">
+                <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
+                <option value="Student in GS/JHS/SHS" <?php if($row['role'] == "Student in GS/JHS/SHS") echo "selected"; ?>>Student</option>
+                <option value="Employee in GS/JHS/SHS" <?php if($row['role'] == "Employee in GS/JHS/SHS") echo "selected"; ?>>Employee</option>
+            </select>
+                </select>
+            </div>
+        </div>
     </div>
 
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Service</label>
+            <div class="col-sm-12">
+                <select id="service" name="service" class="form-control">
+                <option value="" <?php if(empty($row['service'])) echo "selected"; ?>>Select Service</option>
+                <option value="Cleaning" <?php if($row['service'] == "Cleaning") echo "selected"; ?>>Cleaning</option>
+                <option value="Tooth Extraction" <?php if($row['service'] == "Tooth Extraction") echo "selected"; ?>>Tooth Extraction</option>
+            </select>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+ </br>
+    <div class="row">
+      <div class="col-sm-12">
+      <input type="hidden" name="dentalapp_id" value="<?php echo $dentalapp_id; ?>">
+                    <input type="submit" name="update_dentalrecord" value="Update">
+      </div>
+    </div>
+  </form>
+  <?php
 
-     <?php
     }
+
     ?>
 </div><!--//app-card-body-->
 
 
 
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
@@ -262,3 +331,4 @@ if (mysqli_num_rows($result) > 0) {
 
 </body>
 </html> 
+

@@ -1,6 +1,7 @@
 <?php
     session_start();
     include '../../db.php';
+    require '../../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -59,8 +60,10 @@ if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
   $fullname = $row['fullname'];
+  $service = $row['service'];
+  $phoneno = $row['phoneno'];
+  $gradecourseyear = $row['gradecourseyear'];
   $role = $row['role'];
-  $cenrolled = $row['cenrolled'];
   $date_time = $row['date_time'];
     }
  else {
@@ -152,31 +155,7 @@ if (mysqli_num_rows($result) > 0) {
             </ul>
         </div>
     </li>
-
-    <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-            </svg>
-        </span>
-        <span class="nav-link-text">Dental Requests</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </span>
-    </a>
-    <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
-        <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestgsjhsshs.php">Student</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeegsjhsshs.php">Employee</a></li>
-        </ul>
-    </div>
-</li>
-
-    
+      
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="dentalgsjhsshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
@@ -223,75 +202,7 @@ if (mysqli_num_rows($result) > 0) {
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
                     <div class="app-card-body p-4">
-                   
-                   <form class="form-horizontal mt-4" method="post" action="function/gsjhsshsrecords.php">
-                  
-                     <div class="row">
-                       <div class="col-sm-4">
-                         <div class="form-group">
-                           <label for="idnumber" class="control-label">Patient ID Number</label>
-                           <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-                         </div>
-                       </div>
-                       <div class="col-sm-4">
-                         <div class="form-group">
-                           <label for="fullname" class="control-label">Name</label>
-                           <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" required>
-                         </div>
-                       </div>
-                       <div class="col-sm-4">
-                         <div class="form-group">
-                           <label for="role" class="control-label">Role</label>
-                           <select id="role" name="role" class="form-control" required>
-                             <option value="">Select Role</option>
-                             <option value="Student">Student</option>
-                             <option value="Employee">Employee</option>
-                           </select>
-                         </div>
-                       </div>
-                     </div><br>
-                     <div class="row">
-                       <div class="col-sm-4">
-                         <div class="form-group">
-                           <label for="cenrolled" class="control-label">Currently enrolled in</label>
-                           <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter Grade & Section/Year" required>
-                         </div>
-                       </div>
-                       <div class="col-sm-4">
-                         <div class="form-group">
-                           <label for="service" class="control-label">Dental Service</label>
-                           <select id="service" name="service" class="form-control" required>
-                             <option value="">Select Service</option>
-                             <option value="Cleaning">Cleaning</option>
-                             <option value="Tooth Extraction">Tooth Extraction</option>
-                           </select>
-                         </div>
-                       </div>
-                       <div class="col-sm-4">
-                         <div class="form-group">
-                           <label for="date_time" class="control-label">Schedule</label>
-                           <input type="datetime-local" id="date_time" name="date_time" class="form-control" required>
-                         </div>
-                       </div>
-                  <div class="col-sm-4">
-    <div class="form-group"><br>
-      <label for="phoneNumber" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
-      </div>
-    </div>
-  </div>
-   
-                     <div class="row">
-                       <div class="col-sm-12">
-                       <br><br>
-                       <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-                         <button name="submit_dentalgsjhsshs" class="btn btn-success">Add Dental Appointment</button>
-                       </div>
-                     </div>
-                   </form>
-                   
-                 </div><!--//app-card-body-->
+
                  <br>
                  <div style="text-align: right; margin-right: 48px;">
                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
@@ -300,39 +211,54 @@ if (mysqli_num_rows($result) > 0) {
                  </div>
                  
                  
-                 <?php
-// Fetch and display dental records
-$sql = "SELECT * FROM dentalapp WHERE admin_id = '14' AND is_deleted_on_website = 0";
-$result = $conn->query($sql);
-?>
 <center>
 <div class="main-content">
     <table class="styled-table">
         <thead>
             <tr>
+            <th>Number</th>
                 <th>ID Number</th>
                 <th>Fullname</th>
-                <th>Role</th>
-                <th>Course & Year</th>
                 <th>Service</th>
+                <th>Phone Number</th>
+                <th>Grade & Section</th>
+                <th>Role</th>
                 <th>Schedule</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody id="healthRecordTableBody">
-            <?php
-            while ($row = $result->fetch_assoc()) {
-                ?>
+        <?php
+       $sql = "SELECT * FROM dentalapp WHERE (role = 'Student in GS/JHS/SHS' OR role = 'Employee in GS/JHS/SHS') AND is_deleted_on_website = 0";
+
+        $result = mysqli_query($conn, $sql);
+
+        while($row = $result->fetch_assoc()){
+            $dentalapp_id = $row['dentalapp_id'];
+        ?>
                 <tr>
+                    <td><?php echo $row['dentalapp_id']; ?></td>
                     <td><?php echo $row['idnumber']; ?></td>
                     <td><?php echo $row['fullname']; ?></td>
-                    <td><?php echo $row['role']; ?></td>
-                    <td><?php echo $row['cenrolled']; ?></td>
                     <td><?php echo $row['service']; ?></td>
+                    <td><?php echo $row['phoneno']; ?></td>
+                    <td><?php echo $row['gradecourseyear']; ?></td>
+                    <td><?php echo $row['role']; ?></td>
                     <td><?php echo $row['date_time']; ?></td>
                  
                     <td>
                     <center>   
+                    <a href="" data-bs-toggle="modal" data-bs-target="#myModals">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                    </svg>
+                     </a>
+                    <a href="editdental.php?dentalapp_id=<?php echo $dentalapp_id; ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>
+                        </a>  
                         <a href="function/fordentalappstudentdone.php?dentalapp_id=<?php echo $row['dentalapp_id']; ?>"
                         onclick="return confirm('Are you sure you want to delete this record?')">
                             <!-- Replace the anchor element with SVG icon -->
@@ -352,6 +278,9 @@ $result = $conn->query($sql);
     <br><br>
 </div>
         </center>
+        
+                   
+        </div><!--//app-card-body-->
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -433,6 +362,116 @@ $result = $conn->query($sql);
         </div>
     </div>
 </div>
+
+<!-- Approve Modal -->
+<div class="modal fade" id="myModals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63" value="<?= $phoneno; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for dental appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <?php
+/**
+ * Send an SMS message directly by calling the HTTP endpoint.
+ *
+ * For your convenience, environment variables are already pre-populated with your account data
+ * like authentication, base URL, and phone number.
+ *
+ * Please find detailed information in the readme file.
+ */
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
+
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $phoneNumber = $_POST['phone'];
+    $message = $_POST['message'];
+    date_default_timezone_set('Asia/Manila');
+    $date_created = date('Y-m-d h:i A'); 
+
+    // Send the SMS using the Infobip API
+    $client = new Client([
+        'base_uri' => "https://k3n5n1.api.infobip.com",
+        'headers' => [
+            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ]
+    ]);
+
+    $response = $client->request(
+        'POST',
+        'sms/2/text/advanced',
+        [
+            RequestOptions::JSON => [
+                'messages' => [
+                    [
+                        'from' => 'Clinic DWCL',
+                        'destinations' => [
+                            ['to' => $phoneNumber]
+                        ],
+                        'text' => $message,
+                    ]
+                ]
+            ],
+        ]
+    );
+
+    // Prepare the SQL query
+    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+
+    // Bind the parameters and execute the query
+    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
+    $stmt->execute();
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+
+ <!-- Javascript -->          
+ <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Page Specific JS -->
+    <script src="assets/js/app.js"></script> 
+	
+	<script>
+		// Timer to remove success message after 5 seconds (5000 milliseconds)
+		setTimeout(function(){
+			var successMessage = document.getElementById('success-message');
+			if(successMessage){
+				successMessage.remove();
+			}
+		}, 5000);
+	</script>
+
+</body>
+</html> 
+
 
 
     <!-- Javascript -->          

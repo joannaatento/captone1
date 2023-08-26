@@ -54,17 +54,18 @@
 <?php
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM dentalapp WHERE idnumber= '$idnumber'";
+$sql = "SELECT * FROM medicalapp WHERE idnumber= '$idnumber'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
-  $fullname = $row['fullname'];
-  $role = $row['role'];
-  $cenrolled = $row['cenrolled'];
-  $service = $row['service'];
+  $name1 = $row['name1'];
+  $gradecourseyear1 = $row['gradecourseyear1'];
+  $phoneno = $row['phoneno'];
   $date_time = $row['date_time'];
+  $role= $row['role'];
+  $onoff= $row['onoff'];
   $date_created = $row['date_created'];
     }
  else {
@@ -217,19 +218,14 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="gradecourseyear1" class="col-sm-12 control-label">Grade & Section/Course & Year</label>
+                                <label for="gradecourseyear1" class="col-sm-12 control-label">Grade & Section</label>
                                 <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter your Fullname" value="<?php echo $row['gradecourseyear1']; ?>" readonly>
                             </div>
                         </div>
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="cenrolled" class="col-sm-12 control-label">Role</label>
-                                <input type="text" class="form-control" id="role" name="role" placeholder="If you are an employee, just type Employee" value="<?php echo $row['role']; ?>" readonly>
-                            </div>
-                        </div>
+                     
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="onoff" class="col-sm-12 control-label">On-campus Activity or Off-campus Activity</label>
@@ -237,7 +233,7 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <span>Schedule: <?php echo $row['date_time']; ?></span>
+                           <b> <span>Schedule: <?php echo $row['date_time']; ?></span></b>
                         </div>
                     </div>
                     <?php } ?>

@@ -26,9 +26,9 @@
                     switch ($report_type) {
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM dentalapp
+                                    SUM(role = 'student in gs/jhs') AS total_student,
+                                    SUM(role = 'employee in gs/jhs') AS total_employee
+                                    FROM medicalapp
                                     WHERE YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Weekly';
@@ -36,9 +36,9 @@
             
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM dentalapp
+                                    SUM(role = 'student in gs/jhs') AS total_student,
+                                    SUM(role = 'employee in gs/jhs') AS total_employee
+                                    FROM medicalapp
                                     WHERE YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Monthly';
@@ -46,9 +46,9 @@
             
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM dentalapp
+                                    SUM(role = 'student in gs/jhs') AS total_student,
+                                    SUM(role = 'employee in gs/jhs') AS total_employee
+                                    FROM medicalapp
                                     WHERE YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Yearly';
@@ -60,7 +60,7 @@
                     }
             
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("i", $selected_year);
+                    $stmt->bind_param("i",$selected_year);
                     $stmt->execute();
                     $result = $stmt->get_result();
             
@@ -83,6 +83,7 @@
         }
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en"> 

@@ -322,9 +322,9 @@ if (mysqli_num_rows($result) > 0) {
             <div class="col-sm-12">
                 <select id="role" name="role" class="form-control">
                 <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
-                <option value="Student in GS/JHS" <?php if($row['role'] == "Student in GS/JHS") echo "selected"; ?>>Student</option>
-                <option value="Employee in GS/JHS" <?php if($row['role'] == "Employee in GS/JHS ") echo "selected"; ?>>Employee</option>
-                </select>
+                <option value="Student in GS/JHS" <?php if($row['role'] == "Student in GS/JHS") echo "selected"; ?>>Student in GS/JHS</option>
+                <option value="Employee in GS/JHS" <?php if($row['role'] == "Employee in GS/JHS") echo "selected"; ?>>Employee in GS/JHS</option>
+            </select>
             </div>
         </div>
     </div>

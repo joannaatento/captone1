@@ -61,9 +61,10 @@ if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
   $fullname = $row['fullname'];
+  $service= $row['service'];
+  $phoneno = $row['phoneno'];
+  $gradecourseyear = $row['gradecourseyear'];
   $role = $row['role'];
-  $cenrolled = $row['cenrolled'];
-  $service = $row['service'];
   $date_time = $row['date_time'];
   $date_created = $row['date_created'];
     }
@@ -221,24 +222,16 @@ if (mysqli_num_rows($result) > 0) {
                         <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your Fullname" value="<?php echo $row['fullname']; ?>" readonly>
                 </div>
             </div>
-      
-         <div class="col-sm-4">
-        <div class="form-group">
-                    <label for="role" class="col-sm-4 control-label">Role</label>
-                    <select id="role" name="role" class="form-control" readonly>
-                            <option disabled selected><?= $row['role']; ?></option>
-                        </select>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="gradecourseyear " class="col-sm-8 control-label">Grade & Section</label>
+                        <input type="text" class="form-control" id="gradecourseyear " name="gradecourseyear " placeholder="If you are an employee, just type Employee" value="<?php echo $row['gradecourseyear']; ?>" readonly>
                 </div>
             </div>
       </div>
       <br>
             <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="cenrolled" class="col-sm-8 control-label">Currently Enrolled In</label>
-                        <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['cenrolled']; ?>" readonly>
-                </div>
-            </div>
+
       
         <div class="col-sm-4">
                 <div class="form-group">
@@ -249,7 +242,7 @@ if (mysqli_num_rows($result) > 0) {
             </div>
 
         <div class="form-group">
-            <span>Schedule: <?php echo $row['date_time']; ?></span>
+           <b> <span>Schedule: <?php echo $row['date_time']; ?></span></b>
         </div>
   
         <?php } ?>

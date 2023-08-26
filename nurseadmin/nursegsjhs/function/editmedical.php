@@ -6,14 +6,14 @@ include '../../../db.php';
 if (isset($_POST['update_medicalrecord'])) {
     // Sanitize and validate user inputs
     $medicalapp_id = $_POST['medicalapp_id'];
-    $admin_id = $_POST['admin_id'];
+    $user_id = $_POST['user_id'];
     $idnumber = $_POST['idnumber'];
     $name1 = $_POST['name1'];
     $gradecourseyear1 = $_POST['gradecourseyear1'];
+    $phoneno = $_POST['phoneno'];
+    $date_time = $_POST['date_time'];
     $role = $_POST['role'];
     $onoff = $_POST['onoff'];
-    $date_time = $_POST['date_time'];
-    $phoneNumber = $_POST['phoneNumber'];
     $is_deleted_on_website = $_POST['is_deleted_on_website'];
 
     // Validate and sanitize inputs here...
@@ -25,8 +25,8 @@ if (isset($_POST['update_medicalrecord'])) {
 
     // Update the record in the database
     $sql = "UPDATE medicalapp SET
-    idnumber='$idnumber', name1='$name1', gradecourseyear1='$gradecourseyear1', role='$role', 
-    onoff='$onoff', date_time='$formattedDatetime', phoneNumber='$phoneNumber'
+    idnumber='$idnumber', name1='$name1', gradecourseyear1='$gradecourseyear1',phoneno='$phoneno',
+    role='$role', date_time='$formattedDatetime', onoff='$onoff'
     WHERE medicalapp_id = '$medicalapp_id'";
 
     if (mysqli_query($conn, $sql)) {

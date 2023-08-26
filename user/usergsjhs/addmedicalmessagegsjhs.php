@@ -190,7 +190,7 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-                    <b><p></b></p>
+                    <b><p>Please wait for a message for approval of your medical request appointment.</b></p>
 <form class="form-horizontal mt-4" method="post" action="function/functions.php"  onsubmit="return validateForm()">
 <div class="row">
   <div class="col-sm-3">
@@ -230,7 +230,25 @@
   </div>
 </div>
 
+<script>
+  function validateForm() {
+    var contactInputs = document.getElementsByClassName("contactInput");
+    var isValid = true;
 
+    for (var i = 0; i < contactInputs.length; i++) {
+      var contactInput = contactInputs[i].value;
+
+      if (!contactInput.startsWith("+63")) {
+        isValid = false;
+        document.getElementsByClassName("errorMessage")[i].style.display = "block";
+      } else {
+        document.getElementsByClassName("errorMessage")[i].style.display = "none";
+      }
+    }
+
+    return isValid;
+  }
+</script>
 
 </div>
 
@@ -238,35 +256,29 @@
 
 <br>
 <div class="row">
-    <div class="col-sm-4">
+<div class="col-sm-3">
+    <div class="form-group">
+      <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Schedule</label>
+      <div class="col-sm-12">
+        <input type="datetime-local" class="form-control" id="datetime" name="date_time">
+      </div>
+    </div>
+</div>
+    <div class="col-sm-3">
         <div class="form-group">
-            <label for="c_enrolled" class="col-sm-12 control-label" style="font-size: 16px">For Student</label>
+            <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
             <div class="col-sm-12">
-                <select id="c_enrolled" name="c_enrolled" class="form-control">
-                <option value="">Select Level of Education</option>
-                <option value="Grade School & Junior High School">Grade School & Junior High School</option>
-                <option value="Senior High School">Senior High School</option>
-                <option value="College">College</option>
+                <select id="role" name="role" class="form-control">
+                <option value="">Select Role</option>
+                <option value="Student in GS/JHS">Student</option>
+                <option value="Employee in GS/JHS">Employee</option>
                 </select>
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <div class="form-group">
-            <label for="fullname" style="col-sm-12 font-size: 16px">For Employee</label>
-            <div class="col-sm-12">
-            <select id="c_employee" name="c_employee" class="form-control">
-                <option value="">--Select--</option>
-                <option value="Employee in GS and JHS">Employee in GS and JHS</option>
-                <option value="Employee in SHS">Employee in Senior High School</option>
-                <option value="Employee in College">Employee in College</option>
-            </select>
-        </div>
-    </div>
-</div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="onoff" class="col-sm-12 control-label" style="font-size: 16px">On-campus Activity or Off-campus Activity</label>
+            <label for="onoff" class="col-sm-12 control-label" style="font-size: 16px">On-campus/Off-campus Activity</label>
             <div class="col-sm-12">
                 <select id="onoff" name="onoff" class="form-control" required>
                 <option value="">Select</option>
@@ -455,18 +467,6 @@
 </script>
 
 
-
-
-
-<div class="row">
-    <div class="form-group">
-        <br>
-        <label for="message" class="col-sm-10 control-label">Write a message.... (State what for is the medical scheduling and Date and Time)</label>
-        <div class="col-sm-12">
-            <textarea type="text" class="form-control" id="message" name="message" placeholder="Enter your message.... Ex. July 08, 2023 Monday 8:00AM" required></textarea>
-        </div>
-    </div>
-</div>
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <br>
@@ -476,25 +476,7 @@
 </div>
 </form>
 
-<script>
-  function validateForm() {
-    var contactInputs = document.getElementsByClassName("contactInput");
-    var isValid = true;
 
-    for (var i = 0; i < contactInputs.length; i++) {
-      var contactInput = contactInputs[i].value;
-
-      if (!contactInput.startsWith("+63")) {
-        isValid = false;
-        document.getElementsByClassName("errorMessage")[i].style.display = "block";
-      } else {
-        document.getElementsByClassName("errorMessage")[i].style.display = "none";
-      }
-    }
-
-    return isValid;
-  }
-</script>
 </div><!--//app-card-body-->
 </div>			    
 </div>

@@ -156,29 +156,6 @@ if (mysqli_num_rows($result) > 0) {
         </div>
     </li>
 
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-5" aria-expanded="false" aria-controls="submenu-5">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-            </svg>
-        </span>
-        <span class="nav-link-text">Medical Requests</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </span>
-    </a>
-    <div id="submenu-5" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
-        <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="medicalrequestgsjhs.php">Grade School and JHS</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="medicalrequestsemployeegsjhs.php">Employee</a></li>
-        </ul>
-    </div>
-</li>
-
     
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="medicalgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
@@ -293,7 +270,7 @@ if (mysqli_num_rows($result) > 0) {
                     <form class="form-horizontal mt-4" method="post" action="function/editmedical.php">
  
   <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="form-group">
       <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee ID Number</label>
       <div class="col-sm-12">
@@ -302,7 +279,7 @@ if (mysqli_num_rows($result) > 0) {
     </div>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="form-group">
       <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
       <div class="col-sm-12">
@@ -311,7 +288,7 @@ if (mysqli_num_rows($result) > 0) {
     </div>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="form-group">
       <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
       <div class="col-sm-12">
@@ -319,17 +296,34 @@ if (mysqli_num_rows($result) > 0) {
       </div>
     </div>
   </div>
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="phoneno" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="phoneno" name="phoneno" value="<?=$row['phoneno'];?>">
+      </div>
+    </div>
+  </div>
 </div>
 <br>
 <div class="row">
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
+            <div class="col-sm-12">
+                <input type="datetime-local" class="form-control" id="datetime" name="date_time" value="<?php echo date('Y-m-d\TH:i', strtotime($row['date_time'])); ?>">
+            </div>
+        </div>
+    </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
             <div class="col-sm-12">
                 <select id="role" name="role" class="form-control">
                 <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
-                <option value="Student" <?php if($row['role'] == "Student") echo "selected"; ?>>Student</option>
-                <option value="Employee" <?php if($row['role'] == "Employee ") echo "selected"; ?>>Employee</option>
+                <option value="Student in GS/JHS" <?php if($row['role'] == "Student in GS/JHS") echo "selected"; ?>>Student</option>
+                <option value="Employee in GS/JHS" <?php if($row['role'] == "Employee in GS/JHS ") echo "selected"; ?>>Employee</option>
                 </select>
             </div>
         </div>
@@ -346,23 +340,6 @@ if (mysqli_num_rows($result) > 0) {
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
-            <div class="col-sm-12">
-                <input type="datetime-local" class="form-control" id="datetime" name="date_time" value="<?php echo date('Y-m-d\TH:i', strtotime($row['date_time'])); ?>">
-            </div>
-        </div>
-    </div>
-
-  <div class="col-sm-4">
-    <div class="form-group"><br>
-      <label for="phoneNumber" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="<?=$row['phoneNumber'];?>">
-      </div>
-    </div>
-  </div>
 </div>
  </br>
     <div class="row">

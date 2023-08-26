@@ -8,14 +8,14 @@
     
     if (isset($_POST['submit_medicalgsjhs'])) {
         // Sanitize and validate user inputs
-        $admin_id = $_POST['admin_id'];
+        $user_id = $_POST['user_id'];
         $idnumber = $_POST['idnumber'];
         $name1 = $_POST['name1'];
         $gradecourseyear1 = $_POST['gradecourseyear1'];
+        $phoneno = $_POST['phoneno'];
+        $date_time = $_POST['date_time'];
         $role = $_POST['role'];
         $onoff = $_POST['onoff'];
-        $date_time = $_POST['date_time'];
-        $phoneNumber = $_POST['phoneNumber'];
         $is_deleted_on_website = $_POST['is_deleted_on_website'];
     
         // Validate and sanitize inputs here...
@@ -30,7 +30,7 @@
         $reminderDateTime->modify("-2 hour");
     
         // Insert the sanitized data into the database
-        $sql = "INSERT INTO medicalapp VALUES ('','$admin_id','$idnumber','$name1','$gradecourseyear1','$role','$onoff','$formattedDatetime', NOW(), '$phoneNumber','$is_deleted_on_website')";
+        $sql = "INSERT INTO medicalapp VALUES ('','$user_id','$idnumber','$name1','$gradecourseyear1','$phoneno','$role','$onoff','$formattedDatetime', NOW(),'$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
             // Check if it's time to send a reminder
@@ -39,7 +39,7 @@
             // Check if the reminder time is within 1 hour before the appointment time
             if ($currentTime >= $reminderDateTime && $currentTime < $appointmentDateTime) {
                 // Send SMS reminder
-                $message = "Hi {$name1}, this is a reminder for your medical appointment on {$formattedDatetime}. It's just 1 hour away. See you soon!";
+                $message = "Hi {$name1}, this is a reminder for your medical appointment on {$formattedDatetime}. It's just 2 hours away. See you soon!";
     
                 $client = new Client([
                     'base_uri' => "https://k3n5n1.api.infobip.com",

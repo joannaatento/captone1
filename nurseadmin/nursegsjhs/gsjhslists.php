@@ -9,6 +9,9 @@
         exit; // Exit the script to prevent further execution
     }
 
+    
+
+
 ?>
 
 
@@ -270,6 +273,7 @@
 
         while($row = $result->fetch_assoc()){
             $healthnogsjhs_id = $row['healthnogsjhs_id'];
+            $cguardian = $row['cguardian'];
         ?>
         <tr>
           <td><?php echo $row['healthnogsjhs_id']; ?></td>
@@ -324,7 +328,7 @@
                 <form action="" method="POST">
                     <div class="mb-3">
                         <label for="inputTo" class="form-label">To</label>
-                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
+                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63" value="<?= $cguardian; ?>">
                     </div>
                     <div class="mb-3">
                         <label for="messagesms" class="form-label">Message</label>

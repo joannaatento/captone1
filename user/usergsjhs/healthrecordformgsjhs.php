@@ -14,6 +14,7 @@
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
+        $idnumber = $row['idnumber'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 1){
             // User type 1 specific code here
@@ -46,6 +47,8 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/formstyless.css">
+
+  
 
 </head> 
 
@@ -192,8 +195,9 @@
 				    <div class="app-card-body p-4">
 					<p class="title_">Personal Information</p>
 					
-					<form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data">
-    <div class="align_form">
+                    <form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data"  onsubmit="return validateForm()">    
+                    
+                    <div class="align_form">
 
 	
         <div class="input_form">
@@ -216,19 +220,22 @@
         </div>
         <div class="input_wrap">
                 <label for="fullname">Full Name</label>
-                <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" >
+                <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" readonly>
             </div>
                             </div>
                             </div>
         <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">ID Number</label>
-                <input name="idnumber" type="text">
+                <input name="idnumber" type="text" value="<?= $idnumber; ?>" readonly>
             </div>
             <div class="input_wrap">
-                <label for="fullname">Personal Contact Number</label>
-                <input name="cp" type="text">
-            </div>
+            <label for="fullname">Personal Contact Number</label>
+            <input name="cp" type="text" placeholder="+63" class="contactInput">
+            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+        </div>
+
+    
             <div class="input_wrap">
                 <label for="fullname">Age</label>
                 <input name="age" type="text">
@@ -264,9 +271,10 @@
 
         <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="cfather" id="cfather" type="text">
+            <input name="cfather" type="text" placeholder="+63" class="contactInput">
+            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
         </div>
-    </div>
+                            </div>
 
     <div class="input_form">
         <div class="input_wrap">
@@ -276,7 +284,8 @@
 
         <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="cmother" id="cmother" type="text">
+            <input name="cmother" type="text" placeholder="+63" class="contactInput">
+            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
         </div>
     </div>
 
@@ -329,11 +338,13 @@
         </div>
     </div>
     <div class="input_form">
-        <div class="input_wrap">
+    <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="cguardian" id="cguardian" type="text">
+            <input name="cguardian" type="text" placeholder="+63" class="contactInput">
+            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
         </div>
     </div>
+ 
     <div class="input_form">
         <div class="input_wrap">
             <label for="fullname">Alternation Person to Contact in Case of Emergency</label>
@@ -345,7 +356,8 @@
         </div>
         <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="acontact" id="acontact" type="text">
+            <input name="acontact" type="text" placeholder="+63" class="contactInput">
+            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
         </div>
     </div>
 
@@ -546,16 +558,37 @@
 	<input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
    <button name="submit_data" class="btn btn-success">SUBMIT</button>
     </div>
-
-
-
 </form>
+
+<script>
+        function validateForm() {
+            var contactInputs = document.getElementsByClassName("contactInput");
+            var isValid = true;
+
+            for (var i = 0; i < contactInputs.length; i++) {
+                var contactInput = contactInputs[i].value;
+
+                if (!contactInput.startsWith("+63")) {
+                    isValid = false;
+                    document.getElementsByClassName("errorMessage")[i].style.display = "block";
+                } else {
+                    document.getElementsByClassName("errorMessage")[i].style.display = "none";
+                }
+            }
+
+            return isValid;
+        }
+    </script>
+
+
 
 				    </div><!--//app-card-body-->
 				</div>			    
 		    </div>
 	    </div>
-    </div>  					
+    </div>  	
+    
+  
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

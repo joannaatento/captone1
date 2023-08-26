@@ -35,18 +35,7 @@
         $idnumber = $_POST['idnumber'];
         $name1 = $_POST['name1'];
         $gradecourseyear1 = $_POST ['gradecourseyear1'];
-        $idnumber2 = $_POST['idnumber2'];
-        $name2 = $_POST['name2'];
-        $gradecourseyear2 = $_POST ['gradecourseyear2'];
-        $idnumber3 = $_POST['idnumber3'];
-        $name3 = $_POST['name3'];
-        $gradecourseyear3 = $_POST ['gradecourseyear3'];
-        $idnumber4 = $_POST['idnumber4'];
-        $name4 = $_POST['name4'];
-        $gradecourseyear4 = $_POST ['gradecourseyear4'];
-        $idnumber5 = $_POST['idnumber5'];
-        $name5 = $_POST['name5'];
-        $gradecourseyear5 = $_POST ['gradecourseyear5'];
+        $phoneno = $_POST ['phoneno'];
         $c_enrolled = $_POST['c_enrolled'];
         $c_employee= $_POST['c_employee'];
         $onoff = $_POST['onoff'];
@@ -59,9 +48,7 @@
         $is_read = $_POST['is_read'];
         $is_deleted_on_website = $_POST['is_deleted_on_website'];
     
-        $sql = "INSERT INTO medical VALUES ('','$user_id','$idnumber','$name1','$gradecourseyear1',
-        '$idnumber2','$name2','$gradecourseyear2','$idnumber3','$name3','$gradecourseyear3',
-        '$idnumber4','$name4','$gradecourseyear4','$idnumber5','$name5','$gradecourseyear5',
+        $sql = "INSERT INTO medical VALUES ('','$user_id','$idnumber','$name1','$gradecourseyear1','$phoneno',
         '$c_enrolled','$c_employee','$onoff','$message','$date_created','$is_read','$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {

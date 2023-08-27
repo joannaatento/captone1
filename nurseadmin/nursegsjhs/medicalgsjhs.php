@@ -544,30 +544,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     $conn->close();
 }
 ?>
-
-
- <!-- Javascript -->          
- <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
-	
-	<script>
-		// Timer to remove success message after 5 seconds (5000 milliseconds)
-		setTimeout(function(){
-			var successMessage = document.getElementById('success-message');
-			if(successMessage){
-				successMessage.remove();
-			}
-		}, 5000);
-	</script>
-
-</body>
-</html> 
-
-
-
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

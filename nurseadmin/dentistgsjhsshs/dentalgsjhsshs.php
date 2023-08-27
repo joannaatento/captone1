@@ -28,6 +28,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -69,6 +70,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
+ 	
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -155,7 +157,8 @@ if (mysqli_num_rows($result) > 0) {
             </ul>
         </div>
     </li>
-      
+
+    
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="dentalgsjhsshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
@@ -173,7 +176,6 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -210,8 +212,7 @@ if (mysqli_num_rows($result) > 0) {
                      </button>
                  </div>
                  
-                 
-<center>
+             <center>
 <div class="main-content">
     <table class="styled-table">
         <thead>
@@ -281,7 +282,7 @@ if (mysqli_num_rows($result) > 0) {
         
                    
         </div><!--//app-card-body-->
-
+      
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -451,26 +452,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 }
 ?>
 
-
- <!-- Javascript -->          
- <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
-	
-	<script>
-		// Timer to remove success message after 5 seconds (5000 milliseconds)
-		setTimeout(function(){
-			var successMessage = document.getElementById('success-message');
-			if(successMessage){
-				successMessage.remove();
-			}
-		}, 5000);
-	</script>
-
-</body>
-</html> 
 
 
 

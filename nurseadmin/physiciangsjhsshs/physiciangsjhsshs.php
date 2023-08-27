@@ -26,31 +26,37 @@
                     switch ($report_type) {
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM physicianapp
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
-                                    GROUP BY label";
+                            SUM(CASE WHEN role = 'student in gs/jhs' THEN 1 ELSE 0 END) AS total_student_gs_jhs,
+                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs,
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM physicianapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";                    
                             $report_label = 'Weekly';
                             break;
             
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
-                                   SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM physicianapp
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
-                                    GROUP BY label";
+                            SUM(CASE WHEN role = 'student in gs/jhs' THEN 1 ELSE 0 END) AS total_student_gs_jhs,
+                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs,
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM physicianapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";         
                             $report_label = 'Monthly';
                             break;
             
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
-                                   SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM physicianapp
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
-                                    GROUP BY label";
+                            SUM(CASE WHEN role = 'student in gs/jhs' THEN 1 ELSE 0 END) AS total_student_gs_jhs,
+                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs,
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM physicianapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";         
                             $report_label = 'Yearly';
                             break;
             
@@ -60,14 +66,16 @@
                     }
             
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ii", $admin_id, $selected_year);
+                    $stmt->bind_param("i", $selected_year);
                     $stmt->execute();
                     $result = $stmt->get_result();
             
                     while ($row = $result->fetch_object()) {
                         $chartData['labels'][] = $row->label;
-                        $chartData['total_student'][] = $row->total_student;
-                        $chartData['total_employee'][] = $row->total_employee;
+                        $chartData['total_student_gs_jhs'][] = $row->total_student_gs_jhs;
+                        $chartData['total_employee_gs_jhs'][] = $row->total_employee_gs_jhs;
+                        $chartData['total_student_shs'][] = $row->total_student_shs;
+                        $chartData['total_employee_shs'][] = $row->total_employee_shs;
                     }
             
                     header("Content-Type: application/json");
@@ -83,6 +91,7 @@
         }
     }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -196,7 +205,7 @@
 
 
                 <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-7" aria-expanded="false" aria-controls="submenu-7">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
@@ -210,9 +219,9 @@
                 </svg>
             </span>
         </a>
-        <div id="submenu-3" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+        <div id="submenu-7" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Physician Consultation Appointment Reports</a></li>
             </ul>
         </div>
     </li>
@@ -240,30 +249,6 @@
             </ul>
         </div>
     </li>
-
-    <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-            </svg>
-        </span>
-        <span class="nav-link-text">Physician Consultation Request</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </span>
-    </a>
-    <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
-        <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicianstudentgsjhsshs.php">Student</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="physicianemployeegsjhsshs.php">Employee</a></li>
-        </ul>
-    </div>
-</li>
-
     
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="physicianapproved.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
@@ -419,14 +404,25 @@
                     labels: data.labels,
                     datasets: [
                         {
-                            label: "Total of Student",
-                            data: data.total_student,
+                            label: "Total of Student in GS/JHS",
+                            data: data.total_student_gs_jhs,
                             backgroundColor: "rgba(0, 0, 128, 0.5)", // You can change the color here
                         },
                         {
-                            label: "Total of Employees",
-                            data: data.total_employee,
+                            label: "Total of Employees in GS/JHS",
+                            data: data.total_employee_gs_jhs,
                             backgroundColor: "rgba(139, 0, 0, 0.5)", // You can change the color here
+                        },
+
+                        {
+                            label: "Total of Student in SHS",
+                            data: data.total_student_shs,
+                            backgroundColor: "rgba(255, 165, 0, 0.5)", // This sets the background color to orange with 50% opacity
+                        },
+                        {
+                            label: "Total of Employees in SHS",
+                            data: data.total_employee_shs,
+                            backgroundColor: "rgba(0, 128, 0, 0.5)", // You can change the color here
                         },
                     ],
                 };

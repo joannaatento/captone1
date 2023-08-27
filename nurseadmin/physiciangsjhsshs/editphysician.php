@@ -5,7 +5,7 @@
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
-        echo '<script>window.location.replace("login.php");</script>';
+        echo '<script>window.location.replace("../login.php");</script>';
         exit; // Exit the script to prevent further execution
     }
     $admin_id = $_SESSION['admin_id'];
@@ -25,6 +25,7 @@
     }
 
 ?>
+
 
 
 
@@ -57,15 +58,15 @@ $sql = "SELECT * FROM physicianapp";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-  $row = $result->fetch_assoc(); 
-  $idnumber = $row['idnumber'];
-  $name = $row['name'];
-  $phoneno = $row['phoneno'];
-  $gradesection = $row['gradesection'];
-  $role = $row['role'];
-  $date_time = $row['date_time'];
-  $date_created = $row['date_created'];
-    }
+    $row = $result->fetch_assoc(); 
+    $idnumber = $row['idnumber'];
+    $name = $row['name'];
+    $phoneno = $row['phoneno'];
+    $gradesection = $row['gradesection'];
+    $role = $row['role'];
+    $date_time = $row['date_time'];
+    $date_created = $row['date_created'];
+      }
  else {
  } 
 ?>
@@ -238,7 +239,7 @@ if (mysqli_num_rows($result) > 0) {
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Physician Consultation Appointments</h4>
+						        <h4 class="notification-title mb-1">Edit Dental Appointments</h4>
 					        </div>
                             <?php
 								if(isset($_SESSION['success'])){
@@ -248,219 +249,104 @@ if (mysqli_num_rows($result) > 0) {
 							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-body p-4">
+				    <div class="app-card-body p-4">
                    
-                 <br>
-                 <div style="text-align: right; margin-right: 48px;">
-                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
-                         Update Dental Schedule
-                     </button>
-                 </div>
-<center>
-<div class="main-content">
-    <table class="styled-table">
-        <thead>
-            <tr>
-                <th>Number</th>
-                <th>ID Number</th>
-                <th>Fullname</th>
-                <th>Phone Number</th>
-                <th>Grade & Section</th>
-                <th>Role</th>
-                <th>Schedule</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="healthRecordTableBody">
-        <?php
-                $roles = array("Student in GS/JHS", "Employee in GS/JHS", "Student in SHS", "Employee in SHS");
-                $rolesString = "'" . implode("','", $roles) . "'";
+  
+    <?php  	
+$phy_id = $_GET['phy_id']; // Retrieving the parameter from the URL
+$sql = "SELECT * FROM physicianapp WHERE phy_id ='$phy_id'";
 
-                $sql = "SELECT * FROM physicianapp WHERE role IN ($rolesString) AND is_deleted_on_website = 0";
+    $result = mysqli_query($conn, $sql);
 
-        $result = mysqli_query($conn, $sql);
+    while($row = $result->fetch_assoc()){
+        $phy_id = $row['phy_id'];
+    ?>
+                    <form class="form-horizontal mt-4" method="post" action="function/editphysician.php">
+ 
+  <div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">ID Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="idnumber" name="idnumber" value="<?=$row['idnumber'];?>">
+      </div>
+    </div>
+  </div>
 
-        while($row = $result->fetch_assoc()){
-            $phy_id = $row['phy_id'];
-        ?>
-                <tr>
-                    <td><?php echo $row['phy_id']; ?></td>
-                    <td><?php echo $row['idnumber']; ?></td>
-                    <td><?php echo $row['name']; ?></td>
-                    <td><?php echo $row['phoneno']; ?></td>
-                    <td><?php echo $row['gradesection']; ?></td>
-                    <td><?php echo $row['role']; ?></td>
-                    <td><?php echo $row['date_time']; ?></td>
-                 
-                    <td>
-                    <center>   
-                    <a href="" data-bs-toggle="modal" data-bs-target="#myModals">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-                    </svg>
-                     </a>
-                     <a href="editphysician.php?phy_id=<?php echo $phy_id;?>">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                            </svg>
-                        </a>  
-                        <a href="function/forphysicianappstudentdone.php?phy_id=<?php echo $row['phy_id']; ?>"
-                        onclick="return confirm('Are you sure you want to delete this record?')">
-                            <!-- Replace the anchor element with SVG icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                            </svg>
-                        </a>
-                        </center>
-                    </td>
-        
-                </tr>
-                <?php
-            }
-            ?>
-        </tbody>
-    </table>
-    <br><br>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="name" class="col-sm-12 control-label" style="font-size: 16px">Fullname</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="name" name="name" value="<?=$row['name'];?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="phoneno" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="phoneno" name="phoneno" value="<?=$row['phoneno'];?>">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="gradesection" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradesection" name="gradesection" value="<?=$row['gradesection'];?>">
+      </div>
+    </div>
+  </div>
 </div>
-        </center>
+<br>
+<div class="row">
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Schedule</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
+            <div class="col-sm-12">
+                <select id="role" name="role" class="form-control">
+                <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
+                <option value="Student in GS/JHS" <?php if($row['role'] == "Student in GS/JHS") echo "selected"; ?>>Student in GS/JHS</option>
+                <option value="Employee in GS/JHS" <?php if($row['role'] == "Employee in GS/JHS") echo "selected"; ?>>Employee in GS/JHS</option>
+                <option value="Student in SHS" <?php if($row['role'] == "Student in SHS") echo "selected"; ?>>Student in SHS</option>
+                <option value="Employee in SHS" <?php if($row['role'] == "Employee in SHS") echo "selected"; ?>>Employee in SHS</option>
+            </select>
+                </select>
             </div>
-            <div class="modal-body">
-            <?php
-                $sql = "SELECT * FROM statusphysiciangsjhsshs ";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $statphysician_id = $row['statphysician_id'];
-                        $status811 = $row['status811'];
-                    }
-                } else {
-
-                }
-                ?>
-                <?php
-                // Step 1: Retrieve the data to be updated
-                if (isset($_GET['statphysician_id'])) {
-                    $statphysician_id = $_GET['statphysician_id'];
-                }
-
-                ?>
-                <form action="function/physicianrecordsgsjhsshs.php" method="POST">
-                    <input type="hidden" name="statphysician_id" value="<?php echo $statphysician_id; ?>">
-                    <div class="mb-3">
-                        <label for="inputStatus811" class="form-label">Wendesday - 8:00 A.M - 11:00 A.M.</label>
-                        <select class="form-select" id="inputStatus811" name="status811">
-                            <option value="Available" <?php if ($status811 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($status811 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit_statusphysiciangsjhsshs" class="btn btn-light">Update</button>
-                    </div>
-                </form>
+        </div>
+    </div>
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
+            <div class="col-sm-12">
+                <input type="datetime-local" class="form-control" id="datetime" name="date_time" value="<?php echo date('Y-m-d\TH:i', strtotime($row['date_time'])); ?>">
             </div>
         </div>
     </div>
 </div>
+ </br>
+    <div class="row">
+      <div class="col-sm-12">
+      <input type="hidden" name="phy_id" value="<?php echo $phy_id; ?>">
+                    <input type="submit" name="update_physicianrecord" value="Update">
+      </div>
+    </div>
+  </form>
+  <?php
 
-<!-- Approve Modal -->
-<div class="modal fade" id="myModals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="POST">
-                    <div class="mb-3">
-                        <label for="inputTo" class="form-label">To</label>
-                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63" value="<?= $phoneno; ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="messagesms" class="form-label">Message</label>
-                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for physician consultation request appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </div>
-                </form>
+    }
+
+    ?>
+</div><!--//app-card-body-->
+
+
+
             </div>
         </div>
     </div>
-
-
-    <?php
-/**
- * Send an SMS message directly by calling the HTTP endpoint.
- *
- * For your convenience, environment variables are already pre-populated with your account data
- * like authentication, base URL, and phone number.
- *
- * Please find detailed information in the readme file.
- */
-use GuzzleHttp\Client;
-use GuzzleHttp\RequestOptions;
-
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $phoneNumber = $_POST['phone'];
-    $message = $_POST['message'];
-    date_default_timezone_set('Asia/Manila');
-    $date_created = date('Y-m-d h:i A'); 
-
-    // Send the SMS using the Infobip API
-    $client = new Client([
-        'base_uri' => "https://k3n5n1.api.infobip.com",
-        'headers' => [
-            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-        ]
-    ]);
-
-    $response = $client->request(
-        'POST',
-        'sms/2/text/advanced',
-        [
-            RequestOptions::JSON => [
-                'messages' => [
-                    [
-                        'from' => 'Clinic DWCL',
-                        'destinations' => [
-                            ['to' => $phoneNumber]
-                        ],
-                        'text' => $message,
-                    ]
-                ]
-            ],
-        ]
-    );
-
-    // Prepare the SQL query
-    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-
-    // Bind the parameters and execute the query
-    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
-    $stmt->execute();
-
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
-}
-?>
-
+</div>
 
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
@@ -481,3 +367,4 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
 </body>
 </html> 
+

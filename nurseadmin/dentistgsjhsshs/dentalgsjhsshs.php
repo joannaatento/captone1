@@ -208,7 +208,7 @@ if (mysqli_num_rows($result) > 0) {
                  <br>
                  <div style="text-align: right; margin-right: 48px;">
                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
-                         Update Dental Schedule
+                         Update Physician Consultation Schedule
                      </button>
                  </div>
                  
@@ -217,7 +217,7 @@ if (mysqli_num_rows($result) > 0) {
     <table class="styled-table">
         <thead>
             <tr>
-            <th>Number</th>
+                <th>Number</th>
                 <th>ID Number</th>
                 <th>Fullname</th>
                 <th>Service</th>
@@ -230,7 +230,10 @@ if (mysqli_num_rows($result) > 0) {
         </thead>
         <tbody id="healthRecordTableBody">
         <?php
-       $sql = "SELECT * FROM dentalapp WHERE user_id = '93' AND is_deleted_on_website = 0";
+                $roles = array("Student in GS/JHS", "Employee in GS/JHS", "Student in SHS", "Employee in SHS");
+                $rolesString = "'" . implode("','", $roles) . "'";
+
+                $sql = "SELECT * FROM dentalapp WHERE role IN ($rolesString) AND is_deleted_on_website = 0";
 
         $result = mysqli_query($conn, $sql);
 

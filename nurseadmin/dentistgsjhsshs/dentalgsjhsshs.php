@@ -229,7 +229,7 @@ if (mysqli_num_rows($result) > 0) {
         </thead>
         <tbody id="healthRecordTableBody">
         <?php
-       $sql = "SELECT * FROM dentalapp WHERE (role = 'Student in GS/JHS/SHS' OR role = 'Employee in GS/JHS/SHS') AND is_deleted_on_website = 0";
+       $sql = "SELECT * FROM dentalapp WHERE user_id = '93' AND is_deleted_on_website = 0";
 
         $result = mysqli_query($conn, $sql);
 

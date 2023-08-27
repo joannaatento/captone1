@@ -291,7 +291,7 @@
 <div class="row">
     <div class="form-group">
         <br>
-        <label for="diagnosis" class="col-sm-5 control-label">Diagnosis/Chief Complaints, Management & Treatement</label>
+        <label for="diagnosis" class="col-sm-5 control-label">Diagnosis/Chief Complaints, Management & Treatment/Medicine</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="diagnosis" name="diagnosis" placeholder="Diagnosis/Chief Complaints, Management & Treatement" required>
         </div>

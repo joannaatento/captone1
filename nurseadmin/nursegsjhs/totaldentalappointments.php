@@ -26,8 +26,8 @@
                     switch ($report_type) {
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
-                                    SUM(role = 'student in gs/jhs/shs') AS total_student,
-                                    SUM(role = 'employee in gs/jhs/shs') AS total_employee
+                                    SUM(role = 'student in gs/jhs') AS total_student,
+                                    SUM(role = 'employee in gs/jhs') AS total_employee
                                     FROM dentalapp
                                     WHERE YEAR(date_time) = ?
                                     GROUP BY label";
@@ -36,8 +36,8 @@
             
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
-                                    SUM(role = 'student in gs/jhs/shs') AS total_student,
-                                    SUM(role = 'employee in gs/jhs/shs') AS total_employee
+                                    SUM(role = 'student in gs/jhs') AS total_student,
+                                    SUM(role = 'employee in gs/jhs') AS total_employee
                                     FROM dentalapp
                                     WHERE YEAR(date_time) = ?
                                     GROUP BY label";
@@ -46,8 +46,8 @@
             
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
-                                    SUM(role = 'student in gs/jhs/shs') AS total_student,
-                                    SUM(role = 'employee in gs/jhs/shs') AS total_employee
+                                    SUM(role = 'student in gs/jhs') AS total_student,
+                                    SUM(role = 'employee in gs/jhs') AS total_employee
                                     FROM dentalapp
                                     WHERE YEAR(date_time) = ?
                                     GROUP BY label";

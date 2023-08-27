@@ -270,8 +270,8 @@
             <label for="fullname" style="font-size: 16px">Role</label>
             <select id="role" name="role" class="form-control">
                 <option value="">--Select--</option>
-                <option value="Student in GS/JHS/SHS">Student</option>
-                <option value="Employee in GS/JHS/SHS">Employee</option>
+                <option value="Student in GS/JHS">Student</option>
+                <option value="Employee in GS/JHS">Employee</option>
             </select>
         </div>
     </div>

@@ -26,31 +26,37 @@
                     switch ($report_type) {
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
-                                    SUM(role = 'student in gs/jhs/shs') AS total_student,
-                                    SUM(role = 'employee in gs/jhs/shs') AS total_employee
-                                    FROM dentalapp
-                                    WHERE YEAR(date_time) = ?
-                                    GROUP BY label";
+                            SUM(CASE WHEN role = 'student in gs/jhs' THEN 1 ELSE 0 END) AS total_student_gs_jhs,
+                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs,
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM dentalapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";                    
                             $report_label = 'Weekly';
                             break;
             
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
-                                    SUM(role = 'student in gs/jhs/shs') AS total_student,
-                                    SUM(role = 'employee in gs/jhs/shs') AS total_employee
-                                    FROM dentalapp
-                                    WHERE YEAR(date_time) = ?
-                                    GROUP BY label";
+                            SUM(CASE WHEN role = 'student in gs/jhs' THEN 1 ELSE 0 END) AS total_student_gs_jhs,
+                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs,
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM dentalapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";         
                             $report_label = 'Monthly';
                             break;
             
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
-                                    SUM(role = 'student in gs/jhs/shs') AS total_student,
-                                    SUM(role = 'employee in gs/jhs/shs') AS total_employee
-                                    FROM dentalapp
-                                    WHERE YEAR(date_time) = ?
-                                    GROUP BY label";
+                            SUM(CASE WHEN role = 'student in gs/jhs' THEN 1 ELSE 0 END) AS total_student_gs_jhs,
+                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs,
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM dentalapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";         
                             $report_label = 'Yearly';
                             break;
             
@@ -60,14 +66,16 @@
                     }
             
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("i", $user_id, $selected_year);
+                    $stmt->bind_param("i", $selected_year);
                     $stmt->execute();
                     $result = $stmt->get_result();
             
                     while ($row = $result->fetch_object()) {
                         $chartData['labels'][] = $row->label;
-                        $chartData['total_student'][] = $row->total_student;
-                        $chartData['total_employee'][] = $row->total_employee;
+                        $chartData['total_student_gs_jhs'][] = $row->total_student_gs_jhs;
+                        $chartData['total_employee_gs_jhs'][] = $row->total_employee_gs_jhs;
+                        $chartData['total_student_shs'][] = $row->total_student_shs;
+                        $chartData['total_employee_shs'][] = $row->total_employee_shs;
                     }
             
                     header("Content-Type: application/json");
@@ -347,14 +355,25 @@
                     labels: data.labels,
                     datasets: [
                         {
-                            label: "Total of Student",
-                            data: data.total_student,
+                            label: "Total of Student in GS/JHS",
+                            data: data.total_student_gs_jhs,
                             backgroundColor: "rgba(0, 0, 128, 0.5)", // You can change the color here
                         },
                         {
-                            label: "Total of Employees",
-                            data: data.total_employee,
+                            label: "Total of Employees in GS/JHS",
+                            data: data.total_employee_gs_jhs,
                             backgroundColor: "rgba(139, 0, 0, 0.5)", // You can change the color here
+                        },
+
+                        {
+                            label: "Total of Student in SHS",
+                            data: data.total_student_shs,
+                            backgroundColor: "rgba(255, 165, 0, 0.5)", // This sets the background color to orange with 50% opacity
+                        },
+                        {
+                            label: "Total of Employees in SHS",
+                            data: data.total_employee_shs,
+                            backgroundColor: "rgba(0, 128, 0, 0.5)", // You can change the color here
                         },
                     ],
                 };

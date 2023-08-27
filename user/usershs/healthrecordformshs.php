@@ -14,6 +14,7 @@
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
+        $idnumber = $row['idnumber'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 2){
             // User type 1 specific code here
@@ -228,7 +229,7 @@
         <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">ID Number</label>
-                <input name="idnumber" type="text">
+                <input name="idnumber" type="text" value="<?= $idnumber; ?>" >
             </div>
             <div class="input_wrap">
                 <label for="fullname">Age</label>

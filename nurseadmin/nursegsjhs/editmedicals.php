@@ -256,8 +256,6 @@ if (mysqli_num_rows($result) > 0) {
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
                    
-                    <b><p>Note: We will accommodate 1 to 5 students/employees per year level. Only one (1) student/employee will message to have a medical request scheduling appointment.</p></b>
-  
     <?php  	
     $medicalapp_id = $_GET['medicalapp_id'];
     $sql = "SELECT * FROM medicalapp WHERE medicalapp_id='$medicalapp_id'";

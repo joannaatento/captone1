@@ -1,7 +1,7 @@
 <?php
     session_start();
     include '../../db.php';
-
+  
     if (!isset($_SESSION['user_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
         echo '<script>window.location.replace("../login.php");</script>';
@@ -274,8 +274,8 @@
             <div class="col-sm-12">
                 <select id="role" name="role" class="form-control">
                 <option value="">Select Role</option>
-                <option value="Student in GS/JHS">Student</option>
-                <option value="Employee in GS/JHS">Employee</option>
+                <option value="Student in SHS">Student</option>
+                <option value="Employee in SHS">Employee</option>
                 </select>
             </div>
         </div>

@@ -1,7 +1,11 @@
 <?php
     session_start();
     include '../../../db.php';
+    require '../../../vendor/autoload.php';
 
+    use GuzzleHttp\Client;
+    use GuzzleHttp\RequestOptions;
+    
     if (isset($_POST['submit_dental'])) {
         $user_id = $_POST['user_id'];
         $idnumber = $_POST['idnumber'];

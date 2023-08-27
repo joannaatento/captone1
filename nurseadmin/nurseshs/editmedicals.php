@@ -1,6 +1,8 @@
 <?php
     session_start();
     include '../../db.php';
+    require '../../vendor/autoload.php';
+
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -26,10 +28,13 @@
 ?>
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Nurse Dashboard</title>
+    <title>Medical Appointments</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -42,18 +47,30 @@
     
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/generate.css">
-    
-    
+    <link rel="stylesheet" href="assets/dentalstyles.css">
 
 </head> 
 
 <body class="app">   	
+<?php
+$sql = "SELECT * FROM medicalapp";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  $row = $result->fetch_assoc(); 
+  $idnumber = $row['idnumber'];
+  $fullname = $row['name1'];
+  $gradecourseyear1 = $row['gradecourseyear1'];
+  $role = $row['role'];
+  $onoff  = $row['onoff'];
+  $date_time = $row['date_time'];
+    }
+ else {
+ } 
+?>
 <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -92,6 +109,31 @@
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+
+
+                <li class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+            <span class="nav-icon">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
+                <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"/>
+                </svg>
+            </span>
+            <span class="nav-link-text">Report Generation</span>
+            <span class="submenu-arrow">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </span>
+        </a>
+        <div id="submenu-3" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+            <ul class="submenu-list list-unstyled">
+            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="totalvisitors.php">Total Clinic Visitors</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="totalmedicines.php">Total Medicine Cosumes</a></li>
+            </ul>
+        </div>
+    </li>
     <li class="nav-item has-submenu">
         <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
@@ -116,29 +158,6 @@
             </ul>
         </div>
     </li>
-
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-5" aria-expanded="false" aria-controls="submenu-5">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-            </svg>
-        </span>
-        <span class="nav-link-text">Medical Requests</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </span>
-    </a>
-    <div id="submenu-5" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
-        <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="medicalrequestshs.php">Senior High School</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="medicalrequestsemployeeshs.php">Employee</a></li>
-        </ul>
-    </div>
-</li>
 
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="medicalshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
@@ -266,106 +285,126 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Dynamic Reports</h4>
+						        <h4 class="notification-title mb-1">Medical Appointments</h4>
 					        </div>
-							<!--//generate report-->
+                            <?php
+								if(isset($_SESSION['success'])){
+									echo $_SESSION['success'];
+									unset($_SESSION['success']);
+								}
+							?>
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['report_type']) && isset($_POST['selected_year'])) {
-        $report_type = $_POST['report_type'];
-        $selected_year = $_POST['selected_year'];
+				    <div class="app-card-body p-4">
+                   
+    <?php  	
+    $medicalapp_id = $_GET['medicalapp_id'];
+    $sql = "SELECT * FROM medicalapp WHERE medicalapp_id='$medicalapp_id'";
 
-        switch ($report_type) {
-            case 'week':
-                $sql = "SELECT CONCAT(YEAR(date_created), '-', WEEK(date_created)) AS label,
-                        medicine_name,
-                        COUNT(medicine_name) AS total_medicine,
-                        SUM(quantity) AS total_quantity
-                        FROM medicine
-                        WHERE admin_id = '10' AND YEAR(date_created) = $selected_year
-                        GROUP BY label, medicine_name";
-                $report_label = 'Weekly';
-                break;
+    $result = mysqli_query($conn, $sql);
 
-            case 'month':
-                $sql = "SELECT CONCAT(YEAR(date_created), '-', MONTHNAME(date_created)) AS label,
-                        medicine_name,
-                        COUNT(medicine_name) AS total_medicine,
-                        SUM(quantity) AS total_quantity
-                        FROM medicine
-                        WHERE admin_id = '10' AND YEAR(date_created) = $selected_year
-                        GROUP BY label, medicine_name";
-                $report_label = 'Monthly';
-                break;
+    while($row = $result->fetch_assoc()){
+        $medicalapp_id = $row['medicalapp_id'];
+    ?>
+                    <form class="form-horizontal mt-4" method="post" action="function/editmedical.php">
+ 
+  <div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee ID Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="idnumber" name="idnumber" value="<?=$row['idnumber'];?>">
+      </div>
+    </div>
+  </div>
 
-            case 'year':
-                $sql = "SELECT CONCAT(YEAR(date_created)) AS label,
-                        medicine_name,
-                        COUNT(medicine_name) AS total_medicine,
-                        SUM(quantity) AS total_quantity
-                        FROM medicine
-                        WHERE admin_id = '10' AND YEAR(date_created) = $selected_year
-                        GROUP BY label, medicine_name";
-                $report_label = 'Yearly';
-                break;
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="name" name="name1" value="<?=$row['name1'];?>">
+      </div>
+    </div>
+  </div>
 
-            default:
-                echo "Invalid report type selection.";
-                exit;
-        }
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" value="<?=$row['gradecourseyear1'];?>">
+      </div>
+    </div>
+  </div>
 
-        $result = $conn->query($sql);
-?>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="phoneno" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="phoneno" name="phoneno" value="<?=$row['phoneno'];?>">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Date & Time</label>
+            <div class="col-sm-12">
+                <input type="datetime-local" class="form-control" id="datetime" name="date_time" value="<?php echo date('Y-m-d\TH:i', strtotime($row['date_time'])); ?>">
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
+            <div class="col-sm-12">
+                <select id="role" name="role" class="form-control">
+                <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
+                <option value="Student in SHS" <?php if($row['role'] == "Student in SHS") echo "selected"; ?>>Student in SHS</option>
+                <option value="Employee in SHS" <?php if($row['role'] == "Employee in SHS") echo "selected"; ?>>Employee in SHS</option>
+            </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="onoff" class="col-sm-12 control-label" style="font-size: 16px">On-campus Activity or Off-campus Activity</label>
+            <div class="col-sm-12">
+                <select id="onoff" name="onoff" class="form-control">
+                <option value="" <?php if(empty($row['onoff'])) echo "selected"; ?>>Select</option>
+                <option value="On-campus Activity" <?php if($row['onoff'] == "On-campus Activity") echo "selected"; ?>>On-campus Activity</option>
+                <option value="Off-campus Activity" <?php if($row['onoff'] == "Off-campus Activity") echo "selected"; ?>>Off-campus Activity</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+ </br>
+    <div class="row">
+      <div class="col-sm-12">
+      <input type="hidden" name="medicalapp_id" value="<?php echo $medicalapp_id; ?>">
+                    <input type="submit" name="update_medicalrecord" value="Update">
+      </div>
+    </div>
+  </form>
+  <?php
 
-<table>
-    <thead>
-        <tr>
-            <th><?php echo $report_label; ?></th>
-            <th>Medicine Name</th>
-            <th>Total Quantity</th>
-        </tr>
-    </thead>
-    <tbody id="healthRecordTableBody">
-        <?php while ($row = $result->fetch_object()): ?>
-            <tr>
-                <td><?php echo $row->label; ?></td>
-                <td><?php echo $row->medicine_name; ?></td>
-                <td><?php echo $row->total_quantity; ?></td>
-            </tr>
-        <?php endwhile; ?>
-    </tbody>
-</table>
-
-         
-<?php
     }
-}
-?>
-<form method="post" action="">
-    <select id="tableSelect" name="report_type">
-        <option value="week">Week</option>
-        <option value="month">Month</option>
-        <option value="year">Year</option>
-    </select>
 
-    <select id="yearSelect" name="selected_year">
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
-        <option value="2025">2025</option>
-    </select>
+    ?>
+</div><!--//app-card-body-->
 
-    <button type="submit">Generate Report</button>
-</form>
 
-  
-    </script>			
+
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-   
-
     
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 
@@ -380,6 +419,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}, 5000);
 	</script>
 
-
 </body>
-</html>
+</html> 
+

@@ -197,7 +197,7 @@
 				    <div class="app-card-body p-4">
 					<p class="title_">Personal Information</p>
 					
-					<form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data">
+					<form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
     <div class="align_form">
 
 	
@@ -235,10 +235,33 @@
                 <label for="fullname">Age</label>
                 <input name="age" type="text">
             </div>
-            <div class="input_wrap">
-                <label for="fullname">Personal Contact No</label>
-                <input name="pcontact" type="text">
-            </div>
+<div class="input_wrap">
+    <label for="phoneno" style="font-size: 16px">Phone Number</label>
+      <input type="text" class="form-control contactInput" name="phoneno" placeholder="+63">
+      <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+    </div>
+
+
+<script>
+  function validateForm() {
+    var contactInputs = document.getElementsByClassName("contactInput");
+    var isValid = true;
+
+    for (var i = 0; i < contactInputs.length; i++) {
+      var contactInput = contactInputs[i].value;
+
+      if (!contactInput.startsWith("+63")) {
+        isValid = false;
+        document.getElementsByClassName("errorMessage")[i].style.display = "block";
+      } else {
+        document.getElementsByClassName("errorMessage")[i].style.display = "none";
+      }
+    }
+
+    return isValid;
+  }
+</script>
+
          <div class="input_wrap">
                 <label for="fullname">Gender</label>
                 <select class="form-select" name="gender">
@@ -270,9 +293,31 @@
 
         <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="cfather" id="cfather" type="text">
+            <input name="cfather" type="text" placeholder="+63" id="cfather" class="contactInput">
+            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
         </div>
     </div>
+
+    
+<script>
+  function validateForm() {
+    var contactInputs = document.getElementsByClassName("contactInput");
+    var isValid = true;
+
+    for (var i = 0; i < contactInputs.length; i++) {
+      var contactInput = contactInputs[i].value;
+
+      if (!contactInput.startsWith("+63")) {
+        isValid = false;
+        document.getElementsByClassName("errorMessage")[i].style.display = "block";
+      } else {
+        document.getElementsByClassName("errorMessage")[i].style.display = "none";
+      }
+    }
+
+    return isValid;
+  }
+</script>
 
     <div class="input_form">
         <div class="input_wrap">
@@ -280,11 +325,33 @@
             <input name="mother" id="mother" type="text">
         </div>
 
-        <div class="input_wrap">
+       <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="cmother" id="cmother" type="text">
+            <input name="cmother" type="text" placeholder="+63" id="cmother" class="contactInput">
+            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
         </div>
     </div>
+
+    
+<script>
+  function validateForm() {
+    var contactInputs = document.getElementsByClassName("contactInput");
+    var isValid = true;
+
+    for (var i = 0; i < contactInputs.length; i++) {
+      var contactInput = contactInputs[i].value;
+
+      if (!contactInput.startsWith("+63")) {
+        isValid = false;
+        document.getElementsByClassName("errorMessage")[i].style.display = "block";
+      } else {
+        document.getElementsByClassName("errorMessage")[i].style.display = "none";
+      }
+    }
+
+    return isValid;
+  }
+</script>
 <br>
     <p>Please select box if you have/had any of the following illnesses:</p>
    <div class="input_form">
@@ -376,9 +443,9 @@
     </div>
     <div class="row-container">
     <p><b>Medicine:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
+    <div class="checkbox">
     <input name="yesmed" value="yesmed" type="checkbox" id="yesmed">
-    <label class="labels" for="yesme" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <label class="labels" for="yesmed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
   <div class="checkbox">
@@ -419,9 +486,30 @@
                 <input name="notified" id ="languages" type="text">
             </div>
             <div class="input_wrap">
-                <label for="fullname">Contact Number</label>
-                <input name="contact" id ="languagess" type="text">
-            </div>
+            <label for="fullname">Contact</label>
+            <input name="contact" type="text" placeholder="+63" class="contactInput">
+            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+        </div>
+
+<script>
+  function validateForm() {
+    var contactInputs = document.getElementsByClassName("contactInput");
+    var isValid = true;
+
+    for (var i = 0; i < contactInputs.length; i++) {
+      var contactInput = contactInputs[i].value;
+
+      if (!contactInput.startsWith("+63")) {
+        isValid = false;
+        document.getElementsByClassName("errorMessage")[i].style.display = "block";
+      } else {
+        document.getElementsByClassName("errorMessage")[i].style.display = "none";
+      }
+    }
+
+    return isValid;
+  }
+</script>
             <div class="input_wrap">
                 <label for="fullname">Relationship</label>
                 <input name="relationship" id ="relationship" type="text">

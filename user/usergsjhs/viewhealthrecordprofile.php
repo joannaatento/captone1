@@ -209,7 +209,7 @@
         </div>
 <div class="input_wrap">
         <label for="fullname">Full Name</label>
-        <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" >
+        <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" readonly >
     </div>
                     </div>
                     </div>

@@ -214,18 +214,16 @@
 						</div>
             <div class="input_wrap">
                 <label for="gradelevel">Grade Level</label>
-                <input id="gradelevel" name="gradelevel" type="text" value="<?=$row['gradelevel'];?>">
+                <input id="gradelevel" name="gradelevel" type="text" value="<?=$row['gradelevel'];?>" readonly>
             </div>
             <div class="input_wrap">
                 <label for="fullname">Full Name</label>
-                <input id="fullname" name="fullname" type="text" value="<?=$row['fullname'];?>" >
+                <input id="fullname" name="fullname" type="text" value="<?=$row['fullname'];?>" readonly>
             </div>
         <div class="input_wrap">
-                <label for="fullname">Role</label>
-                <select class="form-select" name="role">
-                    <option value="" selected>Select Role</option>
-                    <option value="Student in SHS">Student in SHS</option>
-                    <option value="Employee in SHS">Employee in SHS</option>
+        <label for="fullname">Role</label>
+                <select class="form-select" name="role" readonly>
+                <option disabled selected><?= $row['role'];?></option>
                 </select>
         </div>
        
@@ -234,22 +232,20 @@
         <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">ID Number</label>
-                <input name="idnumber" type="text">
+                <input name="idnumber" type="text" value="<?=$row['idnumber'];?>" readonly>
             </div>
             <div class="input_wrap">
                 <label for="fullname">Age</label>
-                <input name="age" type="text">
+                <input name="age" type="text" value="<?=$row['age'];?>" readonly>
             </div>
             <div class="input_wrap">
                 <label for="fullname">Personal Contact No</label>
-                <input name="pcontact" type="text">
+                <input name="phoneno" type="text" value="<?=$row['phoneno'];?>" readonly>
             </div>
          <div class="input_wrap">
                 <label for="fullname">Gender</label>
-                <select class="form-select" name="gender">
-                    <option value="" disabled selected>Select Gender</option>
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
+                <select class="form-select" name="gender" readonly>
+                  <option disabled selected><?= $row['gender'];?></option>
                 </select>
             </div>
          </div>
@@ -257,37 +253,37 @@
           <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">Home Address</label>
-                <input name="address" id ="address" type="text">
+                <input name="address" id ="address" type="text" value="<?=$row['address'];?>" readonly>
             </div>
      </div>
                             
      <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">Temporary Address</label>
-                <input name="paddress" id="paddress" type="text">
+                <input name="paddress" id="paddress" type="text" value="<?=$row['paddress'];?>" readonly>
             </div>
          </div>
     <div class="input_form">
         <div class="input_wrap">
             <label for="fullname">Father</label>
-            <input name="father" id="father" type="text">
+            <input name="father" id="father" type="text" value="<?=$row['father'];?>" readonly>
         </div>
 
         <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="cfather" id="cfather" type="text">
+            <input name="cfather" id="cfather" type="text" value="<?=$row['cfather'];?>" readonly>
         </div>
     </div>
 
     <div class="input_form">
         <div class="input_wrap">
             <label for="fullname">Mother</label>
-            <input name="mother" id="mother" type="text">
+            <input name="mother" id="mother" type="text" value="<?=$row['mother'];?>" readonly>
         </div>
 
         <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="cmother" id="cmother" type="text">
+            <input name="cmother" id="cmother" type="text" value="<?=$row['cmother'];?>" readonly>
         </div>
     </div>
 <br>
@@ -295,66 +291,66 @@
    <div class="input_form">
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="polio" value="polio" type="checkbox" id="polio">
+        <input name="polio" value="polio" type="checkbox" id="polio" value="<?= $row['polio'];?>" <?php if ($row['polio']) echo "checked"; ?> readonly>
         <label class="labels" for="polio" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Polio</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="tetanus" value="tetanus" type="checkbox" id="tetanus">
+        <input name="tetanus" value="tetanus" type="checkbox" id="tetanus" value="<?= $row['tetanus'];?>" <?php if ($row['tetanus']) echo "checked"; ?> readonly>
         <label class="labels" for="tetanus" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tetanus</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="chickenpox" value="chickenpox" type="checkbox" id="chickenpox">
+        <input name="chickenpox" value="chickenpox" type="checkbox" id="chickenpox" value="<?= $row['chickenpox'];?>" <?php if ($row['chickenpox']) echo "checked"; ?> readonly>
         <label class="labels" for="chickenpox" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chicken Pox</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="measles" value="measles" type="checkbox" id="measles">
+        <input name="measles" value="measles" type="checkbox" id="measles" value="<?= $row['measles'];?>" <?php if ($row['measles']) echo "checked"; ?> readonly>
         <label class="labels" for="measles" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Measles</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="input_form">
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="mumps" value="mumps" type="checkbox" id="mumps">
+        <input name="mumps" value="mumps" type="checkbox" id="mumps" value="<?= $row['mumps'];?>" <?php if ($row['mumps']) echo "checked"; ?> readonly>
         <label class="labels" for="mumps" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mumps</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="tb" value="tb" type="checkbox" id="tb">
+        <input name="tb" value="tb" type="checkbox" id="tb" value="<?= $row['tb'];?>" <?php if ($row['tb']) echo "checked"; ?> readonly>
         <label class="labels" for="tb" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pulmonary Tuberculosis</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="asthma" value="asthma" type="checkbox" id="asthma">
+        <input name="asthma" value="asthma" type="checkbox" id="asthma" value="<?= $row['asthma'];?>" <?php if ($row['asthma']) echo "checked"; ?> readonly>
         <label class="labels" for="asthma" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asthma</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="hepatitis" value="hepatitis" type="checkbox" id="hepatitis">
+        <input name="hepatitis" value="hepatitis" type="checkbox" id="hepatitis" value="<?= $row['hepatitis'];?>" <?php if ($row['hepatitis']) echo "checked"; ?> readonly>
         <label class="labels" for="hepatitis" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hepatitis</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="input_form">
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="faintingspells" value="faintingspells" type="checkbox" id="faintingspells">
+        <input name="faintingspells" value="faintingspells" type="checkbox" id="faintingspells" value="<?= $row['faintingspells'];?>" <?php if ($row['faintingspells']) echo "checked"; ?> readonly>
         <label class="labels" for="faintingspells" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fainting Spells</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="seizure" value="seizure" type="checkbox" id="seizure">
+        <input name="seizure" value="seizure" type="checkbox" id="seizure" value="<?= $row['seizure'];?>" <?php if ($row['seizure']) echo "checked"; ?> readonly>
         <label class="labels" for="seizure" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seizure/Epilepsy</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="bleeding" value="bleeding" type="checkbox" id="bleeding">
+        <input name="bleeding" value="bleeding" type="checkbox" id="bleeding" value="<?= $row['bleeding'];?>" <?php if ($row['bleeding']) echo "checked"; ?> readonly>
         <label class="labels" for="bleeding" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bleeding Tendencies</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="eyedis" value="eyedis" type="checkbox" id="eyedis">
+        <input name="eyedis" value="eyedis" type="checkbox" id="eyedis" value="<?= $row['eyedis'];?>" <?php if ($row['eyedis']) echo "checked"; ?> readonly>
         <label class="labels" for="eyedis" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Eye Disorder</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="input_wrap">
                 <label for="fullname">Heart Ailment (please specify)</label>
-                <input name="heartailment" id ="heartailment" type="text" placeholder="Please Specify">
+                <input name="heartailment" id ="heartailment" type="text" value="<?=$row['heartailment'];?>" readonly>
             </div>
             <div class="input_wrap">
                 <label for="fullname">Other Illness (please specify)</label>
-                <input name="otherillness" id ="otherillness" type="text" placeholder="Please Specify">
+                <input name="otherillness" id ="otherillness" type="text" value="<?=$row['otherillness'];?>" readonly>
             </div>
         <br>
             <p>Do you have any allergy to:</p>
@@ -363,17 +359,17 @@
     <div class="row-container">
     <p><b>Food:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <div class="checkbox">
-    <input name="yesfood" value="yesfood" type="checkbox" id="yesfood">
+    <input name="yesfood" value="yesfood" type="checkbox" id="yesfood" value="<?= $row['yesfood'];?>" <?php if ($row['yesfood']) echo "checked"; ?> readonly>
     <label class="labels" for="yesfood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
   <div class="checkbox">
-    <input name="nofood" value="nofood" type="checkbox" id="nofood">
+    <input name="nofood" value="nofood" type="checkbox" id="nofood" value="<?= $row['nofood'];?>" <?php if ($row['nofood']) echo "checked"; ?> readonly>
     <label class="labels" for="nofood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="food" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="food" id="otherillnesss" type="text" value="<?=$row['food'];?>" readonly>
   </div>
 </div>
 
@@ -382,17 +378,17 @@
     <div class="row-container">
     <p><b>Medicine:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <div class="checkbox">
-    <input name="yesmed" value="yesmed" type="checkbox" id="yesmed">
+    <input name="yesmed" value="yesmed" type="checkbox" id="yesmed" value="<?= $row['yesmed'];?>" <?php if ($row['yesmed']) echo "checked"; ?> readonly>
     <label class="labels" for="yesme" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
   <div class="checkbox">
-    <input name="nomed" value="nomed" type="checkbox" id="nomed">
+    <input name="nomed" value="nomed" type="checkbox" id="nomed" value="<?= $row['nomed'];?>" <?php if ($row['nomed']) echo "checked"; ?> readonly>
     <label class="labels" for="nomed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="med" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="med" id="otherillnesss" type="text" value="<?=$row['med'];?>" readonly>
   </div>
 </div>
 
@@ -404,32 +400,32 @@
   <div class="input_form">
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="allow" value="allow" type="checkbox" id="allow">
+        <input name="allow" value="allow" type="checkbox" id="allow" value="<?= $row['allow'];?>" <?php if ($row['allow']) echo "checked"; ?> readonly>
         <label class="labels" for="allow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="notallow" value="notallow" type="checkbox" id="notallow">
+        <input name="notallow" value="notallow" type="checkbox" id="notallow" value="<?= $row['notallow'];?>" <?php if ($row['notallow']) echo "checked"; ?> readonly>
         <label class="labels" for="notallow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
     </div>
    <div class="input_form"> 
             <div class="input_wrap">
                 <label for="fullname">Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>
-                <input name="medpresent" id ="language" type="text">
+                <input name="medpresent" id ="language" type="text" value="<?=$row['medpresent'];?>" readonly>
             </div>
    </div>
 
    <div class="input_form"> 
             <div class="input_wrap">
                 <label for="fullname" >Person to be notified in case of emergency:</label>
-                <input name="notified" id ="languages" type="text">
+                <input name="notified" id ="languages" type="text" value="<?=$row['notified'];?>" readonly>
             </div>
             <div class="input_wrap">
                 <label for="fullname">Contact Number</label>
-                <input name="contact" id ="languagess" type="text">
+                <input name="contact" id ="languagess" type="text" value="<?=$row['contact'];?>" readonly>
             </div>
             <div class="input_wrap">
                 <label for="fullname">Relationship</label>
-                <input name="relationship" id ="relationship" type="text">
+                <input name="relationship" id ="relationship" type="text" value="<?=$row['relationship'];?>" readonly>
             </div>
             </div>
              

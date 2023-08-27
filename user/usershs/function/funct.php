@@ -10,7 +10,7 @@
         $role = isset($_POST['role']) ? trim(mysqli_real_escape_string($conn, $_POST['role'])) : "";
         $idnumber = trim(mysqli_real_escape_string($conn, $_POST['idnumber']));
         $age = trim(mysqli_real_escape_string($conn, $_POST['age']));
-        $pcontact = trim(mysqli_real_escape_string($conn, $_POST['pcontact']));
+        $phoneno = trim(mysqli_real_escape_string($conn, $_POST['phoneno']));
         $gender = isset($_POST['gender']) ? trim(mysqli_real_escape_string($conn, $_POST['gender'])) : "";
         $address = trim(mysqli_real_escape_string($conn, $_POST['address']));
         $paddress = trim(mysqli_real_escape_string($conn, $_POST['paddress']));
@@ -20,7 +20,7 @@
         $cmother = trim(mysqli_real_escape_string($conn, $_POST['cmother']));
         $polio = isset($_POST['polio']) ? trim(mysqli_real_escape_string($conn, $_POST['polio'])) : "";
         $tetanus = isset($_POST['tetanus']) ? trim(mysqli_real_escape_string($conn, $_POST['tetanus'])) : "";
-        $chikenpox = isset($_POST['chickenpox']) ? trim(mysqli_real_escape_string($conn, $_POST['chickenpox'])) : "";
+        $chickenpox= isset($_POST['chickenpox']) ? trim(mysqli_real_escape_string($conn, $_POST['chickenpox'])) : "";
         $measles = isset($_POST['measles']) ? trim(mysqli_real_escape_string($conn, $_POST['measles'])) : "";
         $mumps = isset($_POST['mumps']) ? trim(mysqli_real_escape_string($conn, $_POST['mumps'])) : "";
         $tb = isset($_POST['tb']) ? trim(mysqli_real_escape_string($conn, $_POST['tb'])) : "";
@@ -45,7 +45,7 @@
         $contact = trim(mysqli_real_escape_string($conn, $_POST['contact']));
         $relationship = trim(mysqli_real_escape_string($conn, $_POST['relationship']));
 
-        $sql = "INSERT INTO healthrecordformshs VALUES ('','$user_id','$image','$gradelevel','$fullname','$role','$idnumber','$age','$pcontact',
+        $sql = "INSERT INTO healthrecordformshs VALUES ('','$user_id','$image','$gradelevel','$fullname','$role','$idnumber','$age','$phoneno',
         '$gender','$address','$paddress','$father','$cfather','$mother','$cmother','$polio','$tetanus','$chickenpox','$measles',
         '$mumps','$tb','$asthma','$hepatitis','$faintingspells','$seizure','$bleeding','$eyedis','$heartailment','$otherillness',
         '$yesfood','$nofood','$food','$yesmed','$nomed','$med','$allow','$notallow','$medpresent','$notified','$contact',

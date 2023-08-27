@@ -191,8 +191,9 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-                    <form class="form-horizontal mt-4" method="post" action="function/functions.php">
+                    <b><p>Please wait for a message for approval of your dental request appointment.</b></p>
 
+                    <form class="form-horizontal mt-4" method="post" action="function/functions.php" onsubmit="return validateForm()">
                     <div class="row">
     <div class="col-sm-3">
         <div class="form-group">

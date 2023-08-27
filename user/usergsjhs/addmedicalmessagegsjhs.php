@@ -191,7 +191,7 @@
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
                     <b><p>Please wait for a message for approval of your medical request appointment.</b></p>
-<form class="form-horizontal mt-4" method="post" action="function/functions.php"  onsubmit="return validateForm()">
+<form class="form-horizontal mt-4" method="post" action="function/functions.php" onsubmit="return validateForm()">
 <div class="row">
   <div class="col-sm-3">
     <div class="form-group">

@@ -188,57 +188,92 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-<form class="form-horizontal mt-4" method="post" action="function/functions.php">
+            <b><p>Please wait for a message for approval of your physician consultation request appointment.</b></p>
+
+<form class="form-horizontal mt-4" method="post" action="function/functions.php" onsubmit="return validateForm()">
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <div class="form-group">
-      <label for="idnumber" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee ID Number</label>
-      <div class="col-sm-10">
+      <label for="idnumber" class="col-sm-10 control-label" style="font-size: 16px">Enter your ID Number</label>
+      <div class="col-sm-12">
         <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" required>
       </div>
     </div>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <div class="form-group">
-      <label for="patient_name" class="col-sm-6 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-      <div class="col-sm-10">
+      <label for="patient_name" class="col-sm-10 control-label" style="font-size: 16px">Enter your Fullname</label>
+      <div class="col-sm-12">
         <input type="text" class="form-control" id="name" name="name" placeholder="Enter Fullname" required>
       </div>
     </div>
   </div>
- </div>
+
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="phoneno" class="col-sm-10 control-label" style="font-size: 16px">Phone Number</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control contactInput" name="phoneno" placeholder="+63">
+      <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function validateForm() {
+    var contactInputs = document.getElementsByClassName("contactInput");
+    var isValid = true;
+
+    for (var i = 0; i < contactInputs.length; i++) {
+      var contactInput = contactInputs[i].value;
+
+      if (!contactInput.startsWith("+63")) {
+        isValid = false;
+        document.getElementsByClassName("errorMessage")[i].style.display = "block";
+      } else {
+        document.getElementsByClassName("errorMessage")[i].style.display = "none";
+      }
+    }
+
+    return isValid;
+  }
+</script>
+
+</div>
+
 <br>
  <div class="row">
 
-
- <div class="col-sm-6">
-        <div class="form-group">
-            <label for="role" class="col-sm-4 control-label" style="font-size: 16px">Role</label>
-            <div class="col-sm-10">
-                <select id="role" name="role" class="form-control">
-                <option value="">Select Role</option>
-                <option value="Student in North Campus">Student in North Campus</option>
-                <option value="Student in South Campus">Student in South Campus</option>
-                <option value="Employee in North Campus">Employee in North Campus</option>
-                <option value="Employee in South Campus">Employee in South Campus</option>
-                </select>
-            </div>
-        </div>
-                            </div>
-  <div class="col-sm-6">
+ <div class="col-sm-4">
     <div class="form-group">
-      <label for="gradecourseyear" class="col-sm-6 control-label" style="font-size: 16px">Grade & Section/Course & Year (If Student)</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year">
+      <label for="gradesection" class="col-sm-10 control-label" style="font-size: 16px">Grade & Section</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter your Grade & Section" required>
       </div>
     </div>
   </div>
-  
-    </div>
 
-      <p><b><br>Note: </b> The PHYSICIAN will ONLY be available every <b>WEDNESDAY (8:00 A.M to 11:00 A.M)</b>. If your request has been approved, a text message will be sent to you.</p>
-    
+ <div class="col-sm-4">
+        <div class="form-group">
+            <label for="role" class="col-sm-10 control-label" style="font-size: 16px">Role</label>
+            <div class="col-sm-12">
+                <select id="role" name="role" class="form-control">
+                <option value="">Select Role</option>
+                <option value="Student in GS/JHS">Student</option>
+                <option value="Employee in GS/JHS">Employee</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="datetime" class="control-label" style="font-size: 16px">Schedule</label>
+            <input type="datetime-local" class="form-control" id="datetime" name="date_time">
+        </div>
+    </div>
+</div>
+
    
 <div class="container">
   <div class="text-box">
@@ -302,15 +337,6 @@
     $('select').each(updateColor).change(updateColor);
   });
 </script>
-<div class="row">
-    <div class="form-group">
-        <br>
-        <label for="message" class="col-sm-10 control-label">Write a message.... (State Date and Time)</label>
-        <div class="col-sm-12">
-            <textarea type="text" class="form-control" id="message" name="message" placeholder="Enter your message.... Ex. July 08, 2023 Monday 8:00AM" required></textarea>
-        </div>
-    </div>
-</div>
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <br>

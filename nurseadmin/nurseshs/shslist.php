@@ -285,6 +285,7 @@
 
         while($row = $result->fetch_assoc()){
             $healthshs_id = $row['healthshs_id'];
+            $contact = $row['contact'];
 
         ?>
         <tr>
@@ -334,7 +335,7 @@
                 <form action="" method="POST">
                     <div class="mb-3">
                         <label for="inputTo" class="form-label">To</label>
-                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63">
+                        <input type="text" class="form-control" id="inputTo" name="phone"value="<?= $contact; ?>">
                     </div>
                     <div class="mb-3">
                         <label for="messagesms" class="form-label">Message</label>

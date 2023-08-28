@@ -49,7 +49,7 @@ if (mysqli_num_rows($result) > 0) {
   $gradelevel = $row['gradelevel'];
   $fullname= $row['fullname'];
   $idnumber = $row['role'];
-  $pcontact = $row['pcontact'];
+  $phoneno = $row['phoneno'];
   $age = $row['idnumber'];
   $gender = $row['gender'];
   $address = $row ['address'];
@@ -359,7 +359,7 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="input_wrap">
                 <label for="fullname">Personal Contact No</label>
-                <input name="pcontact" type="text" value="<?=$row['pcontact'];?>" readonly>
+                <input name="phoneno" type="text" value="<?=$row['phoneno'];?>" readonly>
             </div>
          <div class="input_wrap">
          <label for="fullname">Role</label>

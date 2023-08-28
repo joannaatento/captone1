@@ -30,7 +30,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyles.css">
+	<link rel="stylesheet" href="assets/formstyle.css">
 
 </head> 
 
@@ -49,7 +49,7 @@ if (mysqli_num_rows($result) > 0) {
   $gradelevel = $row['gradelevel'];
   $fullname= $row['fullname'];
   $idnumber = $row['role'];
-  $pcontact = $row['pcontact'];
+  $phoneno = $row['phoneno'];
   $age = $row['idnumber'];
   $gender = $row['gender'];
   $address = $row ['address'];
@@ -90,7 +90,7 @@ if (mysqli_num_rows($result) > 0) {
  else {
  } 
 ?>
- <header class="app-header fixed-top">	   	            
+<header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
 		        <div class="app-header-content"> 
@@ -321,7 +321,7 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="input_wrap">
                 <label for="fullname">Personal Contact No</label>
-                <input name="pcontact" type="text" value="<?=$row['pcontact'];?>" readonly>
+                <input name="phoneno" type="text" value="<?=$row['phoneno'];?>" readonly>
             </div>
          <div class="input_wrap">
          <label for="fullname">Role</label>
@@ -469,7 +469,7 @@ if (mysqli_num_rows($result) > 0) {
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="med" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['otherillness'];?>" readonly>
+    <input name="med" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['med'];?>" readonly>
   </div>
 </div>
 

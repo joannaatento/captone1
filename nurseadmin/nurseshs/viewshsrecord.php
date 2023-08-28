@@ -507,7 +507,7 @@ if (mysqli_num_rows($result) > 0) {
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="med" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['otherillness'];?>" readonly>
+    <input name="med" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['med'];?>" readonly>
   </div>
 </div>
 

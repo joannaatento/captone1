@@ -119,8 +119,8 @@
 								</a>
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
-										<li class="submenu-item"><a class="submenu-link active" href="adddentalmessageshs.php">Request Dental Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessageshs.php">Request Medical Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link" href="adddentalmessageshs.php">Request Dental Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link active" href="addmedicalmessageshs.php">Request Medical Scheduling</a></li>
 										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessageshs.php">Request Physician Scheduling</a></li>
 									</ul>
 								</div>
@@ -147,8 +147,8 @@
 									<ul class="submenu-list list-unstyled">
 									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofileshs.php">Health Profile Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappshs.php">Dental Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappshs.php">Medical Record</a>
-                                    <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappshs.php">Physician Record</a>
+                  <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappshs.php">Medical Record</a>
+                  <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappshs.php">Physician Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappshs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment Record</a>
@@ -158,6 +158,7 @@
 									<li class="submenu-item"> <a class="submenu-link" href="viewnursenotesshs.php">Nurse's Notes Record</a>					
 									<li class="submenu-item"> <a class="submenu-link" href="viewphysicianorderandprogressnotesshs.php">Physician's Order Sheet and Progress Notes Record</a>
 								</li>	
+
 									</ul>
 								</div>
 							</li>
@@ -166,7 +167,6 @@
 	        </div>
 	    </div>
     </header>
-    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -194,35 +194,32 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-                    <form class="form-horizontal mt-4" method="post" action="function/functions.php">
+                    <b><p>Please wait for a message for approval of your dental request appointment.</b></p>
 
+                    <form class="form-horizontal mt-4" method="post" action="function/functions.php" onsubmit="return validateForm()">
                     <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-3">
         <div class="form-group">
-            <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">Enter your ID Number</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Enter your ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="ID number" required>
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-3">
         <div class="form-group">
-            <label for="patient_name" class="col-sm-4 control-label" style="font-size: 16px">Enter your Fullname</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" required>
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Enter your Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="fullname" placeholder="Enter your Fullname" required>
             </div>
         </div>
     </div>
-</div>
 
-<br>
-
-<div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-3">
         <div class="form-group">
-            <label for="dental_service" class="col-sm-4 control-label" style="font-size: 16px">Dental Services</label>
-            <div class="col-sm-10">
-                <select id="dental_service" name="dental_service" class="form-control" required>
+            <label for="dental_service" class="col-sm-12 control-label" style="font-size: 16px">Dental Services</label>
+            <div class="col-sm-12">
+                <select id="dental_service" name="service" class="form-control" required>
                     <option value="">Select Service</option>
                     <option value="Cleaning">Cleaning</option>
                     <option value="Tooth Extraction">Tooth Extraction</option>
@@ -231,42 +228,66 @@
         </div>
     </div>
 
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="fullname" style="font-size: 16px">Year level that you currently enrolled</label>
-            <select id="c_enrolled" name="c_enrolled" class="form-control">
-                <option value="">Select Level of Education</option>
-                <option value="Grade School, JHS or SHS">Grade School/Junior High School/Senior High School</option>
-                <option value="College">College</option>
-            </select>
-        </div>
+    <div class="col-sm-3">
+  <div class="form-group">
+    <label for="phoneno" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
+    <div class="col-sm-12">
+      <input type="text" class="form-control contactInput" name="phoneno" placeholder="+63">
+      <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
     </div>
+  </div>
 </div>
 
-<!-- Inserted Code Starts -->
+<script>
+  function validateForm() {
+    var contactInputs = document.getElementsByClassName("contactInput");
+    var isValid = true;
+
+    for (var i = 0; i < contactInputs.length; i++) {
+      var contactInput = contactInputs[i].value;
+
+      if (!contactInput.startsWith("+63")) {
+        isValid = false;
+        document.getElementsByClassName("errorMessage")[i].style.display = "block";
+      } else {
+        document.getElementsByClassName("errorMessage")[i].style.display = "none";
+      }
+    }
+
+    return isValid;
+  }
+</script>
+
+</div>
+
 <br>
 <div class="row">
-
-<div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="gradecourseyear" class="col-sm-8 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="igradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section/Course & Year">
-            </div>
+            <label for="gradecourseyear" class="control-label" style="font-size: 16px">Grade & Section</label>
+            <input type="text" class="form-control" id="igradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section">
         </div>
     </div>
-
-    <div class="col-sm-6">
+    
+    <div class="col-sm-4">
         <div class="form-group">
-            <label for="fullname" style="font-size: 16px">For Employee</label>
-            <select id="c_employee" name="c_employee" class="form-control">
+            <label for="fullname" style="font-size: 16px">Role</label>
+            <select id="role" name="role" class="form-control">
                 <option value="">--Select--</option>
-                <option value="Employee in North Campus">Employee in North Campus</option>
-                <option value="Employee in South Campus">Employee in South Campus</option>
+                <option value="Student in SHS">Student</option>
+                <option value="Employee in SHS">Employee</option>
             </select>
         </div>
     </div>
+    
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="datetime" class="control-label" style="font-size: 16px">Schedule</label>
+            <input type="datetime-local" class="form-control" id="datetime" name="date_time">
+        </div>
+    </div>
 </div>
+
 
 <br>
 
@@ -361,15 +382,6 @@
 
 
 
-<div class="row">
-    <div class="form-group">
-        <br>
-        <label for="message" class="col-sm-5 control-label">Write a message.... (Include DATE & TIME)</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="message" name="message" placeholder="Enter your message...." required>
-        </div>
-    </div>
-</div>
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <br>

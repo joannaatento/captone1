@@ -26,31 +26,31 @@
                     switch ($report_type) {
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
-                                    SUM(role = 'student in shs') AS total_student,
-                                    SUM(role = 'employee in shs') AS total_employee
-                                    FROM medicalapp
-                                    WHERE YEAR(date_time) = ?
-                                    GROUP BY label";
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM dentalapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";                    
                             $report_label = 'Weekly';
                             break;
             
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
-                                    SUM(role = 'student in shs') AS total_student,
-                                    SUM(role = 'employee in shs') AS total_employee
-                                    FROM medicalapp
-                                    WHERE YEAR(date_time) = ?
-                                    GROUP BY label";
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM dentalapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";         
                             $report_label = 'Monthly';
                             break;
             
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
-                                    SUM(role = 'student in shs') AS total_student,
-                                    SUM(role = 'employee in shs') AS total_employee
-                                    FROM medicalapp
-                                    WHERE YEAR(date_time) = ?
-                                    GROUP BY label";
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM dentalapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";         
                             $report_label = 'Yearly';
                             break;
             
@@ -60,14 +60,14 @@
                     }
             
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("i",$selected_year);
+                    $stmt->bind_param("i", $selected_year);
                     $stmt->execute();
                     $result = $stmt->get_result();
             
                     while ($row = $result->fetch_object()) {
                         $chartData['labels'][] = $row->label;
-                        $chartData['total_student'][] = $row->total_student;
-                        $chartData['total_employee'][] = $row->total_employee;
+                        $chartData['total_student_shs'][] = $row->total_student_shs;
+                        $chartData['total_employee_shs'][] = $row->total_employee_shs;
                     }
             
                     header("Content-Type: application/json");
@@ -83,7 +83,6 @@
         }
     }
 ?>
-
 
 
 <!DOCTYPE html>
@@ -400,7 +399,7 @@
         <button type="button" id="generateReport">Generate Report</button>
     </form>
     <br>
-    <p>Total Medical Appointments Report</p>
+    <p>Total Dental Appointments Report</p>
     <!-- Fixed-sized container for the graph -->
     <div class="chart-container">
         <canvas id="barChart" width="2000" height="800" text-align="center"></canvas>
@@ -417,7 +416,7 @@
                 const form = document.getElementById("reportForm");
                 const formData = new FormData(form);
 
-                fetch("nurseinshs.php", {
+                fetch("totaldentalappointments.php", {
                     method: "POST",
                     body: formData,
                 })
@@ -442,13 +441,13 @@
                     labels: data.labels,
                     datasets: [
                         {
-                            label: "Total of Student",
-                            data: data.total_student,
+                            label: "Total of Student in SHS",
+                            data: data.total_student_shs,
                             backgroundColor: "rgba(0, 0, 128, 0.5)", // You can change the color here
                         },
                         {
-                            label: "Total of Employees",
-                            data: data.total_employee,
+                            label: "Total of Employees in SHS",
+                            data: data.total_employee_shs,
                             backgroundColor: "rgba(139, 0, 0, 0.5)", // You can change the color here
                         },
                     ],

@@ -16,20 +16,78 @@
         require_once('../../db.php');
         if($_SESSION['role'] == 2){
             // User type 1 specific code here
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['report_type']) && isset($_POST['selected_year'])) {
+                    $report_type = $_POST['report_type'];
+                    $selected_year = $_POST['selected_year'];
+            
+                    $chartData = array();
+            
+                    switch ($report_type) {
+                        case 'week':
+                            $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM physicianapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";                    
+                            $report_label = 'Weekly';
+                            break;
+            
+                        case 'month':
+                            $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM physicianapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";         
+                            $report_label = 'Monthly';
+                            break;
+            
+                        case 'year':
+                            $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
+                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
+                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            FROM physicianapp
+                            WHERE YEAR(date_time) = ?
+                            GROUP BY label";         
+                            $report_label = 'Yearly';
+                            break;
+            
+                        default:
+                            echo "Invalid report type selection.";
+                            exit;
+                    }
+            
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("i", $selected_year);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+            
+                    while ($row = $result->fetch_object()) {
+                        $chartData['labels'][] = $row->label;
+                        $chartData['total_student_shs'][] = $row->total_student_shs;
+                        $chartData['total_employee_shs'][] = $row->total_employee_shs;
+                    }
+            
+                    header("Content-Type: application/json");
+                    echo json_encode($chartData);
+                    exit;
+                }
+            }
+        
         }
         else{
             header('location: ../login.php');
             exit; // Exit the script to prevent further execution
         }
     }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Consultation Form</title>
+    <title>Total Physician Consultation Appointment Reports</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -42,12 +100,55 @@
     
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/table.css">
-    
+	<link rel="stylesheet" href="assets/generate.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Style the container to have fixed size and enable scrolling */
+        .chart-container {
+            width: 800px;
+            height: 400px;
+            overflow: auto;
+        }
+
+        #reportForm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    #generateReport {
+        background-color: #007bff; /* Clinic blue */
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Clinic chart title styling */
+    .chart-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #007bff; /* Clinic blue */
+        margin-bottom: 10px;
+    }
+
+    /* Clinic chart container styling */
+    .chart-container {
+        background-color: #f8f9fa; /* Clinic light gray */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    </style>
     
 
 </head> 
@@ -112,7 +213,7 @@
             <ul class="submenu-list list-unstyled">
                 <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totaldentalappointments.php">Total Dental Appointment Reports</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="totalphysicianappointments.php">Total Physician Appointment Reports</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="totalphysicianappointments.php">Total Physician Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalvisitors.php">Total Clinic Visitors</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalmedicines.php">Total Medicine Cosumes</a></li>
             </ul>
@@ -261,8 +362,6 @@
 					    <div class="col-auto">
 					        <h1 class="app-page-title mb-0"></h1>
 					    </div>
-
-
 						
 				    </div>
 			    </div>
@@ -271,124 +370,135 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Consultation Form</h4>
+						        <h4 class="notification-title mb-1"></h4>
 					        </div>
-                            <?php
-								if(isset($_SESSION['success'])){
-									echo $_SESSION['success'];
-									unset($_SESSION['success']);
-								}
-							?>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-					   
-                     <form class="form-horizontal mt-4" method="post" action="function/shsrecords.php">
+                        
+                    <form id="reportForm">
+        <select id="tableSelect" name="report_type">
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="year">Year</option>
+        </select>
 
-    <div class="row">
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">ID Number</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="date" class="col-sm-4 control-label" style="font-size: 16px">Date</label>
-                              <div class="col-sm-11">
-                                  <input type="date" class="form-control" id="date" name="date" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name"required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-     <div class="row">
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="gradesection" class="col-sm-8 control-label" style="font-size: 16px">Grade & Section</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="chiefcomplaint" class="col-sm-8 control-label" style="font-size: 16px">Chief Complaint</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="chiefcomplaint" name="chiefcomplaint" placeholder="Enter Cheif Complaint" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="treatment" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="treatment " name="treatment" placeholder="Enter Treatment/Medicine" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
+        <select id="yearSelect" name="selected_year">
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2039</option>
+        </select>
 
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <br>
-        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_consultationform" class="btn btn-success">Submit</button>
-    </div>
-</div>
-</form>
-
-
-	   
-<form class="form-horizontal mt-4" method="post" action="function/shsrecords.php">
-
-<div class="row">
-                  <div class="col-sm-4">
-                      <div class="form-group">
-                        <br>
-                          <label for="medicine_name" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
-                          <div class="col-sm-11">
-                              <input type="text" class="form-control" id="medicine_name " name="medicine_name" placeholder="Enter Treatment/Medicine" required>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-4">
-                      <div class="form-group">
-                        <br>
-                          <label for="amount" class="col-sm-4 control-label" style="font-size: 16px">Amount</label>
-                          <div class="col-sm-11">
-                              <input type="text" class="form-control" id="amount " name="quantity" placeholder="Enter Amount" required>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-
-<div class="form-group">
-<div class="col-sm-offset-2 col-sm-10">
+        <!-- Replace the submit button with a regular button -->
+        <button type="button" id="generateReport">Generate Report</button>
+    </form>
     <br>
-    <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-    <button name="submit_medicine" class="btn btn-success">Submit</button>
-</div>
-</div>
-</form>
+    <p>Total Physician Consultation Appointment Reports</p>
+    <!-- Fixed-sized container for the graph -->
+    <div class="chart-container">
+        <canvas id="barChart" width="2000" height="800" text-align="center"></canvas>
+    </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const generateButton = document.getElementById("generateReport");
+            generateButton.addEventListener("click", function () {
+                fetchChartData();
+            });
+
+            function fetchChartData() {
+                const form = document.getElementById("reportForm");
+                const formData = new FormData(form);
+
+                fetch("totalphysicianappointments.php", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    drawBarChart(data);
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+            }
+
+            function drawBarChart(data) {
+                const ctx = document.getElementById("barChart").getContext("2d");
+
+                const chartData = {
+                    labels: data.labels,
+                    datasets: [
+                        {
+                            label: "Total of Student in SHS",
+                            data: data.total_student_shs,
+                            backgroundColor: "rgba(0, 0, 128, 0.5)", // You can change the color here
+                        },
+                        {
+                            label: "Total of Employees in SHS",
+                            data: data.total_employee_shs,
+                            backgroundColor: "rgba(139, 0, 0, 0.5)", // You can change the color here
+                        },
+                    ],
+                };
+    const options = {
+    responsive: true,
+    scales: {
+        x: {
+            stacked: true,
+        },
+        y: {
+            beginAtZero: true,
+            stacked: true,
+            ticks: {
+                stepSize: 5,
+                max: 80,
+                callback: function (value, index, values) {
+                    // Define the custom labels
+                    const customLabels = ['0','5','10','15','20','25','30','35'];
+                    return customLabels[index];
+                },
+            },
+        },
+    },
+};
+
+// Destroy the previous chart if it exists
+const existingChart = window.myChart;
+if (existingChart) {
+    existingChart.destroy();
+}
+
+// Create a new chart instance
+window.myChart = new Chart(ctx, {
+    type: "bar",
+    data: chartData,
+    options: options,
+});
+
+            }
+
+            // Fetch and draw the chart when the page loads
+            fetchChartData();
+        });
+    </script>
+
+    
 				    </div><!--//app-card-body-->
+
+
+    
 				</div>			    
 		    </div>
 	    </div>

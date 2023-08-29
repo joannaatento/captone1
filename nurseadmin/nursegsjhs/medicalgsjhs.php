@@ -289,6 +289,7 @@ if (mysqli_num_rows($result) > 0) {
 
         while($row = $result->fetch_assoc()){
             $medicalapp_id = $row['medicalapp_id'];
+            $phoneno = $row['phoneno'];
         ?>
                 <tr>
                     <td><?php echo $row['medicalapp_id']; ?></td>
@@ -302,7 +303,7 @@ if (mysqli_num_rows($result) > 0) {
                  
                     <td>
                     <center> 
-                    <a href="" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <a href="#openModal<?= $medicalapp_id; ?>" class="modal-link" data-bs-toggle="modal" data-bs-target="#openModal<?= $medicalapp_id; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
                     <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
                     </svg>
@@ -325,16 +326,99 @@ if (mysqli_num_rows($result) > 0) {
         
                    
                 </tr>
-                <?php
+
+<!-- Approve Modal -->
+<div class="modal fade" id="openModal<?= $medicalapp_id; ?>" tabindex="-1" aria-labelledby="modalLabel<?= $medicalapp_id; ?>" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel<?= $medicalapp_id; ?>">Send Message</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="phone" value="<?= $phoneno; ?>">  
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
             }
             ?>
-
         </tbody>
     </table>
-    <br><br>
 </div>
+<?php
+/**
+ * Send an SMS message directly by calling the HTTP endpoint.
+ *
+ * For your convenience, environment variables are already pre-populated with your account data
+ * like authentication, base URL, and phone number.
+ *
+ * Please find detailed information in the readme file.
+ */
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
-</div><!--//app-card-body-->
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $phoneNumber = $_POST['phone'];
+    $message = $_POST['message'];
+    date_default_timezone_set('Asia/Manila');
+    $date_created = date('Y-m-d h:i A'); 
+
+    // Send the SMS using the Infobip API
+    $client = new Client([
+        'base_uri' => "https://k3n5n1.api.infobip.com",
+        'headers' => [
+            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ]
+    ]);
+
+    $response = $client->request(
+        'POST',
+        'sms/2/text/advanced',
+        [
+            RequestOptions::JSON => [
+                'messages' => [
+                    [
+                        'from' => 'Clinic DWCL',
+                        'destinations' => [
+                            ['to' => $phoneNumber]
+                        ],
+                        'text' => $message,
+                    ]
+                ]
+            ],
+        ]
+    );
+
+    // Prepare the SQL query
+    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+
+    // Bind the parameters and execute the query
+    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
+    $stmt->execute();
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>
 
 <div class="modal fade" id="updateScheduleModal" tabindex="-1" aria-labelledby="updateScheduleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -456,94 +540,7 @@ if (mysqli_num_rows($result) > 0) {
     </div>
 </div>
 
-<!-- Approve Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Send Approved Message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="POST">
-                    <div class="mb-3">
-                        <label for="inputTo" class="form-label">To</label>
-                        <input type="text" class="form-control" id="inputTo" name="phone" placeholder="63" value="<?= $phoneno; ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="messagesms" class="form-label">Message</label>
-                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
-
-
-<?php
-/**
- * Send an SMS message directly by calling the HTTP endpoint.
- *
- * For your convenience, environment variables are already pre-populated with your account data
- * like authentication, base URL, and phone number.
- *
- * Please find detailed information in the readme file.
- */
-use GuzzleHttp\Client;
-use GuzzleHttp\RequestOptions;
-
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $phoneNumber = $_POST['phone'];
-    $message = $_POST['message'];
-    date_default_timezone_set('Asia/Manila');
-    $date_created = date('Y-m-d h:i A'); 
-
-    // Send the SMS using the Infobip API
-    $client = new Client([
-        'base_uri' => "https://k3n5n1.api.infobip.com",
-        'headers' => [
-            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-        ]
-    ]);
-
-    $response = $client->request(
-        'POST',
-        'sms/2/text/advanced',
-        [
-            RequestOptions::JSON => [
-                'messages' => [
-                    [
-                        'from' => 'Clinic DWCL',
-                        'destinations' => [
-                            ['to' => $phoneNumber]
-                        ],
-                        'text' => $message,
-                    ]
-                ]
-            ],
-        ]
-    );
-
-    // Prepare the SQL query
-    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-
-    // Bind the parameters and execute the query
-    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
-    $stmt->execute();
-
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
-}
-?>
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

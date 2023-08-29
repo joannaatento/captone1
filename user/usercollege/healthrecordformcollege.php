@@ -14,6 +14,7 @@
     while($row = $result->fetch_array()){
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
+        $idnumber = $row['idnumber'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 3){
             // User type 1 specific code here
@@ -191,7 +192,7 @@
 				    <div class="app-card-body p-4">
 					<p class="title_">Personal Information</p>
 					
-					<form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data">
+					<form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
     <div class="align_form">
 
 	
@@ -223,7 +224,7 @@
         <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">ID Number</label>
-                <input name="idnumber" type="text">
+                <input name="idnumber" type="text" value="<?= $idnumber; ?>" >
             </div>
 
             <div class="input_wrap">
@@ -243,9 +244,31 @@
                             
      <div class="input_form">
      <div class="input_wrap">
-                <label for="fullname">Personal Contact No</label>
-                <input name="pcontact" type="text" id="pcontact">
-            </div>
+    <label for="pcontact" style="font-size: 16px">Phone Number</label>
+      <input type="text" class="form-control contactInput" name="pcontact" placeholder="+63">
+      <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+    </div>
+
+
+<script>
+  function validateForm() {
+    var contactInputs = document.getElementsByClassName("contactInput");
+    var isValid = true;
+
+    for (var i = 0; i < contactInputs.length; i++) {
+      var contactInput = contactInputs[i].value;
+
+      if (!contactInput.startsWith("+63")) {
+        isValid = false;
+        document.getElementsByClassName("errorMessage")[i].style.display = "block";
+      } else {
+        document.getElementsByClassName("errorMessage")[i].style.display = "none";
+      }
+    }
+
+    return isValid;
+  }
+</script>
    
         <div class="input_wrap">
             <label for="fullname">Nationality</label>
@@ -294,9 +317,30 @@
 
   <div class="input_wrap">
             <label for="fullname">Contact Numbers</label>
-            <input name="contactno" id="con" type="text">
-        </div>
+            <input type="text" class="form-control contactInput" name="contactno" placeholder="+63">
+      <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+    </div>
 
+
+<script>
+  function validateForm() {
+    var contactInputs = document.getElementsByClassName("contactInput");
+    var isValid = true;
+
+    for (var i = 0; i < contactInputs.length; i++) {
+      var contactInput = contactInputs[i].value;
+
+      if (!contactInput.startsWith("+63")) {
+        isValid = false;
+        document.getElementsByClassName("errorMessage")[i].style.display = "block";
+      } else {
+        document.getElementsByClassName("errorMessage")[i].style.display = "none";
+      }
+    }
+
+    return isValid;
+  }
+</script>
         <div class="input_wrap">
             <label for="fullname">Address</label>
             <input name="address2" id="con" type="text">
@@ -316,7 +360,7 @@
 
   <div class="input_wrap">
             <label for="fullname">Contact Numbers</label>
-            <input name="contactno2" id="con" type="text">
+            <input name="contactno2" id="con" type="text" placeholder="+63">
         </div>
         </div>
 

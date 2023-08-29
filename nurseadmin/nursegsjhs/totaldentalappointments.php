@@ -27,9 +27,7 @@
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
                             SUM(CASE WHEN role = 'student in gs/jhs' THEN 1 ELSE 0 END) AS total_student_gs_jhs,
-                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs,
-                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
-                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs
                             FROM dentalapp
                             WHERE YEAR(date_time) = ?
                             GROUP BY label";                    
@@ -39,9 +37,7 @@
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
                             SUM(CASE WHEN role = 'student in gs/jhs' THEN 1 ELSE 0 END) AS total_student_gs_jhs,
-                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs,
-                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
-                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs
                             FROM dentalapp
                             WHERE YEAR(date_time) = ?
                             GROUP BY label";         
@@ -51,9 +47,7 @@
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
                             SUM(CASE WHEN role = 'student in gs/jhs' THEN 1 ELSE 0 END) AS total_student_gs_jhs,
-                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs,
-                            SUM(CASE WHEN role = 'student in shs' THEN 1 ELSE 0 END) AS total_student_shs,
-                            SUM(CASE WHEN role = 'employee in shs' THEN 1 ELSE 0 END) AS total_employee_shs
+                            SUM(CASE WHEN role = 'employee in gs/jhs' THEN 1 ELSE 0 END) AS total_employee_gs_jhs
                             FROM dentalapp
                             WHERE YEAR(date_time) = ?
                             GROUP BY label";         
@@ -74,8 +68,6 @@
                         $chartData['labels'][] = $row->label;
                         $chartData['total_student_gs_jhs'][] = $row->total_student_gs_jhs;
                         $chartData['total_employee_gs_jhs'][] = $row->total_employee_gs_jhs;
-                        $chartData['total_student_shs'][] = $row->total_student_shs;
-                        $chartData['total_employee_shs'][] = $row->total_employee_shs;
                     }
             
                     header("Content-Type: application/json");
@@ -418,17 +410,6 @@
                             label: "Total of Employees in GS/JHS",
                             data: data.total_employee_gs_jhs,
                             backgroundColor: "rgba(139, 0, 0, 0.5)", // You can change the color here
-                        },
-
-                        {
-                            label: "Total of Student in SHS",
-                            data: data.total_student_shs,
-                            backgroundColor: "rgba(255, 165, 0, 0.5)", // This sets the background color to orange with 50% opacity
-                        },
-                        {
-                            label: "Total of Employees in SHS",
-                            data: data.total_employee_shs,
-                            backgroundColor: "rgba(0, 128, 0, 0.5)", // You can change the color here
                         },
                     ],
                 };

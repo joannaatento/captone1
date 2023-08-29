@@ -60,10 +60,11 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
-  $fullname = $row['fullname'];
-  $cenrolled = $row['cenrolled'];
+  $name = $row['name'];
+  $phoneno = $row['phoneno'];
+  $gradesection = $row['gradesection'];
+  $role = $row['role'];
   $date_time = $row['date_time'];
-  $date_created = $row['date_created'];
     }
  else {
  } 
@@ -160,7 +161,7 @@ if (mysqli_num_rows($result) > 0) {
 										</svg>
 									</span>
 								</a>
-								<div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
+                                <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
 									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofileshs.php">Health Profile Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappshs.php">Dental Record</a>
@@ -183,6 +184,7 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
+    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -212,26 +214,26 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                            <label for="idnumber" class="col-sm-10 control-label">Patient ID Number</label>
+                            <label for="idnumber" class="col-sm-10 control-label">ID Number</label>
                             <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                            <label for="fullname" class="col-sm-10 control-label">Name</label>
-                            <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" value="<?php echo $row['fullname']; ?>" readonly>
+                            <label for="name" class="col-sm-10 control-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter patient name" value="<?php echo $row['name']; ?>" readonly>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                            <label for="cenrolled" class="col-sm-10 control-label">Currently enrolled in</label>
-                            <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter patient name" value="<?php echo $row['cenrolled']; ?>" readonly>
+                            <label for="gradesection" class="col-sm-10 control-label">Grade & Section</label>
+                            <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter patient name" value="<?php echo $row['gradesection']; ?>" readonly>
                         </div>
                         </div>
                   </div>
-                  <br>
+                  
         <div class="form-group">
-            <span><b>Schedule:</b> <?php echo $row['date_time']; ?></span>
+          <b><span>Schedule: <?php echo $row['date_time']; ?></span></b>
         </div>
   
         <?php } ?>

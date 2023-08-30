@@ -389,7 +389,7 @@ function searchRecords() {
       document.getElementById("healthRecordTableBody").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "function/searchqueryforgsjhs.php?query=" + searchQuery, true);
+  xhttp.open("GET", "function/searchqueryforshs.php?query=" + searchQuery, true);
   xhttp.send();
 }
 </script>

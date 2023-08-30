@@ -324,7 +324,6 @@ if (mysqli_num_rows($result) > 0) {
                         </center>
                     </td>
         
-                   
                 </tr>
 
 <!-- Approve Modal -->

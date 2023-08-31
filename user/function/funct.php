@@ -77,9 +77,9 @@
     
                 $role = $row['leveleduc'];
                 if ($role == '1') {
-                    header('Location: ../usergsjhs/studentandemployeeingsjhs.php');
+                    header('Location: ../usergsjhs/healthrecordformgsjhs.php');
                 } elseif ($role == '2') {
-                    header('Location: ../usershs/studentandemployeeinshs.php');
+                    header('Location: ../usershs/healthrecordformshs.php');
                 } elseif ($role == '3') {
                     // Handle role 3
                     header('Location: ../usercollege/studentandemployeeincollege.php');

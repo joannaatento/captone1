@@ -46,7 +46,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyless.css">
+	<link rel="stylesheet" href="assets/formstyles.css">
 
   
 
@@ -206,25 +206,10 @@
                 <label for="image">Upload Image</label>
                 <input type="file" name="image" id="image" required>
 			</div>
-            <div class="input_wrap">
-                <label for="gradelevel">Grade Level</label>
-                <input id="gradelevel" name="gradelevel" type="text">
-            </div>
-        <div class="input_wrap">
-                <label for="fullname">Role</label>
-                <select class="form-select" name="role">
-                    <option value="" selected>Select Role</option>
-                    <option value="Student in GS/JHS">Student in GS/JHS</option>
-                    <option value="Employee in GS/JHS">Employee in GS/JHS</option>
-                </select>
-        </div>
         <div class="input_wrap">
                 <label for="fullname">Full Name</label>
                 <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" readonly>
             </div>
-                            </div>
-                            </div>
-        <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">ID Number</label>
                 <input name="idnumber" type="text" value="<?= $idnumber; ?>" readonly>
@@ -233,12 +218,14 @@
             <label for="fullname">Personal Contact Number</label>
             <input name="cp" type="text" placeholder="+63" class="contactInput">
             <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+                </div>
         </div>
-
+   </div>
+        <div class="input_form">
     
             <div class="input_wrap">
-                <label for="fullname">Age</label>
-                <input name="age" type="text">
+                <label for="fullname">Birthday</label>
+                <input name="birthday" id="birthday" type="date">
             </div>
          <div class="input_wrap">
                 <label for="fullname">Gender</label>
@@ -364,7 +351,7 @@
     <div>
         <p class="title_">IMMUNIZATION</p>
     </div>
-    <p>Please select the box if your child/ward had completed the following Primary Immunization. The Employee may ignore this.</p>
+    <p>Please select the box if your child/ward had completed the following Primary Immunization.</p>
 
     <div class="input_form">
         </div>
@@ -494,66 +481,159 @@
                 <input name="othersmedical" id ="othersmedical" type="text" placeholder="Other Conditions">
             </div>
    
-            <div class="input_form">   
-            <div class="input_wrap">
-                <label for="fullname">Do you have a heart condition? (If yes, please specify.)</label>
-                <input name="heartcondition" id ="language" type="text">
-            </div>   
- </div>
-            <div class="input_form">   
-            <div class="input_wrap">
-                <label for="fullname">Do you have an Eye problem? (If yes, please specify.)</label>
-                <input name="eyeproblem" id ="language" type="text">
-            </div>
+            <br>
+<p>Do you have a heart condition? (If yes, please specify.)</p>
+<div class="row-container">
+  <div class="checkbox">
+    <input name="yesheartcon" value="yesheartcon" type="checkbox" id="yesheartcon">
+    <label class="labels" for="yesheartcon" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
-  <div class="input_form"> 
-            <div class="input_wrap">
-                <label for="fullname">Do you have a history of serious illness and/or hospitalization? (Please specify and include dates.)</label>
-                <input name="illness" id ="language" type="text">
-            </div>
-   </div>
 
-   <div class="input_form"> 
-            <div class="input_wrap">
-                <label for="fullname">Do you have a history of surgeries and/or injuries? (Please specify and include dates.)</label>
-                <input name="injuries" id ="language" type="text">
-            </div>
-   </div>
+  <div class="checkbox">
+    <input name="noheartcon" value="noheartcon" type="checkbox" id="noheartcon">
+    <label class="labels" for="noheartcon" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-   <div class="input_form"> 
-            <div class="input_wrap">
-                <label for="fullname">Do receive any medication or medical treatment, either regulary or occasionally? (If yes, please explain.)</label>
-                <input name="treatment" id ="language" type="text">
-            </div>
-   </div>
+  <div class="input_wrap">
+    <input name="heartcon" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
 
-   <div class="input_form"> 
-            <div class="input_wrap">
-                <label for="fullname">Do you have any allergies to medication? (If yes, please specify.)</label>
-                <input name="medication" id ="language" type="text">
-            </div>
-   </div>
+<br>
+<p>Do you have an Eye problem? (If yes, please specify.)</p>
+<div class="row-container">
+  <div class="checkbox">
+    <input name="yeseyeprob" value="yeseyeprob" type="checkbox" id="yeseyeprob">
+    <label class="labels" for="yeseyeprob" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
 
-   <div class="input_form"> 
-            <div class="input_wrap">
-                <label for="fullname">Do you have any allergies to food? (If yes, please specify.)</label>
-                <input name="food" id ="language" type="text">
-            </div>
-   </div>
+  <div class="checkbox">
+    <input name="noeyeprob" value="noeyeprob" type="checkbox" id="noeyeprob">
+    <label class="labels" for="noeyeprob" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-   <div class="input_form"> 
-            <div class="input_wrap">
-                <label for="fullname">Would you like to receive minor first aid (medication & treatment) given
-                    by the nurse in the school clinic?</label>
-                <input name="firstaid" id ="language" type="text">
-            </div>
-                            </div>
- <div class="input_form"> 
-            <div class="input_wrap">
-                <label for="fullname">Do you have any concerns related to your health? (If yes, please explain.)</label>
-                <input name="concernshealth" id ="language" type="text">
- </div>
-                            </div>
+  <div class="input_wrap">
+    <input name="eyeprob" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
+<br>
+<p>Do you have a history of serious illness and/or hospitalization? (Please specify and include dates.)</p>
+<div class="row-container">
+  <div class="checkbox">
+    <input name="yesseriousillnes" value="yesseriousillnes" type="checkbox" id="yesseriousillnes">
+    <label class="labels" for="yesseriousillnes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">
+    <input name="noseriousillnes" value="noseriousillnes" type="checkbox" id="noseriousillnes">
+    <label class="labels" for="noseriousillnes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="seriousillnes" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
+
+<br>
+<p>Do you have a history of surgeries and/or injuries? (Please specify and include dates.)</p>
+<div class="row-container">
+  <div class="checkbox">
+    <input name="yesssurgeries" value="yesssurgeries" type="checkbox" id="yesssurgeries">
+    <label class="labels" for="yesssurgeries" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">
+    <input name="nosurgeries" value="nosurgeries" type="checkbox" id="nosurgeries">
+    <label class="labels" for="nosurgeries" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="surgeries" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
+
+<br>
+<p>Do receive any medication or medical treatment, either regulary or occasionally? (If yes, please explain.)</p>
+<div class="row-container">
+  <div class="checkbox">
+    <input name="yesreceive" value="yesreceive" type="checkbox" id="yesreceive">
+    <label class="labels" for="yesreceive" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">
+    <input name="noreceive" value="noreceive" type="checkbox" id="noreceive">
+    <label class="labels" for="noreceive" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="receive" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
+
+<br>
+<p>Do you have any allergies to medication? (If yes, please specify.)</p>
+<div class="row-container">
+  <div class="checkbox">
+    <input name="yesallergiesmed" value="yesallergiesmed" type="checkbox" id="yesallergiesmed">
+    <label class="labels" for="yesallergiesmed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">
+    <input name="noallergiesmed" value="noallergiesmed" type="checkbox" id="noallergiesmed">
+    <label class="labels" for="noallergiesmed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="allergiesmed" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
+<br>
+<p>Do you have any allergies to food? (If yes, please specify.)</p>
+<div class="row-container">
+  <div class="checkbox">
+    <input name="yesallergiesfood" value="yesallergiesfood" type="checkbox" id="yesallergiesfood">
+    <label class="labels" for="yesallergiesfood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">
+    <input name="noallergiesfood" value="noallergiesfood" type="checkbox" id="noallergiesfood">
+    <label class="labels" for="noallergiesfood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="allergiesfood" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
+<br>
+<p>Would you like to receive minor first aid (medication & treatment) given by the nurse in the school clinic?</p>
+<div class="row-container">
+  <div class="checkbox">
+    <input name="yesfirstaid" value="yesfirstaid" type="checkbox" id="yesfirstaid">
+    <label class="labels" for="yesfirstaid" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">
+    <input name="nofirstaid" value="nofirstaid" type="checkbox" id="nofirstaid">
+    <label class="labels" for="nofirstaid" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>
+</div>
+<br>
+<p>Do you have any concerns related to your health? (If yes, please explain.)</p>
+<div class="row-container">
+  <div class="checkbox">
+    <input name="yesconcerns" value="yesconcerns" type="checkbox" id="yesconcerns">
+    <label class="labels" for="yesconcerns" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="checkbox">
+    <input name="noconcerns" value="noconcerns" type="checkbox" id="noconcerns">
+    <label class="labels" for="noconcerns" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <div class="input_wrap">
+    <input name="concerns" id="otherillnesss" type="text" placeholder="If YES, please specify">
+  </div>
+</div>
  <div class="app-card-footer px-4 py-3" style="display: flex; justify-content: center;">
 	<input type="text" name="user_id" style="display: none;" value="<?= $_SESSION['user_id'];?>">
    <button name="submit_data" class="btn btn-success">SUBMIT</button>

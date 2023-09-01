@@ -46,7 +46,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyles.css">
+	<link rel="stylesheet" href="assets/formstyle.css">
 
   
 
@@ -195,7 +195,7 @@
 				    <div class="app-card-body p-4">
 					<p class="title_">Personal Information</p>
 					
-                    <form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data"  onsubmit="return validateForm()">    
+                    <form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data">    
                     
                     <div class="align_form">
 
@@ -215,11 +215,39 @@
                 <input name="idnumber" type="text" value="<?= $idnumber; ?>" readonly>
             </div>
             <div class="input_wrap">
-            <label for="fullname">Personal Contact Number</label>
-            <input name="cp" type="text" placeholder="+63" class="contactInput">
-            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
-                </div>
-        </div>
+    <label for="personal_contact">Personal Contact Number</label>
+    <input id="personalContactInput" name="cp" type="text" placeholder="+63" class="contactInput">
+    <p id="personalContactError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+</div>
+
+<script>
+    const personalContactInput = document.getElementById('personalContactInput');
+    const personalContactError = document.getElementById('personalContactError');
+
+    personalContactInput.addEventListener('input', function() {
+        let inputValue = personalContactInput.value.trim();
+
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
+
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            personalContactInput.value = inputValue;
+            personalContactError.style.display = 'none'; // Hide the error message
+        } else {
+            personalContactInput.value = ''; // Clear the input if it's invalid
+            personalContactError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
+</script>
+</div>
    </div>
         <div class="input_form">
     
@@ -257,11 +285,39 @@
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Contact</label>
-            <input name="cfather" type="text" placeholder="+63" class="contactInput">
-            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
-        </div>
-                            </div>
+    <label for="contact">Contact</label>
+    <input id="contactInput_one" name="cfather" type="text" placeholder="+63" class="contactInput">
+    <p id="contactInputOneError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+</div>
+
+<script>
+    const contactInput_one = document.getElementById('contactInput_one');
+    const contactInputOneError = document.getElementById('contactInputOneError');
+
+        contactInput_one.addEventListener('input', function() {
+        let inputValue = contactInput_one.value.trim();
+
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
+
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            contactInput_one.value = inputValue;
+            contactInputOneError.style.display = 'none'; // Hide the error message
+        } else {
+            contactInput_one.value = ''; // Clear the input if it's invalid
+            contactInputOneError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
+</script>
+</div>
 
     <div class="input_form">
         <div class="input_wrap">
@@ -271,9 +327,37 @@
 
         <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="cmother" type="text" placeholder="+63" class="contactInput">
-            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
-        </div>
+            <input id="contactInput_two" name="cmother" type="text" placeholder="+63" class="contactInput">            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+            <p id="contactInputTwoError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+</div>
+
+<script>
+    const contactInput_two = document.getElementById('contactInput_two');
+    const contactInputTwoError = document.getElementById('contactInputTwoError');
+
+        contactInput_two.addEventListener('input', function() {
+        let inputValue = contactInput_two.value.trim();
+
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
+
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            contactInput_two.value = inputValue;
+            contactInputTwoError.style.display = 'none'; // Hide the error message
+        } else {
+            contactInput_two.value = ''; // Clear the input if it's invalid
+            contactInputTwoError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
+</script>
     </div>
 
     <div class="input_form">
@@ -327,9 +411,37 @@
     <div class="input_form">
     <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="cguardian" type="text" placeholder="+63" class="contactInput">
-            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
-        </div>
+            <input id="contactInput_cguardian" name="cguardian" type="text" placeholder="+63" class="contactInput">            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+            <p id="contactguardianError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+</div>
+
+<script>
+    const contactInput_cguardian = document.getElementById('contactInput_cguardian');
+    const contactguardianError = document.getElementById('contactguardianError');
+
+        contactInput_cguardian.addEventListener('input', function() {
+        let inputValue = contactInput_cguardian.value.trim();
+
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
+
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            contactInput_cguardian.value = inputValue;
+            contactguardianError.style.display = 'none'; // Hide the error message
+        } else {
+            contactInput_cguardian.value = ''; // Clear the input if it's invalid
+            contactguardianError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
+</script>
     </div>
  
     <div class="input_form">
@@ -343,9 +455,37 @@
         </div>
         <div class="input_wrap">
             <label for="fullname">Contact</label>
-            <input name="acontact" type="text" placeholder="+63" class="contactInput">
-            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
-        </div>
+            <input id="contactInput_acontact" name="acontact" type="text" placeholder="+63" class="contactInput"> 
+            <p id="contactarelationError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+</div>
+
+<script>
+    const contactInput_acontact = document.getElementById('contactInput_acontact');
+    const contactarelationError = document.getElementById('contactarelationError');
+
+        contactInput_acontact.addEventListener('input', function() {
+        let inputValue = contactInput_acontact.value.trim();
+
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
+
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            contactInput_acontact.value = inputValue;
+            contactarelationError.style.display = 'none'; // Hide the error message
+        } else {
+            contactInput_acontact.value = ''; // Clear the input if it's invalid
+            contactarelationError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
+</script>
     </div>
 
     <div>
@@ -393,7 +533,7 @@
         <label class="labels" for="seconddose" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Second Dose</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
-        <input name="boosterdose" value="booseterdose" type="checkbox" id="boosterdose">
+        <input name="boosterdose" value="boosterdose" type="checkbox" id="boosterdose">
         <label class="labels" for="boosterdose" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Booster Dose</label>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="checkbox">
@@ -639,28 +779,6 @@
    <button name="submit_data" class="btn btn-success">SUBMIT</button>
     </div>
 </form>
-
-<script>
-        function validateForm() {
-            var contactInputs = document.getElementsByClassName("contactInput");
-            var isValid = true;
-
-            for (var i = 0; i < contactInputs.length; i++) {
-                var contactInput = contactInputs[i].value;
-
-                if (!contactInput.startsWith("+63")) {
-                    isValid = false;
-                    document.getElementsByClassName("errorMessage")[i].style.display = "block";
-                } else {
-                    document.getElementsByClassName("errorMessage")[i].style.display = "none";
-                }
-            }
-
-            return isValid;
-        }
-    </script>
-
-
 
 				    </div><!--//app-card-body-->
 				</div>			    

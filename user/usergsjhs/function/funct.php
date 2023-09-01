@@ -66,7 +66,7 @@
         $seriousillnes = trim(mysqli_real_escape_string($conn, $_POST['seriousillnes']));
         $yessurgeries = isset($_POST['yessurgeries']) ? trim(mysqli_real_escape_string($conn, $_POST['yessurgeries'])) : "";
         $nosurgeries = isset($_POST['nosurgeries']) ? trim(mysqli_real_escape_string($conn, $_POST['nosurgeries'])) : "";
-        $surgeries  = trim(mysqli_real_escape_string($conn, $_POST['surgeries ']));
+        $surgeries = trim(mysqli_real_escape_string($conn, $_POST['surgeries']));
         $yesreceive = isset($_POST['yesreceive']) ? trim(mysqli_real_escape_string($conn, $_POST['yesreceive'])) : "";
         $noreceive = isset($_POST['noreceive']) ? trim(mysqli_real_escape_string($conn, $_POST['noreceive'])) : "";
         $receive = trim(mysqli_real_escape_string($conn, $_POST['receive']));

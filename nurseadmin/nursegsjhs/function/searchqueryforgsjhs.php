@@ -6,7 +6,7 @@
 $searchQuery = $_GET['query'];
 
 // Modify the SQL query to include the search condition
-$sql = "SELECT * FROM healthrecordformgsjhs WHERE fullname LIKE '%$searchQuery%' OR idnumber LIKE '%$searchQuery%' OR age LIKE '%$searchQuery%' OR cguardian LIKE '%$searchQuery%'";
+$sql = "SELECT * FROM healthrecordformgsjhs WHERE fullname LIKE '%$searchQuery%' OR idnumber LIKE '%$searchQuery%' OR birthday LIKE '%$searchQuery%' OR cguardian LIKE '%$searchQuery%'";
 
 $result = mysqli_query($conn, $sql);
 
@@ -17,7 +17,7 @@ while ($row = $result->fetch_assoc()) {
   $output .= '<td>' . $row['healthnogsjhs_id'] . '</td>';
   $output .= '<td>' . $row['fullname'] . '</td>';
   $output .= '<td>' . $row['idnumber'] . '</td>';
-  $output .= '<td>' . $row['age'] . '</td>';
+  $output .= '<td>' . $row['birthday'] . '</td>';
   $output .= '<td>' . $row['guardianname'] . '</td>';
   $output .= '<td>' . $row['cguardian'] . '</td>';
   $output .= '<td><center>

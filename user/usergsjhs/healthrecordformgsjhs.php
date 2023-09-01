@@ -538,8 +538,8 @@
 <p>Do you have a history of surgeries and/or injuries? (Please specify and include dates.)</p>
 <div class="row-container">
   <div class="checkbox">
-    <input name="yesssurgeries" value="yesssurgeries" type="checkbox" id="yesssurgeries">
-    <label class="labels" for="yesssurgeries" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <input name="yessurgeries" value="yessurgeries" type="checkbox" id="yessurgeries">
+    <label class="labels" for="yessurgeries" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
   <div class="checkbox">

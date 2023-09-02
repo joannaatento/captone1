@@ -44,7 +44,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/style.css">
 
 </head> 
 
@@ -222,32 +222,39 @@
   <div class="form-group">
     <label for="phoneno" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
     <div class="col-sm-12">
-      <input type="text" class="form-control contactInput" name="phoneno" placeholder="+63">
-      <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+      <input id="personalContactInput" name="cp" type="text" placeholder="+63" class="form-control contactInput">
+      <p id="personalContactError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
     </div>
   </div>
 </div>
 
 <script>
-  function validateForm() {
-    var contactInputs = document.getElementsByClassName("contactInput");
-    var isValid = true;
+    const personalContactInput = document.getElementById('personalContactInput');
+    const personalContactError = document.getElementById('personalContactError');
 
-    for (var i = 0; i < contactInputs.length; i++) {
-      var contactInput = contactInputs[i].value;
+    personalContactInput.addEventListener('input', function() {
+        let inputValue = personalContactInput.value.trim();
 
-      if (!contactInput.startsWith("+63")) {
-        isValid = false;
-        document.getElementsByClassName("errorMessage")[i].style.display = "block";
-      } else {
-        document.getElementsByClassName("errorMessage")[i].style.display = "none";
-      }
-    }
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
 
-    return isValid;
-  }
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            personalContactInput.value = inputValue;
+            personalContactError.style.display = 'none'; // Hide the error message
+        } else {
+            personalContactInput.value = ''; // Clear the input if it's invalid
+            personalContactError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
 </script>
-
 </div>
 
 <br>
@@ -255,24 +262,24 @@
 <br>
 <div class="row">
 
-    <div class="col-sm-3">
-        <div class="form-group">
-            <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Schedule</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="selected-date" name="date_time">
-            </div>
-        </div>
-    </div>
-
-     <!-- New Input with 4 Columns -->
-     <div class="col-sm-3">
+<div class="col-sm-3">
     <div class="form-group">
-        <label for="newInput" class="col-sm-12 control-label" style="font-size: 16px">Time</label>
+        <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Schedule</label>
         <div class="col-sm-12">
-            <input type="text" class="form-control" id="sched_time" name="sched_time">
+            <input type="text" class="form-control no-color-change" id="selected-date" name="date_time" placeholder="Choose Date in the Calendar" readonly>
         </div>
     </div>
 </div>
+
+<div class="col-sm-3">
+    <div class="form-group">
+        <label for="newInput" class="col-sm-12 control-label" style="font-size: 16px">Time</label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control no-color-change" id="sched_time" name="sched_time" placeholder="Select Time" readonly>
+        </div>
+    </div>
+</div>
+
 
 
     <div class="col-sm-3">

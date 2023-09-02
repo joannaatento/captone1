@@ -28,6 +28,12 @@ background-color: #00FF00; /* Green background for available times */
 .highlight {
   color: red; /* You can change the color to your preference */
 }
+
+input[type="text"].no-color-change {
+  color: inherit; /* Inherit the color from its parent element */
+  background-color: inherit; /* Inherit the background color from its parent element */
+}
+
 div#calendar{
 margin:0px auto;
 padding:0px;

@@ -96,6 +96,7 @@
         $gradecourseyear1 = $_POST ['gradecourseyear1'];
         $phoneno = $_POST ['phoneno'];
         $date_time = $_POST ['date_time'];
+        $sched_time = $_POST ['sched_time'];
         $role = $_POST['role'];
         $onoff = $_POST['onoff'];
         $is_deleted_on_website = $_POST['is_deleted_on_website'];
@@ -103,14 +104,14 @@
         // Set the time zone to Asia/Manila
         date_default_timezone_set('Asia/Manila');
         $appointmentDateTime = new DateTime($date_time);
-        $formattedDatetime = $appointmentDateTime->format("Y-m-d h:i A");
+        $formattedDatetime = $appointmentDateTime->format("Y-m-d");
     
         // Calculate the reminder time (1 hour before appointment)
         $reminderDateTime = clone $appointmentDateTime;
         $reminderDateTime->modify("-2 hour");
     
         // Insert the sanitized data into the database
-        $sql = "INSERT INTO medicalapp VALUES ('','$user_id','$idnumber','$name1','$gradecourseyear1','$phoneno','$formattedDatetime', '$role','$onoff',NOW(),'$is_deleted_on_website')";
+        $sql = "INSERT INTO medicalapp VALUES ('','$user_id','$idnumber','$name1','$gradecourseyear1','$phoneno','$formattedDatetime','$sched_time', '$role','$onoff',NOW(),'$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
             // Check if it's time to send a reminder

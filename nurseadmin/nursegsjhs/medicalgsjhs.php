@@ -369,65 +369,6 @@ if (mysqli_num_rows($result) > 0) {
         </tbody>
     </table>
 </div>
-<?php
-/**
- * Send an SMS message directly by calling the HTTP endpoint.
- *
- * For your convenience, environment variables are already pre-populated with your account data
- * like authentication, base URL, and phone number.
- *
- * Please find detailed information in the readme file.
- */
-use GuzzleHttp\Client;
-use GuzzleHttp\RequestOptions;
-
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $phoneNumber = $_POST['phone'];
-    $message = $_POST['message'];
-    date_default_timezone_set('Asia/Manila');
-    $date_created = date('Y-m-d h:i A'); 
-
-    // Send the SMS using the Infobip API
-    $client = new Client([
-        'base_uri' => "https://k3n5n1.api.infobip.com",
-        'headers' => [
-            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-        ]
-    ]);
-
-    $response = $client->request(
-        'POST',
-        'sms/2/text/advanced',
-        [
-            RequestOptions::JSON => [
-                'messages' => [
-                    [
-                        'from' => 'Clinic DWCL',
-                        'destinations' => [
-                            ['to' => $phoneNumber]
-                        ],
-                        'text' => $message,
-                    ]
-                ]
-            ],
-        ]
-    );
-
-    // Prepare the SQL query
-    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-
-    // Bind the parameters and execute the query
-    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
-    $stmt->execute();
-
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
-}
-?>
 
 <div class="modal fade" id="updateScheduleModal" tabindex="-1" aria-labelledby="updateScheduleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -991,7 +932,65 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     </div>
 </div>
 
+<?php
+/**
+ * Send an SMS message directly by calling the HTTP endpoint.
+ *
+ * For your convenience, environment variables are already pre-populated with your account data
+ * like authentication, base URL, and phone number.
+ *
+ * Please find detailed information in the readme file.
+ */
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $phoneNumber = $_POST['phone'];
+    $message = $_POST['message'];
+    date_default_timezone_set('Asia/Manila');
+    $date_created = date('Y-m-d h:i A'); 
+
+    // Send the SMS using the Infobip API
+    $client = new Client([
+        'base_uri' => "https://k3n5n1.api.infobip.com",
+        'headers' => [
+            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ]
+    ]);
+
+    $response = $client->request(
+        'POST',
+        'sms/2/text/advanced',
+        [
+            RequestOptions::JSON => [
+                'messages' => [
+                    [
+                        'from' => 'Clinic DWCL',
+                        'destinations' => [
+                            ['to' => $phoneNumber]
+                        ],
+                        'text' => $message,
+                    ]
+                ]
+            ],
+        ]
+    );
+
+    // Prepare the SQL query
+    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+
+    // Bind the parameters and execute the query
+    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
+    $stmt->execute();
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>
 
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>

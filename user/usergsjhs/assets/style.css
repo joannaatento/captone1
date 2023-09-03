@@ -18,16 +18,6 @@
   background-color: #f2f2f2;
 }
 
-.unavailable {
-background-color: #FF0000; /* Red background for unavailable times */
-}
-
-.available {
-background-color: #00FF00; /* Green background for available times */
-}
-.highlight {
-  color: red; /* You can change the color to your preference */
-}
 
 input[type="text"].no-color-change {
   color: inherit; /* Inherit the color from its parent element */

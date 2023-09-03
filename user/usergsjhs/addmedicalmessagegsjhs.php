@@ -222,7 +222,7 @@
   <div class="form-group">
     <label for="phoneno" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
     <div class="col-sm-12">
-      <input id="personalContactInput" name="cp" type="text" placeholder="+63" class="form-control contactInput">
+      <input id="personalContactInput" name="phoneno" type="text" placeholder="+63" class="form-control contactInput">
       <p id="personalContactError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
     </div>
   </div>
@@ -315,7 +315,7 @@
 <?php
     class Calendar {
   
-            
+
              //Constructor
              
             public function __construct(){     
@@ -559,13 +559,14 @@
     ?>
 
 <table class="schedule-table" id="monday-table">
-   <th colspan ="4">MONDAY</th>
+<th colspan="4" id="selected-day-header"><span id="selected-date-display"></span></th>
+
   <tr>
  
-    <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
-    <td class="<?php echo ($statusmed9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed9_am; ?>')"><?php echo $statusmed9_am; ?></td>
-    <td class="<?php echo ($statusmed10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed10_am; ?>')"><?php echo $statusmed10_am; ?></td>
-    <td class="<?php echo ($statusmed11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed11_am; ?>')"><?php echo $statusmed11_am; ?></td>
+  <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
+  <td class="<?php echo ($statusmed9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed9_am; ?>')"><?php echo $statusmed9_am; ?> <span id="selected-date-display"></span></td>
+    <td class="<?php echo ($statusmed10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed10_am; ?>')"><?php echo $statusmed10_am; ?> <span id="selected-date-display"></span></td>
+<td class="<?php echo ($statusmed11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed11_am; ?>')"><?php echo $statusmed11_am; ?> <span id="selected-date-display"></span></td>
   </tr>
   <tr>
     <td class="<?php echo ($statusmed1_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed1_pm; ?>')"><?php echo $statusmed1_pm; ?></td>
@@ -593,7 +594,7 @@
     }
     ?>
 <table class="schedule-table" id="tuesday-table">
-   <th colspan ="4">TUESDAY</th>
+<th colspan ="4"><span id="tuesday-date-display"></span></th>
   <tr>
  
     <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
@@ -627,7 +628,7 @@
     }
     ?>
 <table class="schedule-table" id="wednesday-table">
-   <th colspan ="4">WEDNESDAY</th>
+<th colspan ="4"><span id="wednesday-date-display"></span></th>
   <tr>
  
     <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
@@ -661,7 +662,7 @@
     }
     ?>
 <table class="schedule-table" id="thursday-table">
-   <th colspan ="4">THURSDAY</th>
+<th colspan ="4"><span id="thursday-date-display"></span></th>
   <tr>
  
     <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
@@ -695,7 +696,7 @@
     }
     ?>
 <table class="schedule-table" id="friday-table">
-   <th colspan ="4">FRIDAY</th>
+<th colspan ="4"><span id="friday-date-display"></span></th>
   <tr>
  
     <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
@@ -718,7 +719,6 @@
     </div>
 </div>
 </form>
-
 
 </div><!--//app-card-body-->
 </div>			    
@@ -749,40 +749,52 @@ $(document).ready(function() {
     // Hide all time tables initially
     $('.schedule-table').hide();
 
-    // Attach a click event handler to each date cell in the calendar
     $('.dates li').click(function() {
-        // Remove the "selected" class from all date cells
-        $('.dates li').removeClass('selected');
+    // Remove the "selected" class from all date cells
+    $('.dates li').removeClass('selected');
 
-        // Add the "selected" class to the clicked date cell
-        $(this).addClass('selected');
+    // Add the "selected" class to the clicked date cell
+    $(this).addClass('selected');
 
-        // Get the text content of the clicked date cell
-        var selectedDay = $(this).text();
+    // Get the text content of the clicked date cell
+    var selectedDay = $(this).text();
 
-        // Get the year and month from the data attributes
-        var selectedYear = $(this).data('year');
-        var selectedMonth = $(this).data('month');
+    // Get the year and month from the data attributes
+    var selectedYear = $(this).data('year');
+    var selectedMonth = $(this).data('month');
 
-        // Create a JavaScript Date object with the selected year, month, and day
-        var selectedDate = new Date(selectedYear, selectedMonth - 1, selectedDay);
+    // Create a JavaScript Date object with the selected year, month, and day
+    var selectedDate = new Date(selectedYear, selectedMonth - 1, selectedDay);
 
-        // Adjust for the time zone offset
-        var timezoneOffsetMinutes = selectedDate.getTimezoneOffset();
-        selectedDate.setMinutes(selectedDate.getMinutes() - timezoneOffsetMinutes);
+    // Adjust for the time zone offset
+    var timezoneOffsetMinutes = selectedDate.getTimezoneOffset();
+    selectedDate.setMinutes(selectedDate.getMinutes() - timezoneOffsetMinutes);
 
-        // Format the date as "YYYY-MM-DD"
-        var formattedDate = selectedDate.toISOString().slice(0, 10);
+    // Format the date as "Monday September 4, 2023"
+    var formattedDate = selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-        // Populate the input field with the selected date
-        $('#selected-date').val(formattedDate);
+    // Display the selected date in the Monday table header
+    $('#selected-day-header').text(formattedDate);
 
-        // Determine the day of the week for the selected date
-        var selectedDayOfWeek = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
+    // Set the value of the input field with the selected date
+    $('#selected-date').val(formattedDate);
 
-        // Update the displayed table based on the selected day of the week
-        updateDisplayedTable(selectedDayOfWeek);
-    });
+    // Determine the day of the week for the selected date
+    var selectedDayOfWeek = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
+
+    // Update the displayed table based on the selected day of the week
+    updateDisplayedTable(selectedDayOfWeek);
+    // Update the respective day headers for Tuesday, Wednesday, Thursday, and Friday
+    if (selectedDayOfWeek === 'Tuesday') {
+        $('#tuesday-date-display').text(formattedDate);
+    } else if (selectedDayOfWeek === 'Wednesday') {
+        $('#wednesday-date-display').text(formattedDate);
+    } else if (selectedDayOfWeek === 'Thursday') {
+        $('#thursday-date-display').text(formattedDate);
+    } else if (selectedDayOfWeek === 'Friday') {
+        $('#friday-date-display').text(formattedDate);
+    }
+});
 
     // Function to update the displayed table based on the selected date
     function updateDisplayedTable(selectedDayOfWeek) {
@@ -811,6 +823,7 @@ function handleLabelClick(time) {
 }
 
     </script>
+
 
 
 

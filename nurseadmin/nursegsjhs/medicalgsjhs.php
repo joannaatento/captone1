@@ -63,6 +63,7 @@ if (mysqli_num_rows($result) > 0) {
   $gradecourseyear1 = $row['gradecourseyear1'];
   $phoneno = $row['phoneno'];
   $date_time = $row['date_time'];
+  $sched_time = $row['sched_time'];
   $role = $row['role'];
   $onoff  = $row['onoff'];
     }
@@ -273,10 +274,10 @@ if (mysqli_num_rows($result) > 0) {
                 <th>Fullname</th>
                 <th>Grade & Section</th>
                 <th>Phone Number</th>
-                <th>Schedule Date</th>
-                <th>Schedule Time</th>
+                <th>Date</th>
+                <th>Time</th>
                 <th>Role</th>
-                <th>On-campus Activity or Off-campus Activity</th>
+                <th>On or Off-campus Activity</th>
                 <th>Action</th>
             </tr>
         </thead>

@@ -224,7 +224,8 @@ if (mysqli_num_rows($result) > 0) {
                 <th>Phone Number</th>
                 <th>Grade & Section</th>
                 <th>Role</th>
-                <th>Schedule</th>
+                <th>Date</th>
+                <th>Time</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -250,6 +251,7 @@ if (mysqli_num_rows($result) > 0) {
                     <td><?php echo $row['gradecourseyear']; ?></td>
                     <td><?php echo $row['role']; ?></td>
                     <td><?php echo $row['date_time']; ?></td>
+                    <td><?php echo $row['sched_time']; ?></td>
                  
                     <td>
                     <center>   
@@ -462,7 +464,7 @@ if (mysqli_num_rows($result) > 0) {
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button>
-                        <button type="submit" name="submit_statusdentalgsjhsshstue" class="btn btn-light">Update</button>
+                        <button type="submit" name="submit_statusmedicalgsjhsshstue" class="btn btn-light">Update</button>
                     </div>
                 </form>
             </div>
@@ -479,20 +481,15 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="modal-body">
             <?php
-                $sql1 = "SELECT * FROM statusmedicalgsjhswednesday";
+                $sql1 = "SELECT * FROM statusdentalgsjhsshswednesday";
                 $result1 = mysqli_query($conn, $sql1);
 
                 if (mysqli_num_rows($result1) > 0) {
                     while ($row1 = $result1->fetch_assoc()) {
-                        $medical_id = $row1['medical_id'];
-                        $statusmed8_am = $row1['statusmed8_am'];
-                        $statusmed9_am = $row1['statusmed9_am'];
-                        $statusmed10_am = $row1['statusmed10_am'];
-                        $statusmed11_am = $row1['statusmed11_am'];
-                        $statusmed1_pm = $row1['statusmed1_pm'];
-                        $statusmed2_pm = $row1['statusmed2_pm'];
-                        $statusmed3_pm = $row1['statusmed3_pm'];
-                        $statusmed4_pm = $row1['statusmed4_pm'];
+                        $status_id = $row1['status_id'];
+                        $statusden9_am = $row1['statusden9_am'];
+                        $statusden10_am = $row1['statusden10_am'];
+                        $statusden11_am = $row1['statusden11_am'];
 
                     }
                 } else {
@@ -501,74 +498,38 @@ if (mysqli_num_rows($result) > 0) {
                 ?>
                 <?php
                 // Step 1: Retrieve the data to be updated
-                if (isset($_GET['medical_id'])) {
-                    $medical_id = $_GET['medical_id'];
+                if (isset($_GET['status_id'])) {
+                    $status_id = $_GET['status_id'];
                 }
 
                 ?>
-                  <form action="function/gsjhsrecords.php" method="POST">
-                    <input type="hidden" name="medical_id" value="<?php echo $medical_id; ?>">
+                  <form action="function/gsjhsshsrecords.php" method="POST">
+                    <input type="hidden" name="status_id" value="<?php echo $status_id; ?>">
                     <div class="mb-3">
-                    <label for="inputStatus1030_1" class="form-label">08:00 A.M</label>
-                    <select class="form-select" id="inputStatus1030_1" name="statusmed8_am">
-                        <option value="08:00 A.M " <?php if ($statusmed8_am == 'Available') echo 'selected'; ?>>Available</option>
-                        <option value="Unavailable" <?php if ($statusmed8_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                    </select>
-
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus1130" class="form-label">09:00 A.M</label>
-                        <select class="form-select" id="inputStatus1130" name="statusmed9_am">
-                            <option value="09:00 A.M" <?php if ($statusmed9_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed9_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                    <label for="inputStatus1130" class="form-label">09:00 A.M</label>
+                        <select class="form-select" id="inputStatus1130" name="statusden9_am">
+                            <option value="09:00 A.M" <?php if ($statusden9_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusden9_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="inputStatus230" class="form-label">10:00 A.M</label>
-                        <select class="form-select" id="inputStatus230" name="statusmed10_am">
-                            <option value="10:00 A.M" <?php if ($statusmed10_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed10_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        <select class="form-select" id="inputStatus230" name="statusden10_am">
+                            <option value="10:00 A.M" <?php if ($statusden10_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusden10_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="inputStatus330" class="form-label">11:00 A.M</label>
-                        <select class="form-select" id="inputStatus330" name="statusmed11_am">
-                            <option value="11:00 A.M" <?php if ($statusmed11_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed11_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">01:00 P.M</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed1_pm">
-                            <option value="01:00 P.M" <?php if ($statusmed1_pm  == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed1_pm  == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">02:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed2_pm">
-                            <option value="02:00 P.M" <?php if ($statusmed2_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed2_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">03:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed3_pm">
-                            <option value="03:00 P.M." <?php if ($statusmed3_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed3_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">04:00 P.M</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed4_pm">
-                            <option value="04:00 P.M" <?php if ($statusmed4_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed4_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        <select class="form-select" id="inputStatus330" name="statusden11_am">
+                            <option value="11:00 A.M" <?php if ($statusden11_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusden11_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button>
-                        <button type="submit" name="submit_statusmedicalgsjhswed" class="btn btn-light">Update</button>
+                        <button type="submit" name="submit_statusdentalgsjhsshswed" class="btn btn-light">Update</button>
                     </div>
                 </form>
             </div>
@@ -585,20 +546,15 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="modal-body">
             <?php
-                $sql1 = "SELECT * FROM statusmedicalgsjhsthursday";
+                $sql1 = "SELECT * FROM statusdentalgsjhsshsthursday";
                 $result1 = mysqli_query($conn, $sql1);
 
                 if (mysqli_num_rows($result1) > 0) {
                     while ($row1 = $result1->fetch_assoc()) {
-                        $medical_id = $row1['medical_id'];
-                        $statusmed8_am = $row1['statusmed8_am'];
-                        $statusmed9_am = $row1['statusmed9_am'];
-                        $statusmed10_am = $row1['statusmed10_am'];
-                        $statusmed11_am = $row1['statusmed11_am'];
-                        $statusmed1_pm = $row1['statusmed1_pm'];
-                        $statusmed2_pm = $row1['statusmed2_pm'];
-                        $statusmed3_pm = $row1['statusmed3_pm'];
-                        $statusmed4_pm = $row1['statusmed4_pm'];
+                        $status_id = $row1['status_id'];
+                        $statusden9_am = $row1['statusden9_am'];
+                        $statusden10_am = $row1['statusden10_am'];
+                        $statusden11_am = $row1['statusden11_am'];
 
                     }
                 } else {
@@ -607,74 +563,38 @@ if (mysqli_num_rows($result) > 0) {
                 ?>
                 <?php
                 // Step 1: Retrieve the data to be updated
-                if (isset($_GET['medical_id'])) {
-                    $medical_id = $_GET['medical_id'];
+                if (isset($_GET['status_id'])) {
+                    $status_id = $_GET['status_id'];
                 }
 
                 ?>
-                  <form action="function/gsjhsrecords.php" method="POST">
-                    <input type="hidden" name="medical_id" value="<?php echo $medical_id; ?>">
+                  <form action="function/gsjhsshsrecords.php" method="POST">
+                    <input type="hidden" name="status_id" value="<?php echo $status_id; ?>">
                     <div class="mb-3">
-                    <label for="inputStatus1030_1" class="form-label">08:00 A.M</label>
-                    <select class="form-select" id="inputStatus1030_1" name="statusmed8_am">
-                        <option value="08:00 A.M " <?php if ($statusmed8_am == 'Available') echo 'selected'; ?>>Available</option>
-                        <option value="Unavailable" <?php if ($statusmed8_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                    </select>
-
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus1130" class="form-label">09:00 A.M</label>
-                        <select class="form-select" id="inputStatus1130" name="statusmed9_am">
-                            <option value="09:00 A.M" <?php if ($statusmed9_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed9_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                    <label for="inputStatus1130" class="form-label">09:00 A.M</label>
+                        <select class="form-select" id="inputStatus1130" name="statusden9_am">
+                            <option value="09:00 A.M" <?php if ($statusden9_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusden9_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="inputStatus230" class="form-label">10:00 A.M</label>
-                        <select class="form-select" id="inputStatus230" name="statusmed10_am">
-                            <option value="10:00 A.M" <?php if ($statusmed10_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed10_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        <select class="form-select" id="inputStatus230" name="statusden10_am">
+                            <option value="10:00 A.M" <?php if ($statusden10_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusden10_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="inputStatus330" class="form-label">11:00 A.M</label>
-                        <select class="form-select" id="inputStatus330" name="statusmed11_am">
-                            <option value="11:00 A.M" <?php if ($statusmed11_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed11_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">01:00 P.M</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed1_pm">
-                            <option value="01:00 P.M" <?php if ($statusmed1_pm  == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed1_pm  == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">02:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed2_pm">
-                            <option value="02:00 P.M" <?php if ($statusmed2_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed2_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">03:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed3_pm">
-                            <option value="03:00 P.M." <?php if ($statusmed3_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed3_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">04:00 P.M</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed4_pm">
-                            <option value="04:00 P.M" <?php if ($statusmed4_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed4_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        <select class="form-select" id="inputStatus330" name="statusden11_am">
+                            <option value="11:00 A.M" <?php if ($statusden11_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusden11_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button>
-                        <button type="submit" name="submit_statusmedicalgsjhsthu" class="btn btn-light">Update</button>
+                        <button type="submit" name="submit_statusdentalgsjhsshsthu" class="btn btn-light">Update</button>
                     </div>
                 </form>
             </div>
@@ -691,20 +611,15 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             <div class="modal-body">
             <?php
-                $sql1 = "SELECT * FROM statusmedicalgsjhsfriday";
+                $sql1 = "SELECT * FROM statusdentalgsjhsshsfriday";
                 $result1 = mysqli_query($conn, $sql1);
 
                 if (mysqli_num_rows($result1) > 0) {
                     while ($row1 = $result1->fetch_assoc()) {
-                        $medical_id = $row1['medical_id'];
-                        $statusmed8_am = $row1['statusmed8_am'];
-                        $statusmed9_am = $row1['statusmed9_am'];
-                        $statusmed10_am = $row1['statusmed10_am'];
-                        $statusmed11_am = $row1['statusmed11_am'];
-                        $statusmed1_pm = $row1['statusmed1_pm'];
-                        $statusmed2_pm = $row1['statusmed2_pm'];
-                        $statusmed3_pm = $row1['statusmed3_pm'];
-                        $statusmed4_pm = $row1['statusmed4_pm'];
+                        $status_id = $row1['status_id'];
+                        $statusden9_am = $row1['statusden9_am'];
+                        $statusden10_am = $row1['statusden10_am'];
+                        $statusden11_am = $row1['statusden11_am'];
 
                     }
                 } else {
@@ -713,74 +628,39 @@ if (mysqli_num_rows($result) > 0) {
                 ?>
                 <?php
                 // Step 1: Retrieve the data to be updated
-                if (isset($_GET['medical_id'])) {
-                    $medical_id = $_GET['medical_id'];
+                if (isset($_GET['status_id'])) {
+                    $status_id = $_GET['status_id'];
                 }
 
                 ?>
-                  <form action="function/gsjhsrecords.php" method="POST">
-                    <input type="hidden" name="medical_id" value="<?php echo $medical_id; ?>">
+                  <form action="function/gsjhsshsrecords.php" method="POST">
+                    <input type="hidden" name="status_id" value="<?php echo $status_id; ?>">
                     <div class="mb-3">
-                    <label for="inputStatus1030_1" class="form-label">08:00 A.M</label>
-                    <select class="form-select" id="inputStatus1030_1" name="statusmed8_am">
-                        <option value="08:00 A.M " <?php if ($statusmed8_am == 'Available') echo 'selected'; ?>>Available</option>
-                        <option value="Unavailable" <?php if ($statusmed8_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                    </select>
-
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus1130" class="form-label">09:00 A.M</label>
-                        <select class="form-select" id="inputStatus1130" name="statusmed9_am">
-                            <option value="09:00 A.M" <?php if ($statusmed9_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed9_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                    <label for="inputStatus1130" class="form-label">09:00 A.M</label>
+                        <select class="form-select" id="inputStatus1130" name="statusden9_am">
+                            <option value="09:00 A.M" <?php if ($statusden9_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusden9_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="inputStatus230" class="form-label">10:00 A.M</label>
-                        <select class="form-select" id="inputStatus230" name="statusmed10_am">
-                            <option value="10:00 A.M" <?php if ($statusmed10_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed10_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        <select class="form-select" id="inputStatus230" name="statusden10_am">
+                            <option value="10:00 A.M" <?php if ($statusden10_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusden10_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="inputStatus330" class="form-label">11:00 A.M</label>
-                        <select class="form-select" id="inputStatus330" name="statusmed11_am">
-                            <option value="11:00 A.M" <?php if ($statusmed11_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed11_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">01:00 P.M</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed1_pm">
-                            <option value="01:00 P.M" <?php if ($statusmed1_pm  == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed1_pm  == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">02:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed2_pm">
-                            <option value="02:00 P.M" <?php if ($statusmed2_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed2_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">03:00 P.M.</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed3_pm">
-                            <option value="03:00 P.M." <?php if ($statusmed3_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed3_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus430" class="form-label">04:00 P.M</label>
-                        <select class="form-select" id="inputStatus430" name="statusmed4_pm">
-                            <option value="04:00 P.M" <?php if ($statusmed4_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusmed4_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        <select class="form-select" id="inputStatus330" name="statusden11_am">
+                            <option value="11:00 A.M" <?php if ($statusden11_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusden11_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
 
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button>
-                        <button type="submit" name="submit_statusmedicalgsjhsfri" class="btn btn-light">Update</button>
+                        <button type="submit" name="submit_statusdentalgsjhsshsfri" class="btn btn-light">Update</button>
                     </div>
                 </form>
             </div>

@@ -133,4 +133,70 @@
         }
     }  //for update dental gsjhsshs
 
+
+    if(isset($_POST['submit_statusdentalgsjhsshswed'])) {
+        // Retrieve the submitted form data
+        $status_id = $_POST['status_id'];
+        $statusden9_am = $_POST['statusden9_am'];
+        $statusden10_am = $_POST['statusden10_am'];
+        $statusden11_am  = $_POST['statusden11_am'];
+    
+        // Step 4: Execute the update query
+        $sql = "UPDATE statusdentalgsjhsshswednesday SET statusden9_am='$statusden9_am', statusden10_am='$statusden10_am', statusden11_am='$statusden11_am'
+        WHERE status_id = $status_id";
+    
+        // Execute the query and handle the result
+        if (mysqli_query($conn, $sql)) {
+            // Step 5: Handle the update result
+            echo '<script>alert("Successfully updated!");</script>';
+            echo '<script>window.location.href="../dentalgsjhsshs.php";</script>';
+            exit;
+        } else {
+            echo '<script>alert("Error: ' . mysqli_error($conn) . '");</script>';
+        }
+    }  //for update dental gsjhsshs
+
+    if(isset($_POST['submit_statusdentalgsjhsshsthu'])) {
+        // Retrieve the submitted form data
+        $status_id = $_POST['status_id'];
+        $statusden9_am = $_POST['statusden9_am'];
+        $statusden10_am = $_POST['statusden10_am'];
+        $statusden11_am  = $_POST['statusden11_am'];
+    
+        // Step 4: Execute the update query
+        $sql = "UPDATE statusdentalgsjhsshsthursday SET statusden9_am='$statusden9_am', statusden10_am='$statusden10_am', statusden11_am='$statusden11_am'
+        WHERE status_id = $status_id";
+    
+        // Execute the query and handle the result
+        if (mysqli_query($conn, $sql)) {
+            // Step 5: Handle the update result
+            echo '<script>alert("Successfully updated!");</script>';
+            echo '<script>window.location.href="../dentalgsjhsshs.php";</script>';
+            exit;
+        } else {
+            echo '<script>alert("Error: ' . mysqli_error($conn) . '");</script>';
+        }
+    }  //for update dental gsjhsshs
+
+    if(isset($_POST['submit_statusdentalgsjhsshsfri'])) {
+        // Retrieve the submitted form data
+        $status_id = $_POST['status_id'];
+        $statusden9_am = $_POST['statusden9_am'];
+        $statusden10_am = $_POST['statusden10_am'];
+        $statusden11_am  = $_POST['statusden11_am'];
+    
+        // Step 4: Execute the update query
+        $sql = "UPDATE statusdentalgsjhsshsfriday SET statusden9_am='$statusden9_am', statusden10_am='$statusden10_am', statusden11_am='$statusden11_am'
+        WHERE status_id = $status_id";
+    
+        // Execute the query and handle the result
+        if (mysqli_query($conn, $sql)) {
+            // Step 5: Handle the update result
+            echo '<script>alert("Successfully updated!");</script>';
+            echo '<script>window.location.href="../dentalgsjhsshs.php";</script>';
+            exit;
+        } else {
+            echo '<script>alert("Error: ' . mysqli_error($conn) . '");</script>';
+        }
+    } 
 ?>

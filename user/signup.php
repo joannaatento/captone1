@@ -54,8 +54,8 @@
 							<label class="sr-only" for="signup-email">Role</label>
 							<select id="signup-name" name="role" class="form-control signup-role" required="required">
 								<option value="" selected disabled>Select Role</option>
-								<option value="Student in GS/JHS">Student</option>
-								<option value="Employee in GS/JHS">Employee</option>
+								<option value="Student">Student</option>
+								<option value="Employee">Employee</option>
 							</select>
       					  </div>
 							<div class="email mb-3">

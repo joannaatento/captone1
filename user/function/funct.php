@@ -86,7 +86,7 @@
                     header('Location: ../usershs/healthrecordformshs.php');
                 } elseif ($role == '3') {
                     // Handle role 3
-                    header('Location: ../usercollege/studentandemployeeincollege.php');
+                    header('Location: ../usercollege/healthrecordformcollege.php');
                 } elseif ($role == '4') {
                     // Handle role 4
                     header('Location: ../dentistgsjhsshs/dentistingsjhsshs.php');

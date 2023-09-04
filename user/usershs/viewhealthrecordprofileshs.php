@@ -208,8 +208,8 @@
 							<label></label>
 							<div class="image_container">
 							<br>
-								<img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
-                                <input type="file" name="image" id="image">
+                            <img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Your Image</label>
 							</div>
 						</div>
             <div class="input_wrap">

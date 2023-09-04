@@ -64,7 +64,7 @@ if (mysqli_num_rows($result) > 0) {
   $fullname = $row['fullname'];
   $gradesection = $row['gradesection'];
   $chiefcomplaint = $row['chiefcomplaint'];
-  $treatment = $row['treatment'];
+  $status = $row['status'];
     }
  else {
  } 
@@ -253,12 +253,17 @@ if (mysqli_num_rows($result) > 0) {
                       <div class="col-sm-4">
                           <div class="form-group">
                             <br>
-                              <label for="treatment" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
+                              <label for="status" class="col-sm-4 control-label" style="font-size: 16px">Status</label>
                               <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="treatment " name="treatment" placeholder="Enter Treatment/Medicine" value="<?php echo $row['treatment']; ?>" readonly>
+                                  <input type="text" class="form-control" id="status" name="status" placeholder="Enter Treatment/Medicine" value="<?php echo $row['status']; ?>" readonly>
                               </div>
                           </div>
                       </div>
+                      <div class="form-group">
+				<b>
+                    <span>Date Visited: <?php echo date('Y-m-d', strtotime($row['date'])); ?></span>
+                </b>
+        </div>
                   </div>
                     <?php } ?>
                 </div><!--//app-card-body-->

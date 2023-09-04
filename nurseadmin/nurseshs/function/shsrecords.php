@@ -267,9 +267,9 @@ if(isset($_POST['submit_consultationform'])){ // pag get ng data
     $fullname = $_POST['fullname']; 
     $gradesection = $_POST['gradesection'];
     $chiefcomplaint = $_POST['chiefcomplaint'];
-    $treatment = $_POST['treatment'];
+    $status = $_POST['status'];
 
-    $sql = "INSERT INTO consultationformrecord VALUES ('','$admin_id','$idnumber','$date','$fullname','$gradesection','$chiefcomplaint','$treatment')";
+    $sql = "INSERT INTO consultationformrecord VALUES ('','$admin_id','$idnumber','$date','$fullname','$gradesection','$chiefcomplaint','$status')";
     if(mysqli_query($conn, $sql)){
         // echo "<script>window.history.go(-1);</script>";
         header('location: ../consultationformshs.php');

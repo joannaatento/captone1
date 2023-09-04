@@ -335,9 +335,9 @@
                       <div class="col-sm-4">
                           <div class="form-group">
                             <br>
-                              <label for="treatment" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
+                              <label for="status" class="col-sm-4 control-label" style="font-size: 16px">Status</label>
                               <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="treatment " name="treatment" placeholder="Enter Treatment/Medicine" required>
+                                  <input type="text" class="form-control" id="status " name="status" placeholder="Enter Status" required>
                               </div>
                           </div>
                       </div>
@@ -361,7 +361,7 @@
                   <div class="col-sm-4">
                       <div class="form-group">
                         <br>
-                          <label for="medicine_name" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
+                          <label for="medicine_name" class="col-sm-4 control-label" style="font-size: 16px">Medicine</label>
                           <div class="col-sm-11">
                               <input type="text" class="form-control" id="medicine_name " name="medicine_name" placeholder="Enter Treatment/Medicine" required>
                           </div>
@@ -370,9 +370,9 @@
                   <div class="col-sm-4">
                       <div class="form-group">
                         <br>
-                          <label for="amount" class="col-sm-4 control-label" style="font-size: 16px">Amount</label>
+                          <label for="amount" class="col-sm-4 control-label" style="font-size: 16px">Quantity</label>
                           <div class="col-sm-11">
-                              <input type="text" class="form-control" id="amount " name="quantity" placeholder="Enter Amount" required>
+                              <input type="text" class="form-control" id="amount " name="quantity" placeholder="Enter Quantity" required>
                           </div>
                       </div>
                   </div>

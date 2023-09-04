@@ -28,7 +28,7 @@
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
                                     SUM(role = 'student') AS total_student,
                                     SUM(role = 'employee') AS total_employee
-                                    FROM medicalapp
+                                    FROM medicalappshs
                                     WHERE admin_id = ? AND YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Weekly';
@@ -38,7 +38,7 @@
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
                                     SUM(role = 'student') AS total_student,
                                     SUM(role = 'employee') AS total_employee
-                                    FROM medicalapp
+                                    FROM medicalappshs
                                     WHERE admin_id = ? AND YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Monthly';
@@ -48,7 +48,7 @@
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
                                     SUM(role = 'student') AS total_student,
                                     SUM(role = 'employee') AS total_employee
-                                    FROM medicalapp
+                                    FROM medicalappshs
                                     WHERE admin_id = ? AND YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Yearly';

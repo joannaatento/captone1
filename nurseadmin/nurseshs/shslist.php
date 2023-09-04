@@ -274,7 +274,7 @@
           <th>Number</th>
           <th>Name</th>
           <th>ID Number</th>
-          <th>Age</th>
+          <th>Birthday</th>
           <th>Person to Contact</th>
           <th>Contact Person Number</th>
           <th>Action</th>
@@ -294,7 +294,7 @@
           <td><?php echo $row['healthshs_id']; ?></td>
           <td><?php echo $row['fullname']; ?></td>
           <td><?php echo $row['idnumber']; ?></td>
-          <td><?php echo $row['age']; ?></td>
+          <td><?php echo $row['birthday']; ?></td>
           <td><?php echo $row['notified']; ?></td>
           <td><?php echo $row['contact']; ?></td>
           

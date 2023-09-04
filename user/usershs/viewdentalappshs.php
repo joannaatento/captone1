@@ -206,56 +206,59 @@ if (mysqli_num_rows($result) > 0) {
 					       
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
+					<div class="app-card-body p-4">
 
-                    <?php
-							$sql = "SELECT * FROM dentalapp WHERE idnumber = '$idnumber'";
-							$result = $conn->query($sql);
-    						while($row = $result->fetch_array()){
-						?>
-                        <br>
-				 <div class="row">
-                 <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
-                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
-                        <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your Fullname" value="<?php echo $row['fullname']; ?>" readonly>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="gradecourseyear " class="col-sm-8 control-label">Grade & Section</label>
-                        <input type="text" class="form-control" id="gradecourseyear " name="gradecourseyear " placeholder="If you are an employee, just type Employee" value="<?php echo $row['gradecourseyear']; ?>" readonly>
-                </div>
-            </div>
-      </div>
-      <br>
-            <div class="row">
+<?php
+		$sql = "SELECT * FROM dentalapp WHERE idnumber = '$idnumber'";
+		$result = $conn->query($sql);
+		while($row = $result->fetch_array()){
+	?>
+	<br>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
+	<input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label for="patient_name" class="col-sm-4 control-label">Your name</label>
+	<input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your Fullname" value="<?php echo $row['fullname']; ?>" readonly>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label for="gradecourseyear " class="col-sm-8 control-label">Grade & Section</label>
+	<input type="text" class="form-control" id="gradecourseyear " name="gradecourseyear " placeholder="If you are an employee, just type Employee" value="<?php echo $row['gradecourseyear']; ?>" readonly>
+</div>
+</div>
+</div>
+<br>
+<div class="row">
 
-      
-        <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="service" class="col-sm-8 control-label">Service</label>
-                        <input type="text" class="form-control" id="service" name="service" value="<?php echo $row['service']; ?>" readonly>
-                    </div>
-                            </div>
-            </div>
 
-        <div class="form-group">
-           <b> <span>Schedule: <?php echo $row['date_time']; ?></span></b>
-        </div>
-  
-        <?php } ?>
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
+<div class="col-sm-4">
+<div class="form-group">
+<label for="service" class="col-sm-8 control-label">Service</label>
+	<input type="text" class="form-control" id="service" name="service" value="<?php echo $row['service']; ?>" readonly>
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<b>
+<span>Schedule: <?php echo date('Y-m-d', strtotime($row['date_time'])); ?>&nbsp;&nbsp;
+<?php echo date('h:i A', strtotime($row['sched_time'])); ?></span>
+</b>
+</div>
+
+<?php } ?>
+</div><!--//app-card-body-->
+</div>			    
+</div>
+</div>
+</div>  		
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

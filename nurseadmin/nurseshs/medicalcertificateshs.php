@@ -115,7 +115,7 @@
                 <li class="submenu-item"><a class="submenu-link" href="totaldentalappointments.php">Total Dental Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalphysicianappointments.php">Total Physician Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalvisitors.php">Total Clinic Visitors</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="totalmedicines.php">Total Medicine Cosumes</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="totalmedicines.php">Total Medicine Consumed</a></li>
             </ul>
         </div>
     </li>

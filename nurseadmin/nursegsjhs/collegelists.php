@@ -231,7 +231,7 @@
         <tr>
           <th>Name</th>
           <th>ID Number</th>
-          <th>Course & Year</th>
+          <th>Birthday</th>
           <th>Person to Contact</th>
           <th>Contact Person Number</th>
           <th>Action</th>
@@ -249,7 +249,7 @@
         <tr>
           <td><?php echo $row['fullname']; ?></td>
           <td><?php echo $row['idnumber']; ?></td>
-          <td><?php echo $row['courseyear']; ?></td>
+          <td><?php echo $row['birthday']; ?></td>
           <td><?php echo $row['contactemer']; ?></td>
           <td><?php echo $row['contactno']; ?></td>
           

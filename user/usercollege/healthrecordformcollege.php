@@ -46,7 +46,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyle.css">
+	<link rel="stylesheet" href="assets/formstyles.css">
 
 </head> 
 
@@ -202,31 +202,14 @@
                 <label for="image">Upload Image</label>
                 <input type="file" name="image" id="image" required>
 			</div>
+      <div class="input_wrap">
+                <label for="fullname">ID Number</label>
+                <input name="idnumber" type="text" value="<?= $idnumber; ?>" >
+            </div>
             <div class="input_wrap">
                 <label for="fullname">Full Name</label>
                 <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" >
             </div>
-            <div class="input_wrap">
-                <label for="courseyear">Course & Year</label>
-                <input id="courseyear" name="courseyear" type="text">
-            </div>
-        <div class="input_wrap">
-                <label for="fullname">Role</label>
-                <select class="form-select" name="role">
-                    <option value="" selected>Select Role</option>
-                    <option value="Student in College">Student in College</option>
-                    <option value="Employee in College">Employee in College</option>
-                </select>
-        </div>
-       
-                            </div>
-                            </div>
-        <div class="input_form">
-            <div class="input_wrap">
-                <label for="fullname">ID Number</label>
-                <input name="idnumber" type="text" value="<?= $idnumber; ?>" >
-            </div>
-
             <div class="input_wrap">
                 <label for="fullname">Gender</label>
                 <select class="form-select" name="gender">
@@ -235,6 +218,9 @@
                     <option value="Male">Male</option>
                 </select>
             </div>
+        </div>
+    </div>
+        <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">Address</label>
                 <input name="address" id ="address" type="text">
@@ -244,30 +230,37 @@
                             
      <div class="input_form">
      <div class="input_wrap">
-    <label for="pcontact" style="font-size: 16px">Phone Number</label>
-      <input type="text" class="form-control contactInput" name="pcontact" placeholder="+63">
-      <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
-    </div>
-
+     <label for="personal_contact">Personal Contact Number</label>
+    <input id="personalContactInput" name="pcontact" type="text" placeholder="+63" class="contactInput">
+    <p id="personalContactError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+</div>
 
 <script>
-  function validateForm() {
-    var contactInputs = document.getElementsByClassName("contactInput");
-    var isValid = true;
+    const personalContactInput = document.getElementById('personalContactInput');
+    const personalContactError = document.getElementById('personalContactError');
 
-    for (var i = 0; i < contactInputs.length; i++) {
-      var contactInput = contactInputs[i].value;
+    personalContactInput.addEventListener('input', function() {
+        let inputValue = personalContactInput.value.trim();
 
-      if (!contactInput.startsWith("+63")) {
-        isValid = false;
-        document.getElementsByClassName("errorMessage")[i].style.display = "block";
-      } else {
-        document.getElementsByClassName("errorMessage")[i].style.display = "none";
-      }
-    }
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
 
-    return isValid;
-  }
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            personalContactInput.value = inputValue;
+            personalContactError.style.display = 'none'; // Hide the error message
+        } else {
+            personalContactInput.value = ''; // Clear the input if it's invalid
+            personalContactError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
 </script>
    
         <div class="input_wrap">
@@ -314,38 +307,40 @@
             <label for="fullname">Contact in case of emergency</label>
             <input name="contactemer" id="contactemer" type="text">
         </div>
-
-  <div class="input_wrap">
-            <label for="fullname">Contact Numbers</label>
-            <input type="text" class="form-control contactInput" name="contactno" placeholder="+63">
-      <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
-    </div>
-
+        
+   <div class="input_wrap">
+   <label for="personal_contact">Contact Number</label>
+    <input id="ContactEmerInput" name="contactno" type="text" placeholder="+63" class="contactInput">
+    <p id="ContactEmerError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+</div>
 
 <script>
-  function validateForm() {
-    var contactInputs = document.getElementsByClassName("contactInput");
-    var isValid = true;
+    const ContactEmerInput = document.getElementById('ContactEmerInput');
+    const ContactEmerError = document.getElementById('ContactEmerError');
 
-    for (var i = 0; i < contactInputs.length; i++) {
-      var contactInput = contactInputs[i].value;
+        ContactEmerInput.addEventListener('input', function() {
+        let inputValue = ContactEmerInput.value.trim();
 
-      if (!contactInput.startsWith("+63")) {
-        isValid = false;
-        document.getElementsByClassName("errorMessage")[i].style.display = "block";
-      } else {
-        document.getElementsByClassName("errorMessage")[i].style.display = "none";
-      }
-    }
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
 
-    return isValid;
-  }
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            ContactEmerInput.value = inputValue;
+            ContactEmerError.style.display = 'none'; // Hide the error message
+        } else {
+            ContactEmerInput.value = ''; // Clear the input if it's invalid
+            ContactEmerError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
 </script>
-        <div class="input_wrap">
-            <label for="fullname">Address</label>
-            <input name="address2" id="con" type="text">
-        </div>
-
         <div class="input_wrap">
             <label for="fullname">Relation to student/employee</label>
             <input name="relation" id="con" type="text">
@@ -359,10 +354,40 @@
         </div>
 
   <div class="input_wrap">
-            <label for="fullname">Contact Numbers</label>
-            <input name="contactno2" id="con" type="text" placeholder="+63">
-        </div>
-        </div>
+   <label for="personal_contact">Contact Number</label>
+    <input id="ContactEmertwoInput" name="contactno2" type="text" placeholder="+63" class="contactInput">
+    <p id="ContactEmertwoError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
+</div>
+
+<script>
+    const ContactEmertwoInput = document.getElementById('ContactEmertwoInput');
+    const ContactEmertwoError = document.getElementById('ContactEmertwoError');
+
+        ContactEmertwoInput.addEventListener('input', function() {
+        let inputValue = ContactEmertwoInput.value.trim();
+
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
+
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            ContactEmertwoInput.value = inputValue;
+            ContactEmertwoError.style.display = 'none'; // Hide the error message
+        } else {
+            ContactEmertwoInput.value = ''; // Clear the input if it's invalid
+            ContactEmertwoError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
+</script>
+  </div>
+
 
         <div class="input_form">
         <div class="input_wrap">
@@ -378,32 +403,35 @@
 
    <div>
     <br>
-     <b><p class="title">A. IMMUNIZATION</p></b>
-    </div>
+    <div>
+    <b><p class="title">A. IMMUNIZATION</p></b>
+</div>
+<div>
     <b><p class="vaccine">VACCINE</p></b>
     <div class="input_form">
-   <div class="input_wrap">
-            <label for="fullname">Tetanus & Diphtheria (Td) of Tetanus toxoid</label>
-            <input name="td" id="vaccine" type="text" placeholder="Write WHEN and WHERE adminitered">
-        </div>
-
-  <div class="input_wrap">
-            <label for="fullname">Measles, Mumps, Rubella (MMR) </label>
-            <input name="mmr" id="vaccine" type="text" placeholder="Write WHEN and WHERE adminitered">
-        </div>
-        </div>
-
-        <div class="input_form">
         <div class="input_wrap">
-            <label for="fullname">Hepatitis B</label>
-            <input name="hepab" id="vaccine" type="text" placeholder="Write WHEN and WHERE adminitered">
+            <label for="td_vaccine">Tetanus & Diphtheria (Td) of Tetanus toxoid</label>
+            <input name="td" id="td_vaccine" type="text" placeholder="Write WHEN and WHERE administered">
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Varicella</label>
-            <input name="varicella" id="vaccine" type="text" placeholder="Write WHEN and WHERE adminitered">
+            <label for="mmr_vaccine">Measles, Mumps, Rubella (MMR)</label>
+            <input name="mmr" id="mmr_vaccine" type="text" placeholder="Write WHEN and WHERE administered">
         </div>
-   </div>
+    </div>
+
+    <div class="input_form">
+        <div class="input_wrap">
+            <label for="hepab_vaccine">Hepatitis B</label>
+            <input name="hepab" id="hepab_vaccine" type="text" placeholder="Write WHEN and WHERE administered">
+        </div>
+
+        <div class="input_wrap">
+            <label for="varicella_vaccine">Varicella</label>
+            <input name="varicella" id="varicella_vaccine" type="text" placeholder="Write WHEN and WHERE administered">
+        </div>
+    </div>
+</div>
 
    <div>
     <br>

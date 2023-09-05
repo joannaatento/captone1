@@ -47,10 +47,8 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $image = $row['image'];
-  $fullname = $row['fullname'];
-  $courseyear = $row['courseyear'];
-  $role = $row['role'];
   $idnumber = $row['idnumber'];
+  $fullname = $row['fullname'];
   $gender = $row['gender'];
   $address = $row ['address'];
   $pcontact = $row ['pcontact'];
@@ -62,7 +60,6 @@ if (mysqli_num_rows($result) > 0) {
   $mother = $row['occupation2'];
   $contactemer= $row['contactemer'];
   $contactno = $row['contactno'];
-  $address2 = $row['address2'];
   $relation = $row['relation'];
   $referral = $row['referral'];
   $contactno2 = $row['contactno2'];
@@ -146,7 +143,6 @@ if (mysqli_num_rows($result) > 0) {
   $nosurgical =$row['nosurgical'];
   $specialmed =$row['specialmed'];
   $otherrelevant =$row['otherrelevant'];
-
 
     }
  else {
@@ -366,6 +362,7 @@ if (mysqli_num_rows($result) > 0) {
                    
 					<p class="title_">Personal Information</p>
 					
+					<form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data">
     
                     <div class="align_form">
 								<div class="input_form">
@@ -373,47 +370,34 @@ if (mysqli_num_rows($result) > 0) {
 							<label></label>
 							<div class="image_container">
 							<br>
-								<img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
+              <img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Your Image</label>
-							</div>
+                </div>
 						</div>
-                        </div>
-        <div class="input_form">
-
-            <div class="input_wrap">
-                <label for="fullname">Full Name</label>
-                <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" >
-            </div>
-            <div class="input_wrap">
-                <label for="courseyear">Course & Year</label>
-                <input id="courseyear" name="courseyear" type="text" value="<?=$row['courseyear'];?>" readonly>
-            </div>
-        <div class="input_wrap">
-                <label for="fullname">Role</label>
-                <select class="form-select" name="role">
-                <option disabled selected><?= $row['role'];?></option>
-                </select>
-        </div>
-       
-                            </div>
-                            </div>
-                            <br><br>
-        <div class="input_form">
-            
             <div class="input_wrap">
                 <label for="fullname">ID Number</label>
                 <input name="idnumber" type="text" value="<?=$row['idnumber'];?>" readonly>
             </div>
 
             <div class="input_wrap">
+                <label for="fullname">Full Name</label>
+                <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" >
+            </div>
+            
+            <div class="input_wrap">
                 <label for="fullname">Gender</label>
                 <select class="form-select" name="gender">
                     <option disabled selected><?= $row['gender'];?></option>
                 </select>
             </div>
+       
+                            </div>
+                            </div>
+                            <br><br>
+        <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">Address</label>
-                <input name="address" id ="address1" type="text" value="<?=$row['address'];?>" readonly>
+                <input name="address" id ="address" type="text" value="<?=$row['address'];?>" readonly>
             </div>
 
      </div>
@@ -426,7 +410,7 @@ if (mysqli_num_rows($result) > 0) {
    
         <div class="input_wrap">
             <label for="fullname">Nationality</label>
-            <input name="nationality" id="nationality1" type="text" value="<?=$row['nationality'];?>" readonly>
+            <input name="nationality" id="nationality" type="text" value="<?=$row['nationality'];?>" readonly>
         </div>
 
         <div class="input_wrap">
@@ -436,7 +420,7 @@ if (mysqli_num_rows($result) > 0) {
 
         <div class="input_wrap">
             <label for="fullname">Religion</label>
-            <input name="religion" id="religion1" type="text" value="<?=$row['religion'];?>" readonly>
+            <input name="religion" id="religion" type="text" value="<?=$row['religion'];?>" readonly>
         </div>
       </div>
       <div class="input_form">
@@ -473,12 +457,6 @@ if (mysqli_num_rows($result) > 0) {
             <label for="fullname">Contact Numbers</label>
             <input name="contactno" id="con" type="text" value="<?=$row['contactno'];?>" readonly>
         </div>
-
-        <div class="input_wrap">
-            <label for="fullname">Address</label>
-            <input name="address2" id="con" type="text" value="<?=$row['address'];?>" readonly>
-        </div>
-
         <div class="input_wrap">
             <label for="fullname">Relation to student/employee</label>
             <input name="relation" id="con" type="text" value="<?=$row['relation'];?>" readonly>
@@ -641,9 +619,11 @@ if (mysqli_num_rows($result) > 0) {
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationheartdis" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationheartdis'];?>" readonly>
+    <input name="relationheartdis" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationheartdis'];?>" readonly
+>
   </div>
 </div>
+
 
 <div class="input_form">
     </div>
@@ -661,9 +641,11 @@ if (mysqli_num_rows($result) > 0) {
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationbp" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationbp'];?>" readonly>
+    <input name="relationbp" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationbp'];?>" readonly
+>
   </div>
 </div>
+
 
 <div class="input_form">
     </div>
@@ -927,6 +909,9 @@ if (mysqli_num_rows($result) > 0) {
             <input name="vision_defect" value="vision_defect" type="checkbox" id="vision_defect" value="<?= $row['vision_defect'];?>" <?php if ($row['vision_defect']) echo "checked"; ?>>
             <label class="label" for="vision_defect" style="font-size: 12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VISION DEFECT</label>
         </div>
+        
+
+       
     </div>
     <div>
         <br>
@@ -974,6 +959,7 @@ if (mysqli_num_rows($result) > 0) {
             <input name="otherrelevant" type="text" value="<?=$row['otherrelevant'];?>" readonly>
         </div>
     </div>
+
 
 				    </div><!--//app-card-body-->
 				</div>			    

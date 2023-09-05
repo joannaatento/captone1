@@ -245,30 +245,15 @@
                                 <input type="file" name="image" id="image">
 							</div>
 						</div>
+                        <div class="input_wrap">
+                <label for="fullname">ID Number</label>
+                <input name="idnumber" type="text" value="<?=$row['idnumber'];?>">
+            </div>
             <div class="input_wrap">
                 <label for="fullname">Full Name</label>
                 <input id="fullname" name="fullname" type="text" value="<?=$row['fullname'];?>" >
             </div>
-            <div class="input_wrap">
-                <label for="fullname">Course & Year</label>
-                <input id="fullname" name="courseyear" type="text" value="<?=$row['courseyear'];?>" >
-            </div>
-            <div class="input_wrap">
-    <label for="fullname">Role</label>
-    <select class="form-select" name="role">
-        <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
-        <option value="Student in SHS" <?php if($row['role'] == "Student in SHS") echo "selected"; ?>>Student in SHS</option>
-        <option value="Employee in SHS" <?php if($row['role'] == "Employee in SHS") echo "selected"; ?>>Employee in SHS</option>
-    </select>
-</div>
        
-                            </div>
-                            </div><br><br>
-        <div class="input_form">
-            <div class="input_wrap">
-                <label for="fullname">ID Number</label>
-                <input name="idnumber" type="text" value="<?=$row['idnumber'];?>">
-            </div>
             <div class="input_wrap">
                 <label for="fullname">Gender</label>
                 <select class="form-select" name="gender">
@@ -277,6 +262,9 @@
                     <option value="Male" <?php if($row['gender'] == "Male") echo "selected"; ?>>Male</option>
                 </select>
             </div>
+                            </div>
+                            </div><br><br>
+        <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">Address</label>
                 <input name="address" id ="address1" type="text" value="<?=$row['address'];?>">
@@ -336,11 +324,6 @@
   <div class="input_wrap">
             <label for="fullname">Contact Numbers</label>
             <input name="contactno" id="con" type="text" value="<?=$row['contactno'];?>">
-        </div>
-
-        <div class="input_wrap">
-            <label for="fullname">Address</label>
-            <input name="address2" id="con" type="text" value="<?=$row['address2'];?>">
         </div>
 
         <div class="input_wrap">

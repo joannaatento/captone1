@@ -45,7 +45,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyle.css">
+    <link rel="stylesheet" href="assets/formstyles.css">
 
 </head> 
 
@@ -196,52 +196,37 @@
 						?>
 					<p class="title_">Personal Information</p>
 					
-					<form class="form-horizontal mt-4" action="function/funct.php" method="POST" enctype="multipart/form-data">
-    
                     <div class="align_form">
 								<div class="input_form">
 								<div class="input_wrap">
 							<label></label>
 							<div class="image_container">
 							<br>
-								<img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
+              <img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Your Image</label>
-							</div>
+                </div>
 						</div>
-                        </div>
-        <div class="input_form">
-
-            <div class="input_wrap">
-                <label for="fullname">Full Name</label>
-                <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" >
-            </div>
-            <div class="input_wrap">
-                <label for="courseyear">Course & Year</label>
-                <input id="courseyear" name="courseyear" type="text" value="<?=$row['courseyear'];?>" readonly>
-            </div>
-        <div class="input_wrap">
-                <label for="fullname">Role</label>
-                <select class="form-select" name="role">
-                <option disabled selected><?= $row['role'];?></option>
-                </select>
-        </div>
-       
-                            </div>
-                            </div>
-                            <br><br>
-        <div class="input_form">
-            
             <div class="input_wrap">
                 <label for="fullname">ID Number</label>
                 <input name="idnumber" type="text" value="<?=$row['idnumber'];?>" readonly>
             </div>
 
             <div class="input_wrap">
-                <label for="fullname">Gender</label>
-                <select class="form-select" name="gender">
-                    <option disabled selected><?= $row['gender'];?></option>
-                </select>
+                <label for="fullname">Full Name</label>
+                <input id="fullname" name="fullname" type="text" value="<?= $fullname; ?>" >
             </div>
+            <div class="input_wrap">
+        <label for="fullname">Gender</label>
+        <select class="form-select" name="gender">
+        <option disabled selected><?= $row['gender'];?></option>
+        </select>
+    </div>
+ </div>
+       
+                            </div>
+                     
+                            <br><br>
+        <div class="input_form">
             <div class="input_wrap">
                 <label for="fullname">Address</label>
                 <input name="address" id ="address" type="text" value="<?=$row['address'];?>" readonly>

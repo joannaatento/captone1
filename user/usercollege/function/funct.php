@@ -5,10 +5,8 @@
     if(isset($_POST['submit_data'])){ // pag get ng data 
         $user_id = $_POST['user_id'];
         $image = $_FILES['image']['name'];
-        $fullname = trim(mysqli_real_escape_string($conn, $_POST['fullname']));
-        $courseyear= trim(mysqli_real_escape_string($conn, $_POST['courseyear']));
-        $role = isset($_POST['role']) ? trim(mysqli_real_escape_string($conn, $_POST['role'])) : "";
         $idnumber = trim(mysqli_real_escape_string($conn, $_POST['idnumber']));
+        $fullname = trim(mysqli_real_escape_string($conn, $_POST['fullname']));
         $gender = isset($_POST['gender']) ? trim(mysqli_real_escape_string($conn, $_POST['gender'])) : "";
         $address = trim(mysqli_real_escape_string($conn, $_POST['address']));
         $pcontact = trim(mysqli_real_escape_string($conn, $_POST['pcontact']));
@@ -21,7 +19,6 @@
         $occupation2 = trim(mysqli_real_escape_string($conn, $_POST['occupation2']));
         $contactemer = trim(mysqli_real_escape_string($conn, $_POST['contactemer']));
         $contactno = trim(mysqli_real_escape_string($conn, $_POST['contactno']));
-        $address2 = trim(mysqli_real_escape_string($conn, $_POST['address2']));
         $relation = trim(mysqli_real_escape_string($conn, $_POST['relation']));
         $referral = trim(mysqli_real_escape_string($conn, $_POST['referral']));
         $contactno2 = trim(mysqli_real_escape_string($conn, $_POST['contactno2']));
@@ -110,9 +107,9 @@
         $allergicdrugs = trim(mysqli_real_escape_string($conn, $_POST['allergicdrugs']));
         $otherrelevant = trim(mysqli_real_escape_string($conn, $_POST['otherrelevant']));
 
-        $sql = "INSERT INTO healthrecordformcollege VALUES ('','$user_id','$image','$fullname','$courseyear','$role','$idnumber','$gender','$address',
+        $sql = "INSERT INTO healthrecordformcollege VALUES ('','$user_id','$image','$idnumber','$fullname','$gender','$address',
         '$pcontact','$nationality','$birthday','$religion','$fguardian','$occupation1','$mother','$occupation2','$contactemer','$contactno',
-        '$address2','$relation','$referral','$contactno2','$physiciannumcall','$addresshospital','$td','$mmr','$hepab', '$varicella','$yesasthma',
+        '$relation','$referral','$contactno2','$physiciannumcall','$addresshospital','$td','$mmr','$hepab', '$varicella','$yesasthma',
         '$noasthma','$relationasthma','$yesbleeding','$nobleeding','$relationbleeding','$yescancer','$nocancer','$relationcancer','$yesdiabetes',
         '$nodiabetes','$relationdiabetes','$yesheartdis','$noheartdis','$relationheartdis','$yesbp','$nobp','$relationbp',
         '$yeskidney','$nokidney','$relationkidney','$yesmental','$nomental','$relationmental','$yesobese','$noobese','$relationobese',
@@ -138,4 +135,5 @@
     }
 }
   ?>
+
   

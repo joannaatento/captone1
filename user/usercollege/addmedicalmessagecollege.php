@@ -44,7 +44,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/styless.css">
+	<link rel="stylesheet" href="assets/style.css">
 
    
 </style>
@@ -188,11 +188,10 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
-                    <b><p>Note: We will accommodate 1 to 5 students/employees per year level. Only one (1) student/employee will message to have a medical request scheduling appointment.</p></b>
-
-<form class="form-horizontal mt-4" method="post" action="function/functions.php">
+                    <b><p>Please wait for a message for approval of your medical request appointment.</b></p>
+<form class="form-horizontal mt-4" method="post" action="function/functions.php" onsubmit="return validateForm()">
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="form-group">
       <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 ID Number</label>
       <div class="col-sm-12">
@@ -201,7 +200,7 @@
     </div>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="form-group">
       <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 Fullname</label>
       <div class="col-sm-12">
@@ -210,358 +209,508 @@
     </div>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="form-group">
-      <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter Grade & Section/Course & Year">
+        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter Grade & Section">
       </div>
     </div>
   </div>
-</div>
-<br>
 
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 2 ID Number</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-    <div class="form-group">
-      <label for="gradecourseyear2" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear2" name="gradecourseyear2" placeholder="Enter Grade & Section/Course & Year">
-      </div>
+  <div class="col-sm-3">
+  <div class="form-group">
+    <label for="phoneno" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
+    <div class="col-sm-12">
+      <input id="personalContactInput" name="phoneno" type="text" placeholder="+63" class="form-control contactInput">
+      <p id="personalContactError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
     </div>
   </div>
 </div>
 
-<br>
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 ID Number</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 Fullname</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-    <div class="form-group">
-      <label for="gradecourseyear3" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear3" name="gradecourseyear3" placeholder="Enter Grade & Section/Course & Year">
-      </div>
-    </div>
-  </div>
+<script>
+    const personalContactInput = document.getElementById('personalContactInput');
+    const personalContactError = document.getElementById('personalContactError');
+
+    personalContactInput.addEventListener('input', function() {
+        let inputValue = personalContactInput.value.trim();
+
+        // Ensure that the input always starts with "+63"
+        if (!inputValue.startsWith('+63')) {
+            inputValue = '+63' + inputValue;
+        }
+
+        // Remove any extra characters beyond the maximum length
+        if (inputValue.length > 13) {
+            inputValue = inputValue.slice(0, 13);
+        }
+
+        // Check if the input is valid
+        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
+            personalContactInput.value = inputValue;
+            personalContactError.style.display = 'none'; // Hide the error message
+        } else {
+            personalContactInput.value = ''; // Clear the input if it's invalid
+            personalContactError.style.display = 'block'; // Show the error message for invalid input
+        }
+    });
+</script>
 </div>
 
 <br>
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 4 ID Number</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-    <div class="form-group">
-      <label for="gradecourseyear4" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear4" name="gradecourseyear4" placeholder="Enter Grade & Section/Course & Year">
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<div class="row">
-<div class="col-sm-4">
-        <div class="form-group">
-            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 5 ID Number</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="idnumber" name="idnumber5" placeholder="Enter ID number">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="name" name="name5" placeholder="Enter Fullname">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-    <div class="form-group">
-      <label for="gradecourseyear5" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear5" name="gradecourseyear5" placeholder="Enter Grade & Section/Course & Year">
-      </div>
-    </div>
-  </div>
-</div>
 
 <br>
 <div class="row">
-    <div class="col-sm-4">
+
+<div class="col-sm-3">
+    <div class="form-group">
+        <label for="datetime" class="col-sm-12 control-label" style="font-size: 16px">Schedule</label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control no-color-change" id="selected-date" name="date_time" placeholder="Choose Date in the Calendar" readonly>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-3">
+    <div class="form-group">
+        <label for="newInput" class="col-sm-12 control-label" style="font-size: 16px">Time</label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control no-color-change" id="sched_time" name="sched_time" placeholder="Select Time" readonly>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="col-sm-3">
         <div class="form-group">
-            <label for="c_enrolled" class="col-sm-12 control-label" style="font-size: 16px">For Student</label>
+            <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
             <div class="col-sm-12">
-                <select id="c_enrolled" name="c_enrolled" class="form-control">
-                <option value="">Select Level of Education</option>
-                <option value="Grade School & Junior High School">Grade School & Junior High School</option>
-                <option value="Senior High School">Senior High School</option>
-                <option value="College">College</option>
+                <select id="role" name="role" class="form-control">
+                    <option value="">Select Role</option>
+                    <option value="Student in College">Student</option>
+                    <option value="Employee in College">Employee</option>
                 </select>
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
+
+
+    <div class="col-sm-3">
         <div class="form-group">
-            <label for="fullname" style="col-sm-12 font-size: 16px">For Employee</label>
-            <div class="col-sm-12">
-            <select id="c_employee" name="c_employee" class="form-control">
-                <option value="">--Select--</option>
-                <option value="Employee in GS and JHS">Employee in GS and JHS</option>
-                <option value="Employee in SHS">Employee in Senior High School</option>
-                <option value="Employee in College">Employee in College</option>
-            </select>
-        </div>
-    </div>
-</div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="onoff" class="col-sm-12 control-label" style="font-size: 16px">On-campus Activity or Off-campus Activity</label>
+            <label for="onoff" class="col-sm-12 control-label" style="font-size: 16px">On-campus/Off-campus Activity</label>
             <div class="col-sm-12">
                 <select id="onoff" name="onoff" class="form-control" required>
-                <option value="">Select</option>
-                <option value="On-campus Activity">On-campus Activity</option>
-                <option value="Off-campus Activity">Off-campus Activity</option>
+                    <option value="">Select</option>
+                    <option value="On-campus Activity">On-campus Activity</option>
+                    <option value="Off-campus Activity">Off-campus Activity</option>
                 </select>
             </div>
         </div>
     </div>
 </div>
+
 <br><br>
 
-<div class="container">
-  <div class="text-box">
-    <center>
-      <p>Available Day and Time <b>IN GS and JHS</b></p>
-    </center>
+<?php
+    class Calendar {
+  
 
+             //Constructor
+             
+            public function __construct(){     
+                $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
+            }
+             
+            // PROPERTY
+            private $dayLabels = array("Mon","Tue","Wed","Thu","Fri","Sat","Sun");
+             
+            private $currentYear=0;
+             
+            private $currentMonth=0;
+             
+            private $currentDay=0;
+             
+            private $currentDate=null;
+             
+            private $daysInMonth=0;
+             
+            private $naviHref= null;
+             
+          //PUBLIC 
+                
+            // print out the calendar
+            
+            public function show() {
+                $year  = null;
+                 
+                $month = null;
+                 
+                if(null==$year&&isset($_GET['year'])){
+         
+                    $year = $_GET['year'];
+                 
+                }else if(null==$year){
+         
+                    $year = date("Y",time());  
+                 
+                }          
+                 
+                if(null==$month&&isset($_GET['month'])){
+         
+                    $month = $_GET['month'];
+                 
+                }else if(null==$month){
+         
+                    $month = date("m",time());
+                 
+                }                  
+                 
+                $this->currentYear=$year;
+                 
+                $this->currentMonth=$month;
+                 
+                $this->daysInMonth=$this->_daysInMonth($month,$year);  
+                 
+                $content='<div id="calendar">'.
+                                '<div class="box">'.
+                                $this->_createNavi().
+                                '</div>'.
+                                '<div class="box-content">'.
+                                        '<ul class="label">'.$this->_createLabels().'</ul>';   
+                                        $content.='<div class="clear"></div>';     
+                                        $content.='<ul class="dates">';    
+                                         
+                                        $weeksInMonth = $this->_weeksInMonth($month,$year);
+                                        // Create weeks in a month
+                                        for( $i=0; $i<$weeksInMonth; $i++ ){
+                                             
+                                            //Create days in a week
+                                            for($j=1;$j<=7;$j++){
+                                                $content.=$this->_showDay($i*7+$j);
+                                            }
+                                        }
+                                         
+                                        $content.='</ul>';
+                                         
+                                        $content.='<div class="clear"></div>';     
+                     
+                                $content.='</div>';
+                         
+                $content.='</div>';
+                return $content;   
+            }
+             
+            //PRIVATE 
+            //create the li element for ul
+            
+            private function _showDay($cellNumber) {
+                if ($this->currentDay == 0) {
+                    $firstDayOfTheWeek = date('N', strtotime($this->currentYear . '-' . $this->currentMonth . '-01'));
+            
+                    if (intval($cellNumber) == intval($firstDayOfTheWeek)) {
+                        $this->currentDay = 1;
+                    }
+                }
+            
+                if (($this->currentDay != 0) && ($this->currentDay <= $this->daysInMonth)) {
+                    $this->currentDate = date('Y-m-d', strtotime($this->currentYear . '-' . $this->currentMonth . '-' . ($this->currentDay)));
+                    $cellContent = $this->currentDay;
+            
+                    // Add data attributes for year and month
+                    $dataYear = $this->currentYear;
+                    $dataMonth = $this->currentMonth;
+                    $this->currentDay++;
+                } else {
+                    $this->currentDate = null;
+                    $cellContent = null;
+                    $dataYear = null;
+                    $dataMonth = null;
+                }
+            
+                return '<li id="li-' . $this->currentDate . '" class="' . ($cellNumber % 7 == 1 ? ' start ' : ($cellNumber % 7 == 0 ? ' end ' : ' ')) .
+                    ($cellContent == null ? 'mask' : '') . '" data-year="' . $dataYear . '" data-month="' . $dataMonth . '">' . $cellContent . '</li>';
+            }
+             
+            
+            // create navigation
+            
+            private function _createNavi(){
+                 
+                $nextMonth = $this->currentMonth==12?1:intval($this->currentMonth)+1;
+                 
+                $nextYear = $this->currentMonth==12?intval($this->currentYear)+1:$this->currentYear;
+                 
+                $preMonth = $this->currentMonth==1?12:intval($this->currentMonth)-1;
+                 
+                $preYear = $this->currentMonth==1?intval($this->currentYear)-1:$this->currentYear;
+                 
+                return
+                    '<div class="header">'.
+                        '<a class="prev" href="'.$this->naviHref.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Prev</a>'.
+                            '<span class="title">'.date('Y M',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
+                        '<a class="next" href="'.$this->naviHref.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
+                    '</div>';
+            }
+                 
+            
+            //create calendar week labels
+            
+            private function _createLabels(){  
+                         
+                $content='';
+                 
+                foreach($this->dayLabels as $index=>$label){
+                     
+                    $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
+         
+                }
+                 
+                return $content;
+            }
+             
+             
+             
+            
+            //calculate number of weeks in a particular month
+            
+            private function _weeksInMonth($month=null,$year=null){
+                 
+                if( null==($year) ) {
+                    $year =  date("Y",time()); 
+                }
+                 
+                if(null==($month)) {
+                    $month = date("m",time());
+                }
+                 
+                // find number of days in this month
+                $daysInMonths = $this->_daysInMonth($month,$year);
+                 
+                $numOfweeks = ($daysInMonths%7==0?0:1) + intval($daysInMonths/7);
+                 
+                $monthEndingDay= date('N',strtotime($year.'-'.$month.'-'.$daysInMonths));
+                 
+                $monthStartDay = date('N',strtotime($year.'-'.$month.'-01'));
+                 
+                if($monthEndingDay<$monthStartDay){
+                     
+                    $numOfweeks++;
+                 
+                }
+                 
+                return $numOfweeks;
+            }
+         
+            //calculate number of days in a particular month
+            
+            private function _daysInMonth($month=null,$year=null){
+                 
+                if(null==($year))
+                    $year =  date("Y",time()); 
+         
+                if(null==($month))
+                    $month = date("m",time());
+                     
+                return date('t',strtotime($year.'-'.$month.'-01'));
+            }
+             
+        
+
+        // Add a method to generate the calendar
+        public function generateCalendar() {
+            $year = $this->currentYear;
+            $month = $this->currentMonth;
+            
+            $calendarHTML = $this->show(); // Generate the calendar HTML
+            
+            echo $calendarHTML;
+        }
+    }
+
+    // Create an instance of the Calendar class
+    $calendar = new Calendar();
+    ?>
+
+
+    <div id="calendar-container">
+        <?php
+        // Generate and display the calendar
+        $calendar->generateCalendar();
+        ?>
+    </div>
+    <br>
     <?php
-    $sql1 = "SELECT * FROM statusmedicalgsjhs";
+    $sql1 = "SELECT * FROM statusmedicalcollegemonday";
     $result1 = mysqli_query($conn, $sql1);
 
     if (mysqli_num_rows($result1)) {
         $row1 = $result1->fetch_assoc();
 
-        $statusmedmonam_1 = $row1['statusmedmonam_1']; 
-        $statusmedtueam_2 = $row1['statusmedtueam_2']; 
-        $statusmedwedam_3 = $row1['statusmedwedam_3']; 
-        $statusmedthuam_4 = $row1['statusmedthuam_4']; 
-        $statusmedfriam_5 = $row1['statusmedfriam_5']; 
-        $statusmedmonpm_6 = $row1['statusmedmonpm_6']; 
-        $statusmedtuepm_7 = $row1['statusmedtuepm_7']; 
-        $statusmedwedpm_8 = $row1['statusmedwedpm_8']; 
-        $statusmedthupm_9 = $row1['statusmedthupm_9']; 
-        $statusmedfripm_10 = $row1['statusmedfripm_10']; 
+        $statusmed8_am = $row1['statusmed8_am'];
+        $statusmed9_am = $row1['statusmed9_am'];
+        $statusmed10_am = $row1['statusmed10_am'];
+        $statusmed11_am = $row1['statusmed11_am'];
+        $statusmed1_pm = $row1['statusmed1_pm'];
+        $statusmed2_pm = $row1['statusmed2_pm'];
+        $statusmed3_pm = $row1['statusmed3_pm'];
+        $statusmed4_pm = $row1['statusmed4_pm'];
     }
     ?>
-    <p>
-    <b><p>Morning</p></b>
-      <div class="<?php echo ($statusmedmonam_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonam_1; ?></div>
-      Monday - 8:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statusmedtueam_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtueam_2; ?></div>
-      Tuesday - 8:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statusmedwedam_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedam_3; ?></div>
-      Wednesday - 8:00 A.M - 11:00 A.M.
-      <br><br>
-      <div class="<?php echo ($statusmedthuam_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthuam_4; ?></div>
-      Thursday- 8:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statusmedfriam_5  == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfriam_5; ?></div>
-      Friday- 8:00 A.M - 11:00 A.M.
-<br><br>
-<b><p>Afternoon</b></p>
-      <div class="<?php echo ($statusmedmonpm_6 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonpm_6; ?></div>
-      Monday - 1:30 P.M - 4:00 P.M.
-      <br><br><div class="<?php echo ($statusmedtuepm_7 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtuepm_7; ?></div>
-      Tuesday - 1:30 P.M - 4:00 P.M..
-      <br><br><div class="<?php echo ($statusmedwedpm_8 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedpm_8; ?></div>
-      Wednesday - 1:30 P.M - 4:00 P.M.
-      <br><br>
-      <div class="<?php echo ($statusmedthupm_9 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthupm_9; ?></div>
-      Thursday- 1:30 P.M - 4:00 P.M.
-      <br><br><div class="<?php echo ($statusmedfripm_10 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfripm_10; ?></div>
-      Friday- 1:30 P.M - 4:00 P.M.
-    </p>
-  </div>
 
-  <div class="text-box">
-    <center>
-      <p>Available Day and Time <b>IN SHS</b></p>
-    </center>
-     <?php
-    $sql2 = "SELECT * FROM statusmedicalshs";
-    $result2 = mysqli_query($conn, $sql2);
+<table class="schedule-table" id="monday-table">
+<th colspan="4" id="selected-day-header"><span id="selected-date-display"></span></th>
 
-    if (mysqli_num_rows($result2)) {
-        $row2 = $result2->fetch_assoc();
+  <tr>
+ 
+  <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
+  <td class="<?php echo ($statusmed9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed9_am; ?>')"><?php echo $statusmed9_am; ?> <span id="selected-date-display"></span></td>
+    <td class="<?php echo ($statusmed10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed10_am; ?>')"><?php echo $statusmed10_am; ?> <span id="selected-date-display"></span></td>
+<td class="<?php echo ($statusmed11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed11_am; ?>')"><?php echo $statusmed11_am; ?> <span id="selected-date-display"></span></td>
+  </tr>
+  <tr>
+    <td class="<?php echo ($statusmed1_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed1_pm; ?>')"><?php echo $statusmed1_pm; ?></td>
+    <td class="<?php echo ($statusmed2_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed2_pm; ?>')"><?php echo $statusmed2_pm; ?></td>
+    <td class="<?php echo ($statusmed3_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed3_pm; ?>')"><?php echo $statusmed3_pm; ?></td>
+    <td class="<?php echo ($statusmed4_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed4_pm; ?>')"><?php echo $statusmed4_pm; ?></td>
+  </tr>
+</table>
 
-        $statusmedmonam_1 = $row2['statusmedmonam_1']; 
-        $statusmedtueam_2 = $row2['statusmedtueam_2']; 
-        $statusmedwedam_3 = $row2['statusmedwedam_3']; 
-        $statusmedthuam_4 = $row2['statusmedthuam_4']; 
-        $statusmedfriam_5 = $row2['statusmedfriam_5']; 
-        $statusmedmonpm_6 = $row2['statusmedmonpm_6']; 
-        $statusmedtuepm_7 = $row2['statusmedtuepm_7']; 
-        $statusmedwedpm_8 = $row2['statusmedwedpm_8']; 
-        $statusmedthupm_9 = $row2['statusmedthupm_9']; 
-        $statusmedfripm_10 = $row2['statusmedfripm_10']; 
+<?php
+    $sql1 = "SELECT * FROM statusmedicalcollegetuesday";
+    $result1 = mysqli_query($conn, $sql1);
+
+    if (mysqli_num_rows($result1)) {
+        $row1 = $result1->fetch_assoc();
+
+        $statusmed8_am = $row1['statusmed8_am'];
+        $statusmed9_am = $row1['statusmed9_am'];
+        $statusmed10_am = $row1['statusmed10_am'];
+        $statusmed11_am = $row1['statusmed11_am'];
+        $statusmed1_pm = $row1['statusmed1_pm'];
+        $statusmed2_pm = $row1['statusmed2_pm'];
+        $statusmed3_pm = $row1['statusmed3_pm'];
+        $statusmed4_pm = $row1['statusmed4_pm'];
     }
     ?>
-    <p>
-    <b><p>Morning</p></b>
-      <div class="<?php echo ($statusmedmonam_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonam_1; ?></div>
-      Monday - 8:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statusmedtueam_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtueam_2; ?></div>
-      Tuesday - 8:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statusmedwedam_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedam_3; ?></div>
-      Wednesday - 8:00 A.M - 11:00 A.M.
-      <br><br>
-      <div class="<?php echo ($statusmedthuam_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthuam_4; ?></div>
-      Thursday- 8:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statusmedfriam_5  == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfriam_5; ?></div>
-      Friday- 8:00 A.M - 11:00 A.M.
-<br><br>
-<b><p>Afternoon</b></p>
-      <div class="<?php echo ($statusmedmonpm_6 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonpm_6; ?></div>
-      Monday - 1:30 P.M - 4:00 P.M.
-      <br><br><div class="<?php echo ($statusmedtuepm_7 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtuepm_7; ?></div>
-      Tuesday - 1:30 P.M - 4:00 P.M..
-      <br><br><div class="<?php echo ($statusmedwedpm_8 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedpm_8; ?></div>
-      Wednesday - 1:30 P.M - 4:00 P.M.
-      <br><br>
-      <div class="<?php echo ($statusmedthupm_9 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthupm_9; ?></div>
-      Thursday- 1:30 P.M - 4:00 P.M.
-      <br><br><div class="<?php echo ($statusmedfripm_10 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfripm_10; ?></div>
-      Friday- 1:30 P.M - 4:00 P.M.
-    </p>
-  </div>
+<table class="schedule-table" id="tuesday-table">
+<th colspan ="4"><span id="tuesday-date-display"></span></th>
+  <tr>
+ 
+    <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
+    <td class="<?php echo ($statusmed9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed9_am; ?>')"><?php echo $statusmed9_am; ?></td>
+    <td class="<?php echo ($statusmed10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed10_am; ?>')"><?php echo $statusmed10_am; ?></td>
+    <td class="<?php echo ($statusmed11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed11_am; ?>')"><?php echo $statusmed11_am; ?></td>
+  </tr>
+  <tr>
+    <td class="<?php echo ($statusmed1_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed1_pm; ?>')"><?php echo $statusmed1_pm; ?></td>
+    <td class="<?php echo ($statusmed2_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed2_pm; ?>')"><?php echo $statusmed2_pm; ?></td>
+    <td class="<?php echo ($statusmed3_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed3_pm; ?>')"><?php echo $statusmed3_pm; ?></td>
+    <td class="<?php echo ($statusmed4_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed4_pm; ?>')"><?php echo $statusmed4_pm; ?></td>
+  </tr>
+</table>
 
+<?php
+    $sql1 = "SELECT * FROM statusmedicalcollegewednesday";
+    $result1 = mysqli_query($conn, $sql1);
 
-  <div class="text-box">
-    <center>
-      <p>Available Day and Time <b>IN COLLEGE</b></p>
-    </center>
-     <?php
-    $sql3 = "SELECT * FROM statusmedicalcollege";
-    $result3 = mysqli_query($conn, $sql3);
+    if (mysqli_num_rows($result1)) {
+        $row1 = $result1->fetch_assoc();
 
-    if (mysqli_num_rows($result3)) {
-        $row3 = $result3->fetch_assoc();
-
-        $statusmedmonam_1 = $row3['statusmedmonam_1']; 
-        $statusmedtueam_2 = $row3['statusmedtueam_2']; 
-        $statusmedwedam_3 = $row3['statusmedwedam_3']; 
-        $statusmedthuam_4 = $row3['statusmedthuam_4']; 
-        $statusmedfriam_5 = $row3['statusmedfriam_5']; 
-        $statusmedmonpm_6 = $row3['statusmedmonpm_6']; 
-        $statusmedtuepm_7 = $row3['statusmedtuepm_7']; 
-        $statusmedwedpm_8 = $row3['statusmedwedpm_8']; 
-        $statusmedthupm_9 = $row3['statusmedthupm_9']; 
-        $statusmedfripm_10 = $row3['statusmedfripm_10']; 
+        $statusmed8_am = $row1['statusmed8_am'];
+        $statusmed9_am = $row1['statusmed9_am'];
+        $statusmed10_am = $row1['statusmed10_am'];
+        $statusmed11_am = $row1['statusmed11_am'];
+        $statusmed1_pm = $row1['statusmed1_pm'];
+        $statusmed2_pm = $row1['statusmed2_pm'];
+        $statusmed3_pm = $row1['statusmed3_pm'];
+        $statusmed4_pm = $row1['statusmed4_pm'];
     }
     ?>
-    <p>
-    <b><p>Morning</p></b>
-      <div class="<?php echo ($statusmedmonam_1 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonam_1; ?></div>
-      Monday - 8:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statusmedtueam_2 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtueam_2; ?></div>
-      Tuesday - 8:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statusmedwedam_3 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedam_3; ?></div>
-      Wednesday - 8:00 A.M - 11:00 A.M.
-      <br><br>
-      <div class="<?php echo ($statusmedthuam_4 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthuam_4; ?></div>
-      Thursday- 8:00 A.M - 11:00 A.M.
-      <br><br><div class="<?php echo ($statusmedfriam_5  == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfriam_5; ?></div>
-      Friday- 8:00 A.M - 11:00 A.M.
-<br><br>
-<b><p>Afternoon</b></p>
-      <div class="<?php echo ($statusmedmonpm_6 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedmonpm_6; ?></div>
-      Monday - 1:30 P.M - 4:00 P.M.
-      <br><br><div class="<?php echo ($statusmedtuepm_7 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedtuepm_7; ?></div>
-      Tuesday - 1:30 P.M - 4:00 P.M..
-      <br><br><div class="<?php echo ($statusmedwedpm_8 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedwedpm_8; ?></div>
-      Wednesday - 1:30 P.M - 4:00 P.M.
-      <br><br>
-      <div class="<?php echo ($statusmedthupm_9 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedthupm_9; ?></div>
-      Thursday- 1:30 P.M - 4:00 P.M.
-      <br><br><div class="<?php echo ($statusmedfripm_10 == 'Unavailable') ? 'unavailable' : 'available'; ?> status-label" disabled><?php echo $statusmedfripm_10; ?></div>
-      Friday- 1:30 P.M - 4:00 P.M.
-    </p>
-  </div>
-</div>
+<table class="schedule-table" id="wednesday-table">
+<th colspan ="4"><span id="wednesday-date-display"></span></th>
+  <tr>
+ 
+    <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
+    <td class="<?php echo ($statusmed9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed9_am; ?>')"><?php echo $statusmed9_am; ?></td>
+    <td class="<?php echo ($statusmed10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed10_am; ?>')"><?php echo $statusmed10_am; ?></td>
+    <td class="<?php echo ($statusmed11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed11_am; ?>')"><?php echo $statusmed11_am; ?></td>
+  </tr>
+  <tr>
+    <td class="<?php echo ($statusmed1_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed1_pm; ?>')"><?php echo $statusmed1_pm; ?></td>
+    <td class="<?php echo ($statusmed2_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed2_pm; ?>')"><?php echo $statusmed2_pm; ?></td>
+    <td class="<?php echo ($statusmed3_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed3_pm; ?>')"><?php echo $statusmed3_pm; ?></td>
+    <td class="<?php echo ($statusmed4_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed4_pm; ?>')"><?php echo $statusmed4_pm; ?></td>
+  </tr>
+</table>
 
+<?php
+    $sql1 = "SELECT * FROM statusmedicalcollegethursday";
+    $result1 = mysqli_query($conn, $sql1);
 
+    if (mysqli_num_rows($result1)) {
+        $row1 = $result1->fetch_assoc();
 
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    function updateColor() {
-      var selectedValue = $(this).val();
-      $(this).removeClass('available unavailable').addClass(selectedValue.toLowerCase());
+        $statusmed8_am = $row1['statusmed8_am'];
+        $statusmed9_am = $row1['statusmed9_am'];
+        $statusmed10_am = $row1['statusmed10_am'];
+        $statusmed11_am = $row1['statusmed11_am'];
+        $statusmed1_pm = $row1['statusmed1_pm'];
+        $statusmed2_pm = $row1['statusmed2_pm'];
+        $statusmed3_pm = $row1['statusmed3_pm'];
+        $statusmed4_pm = $row1['statusmed4_pm'];
     }
+    ?>
+<table class="schedule-table" id="thursday-table">
+<th colspan ="4"><span id="thursday-date-display"></span></th>
+  <tr>
+ 
+    <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
+    <td class="<?php echo ($statusmed9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed9_am; ?>')"><?php echo $statusmed9_am; ?></td>
+    <td class="<?php echo ($statusmed10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed10_am; ?>')"><?php echo $statusmed10_am; ?></td>
+    <td class="<?php echo ($statusmed11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed11_am; ?>')"><?php echo $statusmed11_am; ?></td>
+  </tr>
+  <tr>
+    <td class="<?php echo ($statusmed1_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed1_pm; ?>')"><?php echo $statusmed1_pm; ?></td>
+    <td class="<?php echo ($statusmed2_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed2_pm; ?>')"><?php echo $statusmed2_pm; ?></td>
+    <td class="<?php echo ($statusmed3_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed3_pm; ?>')"><?php echo $statusmed3_pm; ?></td>
+    <td class="<?php echo ($statusmed4_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed4_pm; ?>')"><?php echo $statusmed4_pm; ?></td>
+  </tr>
+</table>
 
-    $('select').each(updateColor).change(updateColor);
-  });
-</script>
+<?php
+    $sql1 = "SELECT * FROM statusmedicalcollegefriday";
+    $result1 = mysqli_query($conn, $sql1);
 
+    if (mysqli_num_rows($result1)) {
+        $row1 = $result1->fetch_assoc();
 
-
-
-
-<div class="row">
-    <div class="form-group">
-        <br>
-        <label for="message" class="col-sm-10 control-label">Write a message.... (State what for is the medical scheduling and Date and Time)</label>
-        <div class="col-sm-12">
-            <textarea type="text" class="form-control" id="message" name="message" placeholder="Enter your message.... Ex. July 08, 2023 Monday 8:00AM" required></textarea>
-        </div>
-    </div>
-</div>
+        $statusmed8_am = $row1['statusmed8_am'];
+        $statusmed9_am = $row1['statusmed9_am'];
+        $statusmed10_am = $row1['statusmed10_am'];
+        $statusmed11_am = $row1['statusmed11_am'];
+        $statusmed1_pm = $row1['statusmed1_pm'];
+        $statusmed2_pm = $row1['statusmed2_pm'];
+        $statusmed3_pm = $row1['statusmed3_pm'];
+        $statusmed4_pm = $row1['statusmed4_pm'];
+    }
+    ?>
+<table class="schedule-table" id="friday-table">
+<th colspan ="4"><span id="friday-date-display"></span></th>
+  <tr>
+ 
+    <td class="<?php echo ($statusmed8_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed8_am; ?>')"><?php echo $statusmed8_am; ?></td>
+    <td class="<?php echo ($statusmed9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed9_am; ?>')"><?php echo $statusmed9_am; ?></td>
+    <td class="<?php echo ($statusmed10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed10_am; ?>')"><?php echo $statusmed10_am; ?></td>
+    <td class="<?php echo ($statusmed11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed11_am; ?>')"><?php echo $statusmed11_am; ?></td>
+  </tr>
+  <tr>
+    <td class="<?php echo ($statusmed1_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed1_pm; ?>')"><?php echo $statusmed1_pm; ?></td>
+    <td class="<?php echo ($statusmed2_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed2_pm; ?>')"><?php echo $statusmed2_pm; ?></td>
+    <td class="<?php echo ($statusmed3_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed3_pm; ?>')"><?php echo $statusmed3_pm; ?></td>
+    <td class="<?php echo ($statusmed4_pm == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusmed4_pm; ?>')"><?php echo $statusmed4_pm; ?></td>
+  </tr>
+</table>
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <br>
@@ -570,6 +719,7 @@
     </div>
 </div>
 </form>
+
 </div><!--//app-card-body-->
 </div>			    
 </div>
@@ -591,6 +741,90 @@
         }
     }, 5000);
 </script>
+  <!-- jQuery library (make sure to include it) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+$(document).ready(function() {
+    // Hide all time tables initially
+    $('.schedule-table').hide();
+
+    $('.dates li').click(function() {
+    // Remove the "selected" class from all date cells
+    $('.dates li').removeClass('selected');
+
+    // Add the "selected" class to the clicked date cell
+    $(this).addClass('selected');
+
+    // Get the text content of the clicked date cell
+    var selectedDay = $(this).text();
+
+    // Get the year and month from the data attributes
+    var selectedYear = $(this).data('year');
+    var selectedMonth = $(this).data('month');
+
+    // Create a JavaScript Date object with the selected year, month, and day
+    var selectedDate = new Date(selectedYear, selectedMonth - 1, selectedDay);
+
+    // Adjust for the time zone offset
+    var timezoneOffsetMinutes = selectedDate.getTimezoneOffset();
+    selectedDate.setMinutes(selectedDate.getMinutes() - timezoneOffsetMinutes);
+
+    // Format the date as "Monday September 4, 2023"
+    var formattedDate = selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+    // Display the selected date in the Monday table header
+    $('#selected-day-header').text(formattedDate);
+
+    // Set the value of the input field with the selected date
+    $('#selected-date').val(formattedDate);
+
+    // Determine the day of the week for the selected date
+    var selectedDayOfWeek = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
+
+    // Update the displayed table based on the selected day of the week
+    updateDisplayedTable(selectedDayOfWeek);
+    // Update the respective day headers for Tuesday, Wednesday, Thursday, and Friday
+    if (selectedDayOfWeek === 'Tuesday') {
+        $('#tuesday-date-display').text(formattedDate);
+    } else if (selectedDayOfWeek === 'Wednesday') {
+        $('#wednesday-date-display').text(formattedDate);
+    } else if (selectedDayOfWeek === 'Thursday') {
+        $('#thursday-date-display').text(formattedDate);
+    } else if (selectedDayOfWeek === 'Friday') {
+        $('#friday-date-display').text(formattedDate);
+    }
+});
+
+    // Function to update the displayed table based on the selected date
+    function updateDisplayedTable(selectedDayOfWeek) {
+        // Hide all time tables
+        $('.schedule-table').hide();
+
+        // Determine which table to display based on the selected day of the week
+        if (selectedDayOfWeek === 'Monday') {
+            $('#monday-table').show(); // Show the Monday table
+        } else if (selectedDayOfWeek === 'Tuesday') {
+            $('#tuesday-table').show(); // Show the Tuesday table
+        } else if (selectedDayOfWeek === 'Wednesday') {
+            $('#wednesday-table').show(); // Show the Wednesday table
+        }else if (selectedDayOfWeek === 'Thursday') {
+            $('#thursday-table').show(); // Show the Thursday table
+    }else if (selectedDayOfWeek === 'Friday') {
+            $('#friday-table').show(); // Show the Friday table
+  }
+}
+});
+
+
+// Function to handle clicking an available time
+function handleLabelClick(time) {
+    document.getElementById('sched_time').value = time;
+}
+
+    </script>
+
+
 
 
 </body>

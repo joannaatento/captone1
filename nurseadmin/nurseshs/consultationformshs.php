@@ -11,6 +11,7 @@
     $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
     $result = $conn->query($sql_query);
     while($row = $result->fetch_array()){
+        $role = $row['role'];
         $admin_id = $row['admin_id'];
         $username = $row['username'];
         require_once('../../db.php');
@@ -382,7 +383,7 @@
 <div class="form-group">
 <div class="col-sm-offset-2 col-sm-10">
     <br>
-    <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+    <input type="text" name="role" style="display: none;" value="<?= $_SESSION['role'];?>">
     <button name="submit_medicine" class="btn btn-success">Submit</button>
 </div>
 </div>

@@ -11,6 +11,7 @@
     $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
     $result = $conn->query($sql_query);
     while($row = $result->fetch_array()){
+        $role = $row['role'];
         $admin_id = $row['admin_id'];
         $username = $row['username'];
         require_once('../../db.php');
@@ -241,132 +242,136 @@
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-				    <div class="app-card-body p-4">
+                    <div class="app-card-body p-4">
 					   
-                     <form class="form-horizontal mt-4" method="post" action="function/collegerecords.php">
-
-    <div class="row">
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">ID Number</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="date" class="col-sm-4 control-label" style="font-size: 16px">Date</label>
-                              <div class="col-sm-11">
-                                  <input type="date" class="form-control" id="date" name="date" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                              <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name"required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-     <div class="row">
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="gradesection" class="col-sm-8 control-label" style="font-size: 16px">Course/Year</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Grade & Section" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="chiefcomplaint" class="col-sm-8 control-label" style="font-size: 16px">Chief Complaint</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="chiefcomplaint" name="chiefcomplaint" placeholder="Enter Cheif Complaint" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-4">
-                          <div class="form-group">
-                            <br>
-                              <label for="treatment" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
-                              <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="treatment " name="treatment" placeholder="Enter Treatment/Medicine" required>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <br>
-        <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-        <button name="submit_consultationform" class="btn btn-success">Submit</button>
-    </div>
-</div>
-</form>
-
-<form class="form-horizontal mt-4" method="post" action="function/collegerecords.php">
-
-<div class="row">
-                  <div class="col-sm-4">
-                      <div class="form-group">
-                        <br>
-                          <label for="medicine_name" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
-                          <div class="col-sm-11">
-                              <input type="text" class="form-control" id="medicine_name " name="medicine_name" placeholder="Enter Treatment/Medicine" required>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-4">
-                      <div class="form-group">
-                        <br>
-                          <label for="amount" class="col-sm-4 control-label" style="font-size: 16px">Amount</label>
-                          <div class="col-sm-11">
-                              <input type="text" class="form-control" id="amount " name="quantity" placeholder="Enter Amount" required>
-                          </div>
-                      </div>
-                  </div>
+                       <form class="form-horizontal mt-4" method="post" action="function/collegerecords.php">
+  
+      <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="idnumber" class="col-sm-4 control-label" style="font-size: 16px">ID Number</label>
+                                <div class="col-sm-11">
+                                    <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="date" class="col-sm-4 control-label" style="font-size: 16px">Date</label>
+                                <div class="col-sm-11">
+                                    <input type="date" class="form-control" id="date" name="date" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="fullname" class="col-sm-4 control-label" style="font-size: 16px">Name</label>
+                                <div class="col-sm-11">
+                                    <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Name"required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+       <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                              <br>
+                                <label for="gradesection" class="col-sm-8 control-label" style="font-size: 16px">Course & Year</label>
+                                <div class="col-sm-11">
+                                    <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter Course & Year" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                              <br>
+                                <label for="chiefcomplaint" class="col-sm-8 control-label" style="font-size: 16px">Chief Complaint</label>
+                                <div class="col-sm-11">
+                                    <input type="text" class="form-control" id="chiefcomplaint" name="chiefcomplaint" placeholder="Enter Cheif Complaint" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                              <br>
+                                <label for="status" class="col-sm-4 control-label" style="font-size: 16px">Status</label>
+                                <div class="col-sm-11">
+                                    <input type="text" class="form-control" id="status " name="status" placeholder="Enter Status" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+  
+  <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+          <br>
+          <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
+          <button name="submit_consultationform" class="btn btn-success">Submit</button>
+      </div>
+  </div>
+  </form>
+  
+  
+         
+  <form class="form-horizontal mt-4" method="post" action="function/collegerecords.php">
+  
+  <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                          <br>
+                            <label for="medicine_name" class="col-sm-4 control-label" style="font-size: 16px">Medicine</label>
+                            <div class="col-sm-11">
+                                <input type="text" class="form-control" id="medicine_name " name="medicine_name" placeholder="Enter Treatment/Medicine" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                          <br>
+                            <label for="amount" class="col-sm-4 control-label" style="font-size: 16px">Quantity</label>
+                            <div class="col-sm-11">
+                                <input type="text" class="form-control" id="amount " name="quantity" placeholder="Enter Quantity" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+  
+  <div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+      <br>
+      <input type="text" name="role" style="display: none;" value="<?= $_SESSION['role'];?>">
+      <button name="submit_medicine" class="btn btn-success">Submit</button>
+  </div>
+  </div>
+  </form>
+  
+                      </div><!--//app-card-body-->
+                  </div>			    
               </div>
-              
-
-<div class="form-group">
-<div class="col-sm-offset-2 col-sm-10">
-    <br>
-    <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-    <button name="submit_medicine" class="btn btn-success">Submit</button>
-</div>
-</div>
-</form>
-				    </div><!--//app-card-body-->
-				</div>			    
-		    </div>
-	    </div>
-    </div>  					
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    
-    <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
-	
-	<script>
-		// Timer to remove success message after 5 seconds (5000 milliseconds)
-		setTimeout(function(){
-			var successMessage = document.getElementById('success-message');
-			if(successMessage){
-				successMessage.remove();
-			}
-		}, 5000);
-	</script>
-
-
-</body>
-</html> 
-
+          </div>
+      </div>  					
+      <!-- Javascript -->          
+      <script src="assets/plugins/popper.min.js"></script>
+      <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+      
+      <!-- Page Specific JS -->
+      <script src="assets/js/app.js"></script> 
+      
+      <script>
+          // Timer to remove success message after 5 seconds (5000 milliseconds)
+          setTimeout(function(){
+              var successMessage = document.getElementById('success-message');
+              if(successMessage){
+                  successMessage.remove();
+              }
+          }, 5000);
+      </script>
+  
+  
+  </body>
+  </html> 
+  
+  

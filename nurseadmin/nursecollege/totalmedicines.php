@@ -11,7 +11,7 @@
     $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
     $result = $conn->query($sql_query);
     while($row = $result->fetch_array()){
-        $admin_id = $row['admin_id'];
+        $role = $row['role'];
         $username = $row['username'];
         require_once('../../db.php');
         if($_SESSION['role'] == 3){
@@ -250,7 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         COUNT(medicine_name) AS total_medicine,
                         SUM(quantity) AS total_quantity
                         FROM medicine
-                        WHERE admin_id = '11' AND YEAR(date_created) = $selected_year
+                        WHERE role = '3' AND YEAR(date_created) = $selected_year
                         GROUP BY label, medicine_name";
                 $report_label = 'Weekly';
                 break;
@@ -261,7 +261,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         COUNT(medicine_name) AS total_medicine,
                         SUM(quantity) AS total_quantity
                         FROM medicine
-                        WHERE admin_id = '11' AND YEAR(date_created) = $selected_year
+                        WHERE role = '3' AND YEAR(date_created) = $selected_year
                         GROUP BY label, medicine_name";
                 $report_label = 'Monthly';
                 break;
@@ -272,7 +272,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         COUNT(medicine_name) AS total_medicine,
                         SUM(quantity) AS total_quantity
                         FROM medicine
-                        WHERE admin_id = '11' AND YEAR(date_created) = $selected_year
+                        WHERE role = '3' AND YEAR(date_created) = $selected_year
                         GROUP BY label, medicine_name";
                 $report_label = 'Yearly';
                 break;

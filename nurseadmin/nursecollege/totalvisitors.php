@@ -27,7 +27,7 @@
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date), '-', WEEK(date)) AS label,
                                     COUNT(*) AS total_visitors
-                                    FROM consultationformrecord 
+                                    FROM consultationformrecordcollege
                                     WHERE admin_id = ? AND YEAR(date) = ?
                                     GROUP BY label";
                             $report_label = 'Weekly';
@@ -36,7 +36,7 @@
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date), '-', MONTHNAME(date)) AS label,
                                     COUNT(*) AS total_visitors
-                                    FROM consultationformrecord 
+                                    FROM consultationformrecordcollege 
                                     WHERE admin_id = ? AND YEAR(date) = ?
                                     GROUP BY label";
                             $report_label = 'Monthly';
@@ -45,7 +45,7 @@
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date)) AS label,
                                     COUNT(*) AS total_visitors
-                                    FROM consultationformrecord 
+                                    FROM consultationformrecordcollege 
                                     WHERE admin_id = ? AND YEAR(date) = ?
                                     GROUP BY label";
                             $report_label = 'Yearly';

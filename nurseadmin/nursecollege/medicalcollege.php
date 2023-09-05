@@ -282,26 +282,14 @@ if (mysqli_num_rows($result) > 0) {
               </tr>
           </thead>
           <tbody id="healthRecordTableBody">
-              <?php
-              $sql = "SELECT * FROM medicalappcollege WHERE (role = 'Student in College' OR role = 'Employee in College') AND is_deleted_on_website = 0 ORDER BY date_time";
-  
-              $result = mysqli_query($conn, $sql);
-  
-              // Create an empty array to store the data
-              $rows = [];
-  
-              while ($row = $result->fetch_assoc()) {
-                  $rows[] = $row;
-              }
-  
-              // Sort the array by date_time in ascending order
-              usort($rows, function ($a, $b) {
-                  return strtotime($a['date_time']) - strtotime($b['date_time']);
-              });
-  
-              foreach ($rows as $row) :
-                  $medicalapp_id = $row['medicalapp_id'];
-              ?>
+          <?php
+             $sql = "SELECT * FROM medicalappcollege WHERE (role = 'Student in College' OR role = 'Employee in College') AND is_deleted_on_website = 0 ORDER BY date_time";
+            $result = mysqli_query($conn, $sql);
+
+            while ($row = $result->fetch_assoc()) {
+                $medicalapp_id = $row['medicalapp_id'];
+                $phoneno = $row['phoneno'];
+            ?>
                   <tr>
                       <td><?php echo $row['medicalapp_id']; ?></td>
                       <td><?php echo $row['idnumber']; ?></td>
@@ -336,10 +324,6 @@ if (mysqli_num_rows($result) > 0) {
                           </center>
                           </td>
                   </tr>
-              <?php endforeach; ?>
-          </tbody>
-      </table>
-  </div>
   <!-- Approve Modal -->
   <div class="modal fade" id="openModal<?= $medicalapp_id; ?>" tabindex="-1" aria-labelledby="modalLabel<?= $medicalapp_id; ?>" aria-hidden="true">
                       <div class="modal-dialog">
@@ -362,15 +346,17 @@ if (mysqli_num_rows($result) > 0) {
                           <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                           <button type="submit" class="btn btn-primary">Send</button>
                       </div>
-                  </form>
-                  </div>
-                          </div>
-                      </div>
-                  </div>
-          </tbody>
-      </table>
-  </div>
-  
+                      </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
   <div class="modal fade" id="updateScheduleModal" tabindex="-1" aria-labelledby="updateScheduleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">

@@ -291,7 +291,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         COUNT(medicine_name) AS total_medicine,
                         SUM(quantity) AS total_quantity
                         FROM medicine
-                        WHERE admin_id = '9' AND YEAR(date_created) = $selected_year
+                        WHERE role = '1' AND YEAR(date_created) = $selected_year
                         GROUP BY label, medicine_name";
                 $report_label = 'Weekly';
                 break;
@@ -302,7 +302,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         COUNT(medicine_name) AS total_medicine,
                         SUM(quantity) AS total_quantity
                         FROM medicine
-                        WHERE admin_id = '9' AND YEAR(date_created) = $selected_year
+                        WHERE role = '1' AND YEAR(date_created) = $selected_year
                         GROUP BY label, medicine_name";
                 $report_label = 'Monthly';
                 break;
@@ -313,7 +313,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         COUNT(medicine_name) AS total_medicine,
                         SUM(quantity) AS total_quantity
                         FROM medicine
-                        WHERE admin_id = '9' AND YEAR(date_created) = $selected_year
+                        WHERE role = '1' AND YEAR(date_created) = $selected_year
                         GROUP BY label, medicine_name";
                 $report_label = 'Yearly';
                 break;

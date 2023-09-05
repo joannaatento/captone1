@@ -92,14 +92,14 @@
     } //for medical appointment gsjhs
 
 if(isset($_POST['submit_medicine'])){ // pag get ng data
-    $admin_id = $_POST['admin_id'];
+    $role= $_POST['role'];
     $medicine_name = $_POST['medicine_name']; 
     $quantity = $_POST['quantity']; 
 
     date_default_timezone_set('Asia/Manila');
     $date_created = date('Y-m-d h:i A'); 
 
-    $sql = "INSERT INTO medicine VALUES ('','$admin_id','$medicine_name','$quantity','$date_created')";
+    $sql = "INSERT INTO medicine VALUES ('','$role','$medicine_name','$quantity','$date_created')";
     if(mysqli_query($conn, $sql)){
         // echo "<script>window.history.go(-1);</script>";
         header('location: ../patientmanagementrecordgsjhs.php');

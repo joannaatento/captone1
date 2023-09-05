@@ -16,8 +16,8 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>View Employee Dental Request</title>
-    
+    <title>View Employee Medical Request</title>
+
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,17 +41,29 @@
 $date_created = $_GET['date_created'];
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM dental WHERE date_created = '$date_created'";
+$sql = "SELECT * FROM medical WHERE date_created = '$date_created'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
-  $name = $row['name'];
-  $dental_service = $row['dental_service'];
+  $name1 = $row['name1'];
+  $gradecourseyear1 = $row ['gradecourseyear1'];
+  $idnumber2 = $row['idnumber2'];
+  $name2 = $row['name2'];
+  $gradecourseyear2 = $row ['gradecourseyear2'];
+  $idnumber3 = $row['idnumber3'];
+  $name3 = $row['name3'];
+  $gradecourseyear3 = $row ['gradecourseyear3'];
+  $idnumber4 = $row['idnumber4'];
+  $name4 = $row['name4'];
+  $gradecourseyear4 = $row ['gradecourseyear4'];
+  $idnumber5 = $row['idnumber5'];
+  $name5 = $row['name5'];
+  $gradecourseyear5 = $row ['gradecourseyear5'];
   $c_enrolled = $row['c_enrolled'];
-  $gradecourseyear = $row['gradecourseyear'];
   $c_employee = $row['c_employee'];
+  $onoff = $row['onoff'];
   $message = $row['message'];
   $date_created = $row['date_created'];
     }
@@ -96,11 +108,10 @@ if (mysqli_num_rows($result) > 0) {
 		        </div>
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
-   
 
-                
+
                 <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-6" aria-expanded="false" aria-controls="submenu-6">
+        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
@@ -114,9 +125,11 @@ if (mysqli_num_rows($result) > 0) {
                 </svg>
             </span>
         </a>
-        <div id="submenu-6" class="collapse submenu submenu-6" data-bs-parent="#menu-accordion">
+        <div id="submenu-3" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Dental Appointment Reports</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="totalvisitors.php">Total Clinic Visitors</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="totalmedicines.php">Total Medicine Cosumes</a></li>
             </ul>
         </div>
     </li>
@@ -138,39 +151,39 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="gsjhslists.php">Grade School and Junior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="gsjhslists.php">Grade School and Junior High School Building</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="shslist.php">Senior High School Building</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="collegelists.php">College Building</a></li>
             </ul>
         </div>
     </li>
 
-    <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+<li class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-5" aria-expanded="false" aria-controls="submenu-5">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
                   <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
             </svg>
         </span>
-        <span class="nav-link-text">Dental Requests</span>
+        <span class="nav-link-text">Medical Requests</span>
         <span class="submenu-arrow">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
             </svg>
         </span>
     </a>
-    <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
+    <div id="submenu-5" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestscollege.php">Student</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeecollege.php">Employee</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="medicalrequestcollege.php">College</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="medicalrequestsemployeecollege.php">Employee</a></li>
         </ul>
     </div>
 </li>
 
     
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="dentalcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="medicalcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
@@ -179,21 +192,76 @@ if (mysqli_num_rows($result) > 0) {
             <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
             </svg>
         </span>
-        <span class="nav-link-text">Dental Approved Appointments</span>
+        <span class="nav-link-text">Medical Approved Appointments</span>
     </a>
 </li>
-			    </nav>
+
+    <li class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle active" href="consultationformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+        <span class="nav-icon">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+            </svg>
+        </span>
+        <span class="nav-link-text">Consultation Form</span>
+    </a>
+</li>
+
+<li class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle active" href="schoolhealthassessmentformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+        <span class="nav-icon">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
+            <path d="M8.5 4.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L7 6l-.549.317a.5.5 0 1 0 .5.866l.549-.317V7.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L9 6l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V4.5zM5.5 9a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+            </svg>
+        </span>
+        <span class="nav-link-text">School Health Assessment Form</span>
+    </a>
+</li>
+
+<li class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
+        <span class="nav-icon">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+            </svg>
+        </span>
+        <span class="nav-link-text">Printable Papers</span>
+        <span class="submenu-arrow">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </span>
+    </a>
+    <div id="submenu-8" class="collapse submenu submenu-8" data-bs-parent="#menu-accordion">
+        <ul class="submenu-list list-unstyled">
+            <li class="submenu-item"><a class="submenu-link" href="healthprofilecollege.php">Health Profile</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="healthdeclarationcollege.php">Health Declaration</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="medicalcertificatecollege.php">Medical Certificate</a></li>
+        </ul>
+    </div>
+</li>
+</ul>
+	</nav>
 	        </div>
 	    </div>
     </header>
+    
     <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
 		    <div class="container-xl">
 			    <div class="position-relative mb-3">
 				    <div class="row g-3 justify-content-between">
-					   
-					       
+					    <div class="col-auto">
+					        <h1 class="app-page-title mb-0"></h1>
+					    </div>
 						
 				    </div>
 			    </div>
@@ -201,80 +269,181 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="app-card app-card-notification shadow-sm mb-4">
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
-                        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Request Dental Schedule</h4>
+					        <div class="col-12 col-lg-auto text-center text-lg-start">
+						        <h4 class="notification-title mb-1">Medical Appointments</h4>
 					        </div>
-                          
+            
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <div class="app-card-body p-4">
-                  
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="idnumber" class="col-sm-6 control-label">Your ID Number</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="patient_name" class="col-sm-4 control-label">Your name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Fullname" value="<?php echo $row['name']; ?>" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
+				    <div class="app-card-body p-4">
 
-        <br>
+ 
+  <div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 ID Number</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter ID number" value="<?php echo $row['idnumber']; ?>" readonly>
+      </div>
+    </div>
+  </div>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="date" class="col-sm-4 control-label">Dental Services</label>
-                    <div class="col-sm-10">
-                        <select id="dental_service" name="dental_service" class="form-control" readonly>
-                            <option disabled selected><?= $row['dental_service']; ?></option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 1 Fullname</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" value="<?php echo $row['name1']; ?>" readonly>
+      </div>
+    </div>
+  </div>
 
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="gradecourse" class="col-sm-8 control-label">Year level that you currently enrolled</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gradecourse" name="c_enrolled" placeholder="If you are an employee, just type Employee" value="<?php echo $row['c_enrolled']; ?>" readonly>
-                    </div>
-                </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear1']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 2 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber1" placeholder="Enter ID number" value="<?php echo $row['idnumber2']; ?>" readonly>
             </div>
         </div>
-
-        <br>
-        <div class="row">
-
-        <div class="col-sm-6">
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name1" placeholder="Enter Fullname" value="<?php echo $row['name2']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear2" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear2" name="gradecourseyear2" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear2']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+ 
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber2" placeholder="Enter ID number" value="<?php echo $row['idnumber3']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 3 Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name2" placeholder="Enter Fullname" value="<?php echo $row['name3']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear3" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear3" name="gradecourseyear3" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear3']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 4 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber3" placeholder="Enter ID number" value="<?php echo $row['idnumber4']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name3" placeholder="Enter Fullname" value="<?php echo $row['name4']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear4" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear4" name="gradecourseyear4" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear4']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
+        <div class="form-group">
+            <label for="idnumber" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee 5 ID Number</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="idnumber" name="idnumber4" placeholder="Enter ID number" value="<?php echo $row['idnumber5']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="patient_name" class="col-sm-12 control-label" style="font-size: 16px">Student/Employee Fullname</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="name" name="name4" placeholder="Enter Fullname" value="<?php echo $row['name5']; ?>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+      <label for="gradecourseyear5" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section/Course & Year</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="gradecourseyear5" name="gradecourseyear5" placeholder="Enter Grade & Section/Course & Year" value="<?php echo $row['gradecourseyear5']; ?>" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-4">
                 <div class="form-group">
-                    <label for="gradecourseyear" class="col-sm-8 control-label">Grade & Section/Course & Year</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?php echo $row['gradecourseyear']; ?>" readonly>
+                    <label for="c_employee" class="col-sm-12 control-label">For Student</label>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" id="c_enrolled" name="c_enrolled" value="<?php echo $row['c_enrolled']; ?>" readonly>
                     </div>
                 </div>
             </div>
             
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="c_employee" class="col-sm-8 control-label">For Employee</label>
-                    <div class="col-sm-10">
+                    <label for="c_employee" class="col-sm-12 control-label">For Employee</label>
+                    <div class="col-sm-12">
                         <input type="text" class="form-control" id="c_employee" name="c_employee" value="<?php echo $row['c_employee']; ?>" readonly>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="c_employee" class="col-sm-12 control-label">On-campus Activity or Off-campus Activity</label>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" id="c_employee" name="onoff" value="<?php echo $row['onoff']; ?>" readonly>
+                    </div>
+                </div>
+            </div>
+</div>
+<div class="row">
             <div class="form-group">
                 <br>
                 <label for="message" class="col-sm-5 control-label">Message</label>
@@ -288,6 +457,7 @@ if (mysqli_num_rows($result) > 0) {
             <span><?php echo $row['date_created']; ?></span>
         </div>
         <a href="" data-bs-toggle="modal" data-bs-target="#myModal">Approve</a>
+        
 <!--Modal-->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -304,7 +474,7 @@ if (mysqli_num_rows($result) > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="messagesms" class="form-label">Message</label>
-                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for dental cleaning is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
                     </div>
 
 

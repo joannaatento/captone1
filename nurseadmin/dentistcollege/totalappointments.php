@@ -26,34 +26,34 @@
                     switch ($report_type) {
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM dentalapp
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    SUM(role = 'student in college') AS total_student,
+                                    SUM(role = 'employee in college') AS total_employee
+                                    FROM dentalappcollege
+                                    WHERE YEAR(date_time) = ?
                                     GROUP BY label";
-                            $report_label = 'Weekly';
-                            break;
+                                    $report_label = 'Weekly';
+                                    break;
             
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM dentalapp
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    SUM(role = 'student in college') AS total_student,
+                                    SUM(role = 'employee in college') AS total_employee
+                                    FROM dentalappcollege
+                                    WHERE YEAR(date_time) = ?
                                     GROUP BY label";
-                            $report_label = 'Monthly';
-                            break;
+                                    $report_label = 'Monthly';
+                                    break;
             
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM dentalapp
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    SUM(role = 'student in college') AS total_student,
+                                    SUM(role = 'employee in college') AS total_employee
+                                    FROM dentalappcollege
+                                    WHERE YEAR(date_time) = ?
                                     GROUP BY label";
-                            $report_label = 'Yearly';
-                            break;
-            
+                                    $report_label = 'Yearly';
+                                    break;
+
                         default:
                             echo "Invalid report type selection.";
                             exit;
@@ -108,50 +108,7 @@
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/generate.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        /* Style the container to have fixed size and enable scrolling */
-        .chart-container {
-            width: 800px;
-            height: 400px;
-            overflow: auto;
-        }
-
-        #reportForm {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    #generateReport {
-        background-color: #007bff; /* Clinic blue */
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    /* Clinic chart title styling */
-    .chart-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #007bff; /* Clinic blue */
-        margin-bottom: 10px;
-    }
-
-    /* Clinic chart container styling */
-    .chart-container {
-        background-color: #f8f9fa; /* Clinic light gray */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 20px;
-    }
-
-    </style>
-    
-
+    <link rel="stylesheet" href="assets/generate.css">
 </head> 
 
 <body class="app">   	
@@ -241,31 +198,6 @@
             </ul>
         </div>
     </li>
-
-    <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-            </svg>
-        </span>
-        <span class="nav-link-text">Dental Requests</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </span>
-    </a>
-    <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
-        <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestscollege.php">Student</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="dentalrequestsemployeecollege.php">Employee</a></li>
-        </ul>
-    </div>
-</li>
-
-    
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="dentalcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">

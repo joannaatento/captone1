@@ -11,7 +11,7 @@ if (isset($_GET['medicalapp_id'])) {
     }
 
     // Update the 'is_deleted_on_website' column to 1 for the specified 'medicalapp_id'
-    $sql = "UPDATE medicalapp SET is_deleted_on_website = 1 WHERE medicalapp_id = ?";
+    $sql = "UPDATE medicalappshs SET is_deleted_on_website = 1 WHERE medicalapp_id = ?";
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $medicalapp_id);

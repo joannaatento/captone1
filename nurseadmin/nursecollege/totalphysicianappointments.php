@@ -11,18 +11,76 @@
     $sql_query = "SELECT * FROM admins WHERE admin_id ='$admin_id'";
     $result = $conn->query($sql_query);
     while($row = $result->fetch_array()){
-        $role = $row['role'];
+        $admin_id = $row['admin_id'];
         $username = $row['username'];
         require_once('../../db.php');
         if($_SESSION['role'] == 3){
             // User type 1 specific code here
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['report_type']) && isset($_POST['selected_year'])) {
+                    $report_type = $_POST['report_type'];
+                    $selected_year = $_POST['selected_year'];
+            
+                    $chartData = array();
+                    switch ($report_type) {
+                        case 'week':
+                            $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
+                                    SUM(role = 'student in college') AS total_student,
+                                    SUM(role = 'employee in college') AS total_employee
+                                    FROM physicianappcollege 
+                                    WHERE YEAR(date_time) = ?
+                                    GROUP BY label";
+                            $report_label = 'Weekly';
+                            break;
+            
+                        case 'month':
+                            $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
+                                    SUM(role = 'student in college') AS total_student,
+                                    SUM(role = 'employee in college') AS total_employee
+                                    FROM physicianappcollege 
+                                    WHERE YEAR(date_time) = ?
+                                    GROUP BY label";
+                            $report_label = 'Monthly';
+                            break;
+            
+                        case 'year':
+                            $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
+                                    SUM(role = 'student in college') AS total_student,
+                                    SUM(role = 'employee in college') AS total_employee
+                                    FROM physicianappcollege 
+                                    WHERE YEAR(date_time) = ?
+                                    GROUP BY label";
+                            $report_label = 'Yearly';
+                            break;
+            
+                        default:
+                            echo "Invalid report type selection.";
+                            exit;
+                    }
+            
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("i",$selected_year);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+            
+                    while ($row = $result->fetch_object()) {
+                        $chartData['labels'][] = $row->label;
+                        $chartData['total_student'][] = $row->total_student;
+                        $chartData['total_employee'][] = $row->total_employee;
+                    }
+            
+                    header("Content-Type: application/json");
+                    echo json_encode($chartData);
+                    exit;
+                }
+            }
+        
         }
         else{
             header('location: ../login.php');
             exit; // Exit the script to prevent further execution
         }
     }
-
 ?>
 
 
@@ -48,7 +106,49 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/generate.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Style the container to have fixed size and enable scrolling */
+        .chart-container {
+            width: 800px;
+            height: 400px;
+            overflow: auto;
+        }
+
+        #reportForm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    #generateReport {
+        background-color: #007bff; /* Clinic blue */
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Clinic chart title styling */
+    .chart-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #007bff; /* Clinic blue */
+        margin-bottom: 10px;
+    }
+
+    /* Clinic chart container styling */
+    .chart-container {
+        background-color: #f8f9fa; /* Clinic light gray */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    </style>
     
 
 </head> 
@@ -231,109 +331,142 @@
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Dynamic Reports</h4>
+						        <h4 class="notification-title mb-1"></h4>
 					        </div>
 							<!--//generate report-->
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
-                    <?php
+				    <div class="app-card-body p-4">
+                        
+                    <form id="reportForm">
+        <select id="tableSelect" name="report_type">
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="year">Year</option>
+        </select>
 
-// Define a variable to store the selected year (default to 2023).
-$selected_year = isset($_POST['selected_year']) ? $_POST['selected_year'] : '2023';
+        <select id="yearSelect" name="selected_year">
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2039</option>
+        </select>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['report_type']) && isset($_POST['selected_year'])) {
-        $report_type = $_POST['report_type'];
-        $selected_year = $_POST['selected_year'];
+        <!-- Replace the submit button with a regular button -->
+        <button type="button" id="generateReport">Generate Report</button>
+    </form>
+    <br>
+    <p>Total Physician Consultation Appointment Reports</p>
+    <!-- Fixed-sized container for the graph -->
+    <div class="chart-container">
+        <canvas id="barChart" width="2000" height="800" text-align="center"></canvas>
+    </div>
 
-        switch ($report_type) {
-            case 'week':
-                $sql = "SELECT CONCAT(YEAR(date_created), '-', WEEK(date_created)) AS label,
-                        medicine_name,
-                        COUNT(medicine_name) AS total_medicine,
-                        SUM(quantity) AS total_quantity
-                        FROM medicine
-                        WHERE role = '3' AND YEAR(date_created) = $selected_year
-                        GROUP BY label, medicine_name";
-                $report_label = 'Weekly';
-                break;
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const generateButton = document.getElementById("generateReport");
+            generateButton.addEventListener("click", function () {
+                fetchChartData();
+            });
 
-            case 'month':
-                $sql = "SELECT CONCAT(YEAR(date_created), '-', MONTHNAME(date_created)) AS label,
-                        medicine_name,
-                        COUNT(medicine_name) AS total_medicine,
-                        SUM(quantity) AS total_quantity
-                        FROM medicine
-                        WHERE role = '3' AND YEAR(date_created) = $selected_year
-                        GROUP BY label, medicine_name";
-                $report_label = 'Monthly';
-                break;
+            function fetchChartData() {
+                const form = document.getElementById("reportForm");
+                const formData = new FormData(form);
 
-            case 'year':
-                $sql = "SELECT CONCAT(YEAR(date_created)) AS label,
-                        medicine_name,
-                        COUNT(medicine_name) AS total_medicine,
-                        SUM(quantity) AS total_quantity
-                        FROM medicine
-                        WHERE role = '3' AND YEAR(date_created) = $selected_year
-                        GROUP BY label, medicine_name";
-                $report_label = 'Yearly';
-                break;
+                fetch("totalphysicianappointments.php", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    drawBarChart(data);
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+            }
 
-            default:
-                echo "Invalid report type selection.";
-                exit;
-        }
+            function drawBarChart(data) {
+                const ctx = document.getElementById("barChart").getContext("2d");
 
-        $result = $conn->query($sql);
-?>
+                const chartData = {
+                    labels: data.labels,
+                    datasets: [
+                        {
+                            label: "Total of Student",
+                            data: data.total_student,
+                            backgroundColor: "rgba(0, 0, 128, 0.5)", // You can change the color here
+                        },
+                        {
+                            label: "Total of Employees",
+                            data: data.total_employee,
+                            backgroundColor: "rgba(139, 0, 0, 0.5)", // You can change the color here
+                        },
+                    ],
+                };
+    const options = {
+    responsive: true,
+    scales: {
+        x: {
+            stacked: true,
+        },
+        y: {
+            beginAtZero: true,
+            stacked: true,
+            ticks: {
+                stepSize: 5,
+                max: 80,
+                callback: function (value, index, values) {
+                    // Define the custom labels
+                    const customLabels = ['0','5','10','15','20','25','30','35'];
+                    return customLabels[index];
+                },
+            },
+        },
+    },
+};
 
-<table>
-    <thead>
-        <tr>
-            <th><?php echo $report_label; ?></th>
-            <th>Medicine Name</th>
-            <th>Total Quantity</th>
-        </tr>
-    </thead>
-    <tbody id="healthRecordTableBody">
-        <?php while ($row = $result->fetch_object()): ?>
-            <tr>
-                <td><?php echo $row->label; ?></td>
-                <td><?php echo $row->medicine_name; ?></td>
-                <td><?php echo $row->total_quantity; ?></td>
-            </tr>
-        <?php endwhile; ?>
-    </tbody>
-</table>
-
-         
-<?php
-    }
+// Destroy the previous chart if it exists
+const existingChart = window.myChart;
+if (existingChart) {
+    existingChart.destroy();
 }
-?>
-<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <select id="tableSelect" name="report_type">
-        <option value="week">Week</option>
-        <option value="month">Month</option>
-        <option value="year">Year</option>
-    </select>
 
-    <select id="yearSelect" name="selected_year">
-        <option value="2023" <?php echo $selected_year === '2023' ? 'selected' : ''; ?>>2023</option>
-        <option value="2024" <?php echo $selected_year === '2024' ? 'selected' : ''; ?>>2024</option>
-        <option value="2025" <?php echo $selected_year === '2025' ? 'selected' : ''; ?>>2025</option>
-    </select>
+// Create a new chart instance
+window.myChart = new Chart(ctx, {
+    type: "bar",
+    data: chartData,
+    options: options,
+});
 
-    <button type="submit">Generate Report</button>
-</form>
+            }
 
-    </script>			
+            // Fetch and draw the chart when the page loads
+            fetchChartData();
+        });
+    </script>
+
+    
+				    </div><!--//app-card-body-->
+
+
+    
+				</div>			    
+		    </div>
+	    </div>
+    </div>  					
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-   
-
     
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 
@@ -350,4 +483,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 </body>
-</html>
+</html> 
+

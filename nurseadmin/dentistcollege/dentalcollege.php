@@ -1,6 +1,7 @@
 <?php
     session_start();
     include '../../db.php';
+    require '../../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';

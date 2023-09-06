@@ -14,7 +14,7 @@
         $admin_id = $row['admin_id'];
         $username = $row['username'];
         require_once('../../db.php');
-        if($_SESSION['role'] == 6){
+        if($_SESSION['role'] == 7){
             // User type 1 specific code here
         }
         else{
@@ -53,7 +53,7 @@
 
 <body class="app">   	
 <?php
-$sql = "SELECT * FROM physicianapp";
+$sql = "SELECT * FROM physicianappcollege";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -110,7 +110,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
                 <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-7" aria-expanded="false" aria-controls="submenu-7">
+        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
@@ -124,14 +124,14 @@ if (mysqli_num_rows($result) > 0) {
                 </svg>
             </span>
         </a>
-        <div id="submenu-7" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+        <div id="submenu-3" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Physician Consultation Appointment Reports</a></li>
+            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
             </ul>
         </div>
     </li>
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="physicianapproved.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle active" href="physicianapprovedcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
@@ -143,56 +143,8 @@ if (mysqli_num_rows($result) > 0) {
         <span class="nav-link-text">Physician Consultation Appointments</span>
     </a>
 </li>
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-5" aria-expanded="false" aria-controls="submenu-3">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
-            <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"/>
-            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
-            </svg>
-        </span>
-        <span class="nav-link-text">Physical Examination <br>Record</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </span>
-    </a>
-    <div id="submenu-5" class="collapse submenu submenu-5" data-bs-parent="#menu-accordion">
-        <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicalexaminationgsjhs.php">Grade School and Junior High School Department</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="physicalexaminationshs.php">Senior High School Department</a></li>
-        </ul>
-    </div>
-</li>
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-6" aria-expanded="false" aria-controls="submenu-3">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-medical" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v.634l.549-.317a.5.5 0 1 1 .5.866L9 6l.549.317a.5.5 0 1 1-.5.866L8.5 6.866V7.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L7 6l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V4.5A.5.5 0 0 1 8 4zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
-            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-            </svg>
-        </span>
-        <span class="nav-link-text">Physician's Order Sheet <br>and Progress Notes</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </span>
-    </a>
-    <div id="submenu-6" class="collapse submenu submenu-5" data-bs-parent="#menu-accordion">
-        <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="physicianorderandprogressgsjhs.php">Grade School and Junior High School Department</a></li>
-            <li class="submenu-item"><a class="submenu-link" href="physicianorderandprogressshs.php">Senior High School Department</a></li>
-        </ul>
-    </div>
-</li>
-
 </ul>
-  </nav>
+ </nav>
 	        </div>
 	    </div>
     </header>
@@ -228,14 +180,14 @@ if (mysqli_num_rows($result) > 0) {
   
     <?php  	
 $phy_id = $_GET['phy_id']; // Retrieving the parameter from the URL
-$sql = "SELECT * FROM physicianapp WHERE phy_id ='$phy_id'";
+$sql = "SELECT * FROM physicianappcollege WHERE phy_id ='$phy_id'";
 
     $result = mysqli_query($conn, $sql);
 
     while($row = $result->fetch_assoc()){
         $phy_id = $row['phy_id'];
     ?>
-                    <form class="form-horizontal mt-4" method="post" action="function/editphysician.php">
+                    <form class="form-horizontal mt-4" method="post" action="function/editphysicians.php">
  
   <div class="row">
   <div class="col-sm-3">
@@ -299,10 +251,9 @@ $sql = "SELECT * FROM physicianapp WHERE phy_id ='$phy_id'";
             <div class="col-sm-12">
                 <select id="role" name="role" class="form-control">
                 <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
-                <option value="Student in GS/JHS" <?php if($row['role'] == "Student in GS/JHS") echo "selected"; ?>>Student in GS/JHS</option>
-                <option value="Employee in GS/JHS" <?php if($row['role'] == "Employee in GS/JHS") echo "selected"; ?>>Employee in GS/JHS</option>
-                <option value="Student in SHS" <?php if($row['role'] == "Student in SHS") echo "selected"; ?>>Student in SHS</option>
-                <option value="Employee in SHS" <?php if($row['role'] == "Employee in SHS") echo "selected"; ?>>Employee in SHS</option>
+                <option value="Student in College" <?php if($row['role'] == "Student in College") echo "selected"; ?>>Student</option>
+                <option value="Employee in College" <?php if($row['role'] == "Employee in College") echo "selected"; ?>>Employee</option>
+             
             </select>
                 </select>
             </div>

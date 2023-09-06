@@ -1,6 +1,7 @@
 <?php
     session_start();
     include '../../db.php';
+    require '../../vendor/autoload.php';
 
     if (!isset($_SESSION['admin_id'])){
         echo '<script>window.alert("PLEASE LOGIN FIRST!!")</script>';
@@ -52,17 +53,19 @@
 
 <body class="app">   	
 <?php
-$sql = "SELECT * FROM dentalapp";
+$sql = "SELECT * FROM physicianappcollege";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
-  $fullname = $row['fullname'];
-  $cenrolled = $row['cenrolled'];
-  $role = $row['role'];
+  $name = $row['name'];
+  $gradesection = $row['gradesection'];
+  $phoneno = $row['phoneno'];
   $date_time = $row['date_time'];
-  $date_created = $row['date_created'];
+  $sched_time = $row['sched_time'];
+  $role = $row['role'];
+  $created_at = $row['created_at'];
     }
  else {
  } 
@@ -175,123 +178,106 @@ if (mysqli_num_rows($result) > 0) {
 				    </div><!--//app-card-header-->
                     <div class="app-card-body p-4">
                    
-                   <form class="form-horizontal mt-4" method="post" action="function/physicianrecordcollege.php">
-                  
-                   <div class="row">
-  <div class="col-sm-4">
-    <div class="form-group">
-      <label for="idnumber" class="col-sm-12 control-label">Patient ID Number</label>
-      <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" required>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="form-group">
-      <label for="fullname" class="col-sm-12 control-label">Name</label>
-      <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" required>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="form-group">
-      <label for="cenrolled" class="col-sm-12 control-label">Currently enrolled in</label>
-      <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter patient name">
-    </div>
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-sm-4">
-    <div class="form-group">
-      <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
-      <div class="col-sm-12">
-        <select id="role" name="role" class="form-control" required>
-          <option value="">Select</option>
-          <option value="Student">Student</option>
-          <option value="Employee">Employee</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-                         <div class="form-group">
-                           <label for="date_time" class="col-sm-12 control-label">Schedule</label>
-                           <input type="datetime-local" id="date_time" name="date_time" class="form-control" required>
-                         </div>
-                       </div>
- <div class="col-sm-4">
-    <div class="form-group">
-      <label for="phoneNumber" class="col-sm-12 control-label" style="font-size: 16px">Phone Number</label>
-      <div class="col-sm-12">
-        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
-      </div>
-    </div>
-  </div>
-
-                     <div class="row">
-                       <div class="col-sm-12"><br><br>
-                       <input type="text" name="admin_id" style="display: none;" value="<?= $_SESSION['admin_id'];?>">
-                         <button name="submit_physiciancollege" class="btn btn-success">Add Physician Consultation Appointment</button>
-                       </div>
-                     </div>
-                   </form>
-                   
-                   </div>
-                 <br>
                  <div style="text-align: right; margin-right: 48px;">
                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
                          Update Physician Schedule
                      </button>
                  </div>
                  
-                 <?php
-// Fetch and display dental records
-$sql = "SELECT * FROM physicianapp WHERE admin_id = '13' AND is_deleted_on_website = 0";
-$result = $conn->query($sql);
-?>
-<center>
-<div class="main-content">
+                 <div class="main-content">
     <table class="styled-table">
         <thead>
             <tr>
+                <th>Number</th>
                 <th>ID Number</th>
                 <th>Fullname</th>
-                <th>Currently Enrolled in</th>
-                <th>Campus</th>
-                <th>Schedule</th>
+                <th>Grade & Section</th>
+                <th>Phone Number</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Role</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody id="healthRecordTableBody">
-            <?php
-            while ($row = $result->fetch_assoc()) {
-                ?>
+        <?php
+                $roles = array("Student in College", "Employee in College");
+                $rolesString = "'" . implode("','", $roles) . "'";
+
+                $sql = "SELECT * FROM physicianappcollege WHERE role IN ($rolesString) AND is_deleted_on_website = 0";
+
+        $result = mysqli_query($conn, $sql);
+
+        while($row = $result->fetch_assoc()){
+            $phy_id = $row['phy_id'];
+            $phoneno = $row['phoneno'];
+        ?>
                 <tr>
+                    <td><?php echo $row['phy_id']; ?></td>
                     <td><?php echo $row['idnumber']; ?></td>
-                    <td><?php echo $row['fullname']; ?></td>
-                    <td><?php echo $row['cenrolled']; ?></td>
-                    <td><?php echo $row['role']; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['gradesection']; ?></td>
+                    <td><?php echo $row['phoneno']; ?></td>
                     <td><?php echo $row['date_time']; ?></td>
+                    <td><?php echo $row['sched_time']; ?></td>
+                    <td><?php echo $row['role']; ?></td>
                  
                     <td>
                     <center>   
-                        <a href="function/forphysicianappstudentdone.php?phy_id=<?php echo $row['phy_id']; ?>"
-                        onclick="return confirm('Are you sure you want to delete this record?')">
-                            <!-- Replace the anchor element with SVG icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                    <a href="#openModal<?= $phy_id; ?>" class="modal-link" data-bs-toggle="modal" data-bs-target="#openModal<?= $phy_id; ?>">                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                    </svg>
+                     </a>
+                     <a href="editphysician.php?phy_id=<?php echo $phy_id;?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                             </svg>
-                        </a>
+                        </a>  
+                        <a href="function/forphysicianappstudentdone.php?phy_id=<?php echo $phy_id; ?>">            
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                        </svg>
+                            </a> 
+
                         </center>
                     </td>
-        
                 </tr>
-                <?php
+                             <!-- Approve Modal -->
+<div class="modal fade" id="openModal<?= $phy_id; ?>" tabindex="-1" aria-labelledby="modalLabel<?= $phy_id; ?>" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel<?= $phy_id; ?>">Send Message</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="inputTo" class="form-label">To</label>
+                        <input type="text" class="form-control" id="inputTo" name="phone" value="<?= $phoneno; ?>">  
+                    </div>
+                    <div class="mb-3">
+                        <label for="messagesms" class="form-label">Message</label>
+                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for physician consultation appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
             }
             ?>
         </tbody>
     </table>
-    <br><br>
 </div>
-        </center>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -308,8 +294,11 @@ $result = $conn->query($sql);
 
                 if (mysqli_num_rows($result1) > 0) {
                     while ($row1 = $result1->fetch_assoc()) {
-                        $statusphycollege_id = $row1['statusphycollege_id'];
-                        $status812 = $row1['status812'];
+                        $statphysician_id = $row1['statphysician_id'];
+                        $statusphysician9_am = $row1['statusphysician9_am'];
+                        $statusphysician10_am = $row1['statusphysician10_am'];
+                        $statusphysician11_am = $row1['statusphysician11_am'];
+                        $statusphysician12_pm = $row1['statusphysician12_pm'];
                     }
                 } else {
 
@@ -317,18 +306,39 @@ $result = $conn->query($sql);
                 ?>
                 <?php
                 // Step 1: Retrieve the data to be updated
-                if (isset($_GET['statusphycollege_id'])) {
-                    $statusphycollege_id = $_GET['statusphycollege_id'];
+                if (isset($_GET['statphysician_id'])) {
+                    $statphysician_id = $_GET['statphysician_id'];
                 }
 
                 ?>
                 <form action="function/physicianrecordcollege.php" method="POST">
-                    <input type="hidden" name="statusphycollege_id" value="<?php echo $statusphycollege_id; ?>">
+                    <input type="hidden" name="statphysician_id" value="<?php echo $statphysician_id; ?>">
                     <div class="mb-3">
-                        <label for="inputStatus811" class="form-label">Wendesday - 8:00 A.M - 12:00 P.M.</label>
-                        <select class="form-select" id="inputStatus811" name="status812">
-                            <option value="Available" <?php if ($status812 == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($status812 == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        <label for="inputStatus811" class="form-label">09:00 A.M</label>
+                        <select class="form-select" id="inputStatus811" name="statusphysician9_am">
+                            <option value="09:00 A.M" <?php if ($statusphysician9_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusphysician9_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus811" class="form-label">8:00 A.M</label>
+                        <select class="form-select" id="inputStatus811" name="statusphysician10_am">
+                            <option value="10:00 A.M" <?php if ($statusphysician10_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusphysician10_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus811" class="form-label">11:00 A.M</label>
+                        <select class="form-select" id="inputStatus811" name="statusphysician11_am">
+                            <option value="11:00 A.M" <?php if ($statusphysician11_am == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusphysician11_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus811" class="form-label">12:00 P.M</label>
+                        <select class="form-select" id="inputStatus811" name="statusphysician12_pm">
+                            <option value="12:00 P.M" <?php if ($statusphysician12_pm == 'Available') echo 'selected'; ?>>Available</option>
+                            <option value="Unavailable" <?php if ($statusphysician12_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
                         </select>
                     </div>
                     <div class="modal-footer">
@@ -340,6 +350,67 @@ $result = $conn->query($sql);
         </div>
     </div>
 </div>
+
+
+<?php
+/**
+ * Send an SMS message directly by calling the HTTP endpoint.
+ *
+ * For your convenience, environment variables are already pre-populated with your account data
+ * like authentication, base URL, and phone number.
+ *
+ * Please find detailed information in the readme file.
+ */
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
+
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $phoneNumber = $_POST['phone'];
+    $message = $_POST['message'];
+    date_default_timezone_set('Asia/Manila');
+    $date_created = date('Y-m-d h:i A'); 
+
+    // Send the SMS using the Infobip API
+    $client = new Client([
+        'base_uri' => "https://k3n5n1.api.infobip.com",
+        'headers' => [
+            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ]
+    ]);
+
+    $response = $client->request(
+        'POST',
+        'sms/2/text/advanced',
+        [
+            RequestOptions::JSON => [
+                'messages' => [
+                    [
+                        'from' => 'Clinic DWCL',
+                        'destinations' => [
+                            ['to' => $phoneNumber]
+                        ],
+                        'text' => $message,
+                    ]
+                ]
+            ],
+        ]
+    );
+
+    // Prepare the SQL query
+    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+
+    // Bind the parameters and execute the query
+    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
+    $stmt->execute();
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>
 
 
     <!-- Javascript -->          

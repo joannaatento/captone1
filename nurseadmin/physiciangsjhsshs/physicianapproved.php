@@ -230,7 +230,7 @@ if (mysqli_num_rows($result) > 0) {
                  <br>
                  <div style="text-align: right; margin-right: 48px;">
                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
-                         Update Dental Schedule
+                         Update Physician Schedule
                      </button>
                  </div>
 

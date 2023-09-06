@@ -90,16 +90,21 @@
 
     if(isset($_POST['submit_statusphysiciancollege'])) {
         // Retrieve the submitted form data
-        $statusphycollege_id = $_POST['statusphycollege_id'];
-        $status812 = $_POST['status812'];
+        $statphysician_id = $_POST['statphysician_id'];
+        $statusphysician9_am = $_POST['statusphysician9_am'];
+        $statusphysician10_am = $_POST['statusphysician10_am'];
+        $statusphysician11_am = $_POST['statusphysician11_am'];
+        $statusphysician12_pm = $_POST['statusphysician12_pm'];
        
     
         // Step 4: Execute the update query
-        $sql1 = "UPDATE statusphysiciancollege SET status812='$status812'
-        WHERE statusphycollege_id = $statusphycollege_id";
+        $sql = "UPDATE statusphysiciancollege SET statusphysician9_am='$statusphysician9_am', 
+        statusphysician10_am='$statusphysician10_am', statusphysician11_am='$statusphysician11_am',
+        statusphysician12_pm='$statusphysician12_pm'
+        WHERE statphysician_id = $statphysician_id";
     
         // Execute the query and handle the result
-        if (mysqli_query($conn, $sql1)) {
+        if (mysqli_query($conn, $sql)) {
             // Step 5: Handle the update result
             echo '<script>alert("Successfully updated!");</script>';
             echo '<script>window.location.href="../physicianapprovedcollege.php";</script>';

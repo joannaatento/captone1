@@ -54,16 +54,18 @@
 <?php
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM physicianapp WHERE idnumber= '$idnumber'";
+$sql = "SELECT * FROM physicianappcollege WHERE idnumber= '$idnumber'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
-  $fullname = $row['fullname'];
-  $cenrolled = $row['cenrolled'];
+  $name = $row['name'];
+  $gradesection = $row['gradesection'];
+  $phoneno = $row['phoneno'];
   $date_time = $row['date_time'];
-  $date_created = $row['date_created'];
+  $sched_time = $row['sched_time'];
+  $role = $row['role'];
     }
  else {
  } 
@@ -199,7 +201,7 @@ if (mysqli_num_rows($result) > 0) {
 				    <div class="app-card-body p-4">
 
                     <?php
-							$sql = "SELECT * FROM physicianapp WHERE idnumber = '$idnumber'";
+							$sql = "SELECT * FROM physicianappcollege WHERE idnumber = '$idnumber'";
 							$result = $conn->query($sql);
     						while($row = $result->fetch_array()){
 						?>
@@ -207,26 +209,28 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                            <label for="idnumber" class="col-sm-10 control-label">Patient ID Number</label>
+                            <label for="idnumber" class="col-sm-10 control-label">ID Number</label>
                             <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="Enter patient ID number" value="<?php echo $row['idnumber']; ?>" readonly>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                            <label for="fullname" class="col-sm-10 control-label">Name</label>
-                            <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter patient name" value="<?php echo $row['fullname']; ?>" readonly>
+                            <label for="name" class="col-sm-10 control-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter patient name" value="<?php echo $row['name']; ?>" readonly>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                            <label for="cenrolled" class="col-sm-10 control-label">Currently enrolled in</label>
-                            <input type="text" class="form-control" id="cenrolled" name="cenrolled" placeholder="Enter patient name" value="<?php echo $row['cenrolled']; ?>" readonly>
+                            <label for="gradesection" class="col-sm-10 control-label">Course & Year</label>
+                            <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter patient name" value="<?php echo $row['gradesection']; ?>" readonly>
                         </div>
                         </div>
                   </div>
-                  <br>
         <div class="form-group">
-            <span><b>Schedule:</b> <?php echo $row['date_time']; ?></span>
+			<b>
+                <span>Schedule: <?php echo date('Y-m-d', strtotime($row['date_time'])); ?>
+                <?php echo date('h:i A', strtotime($row['sched_time'])); ?></span>
+            </b>
         </div>
   
         <?php } ?>
@@ -234,7 +238,7 @@ if (mysqli_num_rows($result) > 0) {
 				</div>			    
 		    </div>
 	    </div>
-    </div>  					
+    </div>  				
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  

@@ -22,34 +22,33 @@
                     $selected_year = $_POST['selected_year'];
             
                     $chartData = array();
-            
                     switch ($report_type) {
                         case 'week':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM physicianapp
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    SUM(role = 'student in college') AS total_student,
+                                    SUM(role = 'employee in college') AS total_employee
+                                    FROM physicianappcollege 
+                                    WHERE YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Weekly';
                             break;
             
                         case 'month':
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM physicianapp
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    SUM(role = 'student in college') AS total_student,
+                                    SUM(role = 'employee in college') AS total_employee
+                                    FROM physicianappcollege 
+                                    WHERE YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Monthly';
                             break;
             
                         case 'year':
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
-                                    SUM(role = 'student') AS total_student,
-                                    SUM(role = 'employee') AS total_employee
-                                    FROM physicianapp
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    SUM(role = 'student in college') AS total_student,
+                                    SUM(role = 'employee in college') AS total_employee
+                                    FROM physicianappcollege 
+                                    WHERE YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Yearly';
                             break;
@@ -60,7 +59,7 @@
                     }
             
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ii", $admin_id, $selected_year);
+                    $stmt->bind_param("i",$selected_year);
                     $stmt->execute();
                     $result = $stmt->get_result();
             
@@ -85,12 +84,10 @@
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Total Physician Consulation Appointment Reports</title>
+    <title>Physician Dashboard</title>
     
     <!-- Meta -->
     <meta charset="utf-8">

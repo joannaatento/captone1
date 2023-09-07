@@ -47,6 +47,9 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head> 
 
@@ -54,7 +57,7 @@
 <?php
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM consultationformrecord WHERE idnumber= '$idnumber'";
+$sql = "SELECT * FROM consultationformrecordcollege WHERE idnumber= '$idnumber'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -64,7 +67,7 @@ if (mysqli_num_rows($result) > 0) {
   $fullname = $row['fullname'];
   $gradesection = $row['gradesection'];
   $chiefcomplaint = $row['chiefcomplaint'];
-  $treatment = $row['treatment'];
+  $status = $row['status'];
     }
  else {
  } 
@@ -103,9 +106,9 @@ if (mysqli_num_rows($result) > 0) {
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
-                <li class="nav-item has-submenu">
-
-    <a class="nav-link submenu-toggle active" href="healthrecordformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    
+        <li class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle" href="healthrecordformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">       
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -116,11 +119,8 @@ if (mysqli_num_rows($result) > 0) {
         <span class="nav-link-text">Health Profile</span>
     </a>
 </li>
-
-
-
-	<li class="nav-item has-submenu">
-								<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
+<li id="scheduling-link" class="nav-item has-submenu">
+<a class="nav-link submenu-toggle" href="#" data-toggle="collapse" data-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
 									<span class="nav-icon">
 										<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-plus" viewBox="0 0 16 16">
@@ -145,7 +145,7 @@ if (mysqli_num_rows($result) > 0) {
 							</li>
 
 
-							<li class="nav-item has-submenu">
+                            <li id="clinical-link" class="nav-item has-submenu">
 								<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
 									<span class="nav-icon">
 										<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -167,8 +167,7 @@ if (mysqli_num_rows($result) > 0) {
 									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappcollege.php">Dental Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappcollege.php">Medical Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappcollege.php">Physician Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappcollege.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformcollege.php">Consultation Form Record</a>
+									<li class="submenu-item"> <a class="submenu-link active" href="viewconsultationformcollege.php">Consultation Form Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassescollege.php">School Health Assessment</a>
 </li>
 									</ul>
@@ -194,7 +193,7 @@ if (mysqli_num_rows($result) > 0) {
                 </div><!--//app-card-header-->
                 <div class="app-card-body p-4">
                     <?php
-                    $sql = "SELECT * FROM consultationformrecord WHERE idnumber = '$idnumber'";
+                    $sql = "SELECT * FROM consultationformrecordcollege WHERE idnumber = '$idnumber'";
                     $result = $conn->query($sql);
                     while($row = $result->fetch_array()) {
                     ?>
@@ -248,13 +247,14 @@ if (mysqli_num_rows($result) > 0) {
                       <div class="col-sm-4">
                           <div class="form-group">
                             <br>
-                              <label for="treatment" class="col-sm-4 control-label" style="font-size: 16px">Treatment/Medicine</label>
+                              <label for="treatment" class="col-sm-4 control-label" style="font-size: 16px">Status</label>
                               <div class="col-sm-11">
-                                  <input type="text" class="form-control" id="treatment " name="treatment" placeholder="Enter Treatment/Medicine" value="<?php echo $row['treatment']; ?>" readonly>
+                                  <input type="text" class="form-control" id="treatment " name="status" placeholder="Enter Treatment/Medicine" value="<?php echo $row['status']; ?>" readonly>
                               </div>
                           </div>
                       </div>
                   </div>
+                  <hr>
                     <?php } ?>
                 </div><!--//app-card-body-->
             </div>
@@ -278,6 +278,39 @@ if (mysqli_num_rows($result) > 0) {
 			}
 		}, 5000);
 	</script>
+
+
+<script>
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Get references to the parent and sub-menu links
+    const schedulingLink = document.getElementById('scheduling-link');
+    const clinicalLink = document.getElementById('clinical-link');
+    const schedulingSubMenuLinks = schedulingLink.querySelectorAll('.submenu-link');
+    const clinicalSubMenuLinks = clinicalLink.querySelectorAll('.submenu-link');
+
+    // Check if the current URL matches any of the sub-menu links' href attributes
+    schedulingSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            schedulingLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-2');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    clinicalSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            clinicalLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-3');
+            submenu.classList.remove('collapse');
+        }
+    });
+</script>
 
 </body>
 </html> 

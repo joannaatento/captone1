@@ -45,6 +45,9 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
    
 </style>
@@ -85,9 +88,9 @@
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
-                <li class="nav-item has-submenu">
-
-    <a class="nav-link submenu-toggle active" href="healthrecordformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    
+        <li class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle" href="healthrecordformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">       
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -98,11 +101,8 @@
         <span class="nav-link-text">Health Profile</span>
     </a>
 </li>
-
-
-
-	<li class="nav-item has-submenu">
-								<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
+<li id="scheduling-link" class="nav-item has-submenu">
+<a class="nav-link submenu-toggle active" href="#" data-toggle="collapse" data-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
 									<span class="nav-icon">
 										<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-plus" viewBox="0 0 16 16">
@@ -120,15 +120,15 @@
 								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
 										<li class="submenu-item"><a class="submenu-link" href="adddentalmessagecollege.php">Request Dental Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessagecollege.php">Request Medical Scheduling</a></li>
+										<li class="submenu-item"><a class="submenu-link active" href="addmedicalmessagecollege.php">Request Medical Scheduling</a></li>
 										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessagecollege.php">Request Physician Scheduling</a></li>
 									</ul>
 								</div>
 							</li>
 
 
-							<li class="nav-item has-submenu">
-								<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+                            <li id="clinical-link" class="nav-item has-submenu">
+								<a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
 									<span class="nav-icon">
 										<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stickies" viewBox="0 0 16 16">
@@ -149,8 +149,7 @@
 									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappcollege.php">Dental Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappcollege.php">Medical Record</a>
                                     <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappcollege.php">Physician Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappcollege.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
-									 <li class="submenu-item"> <a class="submenu-link" href="viewconsultationformcollege.php">Consultation Form Record</a>
+									<li class="submenu-item"> <a class="submenu-link" href="viewconsultationformcollege.php">Consultation Form Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassescollege.php">School Health Assessment</a>
 </li>
 									</ul>
@@ -825,6 +824,38 @@ function handleLabelClick(time) {
     </script>
 
 
+
+<script>
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Get references to the parent and sub-menu links
+    const schedulingLink = document.getElementById('scheduling-link');
+    const clinicalLink = document.getElementById('clinical-link');
+    const schedulingSubMenuLinks = schedulingLink.querySelectorAll('.submenu-link');
+    const clinicalSubMenuLinks = clinicalLink.querySelectorAll('.submenu-link');
+
+    // Check if the current URL matches any of the sub-menu links' href attributes
+    schedulingSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            schedulingLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-2');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    clinicalSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            clinicalLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-3');
+            submenu.classList.remove('collapse');
+        }
+    });
+</script>
 
 
 </body>

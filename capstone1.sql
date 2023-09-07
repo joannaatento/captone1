@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2023 at 04:50 PM
+-- Generation Time: Sep 07, 2023 at 06:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -102,7 +102,8 @@ CREATE TABLE `consultationformrecordcollege` (
 --
 
 INSERT INTO `consultationformrecordcollege` (`consultform_id`, `admin_id`, `idnumber`, `date`, `fullname`, `gradesection`, `chiefcomplaint`, `status`) VALUES
-(10, 11, 3, '2023-09-07', 'User College', 'BSIT - 4', 'Headache', 'sent to home');
+(10, 11, 3, '2023-09-07', 'User College', 'BSIT - 4', 'Headache', 'sent to home'),
+(11, 20, 3, '2023-09-08', 'User College', 'BSIT - 4', 'Headache', 'sent to home');
 
 -- --------------------------------------------------------
 
@@ -132,12 +133,13 @@ CREATE TABLE `dentalapp` (
 --
 
 INSERT INTO `dentalapp` (`dentalapp_id`, `user_id`, `idnumber`, `fullname`, `service`, `phoneno`, `date_time`, `sched_time`, `gradecourseyear`, `role`, `created_at`, `is_deleted_on_website`, `availability`, `status`) VALUES
-(65, 99, 6802182, 'Joanna Mae D. Atento', 'Tooth Extraction', '+639156005165', '2023-09-06 12:00 AM', '10:00 AM', 'Grade 9', 'Student in GS/JHS', '2023-09-03 20:59:23', 0, 1, 'Unavailable'),
+(65, 99, 6802182, 'Joanna Mae D. Atento', 'Tooth Extraction', '+639156005165', '2023-09-06 12:00 AM', '10:00 AM', 'Grade 9', 'Student in GS/JHS', '2023-09-03 20:59:23', 1, 1, 'Unavailable'),
 (66, 99, 6802182, 'Joanna Mae D. Atento', 'Cleaning', '+639156005189', '2023-09-05', '10:00 A.M', 'Grade 9', 'Student in GS/JHS', '2023-09-03 21:54:51', 0, 1, 'Unavailable'),
 (68, 102, 6802182, 'Joanna Mae D. Atento', 'Cleaning', '+639156005165', '2023-09-07', '11:00 A.M', 'Grade 12', 'Student in SHS', '2023-09-04 22:03:04', 0, 1, 'Unavailable'),
 (69, 103, 1, 'User GSJHS', 'Cleaning', '+639244586467', '2023-09-15', '10:00 A.M', 'Grade 9', 'Student in GS/JHS', '2023-09-04 22:32:25', 0, 1, 'Unavailable'),
-(70, 103, 1, 'User GSJHS', 'Cleaning', '+639234576953', '2023-09-22', '11:00 A.M', '', 'Employee in GS/JHS', '2023-09-04 22:41:49', 0, 1, 'Unavailable'),
-(71, 104, 2, 'User SHS', 'Cleaning', '+639683456785', '2023-10-13', '11:00 A.M', 'Grade 12', 'Student in SHS', '2023-09-04 22:56:54', 0, 1, 'Unavailable');
+(70, 103, 1, 'User GSJHS', 'Cleaning', '+639234576953', '2023-09-22', '11:00 A.M', '', 'Employee in GS/JHS', '2023-09-04 22:41:49', 1, 1, 'Unavailable'),
+(71, 104, 2, 'User SHS', 'Cleaning', '+639683456785', '2023-10-13', '11:00 A.M', 'Grade 12', 'Student in SHS', '2023-09-04 22:56:54', 0, 1, 'Unavailable'),
+(72, 104, 2, 'User SHS', 'Cleaning', '+639637077358', '2023-09-08', '11:00 A.M', 'Grade 12', 'Student in SHS', '2023-09-07 16:15:05', 0, 1, 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -167,7 +169,7 @@ CREATE TABLE `dentalappcollege` (
 --
 
 INSERT INTO `dentalappcollege` (`dentalapp_id`, `user_id`, `idnumber`, `fullname`, `service`, `phoneno`, `date_time`, `sched_time`, `gradecourseyear`, `role`, `created_at`, `is_deleted_on_website`, `availability`, `status`) VALUES
-(75, 105, 3, 'User College', 'Tooth Extraction', '+639345657687', '2023-09-06 12:00 AM', '08:00 AM', 'BSIT - 2', 'Student in College', '2023-09-05 23:07:56', 0, 1, 'Unavailable'),
+(75, 105, 3, 'User College', 'Tooth Extraction', '+639345657687', '2023-09-06 12:00 AM', '08:00 AM', 'BSIT - 2', 'Student in College', '2023-09-05 23:07:56', 1, 1, 'Unavailable'),
 (76, 105, 3, 'User College', 'Cleaning', '+639234546578', '2023-09-05', '11:00 A.M', 'BSIT - 3', 'Employee in College', '2023-09-05 23:09:25', 0, 1, 'Unavailable');
 
 -- --------------------------------------------------------
@@ -380,7 +382,7 @@ CREATE TABLE `healthrecordformgsjhs` (
 --
 
 INSERT INTO `healthrecordformgsjhs` (`healthnogsjhs_id`, `user_id`, `image`, `fullname`, `idnumber`, `cp`, `birthday`, `gender`, `address`, `paddress`, `father`, `cfather`, `mother`, `cmother`, `religion`, `nationality`, `language`, `bothparents`, `livesfather`, `livesmother`, `guardian`, `guardianname`, `guardianrelation`, `cguardian`, `altrelation`, `altrel`, `acontact`, `bcg`, `dpt`, `opv`, `hepa`, `measles`, `others`, `firstdose`, `seconddose`, `boosterdose`, `no`, `imagevac`, `asthma`, `faintingspells`, `allergicrhinitis`, `freqheadache`, `anxietydis`, `g6pd`, `bleedingclotting`, `hearingprob`, `hypergas`, `derma`, `hypertension`, `diabetes`, `hyperventilation`, `mens`, `othersmedical`, `yesheartcon`, `noheartcon`, `heartcon`, `yeseyeprob`, `noeyeprob`, `eyeprob`, `yesseriousillnes`, `noseriousillnes`, `seriousillnes`, `yessurgeries`, `nosurgeries`, `surgeries`, `yesreceive`, `noreceive`, `receive`, `yesallergiesmed`, `noallergiesmed`, `allergiesmed`, `yesallergiesfood`, `noallergiesfood`, `allergiesfood`, `yesfirstaid`, `nofirstaid`, `yesconcerns`, `noconcerns`, `concerns`) VALUES
-(41, 103, '2435550 (1).webp', 'User GSJHS', 1, '+639156003445', '2002-12-13', 'Female', 'Legazpi City', 'Legazpi City', 'fhghk', '+639147564579', 'cdvdgfh', '+639156780764', 'Roman Catholic', 'Filipino', 'Bicol, Tagalog, English', '', '', '', 'guardian', 'DFGJH', 'FGHFGHF', '+639156005165', 'SDFGHJ', 'DFGHJ', '+639148546779', '', '', '', '', 'measles', 'DFGHJG', '', 'seconddose', '', '', '2435550.webp', 'asthma', '', '', '', 'anxietydis', '', '', 'hearingprob', '', '', '', '', '', '', 'HFJGH', '', 'noheartcon', '', '', 'noeyeprob', '', '', 'noseriousillnes', '', '', 'nosurgeries', '', '', 'noreceive', '', '', 'noallergiesmed', '', '', 'noallergiesfood', '', '', 'nofirstaid', '', 'noconcerns', '');
+(41, 103, '2435550 (1).webp', 'User GSJHS', 1, '+639156003446', '2002-12-13', 'Female', 'Legazpi City', 'Legazpi City', 'fhghk', '+639147564579', 'cdvdgfh', '+639156780764', 'Roman Catholic', 'Filipino', 'Bicol, Tagalog, English', '', '', '', 'guardian', 'DFGJH', 'FGHFGHF', '+639156005165', 'SDFGHJ', 'DFGHJ', '+639148546779', '', '', '', '', 'measles', 'DFGHJG', '', 'seconddose', '', '', '2435550.webp', 'asthma', '', '', '', 'anxietydis', '', '', 'hearingprob', '', '', '', '', '', '', 'HFJGH', '', 'noheartcon', '', '', 'noeyeprob', '', '', 'noseriousillnes', '', '', 'nosurgeries', '', '', 'noreceive', '', '', 'noallergiesmed', '', '', 'noallergiesfood', '', '', 'nofirstaid', '', 'noconcerns', '');
 
 -- --------------------------------------------------------
 
@@ -469,11 +471,12 @@ CREATE TABLE `medicalapp` (
 --
 
 INSERT INTO `medicalapp` (`medicalapp_id`, `user_id`, `idnumber`, `name1`, `gradecourseyear1`, `phoneno`, `date_time`, `sched_time`, `role`, `onoff`, `created_at`, `is_deleted_on_website`, `availability`, `status`) VALUES
-(177, 103, 1, 'User GSJHS', 'Grade 9', '+639567899756', '2023-09-26 12:00 AM', '03:00 PM', 'Employee in GS/JHS', 'Off-campus Activity', '2023-09-04 22:42:34', 0, 1, 'Unavailable'),
+(177, 103, 1, 'User GSJHS', 'Grade 9', '+639567899756', '2023-09-26 12:00 AM', '03:00 PM', 'Employee in GS/JHS', 'Off-campus Activity', '2023-09-04 22:42:34', 1, 1, 'Unavailable'),
 (178, 103, 1, 'User GSJHS', 'Grade 7', '+639155786774', '2023-09-29', '10:00 A.M', 'Student in GS/JHS', 'On-campus Activity', '2023-09-05 12:30:04', 0, 1, 'Unavailable'),
 (179, 99, 6802182, 'Joanna Mae D. Atento', 'Grade 1', '+639156005169', '2023-09-27', '04:00 P.M', 'Student in GS/JHS', 'On-campus Activity', '2023-09-05 12:35:41', 1, 1, 'Unavailable'),
-(180, 103, 1, 'User GSJHS', 'Grade 10', '+639234567586', '2023-09-01', '10:00 A.M', 'Student in GS/JHS', 'On-campus Activity', '2023-09-05 12:53:35', 0, 1, 'Unavailable'),
-(181, 99, 6802182, 'Joanna Mae D. Atento', 'Grade 7', '+639234567568', '2023-09-15', '11:00 A.M', 'Student in GS/JHS', 'On-campus Activity', '2023-09-05 12:54:34', 0, 1, 'Unavailable');
+(180, 103, 1, 'User GSJHS', 'Grade 10', '+639234567586', '2023-09-01', '10:00 A.M', 'Student in GS/JHS', 'On-campus Activity', '2023-09-05 12:53:35', 1, 1, 'Unavailable'),
+(181, 99, 6802182, 'Joanna Mae D. Atento', 'Grade 7', '+639234567568', '2023-09-15', '11:00 A.M', 'Student in GS/JHS', 'On-campus Activity', '2023-09-05 12:54:34', 1, 1, 'Unavailable'),
+(182, 103, 1, 'User GSJHS', 'Grade 9', '+639637077358', '2023-09-13 12:00 AM', '08:00 AM', 'Student in GS/JHS', 'On-campus Activity', '2023-09-07 16:18:10', 0, 1, 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -504,7 +507,7 @@ CREATE TABLE `medicalappcollege` (
 
 INSERT INTO `medicalappcollege` (`medicalapp_id`, `user_id`, `idnumber`, `name1`, `gradecourseyear1`, `phoneno`, `date_time`, `sched_time`, `role`, `onoff`, `created_at`, `is_deleted_on_website`, `availability`, `status`) VALUES
 (3, 105, 3, 'User College', 'BSIT - 3', '+639156005165', '2023-09-14', '10:00 A.M', 'Student in College', 'On-campus Activity', '2023-09-05 11:01:29', 0, 1, 'Unavailable'),
-(4, 105, 3, 'User College', 'Employee', '+639156005169', '2023-09-06', '09:00 A.M', 'Employee in College', 'Off-campus Activity', '2023-09-05 11:03:05', 0, 1, 'Unavailable');
+(4, 105, 3, 'User College', 'Employee', '+639156005169', '2023-09-06', '09:00 A.M', 'Employee in College', 'Off-campus Activity', '2023-09-05 11:03:05', 1, 1, 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -534,8 +537,9 @@ CREATE TABLE `medicalappshs` (
 --
 
 INSERT INTO `medicalappshs` (`medicalapp_id`, `user_id`, `idnumber`, `name1`, `gradecourseyear1`, `phoneno`, `date_time`, `sched_time`, `role`, `onoff`, `created_at`, `is_deleted_on_website`, `availability`, `status`) VALUES
-(1, 102, 6802182, 'Joanna Mae D. Atento', 'Grade 12', '+639156005165', '2023-09-12 12:00 AM', '09:00 AM', 'Student in SHS', 'On-campus Activity', '2023-09-04 17:04:37', 0, 1, 'Unavailable'),
-(2, 104, 2, 'User SHS', 'Grade 11', '+639345678976', '2023-09-29', '04:00 P.M', 'Student in SHS', 'On-campus Activity', '2023-09-04 22:57:44', 0, 1, 'Unavailable');
+(1, 102, 6802182, 'Joanna Mae D. Atento', 'Grade 12', '+639156005165', '2023-09-12 12:00 AM', '09:00 AM', 'Student in SHS', 'On-campus Activity', '2023-09-04 17:04:37', 1, 1, 'Unavailable'),
+(2, 104, 2, 'User SHS', 'Grade 11', '+639345678976', '2023-09-29', '04:00 P.M', 'Student in SHS', 'On-campus Activity', '2023-09-04 22:57:44', 0, 1, 'Unavailable'),
+(3, 104, 2, 'User SHS', 'Grade 12', '+639637077358', '2023-09-08', '04:00 P.M', 'Student in SHS', 'On-campus Activity', '2023-09-07 16:16:29', 0, 1, 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -560,7 +564,8 @@ INSERT INTO `medicine` (`medicine_id`, `role`, `medicine_name`, `quantity`, `dat
 (36, 3, 'Bioflu', '6', '2023-09-05'),
 (37, 1, 'Advil', '4', '2023-09-05'),
 (38, 1, 'Buscopan', '6', '2023-09-05'),
-(39, 2, 'Amoxicilin', '4', '2023-09-05');
+(39, 2, 'Amoxicilin', '4', '2023-09-05'),
+(40, 3, 'Bioflu', '10', '2023-09-07');
 
 -- --------------------------------------------------------
 
@@ -584,13 +589,7 @@ CREATE TABLE `nursenotesshs` (
 --
 
 INSERT INTO `nursenotesshs` (`nurse_id`, `admin_id`, `idnumber`, `fullname`, `gradesection`, `datetime`, `vitalsigns`, `nursenotes`) VALUES
-(1, 10, 6802182, 'Joanna Mae Atento', 'Grade 12 Punto', '2023-07-31 20:30:00', 'T-36', 'cc: headache\r\nhx: slept at 1am\r\na: paracetamol'),
-(2, 10, 6802182, 'Joanna Mae Atento', 'Grade 12 Punto', '2023-07-24 20:40:00', 'T-36', 'cc: headache'),
-(3, 10, 6802182, 'Joanna Mae Atento', 'Grade 12 Punto', '2023-07-25 08:45:00', 'T-36', 'cc: cramps'),
-(4, 10, 6802182, 'Joanna Mae Atento', 'Grade 12 Punto', '2023-07-27 08:49:00 PM', 'T-36', 'cc: cramps'),
-(5, 10, 6802182, 'Joanna Mae Atento', 'Grade 12 Punto', '2023-07-22 08:49: PM', 'T-36', 'cc: highblood'),
-(6, 10, 6802182, 'Joanna Mae Atento', 'Grade 12 Punto', '2023-08-03 08:50 PM', 'T-36', 'cc: cramps'),
-(7, 19, 2, 'User GSJHS', 'Grade 12 Punto', '2023-09-08 10:30 AM', '80/90', 'fghjykl');
+(8, 10, 2, 'User SHS', 'Grade 12 Punto', '2023-09-08 10:30 AM', '70/100', 'rest');
 
 -- --------------------------------------------------------
 
@@ -615,8 +614,7 @@ CREATE TABLE `patientrecord` (
 --
 
 INSERT INTO `patientrecord` (`p_id`, `admin_id`, `idnumber`, `fullname`, `gradesection`, `vitalsigns`, `diagnosis`, `status`, `date_time`) VALUES
-(24, 9, 6802182, 'Joanna Mae D. Atento', 'Grade 7 Saint', '70/100', 'Vomitting/Headache', 'endorse to other hospital (BRTTH)', '2023-09-03 11:41 PM'),
-(25, 17, 1, 'User GSJHS', 'Grade 8', '90/100', 'Headache', 'endorse to other hospital ', '2023-09-04 10:37 PM');
+(27, 17, 1, 'User GSJHS', 'Grade 7 Saint', '90/100', 'Cramps', 'sent to home', '2023-09-07 08:50 PM');
 
 -- --------------------------------------------------------
 
@@ -728,13 +726,14 @@ CREATE TABLE `physicianapp` (
 --
 
 INSERT INTO `physicianapp` (`phy_id`, `user_id`, `idnumber`, `name`, `gradesection`, `phoneno`, `date_time`, `sched_time`, `role`, `created_at`, `is_deleted_on_website`, `availability`, `status`) VALUES
-(24, 99, 6802182, 'Joanna Mae D. Atento', 'Grade 7 Saint', '+639156005165', '2023-09-06', '10:00 A.M', 'Student in GS/JHS', '2023-09-03 22:57:25', 0, 1, 'Unavailable'),
-(25, 99, 6802182, 'Joanna Mae D. Atento', 'Grade 7 Saint', '+639156005165', '2023-09-06', '09:00 A.M', 'Student in GS/JHS', '2023-09-03 22:58:32', 0, 1, 'Unavailable'),
-(26, 99, 6802182, 'Joanna Mae D. Atento', 'Grade 7 Saint', '+639156005100', '2023-09-06', '11:00 A.M', 'Student in GS/JHS', '2023-09-03 23:09:20', 0, 1, 'Unavailable'),
-(28, 102, 6802182, 'Joanna Mae D. Atento', 'Grade 12 Punto', '+639156005165', '2023-09-20', '10:00 A.M', 'Student in SHS', '2023-09-04 22:25:54', 0, 1, 'Unavailable'),
+(24, 99, 6802182, 'Joanna Mae D. Atento', 'Grade 7 Saint', '+639156005165', '2023-09-06', '10:00 A.M', 'Student in GS/JHS', '2023-09-03 22:57:25', 1, 1, 'Unavailable'),
+(25, 99, 6802182, 'Joanna Mae D. Atento', 'Grade 7 Saint', '+639156005165', '2023-09-06', '09:00 A.M', 'Student in GS/JHS', '2023-09-03 22:58:32', 1, 1, 'Unavailable'),
+(26, 99, 6802182, 'Joanna Mae D. Atento', 'Grade 7 Saint', '+639156005100', '2023-09-06', '11:00 A.M', 'Student in GS/JHS', '2023-09-03 23:09:20', 1, 1, 'Unavailable'),
+(28, 102, 6802182, 'Joanna Mae D. Atento', 'Grade 12 Punto', '+639156005165', '2023-09-20', '10:00 A.M', 'Student in SHS', '2023-09-04 22:25:54', 1, 1, 'Unavailable'),
 (29, 103, 1, 'User GSJHS', 'Grade 9', '+639124654893', '2023-09-27', '11:00 A.M', 'Student in GS/JHS', '2023-09-04 22:36:25', 0, 1, 'Unavailable'),
 (30, 103, 1, 'User GSJHS', 'Employee', '+639156005165', '2023-10-18', '10:00 A.M', 'Employee in GS/JHS', '2023-09-04 22:46:25', 0, 1, 'Unavailable'),
-(31, 104, 2, 'User SHS', 'Grade 12 Punto', '+639234567875', '2023-10-25', '11:00 A.M', 'Student in SHS', '2023-09-04 22:59:59', 0, 1, 'Unavailable');
+(33, 104, 2, 'User SHS', 'Grade 12 Punto', '+639923546769', '2023-10-25', '10:00 A.M', 'Student in SHS', '2023-09-07 11:08:20', 0, 1, 'Unavailable'),
+(34, 104, 2, 'User SHS', 'Grade 12 Punto', '+639637077358', '2023-09-20', '09:00 A.M', 'Student in SHS', '2023-09-07 16:13:05', 0, 1, 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -870,7 +869,8 @@ INSERT INTO `schoolhealthasses` (`schoolasses_id`, `admin_id`, `idnumber`, `full
 (11, 11, 6802182, 'Joanna Mae Atento', '2001-12-15', 'Female', '2023-07-26', '45', '150', 'Normal', '90/70', '30', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'None', 'PASSED'),
 (12, 9, 123123, 'Mae Atento', '2001-12-15', 'Female', '2023-07-20', '42', '152', 'Normal', '60/70', '20', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'None', 'good'),
 (13, 17, 1, 'User GSJHS', '2001-12-15', 'Male', '2023-09-05', '45', '150', 'Normal', '90/70', '70', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good'),
-(14, 19, 2, 'User SHS', '2023-09-12', 'Male', '2023-09-12', '45', '150', 'Normal', '90/100', '70', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good');
+(14, 19, 2, 'User SHS', '2023-09-12', 'Male', '2023-09-12', '45', '150', 'Normal', '90/100', '70', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good'),
+(15, 20, 3, 'User College', '2001-09-15', 'Female', '2023-09-14', '45', '150', 'Normal', '70/90', '70', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good', 'Good');
 
 -- --------------------------------------------------------
 
@@ -933,7 +933,10 @@ INSERT INTO `sms_message` (`message_id`, `phone`, `message`, `date_created`) VAL
 (41, '+639156005165', 'Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M', '2023-09-02 10:27 PM'),
 (42, '+639156005165', 'Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M', '2023-09-02 10:29 PM'),
 (43, '+639156005165', 'Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M', '2023-09-05 12:59 PM'),
-(44, '+639156005165', 'Good Day! Your request for physician consultation appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M', '2023-09-06 09:32 PM');
+(44, '+639156005165', 'Good Day! Your request for physician consultation appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M', '2023-09-06 09:32 PM'),
+(45, '+639637077358', 'Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M', '2023-09-07 04:19 PM'),
+(46, '+639637077358', 'Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M', '2023-09-07 04:20 PM'),
+(47, '+639637077358', 'Good Day! Your request for dental appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M', '2023-09-07 04:20 PM');
 
 -- --------------------------------------------------------
 
@@ -1613,7 +1616,7 @@ CREATE TABLE `statusphysiciangsjhsshs` (
 --
 
 INSERT INTO `statusphysiciangsjhsshs` (`statphysician_id`, `statusphysician9_am`, `statusphysician10_am`, `statusphysician11_am`) VALUES
-(1, 'Unavailable', '10:00 A.M', '11:00 A.M');
+(1, '09:00 A.M', '10:00 A.M', '11:00 A.M');
 
 -- --------------------------------------------------------
 
@@ -2039,13 +2042,13 @@ ALTER TABLE `consultationformrecord`
 -- AUTO_INCREMENT for table `consultationformrecordcollege`
 --
 ALTER TABLE `consultationformrecordcollege`
-  MODIFY `consultform_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `consultform_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `dentalapp`
 --
 ALTER TABLE `dentalapp`
-  MODIFY `dentalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `dentalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `dentalappcollege`
@@ -2075,7 +2078,7 @@ ALTER TABLE `healthrecordformshs`
 -- AUTO_INCREMENT for table `medicalapp`
 --
 ALTER TABLE `medicalapp`
-  MODIFY `medicalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
+  MODIFY `medicalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
 
 --
 -- AUTO_INCREMENT for table `medicalappcollege`
@@ -2087,25 +2090,25 @@ ALTER TABLE `medicalappcollege`
 -- AUTO_INCREMENT for table `medicalappshs`
 --
 ALTER TABLE `medicalappshs`
-  MODIFY `medicalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `medicalapp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `medicine`
 --
 ALTER TABLE `medicine`
-  MODIFY `medicine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `medicine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `nursenotesshs`
 --
 ALTER TABLE `nursenotesshs`
-  MODIFY `nurse_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `nurse_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `patientrecord`
 --
 ALTER TABLE `patientrecord`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `physicalexaminationgsjhs`
@@ -2123,7 +2126,7 @@ ALTER TABLE `physicalexaminationshs`
 -- AUTO_INCREMENT for table `physicianapp`
 --
 ALTER TABLE `physicianapp`
-  MODIFY `phy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `phy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `physicianappcollege`
@@ -2147,13 +2150,13 @@ ALTER TABLE `physicianorderprogressshs`
 -- AUTO_INCREMENT for table `schoolhealthasses`
 --
 ALTER TABLE `schoolhealthasses`
-  MODIFY `schoolasses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `schoolasses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `sms_message`
 --
 ALTER TABLE `sms_message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `statusdentalcollegefriday`

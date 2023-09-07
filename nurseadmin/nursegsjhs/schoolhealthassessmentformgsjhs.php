@@ -93,7 +93,7 @@
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 
                 <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+        <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
@@ -118,7 +118,7 @@
         </div>
     </li>
     <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+        <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -144,7 +144,7 @@
 
     
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="medicalgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="medicalgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
@@ -158,7 +158,7 @@
 </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecordgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="patientmanagementrecordgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -185,7 +185,7 @@
 </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
+    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">

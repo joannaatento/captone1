@@ -107,8 +107,8 @@ if (mysqli_num_rows($result) > 0) {
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 
-                <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+<li id="generate-link" class="nav-item has-submenu">        
+<a class="nav-link submenu-toggle" href="#" data-toggle="collapse" data-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
@@ -122,7 +122,7 @@ if (mysqli_num_rows($result) > 0) {
                 </svg>
             </span>
         </a>
-        <div id="submenu-3" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+        <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
                 <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totaldentalappointments.php">Total Dental Appointment Reports</a></li>
@@ -132,8 +132,8 @@ if (mysqli_num_rows($result) > 0) {
             </ul>
         </div>
     </li>
-    <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+    <li id="healthprofiles-link" class="nav-item has-submenu">
+                <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -173,7 +173,7 @@ if (mysqli_num_rows($result) > 0) {
 </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecordgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="patientmanagementrecordgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -187,7 +187,7 @@ if (mysqli_num_rows($result) > 0) {
 </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="schoolhealthassessmentformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="schoolhealthassessmentformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
@@ -199,8 +199,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
 </li>
 
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
+<li id="printable-link" class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">

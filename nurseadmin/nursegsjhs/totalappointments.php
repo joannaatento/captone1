@@ -108,50 +108,9 @@
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/generate.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        /* Style the container to have fixed size and enable scrolling */
-        .chart-container {
-            width: 800px;
-            height: 400px;
-            overflow: auto;
-        }
-
-        #reportForm {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    #generateReport {
-        background-color: #007bff; /* Clinic blue */
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    /* Clinic chart title styling */
-    .chart-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #007bff; /* Clinic blue */
-        margin-bottom: 10px;
-    }
-
-    /* Clinic chart container styling */
-    .chart-container {
-        background-color: #f8f9fa; /* Clinic light gray */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 20px;
-    }
-
-    </style>
-    
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head> 
 
 <body class="app">   	
@@ -194,8 +153,8 @@
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 
-                <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+<li id="generate-link" class="nav-item has-submenu">        
+<a class="nav-link submenu-toggle active" href="#" data-toggle="collapse" data-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
@@ -209,9 +168,9 @@
                 </svg>
             </span>
         </a>
-        <div id="submenu-3" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+        <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="totalappointments.php">Total Medical Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totaldentalappointments.php">Total Dental Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalphysicianappointments.php">Total Physician Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalvisitors.php">Total Clinic Visitors</a></li>
@@ -219,8 +178,8 @@
             </ul>
         </div>
     </li>
-    <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+    <li id="healthprofiles-link" class="nav-item has-submenu">
+                <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -244,8 +203,9 @@
         </div>
     </li>
 
+    
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="medicalgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="medicalgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
@@ -259,7 +219,7 @@
 </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="patientmanagementrecordgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="patientmanagementrecordgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -273,7 +233,7 @@
 </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="schoolhealthassessmentformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="schoolhealthassessmentformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
@@ -285,8 +245,8 @@
     </a>
 </li>
 
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
+<li id="printable-link" class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
@@ -478,6 +438,50 @@ window.myChart = new Chart(ctx, {
 			}
 		}, 5000);
 	</script>
+ <script>
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Get references to the parent and sub-menu links
+    const generateLink = document.getElementById('generate-link');
+    const healthprofilesLink = document.getElementById('healthprofiles-link');
+    const printableLink = document.getElementById('printable-link');
+    const generateSubMenuLinks = generateLink.querySelectorAll('.submenu-link');
+    const healthprofilesSubMenuLinks = healthprofilesLink.querySelectorAll('.submenu-link');
+    const printableSubMenuLinks = printableLink.querySelectorAll('.submenu-link');
+
+    // Check if the current URL matches any of the sub-menu links' href attributes
+    generateSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            generateLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-3');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    healthprofilesSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            healthprofilesLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-1');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    printableSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            printableLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-8');
+            submenu.classList.remove('collapse');
+        }
+    });
+</script>
+
 
 
 </body>

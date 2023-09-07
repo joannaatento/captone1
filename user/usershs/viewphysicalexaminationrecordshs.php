@@ -46,6 +46,9 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
     <link rel="stylesheet" href="assets/dentalstyles.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head> 
 
@@ -100,7 +103,6 @@ if (mysqli_num_rows($result) > 0) {
 				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png"><?= $fullname;?></a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								<li><a class="dropdown-item" href="function/logout.php">Log Out</a></li>
-								<li><a class="dropdown-item" href="account.php">Account</a></li>
 							</ul>
 			            </div>
 		            </div>
@@ -121,48 +123,45 @@ if (mysqli_num_rows($result) > 0) {
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <li class="nav-item has-submenu">
 
-    <a class="nav-link submenu-toggle active" href="healthrecordformshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
-        <span class="nav-icon">
-            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"/>
-                    <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"/>
-                </svg>
-        </span>
-        <span class="nav-link-text">Health Profile</span>
-    </a>
+<a class="nav-link submenu-toggle" href="healthrecordformshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">       
+     <span class="nav-icon">
+    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"/>
+            <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"/>
+        </svg>
+</span>
+<span class="nav-link-text">Health Profile</span>
+</a>
 </li>
 
+<li id="scheduling-link" class="nav-item has-submenu">
+<a class="nav-link submenu-toggle" href="#" data-toggle="collapse" data-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
+        <span class="nav-icon">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-plus" viewBox="0 0 16 16">
+            <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
+            <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
+            </svg>
+        </span>
+        <span class="nav-link-text">Request Scheduling Appointment</span>
+            <span class="submenu-arrow">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </span>
+    </a>
+    <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
+<ul class="submenu-list list-unstyled">
+    <li class="submenu-item"><a class="submenu-link" href="adddentalmessageshs.php">Request Dental Scheduling</a></li>
+    <li class="submenu-item"><a class="submenu-link" href="addmedicalmessageshs.php">Request Medical Scheduling</a></li>
+    <li class="submenu-item"><a class="submenu-link" href="addphysicianmessageshs.php">Request Physician Scheduling</a></li>
+</ul>
+</div>
+</li>
 
-
-	<li class="nav-item has-submenu">
-								<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
-									<span class="nav-icon">
-										<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-plus" viewBox="0 0 16 16">
-											<path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
-											<path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
-											</svg>
-									</span>
-									<span class="nav-link-text">Request Scheduling Appointment</span>
-									<span class="submenu-arrow">
-										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-											<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-										</svg>
-									</span>
-								</a>
-								<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
-									<ul class="submenu-list list-unstyled">
-										<li class="submenu-item"><a class="submenu-link" href="adddentalmessageshs.php">Request Dental Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addmedicalmessageshs.php">Request Medical Scheduling</a></li>
-										<li class="submenu-item"><a class="submenu-link" href="addphysicianmessageshs.php">Request Physician Scheduling</a></li>
-									</ul>
-								</div>
-							</li>
-
-
-							<li class="nav-item has-submenu">
-								<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+<li id="clinical-link" class="nav-item has-submenu">
+    				<a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
 									<span class="nav-icon">
 										<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stickies" viewBox="0 0 16 16">
@@ -177,13 +176,12 @@ if (mysqli_num_rows($result) > 0) {
 										</svg>
 									</span>
 								</a>
-                <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
+                                <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 									<ul class="submenu-list list-unstyled">
 									<li class="submenu-item"> <a class="submenu-link" href="viewhealthrecordprofileshs.php">Health Profile Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewdentalappshs.php">Dental Record</a>
                   <li class="submenu-item"> <a class="submenu-link" href="viewmedicalappshs.php">Medical Record</a>
                   <li class="submenu-item"> <a class="submenu-link" href="viewphysicianappshs.php">Physician Record</a>
-									<li class="submenu-item"> <a class="submenu-link" href="viewdiagnosisappshs.php">Diagnosis/Chief Complaints, Management & Treatment Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewconsultationformshs.php">Consultation Form Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewschoolassesshs.php">School Health Assessment Record</a>
 									<li class="submenu-item"> <a class="submenu-link" href="viewweightmonitoringshs.php">Weight Monitoring Record</a>
@@ -191,7 +189,8 @@ if (mysqli_num_rows($result) > 0) {
 									<li class="submenu-item"> <a class="submenu-link active" href="viewphysicalexaminationrecordshs.php">Physical Examination Record</a>	
 									<li class="submenu-item"> <a class="submenu-link" href="viewnursenotesshs.php">Nurse's Notes Record</a>					
 									<li class="submenu-item"> <a class="submenu-link" href="viewphysicianorderandprogressnotesshs.php">Physician's Order Sheet and Progress Notes Record</a>
-								</li>
+								</li>	
+
 									</ul>
 								</div>
 							</li>
@@ -200,6 +199,7 @@ if (mysqli_num_rows($result) > 0) {
 	        </div>
 	    </div>
     </header>
+    
     
     <div class="app-wrapper">
 	    
@@ -448,6 +448,38 @@ if (mysqli_num_rows($result) > 0) {
 			}
 		}, 5000);
 	</script>
+  
+<script>
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Get references to the parent and sub-menu links
+    const schedulingLink = document.getElementById('scheduling-link');
+    const clinicalLink = document.getElementById('clinical-link');
+    const schedulingSubMenuLinks = schedulingLink.querySelectorAll('.submenu-link');
+    const clinicalSubMenuLinks = clinicalLink.querySelectorAll('.submenu-link');
+
+    // Check if the current URL matches any of the sub-menu links' href attributes
+    schedulingSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            schedulingLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-2');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    clinicalSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            clinicalLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-3');
+            submenu.classList.remove('collapse');
+        }
+    });
+</script>
 
 </body>
 </html> 

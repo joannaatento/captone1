@@ -92,9 +92,11 @@
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
-        <li class="nav-item has-submenu">
+       
+                <li class="nav-item has-submenu">
 
-        <a class="nav-link submenu-toggle active" href="healthrecordformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">        <span class="nav-icon">
+        <a class="nav-link submenu-toggle active" href="healthrecordformgsjhs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">       
+             <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"/>
@@ -813,12 +815,10 @@
 
     // Get references to the parent and sub-menu links
     const schedulingLink = document.getElementById('scheduling-link');
-    const clinicalLink = document.getElementById('clinical-link');
-    const schedulingSubMenuLinks = schedulingLink.querySelectorAll('.submenu-link');
-    const clinicalSubMenuLinks = clinicalLink.querySelectorAll('.submenu-link');
+    const subMenuLinks = schedulingLink.querySelectorAll('.submenu-link');
 
     // Check if the current URL matches any of the sub-menu links' href attributes
-    schedulingSubMenuLinks.forEach(function(subMenuLink) {
+    subMenuLinks.forEach(function(subMenuLink) {
         if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
             // Add the "active-link" class to the parent list item
             schedulingLink.classList.add('active-link');
@@ -827,17 +827,9 @@
             submenu.classList.remove('collapse');
         }
     });
-
-    clinicalSubMenuLinks.forEach(function(subMenuLink) {
-        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
-            // Add the "active-link" class to the parent list item
-            clinicalLink.classList.add('active-link');
-            // Show the submenu by removing the "collapse" class
-            const submenu = document.getElementById('submenu-3');
-            submenu.classList.remove('collapse');
-        }
-    });
 </script>
+
+
 
 
 

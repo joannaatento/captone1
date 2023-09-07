@@ -762,12 +762,10 @@ function handleLabelClick(time) {
 
     // Get references to the parent and sub-menu links
     const schedulingLink = document.getElementById('scheduling-link');
-    const clinicalLink = document.getElementById('clinical-link');
-    const schedulingSubMenuLinks = schedulingLink.querySelectorAll('.submenu-link');
-    const clinicalSubMenuLinks = clinicalLink.querySelectorAll('.submenu-link');
+    const subMenuLinks = schedulingLink.querySelectorAll('.submenu-link');
 
     // Check if the current URL matches any of the sub-menu links' href attributes
-    schedulingSubMenuLinks.forEach(function(subMenuLink) {
+    subMenuLinks.forEach(function(subMenuLink) {
         if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
             // Add the "active-link" class to the parent list item
             schedulingLink.classList.add('active-link');
@@ -776,17 +774,9 @@ function handleLabelClick(time) {
             submenu.classList.remove('collapse');
         }
     });
-
-    clinicalSubMenuLinks.forEach(function(subMenuLink) {
-        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
-            // Add the "active-link" class to the parent list item
-            clinicalLink.classList.add('active-link');
-            // Show the submenu by removing the "collapse" class
-            const submenu = document.getElementById('submenu-3');
-            submenu.classList.remove('collapse');
-        }
-    });
 </script>
+
+
 
 </body>
 </html> 

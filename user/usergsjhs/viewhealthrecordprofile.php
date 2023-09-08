@@ -315,25 +315,9 @@
     <label for="fullname">Guardian's relation to the student/employee</label>
     <input name="guardianrelation" id="guardianrelation" type="text" value="<?=$row['guardianrelation'];?>" readonly>
 </div>
-</div>
-<div class="input_form">
 <div class="input_wrap">
     <label for="fullname">Contact</label>
-    <input name="cguardian" id="cguardian" type="text"  value="<?=$row['cguardian'];?>" readonly>
-</div>
-</div>
-<div class="input_form">
-<div class="input_wrap">
-    <label for="fullname">Alternation Person to Contact in Case of Emergency</label>
-    <input name="altrelation" id="altrelation" type="text" value="<?=$row['altrelation'];?>" readonly>
-</div>
-<div class="input_wrap">
-    <label for="fullname">Relationship to the student/employee</label>
-    <input name="altrel" id="altrel" type="text" value="<?=$row['altrel'];?>" readonly>
-</div>
-<div class="input_wrap">
-    <label for="fullname">Contact</label>
-    <input name="acontact" id="acontact" type="text" value="<?=$row['acontact'];?>" readonly>
+    <input name="cguardian" type="text"  value="<?=$row['cguardian'];?>" readonly>
 </div>
 </div>
 

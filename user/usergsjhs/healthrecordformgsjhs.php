@@ -413,13 +413,12 @@
             <label for="fullname">Guardian's relation to the student/employee</label>
             <input name="guardianrelation" id="guardianrelation" type="text">
         </div>
-    </div>
-    <div class="input_form">
     <div class="input_wrap">
             <label for="fullname">Contact</label>
             <input id="contactInput_cguardian" name="cguardian" type="text" placeholder="+63" class="contactInput">            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
             <p id="contactguardianError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
 </div>
+
 
 <script>
     const contactInput_cguardian = document.getElementById('contactInput_cguardian');
@@ -449,50 +448,7 @@
     });
 </script>
     </div>
- 
-    <div class="input_form">
-        <div class="input_wrap">
-            <label for="fullname">Alternation Person to Contact in Case of Emergency</label>
-            <input name="altrelation" id="altrelation" type="text">
-        </div>
-        <div class="input_wrap">
-            <label for="fullname">Relationship to the student/employee</label>
-            <input name="altrel" id="altrel" type="text">
-        </div>
-        <div class="input_wrap">
-            <label for="fullname">Contact</label>
-            <input id="contactInput_acontact" name="acontact" type="text" placeholder="+63" class="contactInput"> 
-            <p id="contactarelationError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
-</div>
 
-<script>
-    const contactInput_acontact = document.getElementById('contactInput_acontact');
-    const contactarelationError = document.getElementById('contactarelationError');
-
-        contactInput_acontact.addEventListener('input', function() {
-        let inputValue = contactInput_acontact.value.trim();
-
-        // Ensure that the input always starts with "+63"
-        if (!inputValue.startsWith('+63')) {
-            inputValue = '+63' + inputValue;
-        }
-
-        // Remove any extra characters beyond the maximum length
-        if (inputValue.length > 13) {
-            inputValue = inputValue.slice(0, 13);
-        }
-
-        // Check if the input is valid
-        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
-            contactInput_acontact.value = inputValue;
-            contactarelationError.style.display = 'none'; // Hide the error message
-        } else {
-            contactInput_acontact.value = ''; // Clear the input if it's invalid
-            contactarelationError.style.display = 'block'; // Show the error message for invalid input
-        }
-    });
-</script>
-    </div>
 
     <div>
         <p class="title_">IMMUNIZATION</p>

@@ -40,9 +40,6 @@ include '../../../db.php';
         $guardianname = trim(mysqli_real_escape_string($conn, $_POST['guardianname']));
         $guardianrelation = trim(mysqli_real_escape_string($conn, $_POST['guardianrelation']));
         $cguardian = trim(mysqli_real_escape_string($conn, $_POST['cguardian']));
-        $altrelation = isset($_POST['altrelation']) ? trim(mysqli_real_escape_string($conn, $_POST['altrelation'])) : "";
-        $altrel = trim(mysqli_real_escape_string($conn, $_POST['altrel']));
-        $acontact = trim(mysqli_real_escape_string($conn, $_POST['acontact']));
         $bcg = isset($_POST['bcg']) ? trim(mysqli_real_escape_string($conn, $_POST['bcg'])) : "";
         $dpt = isset($_POST['dpt']) ? trim(mysqli_real_escape_string($conn, $_POST['dpt'])) : "";
         $opv = isset($_POST['opv']) ? trim(mysqli_real_escape_string($conn, $_POST['opv'])) : "";
@@ -120,7 +117,7 @@ include '../../../db.php';
         cfather='$cfather', mother='$mother', cmother='$cmother', religion='$religion', nationality='$nationality',
         language='$language', bothparents='$bothparents', livesmother='$livesmother', livesfather='$livesfather',
         guardian='$guardian', guardianname='$guardianname', guardianrelation='$guardianrelation',
-        cguardian='$cguardian', altrelation='$altrelation', altrel='$altrel', acontact='$acontact',
+        cguardian='$cguardian',
         bcg='$bcg', dpt='$dpt', opv='$opv', hepa='$hepa', measles='$measles', others='$others',
         firstdose='$firstdose', seconddose='$seconddose', boosterdose='$boosterdose', no='$no',
         imagevac='$imagevac', asthma='$asthma', faintingspells='$faintingspells',

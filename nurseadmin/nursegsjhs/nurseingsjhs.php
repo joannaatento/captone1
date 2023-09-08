@@ -297,128 +297,194 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
+            
                         
-                    <form id="reportForm">
-        <select id="tableSelect" name="report_type">
-            <option value="week">Week</option>
-            <option value="month">Month</option>
-            <option value="year">Year</option>
-        </select>
-
-        <select id="yearSelect" name="selected_year">
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-            <option value="2026">2026</option>
-            <option value="2027">2027</option>
-            <option value="2028">2028</option>
-            <option value="2029">2029</option>
-            <option value="2030">2039</option>
-        </select>
-
-        <!-- Replace the submit button with a regular button -->
-        <button type="button" id="generateReport">Generate Report</button>
-    </form>
-    <br>
-    <p>Total Medical Appointments Report</p>
-    <!-- Fixed-sized container for the graph -->
-    <div class="chart-container">
-        <canvas id="barChart" width="2000" height="800" text-align="center"></canvas>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const generateButton = document.getElementById("generateReport");
-            generateButton.addEventListener("click", function () {
-                fetchChartData();
-            });
-
-            function fetchChartData() {
-                const form = document.getElementById("reportForm");
-                const formData = new FormData(form);
-
-                fetch("nurseingsjhs.php", {
-                    method: "POST",
-                    body: formData,
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    drawBarChart(data);
-                })
-                .catch(error => {
-                    console.error("Error fetching data:", error);
-                });
-            }
-
-            function drawBarChart(data) {
-                const ctx = document.getElementById("barChart").getContext("2d");
-
-                const chartData = {
-                    labels: data.labels,
-                    datasets: [
-                        {
-                            label: "Total of Student",
-                            data: data.total_student,
-                            backgroundColor: "rgba(0, 0, 128, 0.5)", // You can change the color here
-                        },
-                        {
-                            label: "Total of Employee",
-                            data: data.total_employee,
-                            backgroundColor: "rgba(139, 0, 0, 0.5)", // You can change the color here
-                        },
-                    ],
-                };
-    const options = {
-    responsive: true,
-    scales: {
-        x: {
-            stacked: true,
-        },
-        y: {
-            beginAtZero: true,
-            stacked: true,
-            ticks: {
-                stepSize: 5,
-                max: 80,
-                callback: function (value, index, values) {
-                    // Define the custom labels
-                    const customLabels = ['0','5','10','15','20','25','30','35'];
-                    return customLabels[index];
-                },
-            },
-        },
-    },
-};
-
-// Destroy the previous chart if it exists
-const existingChart = window.myChart;
-if (existingChart) {
-    existingChart.destroy();
-}
-
-// Create a new chart instance
-window.myChart = new Chart(ctx, {
-    type: "bar",
-    data: chartData,
-    options: options,
-});
-
-            }
-
-            // Fetch and draw the chart when the page loads
-            fetchChartData();
-        });
-    </script>
-
-    
-				    </div><!--//app-card-body-->
-
-
+                        <form id="reportForm" method="POST">
+                           <label for="report_type">Select Report Type:</label>
+                           <select id="report_type" name="report_type">
+                               <option value="week">Weekly</option>
+                               <option value="month">Monthly</option>
+                               <option value="year">Yearly</option>
+                           </select>
+                   
+                           <label for="selected_year">Select Year:</label>
+                           <select id="selected_year" name="selected_year">
+                               <!-- For Years -->
+                               <?php
+                               $current_year = date("Y");
+                               for ($year = $current_year; $year >= 2023; $year--) {
+                                   echo "<option value='$year'>$year</option>";
+                               }
+                               ?>
+                           </select>
+                   
+                           <!-- Buttons for Generate Report and Print Reports -->
+                           <button type="button" id="generateReport">Generate Report</button>
+                           <button type="button" id="printReport">Print Report</button>
+                       </form>
+                       <br>
+                       <p>Total Medical Appointments Report</p>
+                       <!-- Fixed-sized container for the graph -->
+                       <div class="chart-container">
+                           <canvas id="barChart" width="2000" height="800" text-align="center"></canvas>
+                       </div>
+                   
+                       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                       <script>
+                           document.addEventListener("DOMContentLoaded", function () {
+                               const generateButton = document.getElementById("generateReport");
+                               const printButton = document.getElementById("printReport");
+                   
+                               generateButton.addEventListener("click", function () {
+                                   fetchChartData();
+                               });
+                   
+                               printButton.addEventListener("click", function () {
+                                   printChart();
+                               });
+                   
+                               function fetchChartData() {
+                                   const form = document.getElementById("reportForm");
+                                   const formData = new FormData(form);
+                   
+                                   fetch("nurseingsjhs.php", {
+                                       method: "POST",
+                                       body: formData,
+                                   })
+                                   .then(response => {
+                                       if (!response.ok) {
+                                           throw new Error("Network response was not ok");
+                                       }
+                                       return response.json();
+                                   })
+                                   .then(data => {
+                                       drawBarChart(data);
+                                   })
+                                   .catch(error => {
+                                       console.error("Error fetching data:", error);
+                                   });
+                               }
+                   
+                               function drawBarChart(data) {
+                                   const ctx = document.getElementById("barChart").getContext("2d");
+                   
+                                   const chartData = {
+                                       labels: data.labels,
+                                       datasets: [
+                                           {
+                                               label: "Total of Student",
+                                               data: data.total_student,
+                                               backgroundColor: "rgba(0, 0, 128, 0.5)", // You can change the color here
+                                           },
+                                           {
+                                               label: "Total of Employees",
+                                               data: data.total_employee,
+                                               backgroundColor: "rgba(139, 0, 0, 0.5)", // You can change the color here
+                                           },
+                                       ],
+                                   };
+                   
+                                   const options = {
+                                       responsive: true,
+                                       scales: {
+                                           x: {
+                                               stacked: true,
+                                           },
+                                           y: {
+                                               beginAtZero: true,
+                                               stacked: true,
+                                               ticks: {
+                                                   stepSize: 5,
+                                                   max: 80,
+                                                   callback: function (value, index, values) {
+                                                       // Define the custom labels
+                                                       const customLabels = ['0', '5', '10', '15', '20', '25', '30', '35'];
+                                                       return customLabels[index];
+                                                   },
+                                               },
+                                           },
+                                       },
+                                   };
+                   
+                                   // Destroy the previous chart if it exists
+                                   const existingChart = window.myChart;
+                                   if (existingChart) {
+                                       existingChart.destroy();
+                                   }
+                   
+                                   // Create a new chart instance
+                                   window.myChart = new Chart(ctx, {
+                                       type: "bar",
+                                       data: chartData,
+                                       options: options,
+                                   });
+                               }
+                   
+                               function printChart() {
+                       const canvas = document.getElementById("barChart");
+                       const printWindow = window.open('', '', 'width=800,height=600');
+                       printWindow.document.open();
+                    // Create a table for alignment
+                     // Create a table for alignment and center it
+                     printWindow.document.write('<table style="margin: 0 auto;"><tr>');
+                   
+                   // Add the logo image with center-aligned cell
+                   printWindow.document.write('<td style="text-align: center;"><img src="assets/images/dwcl.png" alt="Logo" width="100" height="100"></td>');
+                   
+                   // Add aligned text with center-aligned cell
+                   printWindow.document.write('<td style="text-align: center; vertical-align: middle; font-size: 18px;"><b>HEALTH SERVICE UNIT - GS and JHS Department</b></td>');
+                   
+                   // Close the table and start the rest of the content
+                   printWindow.document.write('</tr></table>');
+                       // Get the report type and label
+                       const reportType = document.getElementById("report_type").value;
+                       const reportLabel = reportType === 'week' ? 'Weekly' : (reportType === 'month' ? 'Monthly' : 'Yearly');
+                       
+                       // Display the report label with a custom font-size
+                       printWindow.document.write('<h1 style="font-size: 24px; text-align: center">' + reportLabel + ' Report</h1>');
+                       
+                       // Display the data table
+                       
+                   printWindow.document.write('<table style="border-collapse: collapse; width: 100%; margin-top: 20px; border: 1px solid #000;">');
+                   printWindow.document.write('<tr>');
+                   printWindow.document.write('<th style="border: 2px solid #000; padding: 8px; text-align: center; background-color: #f2f2f2;">' + reportLabel + '</th>');
+                   printWindow.document.write('<th style="border: 2px solid #000; padding: 8px; text-align: center; background-color: #f2f2f2;">Total Students</th>');
+                   printWindow.document.write('<th style="border: 2px solid #000; padding: 8px; text-align: center; background-color: #f2f2f2;">Total Employees</th>');
+                   printWindow.document.write('</tr>');
+                   
+                       
+                       // Get the data from the chart
+                       const data = window.myChart.data;
+                       
+                       // Display data for each label
+                       for (let i = 0; i < data.labels.length; i++) {
+                           const label = data.labels[i];
+                           const totalStudents = data.datasets[0].data[i];
+                           const totalEmployees = data.datasets[1].data[i];
+                           
+                   printWindow.document.write('<tr style="background-color: #f2f2f2; text-align: center;">');
+                   printWindow.document.write('<td style="border: 2px solid #000; padding: 8px;">' + label + '</td>');
+                   printWindow.document.write('<td style="border: 2px solid #000; padding: 8px;">' + totalStudents + '</td>');
+                   printWindow.document.write('<td style="border: 2px solid #000; padding: 8px;">' + totalEmployees + '</td>');
+                   printWindow.document.write('</tr>');
+                   
+                       }
+                       
+                       printWindow.document.write('</table>');
+                       printWindow.document.write('</body></html>');
+                       
+                       printWindow.document.close();
+                       printWindow.print();
+                       printWindow.close();
+                   }
+                   
+                   
+                   
+                               // Fetch and draw the chart when the page loads
+                               fetchChartData();
+                           });
+                       </script>
+                                       </div><!--//app-card-body-->
     
 				</div>			    
 		    </div>

@@ -297,7 +297,7 @@
 				    </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
                         
-                    <form id="reportForm" method="POST">
+     <form id="reportForm" method="POST">
         <label for="report_type">Select Report Type:</label>
         <select id="report_type" name="report_type">
             <option value="week">Weekly</option>

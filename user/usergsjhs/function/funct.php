@@ -26,9 +26,6 @@
         $guardianname = trim(mysqli_real_escape_string($conn, $_POST['guardianname']));
         $guardianrelation = trim(mysqli_real_escape_string($conn, $_POST['guardianrelation']));
         $cguardian = trim(mysqli_real_escape_string($conn, $_POST['cguardian']));
-        $altrelation = isset($_POST['altrelation']) ? trim(mysqli_real_escape_string($conn, $_POST['altrelation'])) : "";
-        $altrel = trim(mysqli_real_escape_string($conn, $_POST['altrel']));
-        $acontact = trim(mysqli_real_escape_string($conn, $_POST['acontact']));
         $bcg = isset($_POST['bcg']) ? trim(mysqli_real_escape_string($conn, $_POST['bcg'])) : "";
         $dpt = isset($_POST['dpt']) ? trim(mysqli_real_escape_string($conn, $_POST['dpt'])) : "";
         $opv = isset($_POST['opv']) ? trim(mysqli_real_escape_string($conn, $_POST['opv'])) : "";
@@ -85,7 +82,7 @@
 
         $sql = "INSERT INTO healthrecordformgsjhs VALUES ('','$user_id','$image','$fullname','$idnumber','$cp','$birthday',
         '$gender','$address','$paddress','$father','$cfather','$mother','$cmother','$religion','$nationality','$language','$bothparents',
-        '$livesfather','$livesmother','$guardian','$guardianname','$guardianrelation','$cguardian','$altrelation','$altrel','$acontact','$bcg',
+        '$livesfather','$livesmother','$guardian','$guardianname','$guardianrelation','$cguardian','$bcg',
         '$dpt','$opv','$hepa','$measles','$others','$firstdose','$seconddose','$boosterdose','$no','$imagevac','$asthma',
         '$faintingspells','$allergicrhinitis','$freqheadache','$anxietydis','$g6pd', '$bleedingclotting','$hearingprob','$hypergas','$derma','$hypertension',
         '$diabetes','$hyperventilation','$mens','$othersmedical','$yesheartcon','$noheartcon','$heartcon','$yeseyeprob','$noeyeprob','$eyeprob',

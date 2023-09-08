@@ -307,7 +307,7 @@
 
         <label for="selected_year">Select Year:</label>
         <select id="selected_year" name="selected_year">
-            <!-- Populate this dropdown with available years -->
+            <!-- For Years -->
             <?php
             $current_year = date("Y");
             for ($year = $current_year; $year >= 2023; $year--) {
@@ -316,7 +316,7 @@
             ?>
         </select>
 
-        <!-- Replace the submit button with a regular button -->
+        <!-- Buttons for Generate Report and Print Reports -->
         <button type="button" id="generateReport">Generate Report</button>
         <button type="button" id="printReport">Print Report</button>
     </form>

@@ -947,7 +947,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     $client = new Client([
         'base_uri' => "https://k3n5n1.api.infobip.com",
         'headers' => [
-            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
+            'Authorization' => "App a1cc15ac73929724c9baa209623b92f0-b2637835-dbf5-4578-bf37-f9218d5072de",
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ]
@@ -982,6 +982,10 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     // Close the statement and connection
     $stmt->close();
     $conn->close();
+    
+    if ($response->getStatusCode() == 200) {
+        echo '<script>alert("SMS sent successfully!");</script>';
+    }
 }
 ?>
 

@@ -1,0 +1,109 @@
+/* Reset some default styles for consistency */
+body, h1, h2, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a background color and font for the entire page */
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Style the header section */
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Style the main content sections */
+.section {
+  background-color: #fff;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the project overview section */
+.overview {
+  background-color: #f9f9f9;
+}
+
+/* Style the key features section */
+.features ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.features li {
+  margin-bottom: 10px;
+}
+
+/* Style the team section */
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.team-member {
+  text-align: center;
+  margin: 1rem;
+}
+
+.team-member img {
+  max-width: 100px;
+  border-radius: 50%;
+}
+.custom-image {
+  width: 2px;
+  height: 150px;
+}
+
+
+/* Style the call-to-action section */
+.cta {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+}
+
+.cta a {
+  display: inline-block;
+  background-color: #ff5722;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.cta a:hover {
+  background-color: #d84315;
+}
+
+/* Style the footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  header {
+      padding: 1rem;
+  }
+
+  .section {
+      margin: 1rem;
+      padding: 1rem;
+  }
+}

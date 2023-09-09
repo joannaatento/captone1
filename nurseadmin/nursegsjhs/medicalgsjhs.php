@@ -48,6 +48,9 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
     <link rel="stylesheet" href="assets/dentalstyles.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head> 
 
@@ -982,7 +985,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     // Close the statement and connection
     $stmt->close();
     $conn->close();
-    
+
     if ($response->getStatusCode() == 200) {
         echo '<script>alert("SMS sent successfully!");</script>';
     }
@@ -1005,6 +1008,51 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 			}
 		}, 5000);
 	</script>
+
+
+<script>
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Get references to the parent and sub-menu links
+    const generateLink = document.getElementById('generate-link');
+    const healthprofilesLink = document.getElementById('healthprofiles-link');
+    const printableLink = document.getElementById('printable-link');
+    const generateSubMenuLinks = generateLink.querySelectorAll('.submenu-link');
+    const healthprofilesSubMenuLinks = healthprofilesLink.querySelectorAll('.submenu-link');
+    const printableSubMenuLinks = printableLink.querySelectorAll('.submenu-link');
+
+    // Check if the current URL matches any of the sub-menu links' href attributes
+    generateSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            generateLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-3');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    healthprofilesSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            healthprofilesLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-1');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    printableSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            printableLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-8');
+            submenu.classList.remove('collapse');
+        }
+    });
+</script>
 
 </body>
 </html> 

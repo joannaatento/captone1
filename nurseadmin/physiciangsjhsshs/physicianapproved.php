@@ -48,6 +48,9 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
     <link rel="stylesheet" href="assets/dentalstyles.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head> 
 
@@ -109,8 +112,9 @@ if (mysqli_num_rows($result) > 0) {
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 
-                <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="physiciangsjhsshs.php" data-bs-target="#submenu-7" aria-controls="submenu-7">
+
+<li class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle" href="physiciangsjhsshs.php" data-bs-target="#submenu-7" aria-controls="submenu-7">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
@@ -122,8 +126,6 @@ if (mysqli_num_rows($result) > 0) {
         <span class="nav-link-text">Physician Consultation Appointment Reports</span>
     </a>
 </li>
-    
-
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="physicianapproved.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
@@ -137,8 +139,9 @@ if (mysqli_num_rows($result) > 0) {
         <span class="nav-link-text">Physician Consultation Appointments</span>
     </a>
 </li>
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-5" aria-expanded="false" aria-controls="submenu-3">
+
+<li id="physicalexam-link" class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-5" aria-expanded="false" aria-controls="submenu-3">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
@@ -160,8 +163,9 @@ if (mysqli_num_rows($result) > 0) {
         </ul>
     </div>
 </li>
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-6" aria-expanded="false" aria-controls="submenu-3">
+
+<li id="physicianorder-link" class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-6" aria-expanded="false" aria-controls="submenu-3">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-medical" viewBox="0 0 16 16">
@@ -468,6 +472,41 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 			}
 		}, 5000);
 	</script>
+
+<script>
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Get references to the parent and sub-menu links
+    const physicalexamLink = document.getElementById('physicalexam-link');
+    const physicianorderLink = document.getElementById('physicianorder-link');
+    const physicalexamSubMenuLinks = physicalexamLink.querySelectorAll('.submenu-link');
+    const physicianorderSubMenuLinks = physicianorderLink.querySelectorAll('.submenu-link');
+   
+    // Check if the current URL matches any of the sub-menu links' href attributes
+    physicalexamSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            physicalexamLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-5');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    physicianorderSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            physicianorderLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-6');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+ 
+</script>
+
 
 </body>
 </html> 

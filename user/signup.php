@@ -28,7 +28,7 @@
 		    <div class="d-flex flex-column align-content-end">
 			    <div class="app-auth-body mx-auto">	
 				    <div class="app-auth-branding mb-4"><a class="app-logo"><img class="logo-icon me-2" src="assets/images/dwcl.png" alt="logo"></a></div>
-					<h2 class="auth-heading text-center mb-4">DWCL Health Clinic System</h2>					
+					<h2 class="auth-heading text-center mb-4">Sign up to Portal</h2>					
 					<div class="auth-form-container text-start mx-auto">
 						<form class="auth-form auth-signup-form" action="function/funct.php" method="POST">         
 							<div class="email mb-3">

@@ -28,7 +28,7 @@
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
                                     COUNT(*) AS total_visitors
                                     FROM patientrecord 
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    WHERE YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Weekly';
                             break;
@@ -37,7 +37,7 @@
                             $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
                             COUNT(*) AS total_visitors
                             FROM patientrecord 
-                            WHERE admin_id = ? AND YEAR(date_time) = ?
+                            WHERE YEAR(date_time) = ?
                             GROUP BY label";
                             $report_label = 'Monthly';
                             break;
@@ -46,7 +46,7 @@
                             $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
                                     COUNT(*) AS total_visitors
                                     FROM patientrecord 
-                                    WHERE admin_id = ? AND YEAR(date_time) = ?
+                                    WHERE YEAR(date_time) = ?
                                     GROUP BY label";
                             $report_label = 'Yearly';
                             break;
@@ -56,7 +56,7 @@
                     }
             
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ii", $admin_id, $selected_year);
+                    $stmt->bind_param("i", $selected_year);
                     $stmt->execute();
                     $result = $stmt->get_result();
             

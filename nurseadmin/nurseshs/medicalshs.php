@@ -981,9 +981,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
     // Send the SMS using the Infobip API
     $client = new Client([
-        'base_uri' => "https://k3n5n1.api.infobip.com",
+        'base_uri' => "https://k2d48x.api.infobip.com",
         'headers' => [
-            'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
+            'Authorization' => "App 5efb58e143f3f495a0575ef32d0aa9b3-7a8272ca-0d69-4b88-9b6d-faa170909960",
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ]
@@ -1018,7 +1018,11 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     // Close the statement and connection
     $stmt->close();
     $conn->close();
+    if ($response->getStatusCode() == 200) {
+        echo '<script>alert("SMS sent successfully!");</script>';
+    }
 }
+
 ?>
 
     <!-- Javascript -->          

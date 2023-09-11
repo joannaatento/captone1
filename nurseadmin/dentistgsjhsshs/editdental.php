@@ -112,7 +112,7 @@ if (mysqli_num_rows($result) > 0) {
    
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle" href="#" data-bs-target="#submenu-6" aria-controls="submenu-6">
+    <a class="nav-link submenu-toggle" href="dentistingsjhsshs.php" data-bs-target="#submenu-6" aria-controls="submenu-6">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">

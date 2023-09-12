@@ -88,7 +88,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Nurse Dashboard</title>
+    <title>Total Dental Appointment Reports</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -106,52 +106,10 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/generate.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        /* Style the container to have fixed size and enable scrolling */
-        .chart-container {
-            width: 800px;
-            height: 400px;
-            overflow: auto;
-        }
-
-        #reportForm {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    #generateReport {
-        background-color: #007bff; /* Clinic blue */
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    /* Clinic chart title styling */
-    .chart-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #007bff; /* Clinic blue */
-        margin-bottom: 10px;
-    }
-
-    /* Clinic chart container styling */
-    .chart-container {
-        background-color: #f8f9fa; /* Clinic light gray */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 20px;
-    }
-
-    </style>
-    
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head> 
 
 <body class="app">   	
@@ -194,8 +152,7 @@
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 
-
-                <li class="nav-item has-submenu">
+<li id="generate-link" class="nav-item has-submenu">
         <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -213,15 +170,16 @@
         <div id="submenu-3" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
                 <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Medical Appointment Reports</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="totaldentalappointments.php">Total Dental Appointment Reports</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="totaldentalappointments.php">Total Dental Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalphysicianappointments.php">Total Physician Appointment Reports</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalvisitors.php">Total Clinic Visitors</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="totalmedicines.php">Total Medicine Consumed</a></li>
             </ul>
         </div>
     </li>
-    <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+
+<li id="healthprofiles-link" class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -246,7 +204,7 @@
     </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="medicalcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="medicalcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
@@ -260,7 +218,7 @@
 </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="consultationformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="consultationformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -274,7 +232,7 @@
 </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="schoolhealthassessmentformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="schoolhealthassessmentformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
@@ -286,8 +244,8 @@
     </a>
 </li>
 
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
+<li id="printable-link" class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
@@ -340,40 +298,49 @@
                         </div><!--//app-card-header-->
 				    <div class="app-card-body p-4">
                         
-                    <form id="reportForm">
-        <select id="tableSelect" name="report_type">
-            <option value="week">Week</option>
-            <option value="month">Month</option>
-            <option value="year">Year</option>
-        </select>
-
-        <select id="yearSelect" name="selected_year">
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-            <option value="2026">2026</option>
-            <option value="2027">2027</option>
-            <option value="2028">2028</option>
-            <option value="2029">2029</option>
-            <option value="2030">2039</option>
-        </select>
-
-        <!-- Replace the submit button with a regular button -->
-        <button type="button" id="generateReport">Generate Report</button>
-    </form>
+                    <form id="reportForm" method="POST">
+                           <label for="report_type">Select Report Type:</label>
+                           <select id="report_type" name="report_type">
+                               <option value="week">Weekly</option>
+                               <option value="month">Monthly</option>
+                               <option value="year">Yearly</option>
+                           </select>
+                   
+                           <label for="selected_year">Select Year:</label>
+                           <select id="selected_year" name="selected_year">
+                               <!-- For Years -->
+                               <?php
+                               $current_year = date("Y");
+                               for ($year = $current_year; $year >= 2023; $year--) {
+                                   echo "<option value='$year'>$year</option>";
+                               }
+                               ?>
+                           </select>
+                   
+                           <!-- Buttons for Generate Report and Print Reports -->
+                           <button type="button" id="generateReport">Generate Report</button>
+                           <button type="button" id="printReport">Print Report</button>
+                       </form>
     <br>
     <p>Total Dental Appointments Report</p>
     <!-- Fixed-sized container for the graph -->
     <div class="chart-container">
-        <canvas id="barChart" width="2000" height="800" text-align="center"></canvas>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const generateButton = document.getElementById("generateReport");
-            generateButton.addEventListener("click", function () {
-                fetchChartData();
-            });
+                           <canvas id="barChart" width="2000" height="800" text-align="center"></canvas>
+                       </div>
+                   
+                       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                       <script>
+                           document.addEventListener("DOMContentLoaded", function () {
+                               const generateButton = document.getElementById("generateReport");
+                               const printButton = document.getElementById("printReport");
+                   
+                               generateButton.addEventListener("click", function () {
+                                   fetchChartData();
+                               });
+                   
+                               printButton.addEventListener("click", function () {
+                                   printChart();
+                               });
 
             function fetchChartData() {
                 const form = document.getElementById("reportForm");
@@ -452,16 +419,71 @@ window.myChart = new Chart(ctx, {
 
             }
 
-            // Fetch and draw the chart when the page loads
-            fetchChartData();
-        });
-    </script>
-
-    
-				    </div><!--//app-card-body-->
-
-
-    
+            function printChart() {
+                       const canvas = document.getElementById("barChart");
+                       const printWindow = window.open('', '', 'width=800,height=600');
+                       printWindow.document.open();
+                    // Create a table for alignment
+                     // Create a table for alignment and center it
+                     printWindow.document.write('<table style="margin: 0 auto;"><tr>');
+                   
+                   // Add the logo image with center-aligned cell
+                   printWindow.document.write('<td style="text-align: center;"><img src="assets/images/dwcl.png" alt="Logo" width="100" height="100"></td>');
+                   
+                   // Add aligned text with center-aligned cell
+                   printWindow.document.write('<td style="text-align: center; vertical-align: middle; font-size: 18px;"><b>HEALTH SERVICE UNIT - College Department</b></td>');
+                   
+                   // Close the table and start the rest of the content
+                   printWindow.document.write('</tr></table>');
+                       // Get the report type and label
+                       const reportType = document.getElementById("report_type").value;
+                       const reportLabel = reportType === 'week' ? 'Weekly' : (reportType === 'month' ? 'Monthly' : 'Yearly');
+                       
+                       // Display the report label with a custom font-size
+                       printWindow.document.write('<h1 style="font-size: 24px; text-align: center">' + reportLabel + ' Report</h1>');
+                       
+                       // Display the data table
+                       
+                   printWindow.document.write('<table style="border-collapse: collapse; width: 100%; margin-top: 20px; border: 1px solid #000;">');
+                   printWindow.document.write('<tr>');
+                   printWindow.document.write('<th style="border: 2px solid #000; padding: 8px; text-align: center; background-color: #f2f2f2;">' + reportLabel + '</th>');
+                   printWindow.document.write('<th style="border: 2px solid #000; padding: 8px; text-align: center; background-color: #f2f2f2;">Total Students</th>');
+                   printWindow.document.write('<th style="border: 2px solid #000; padding: 8px; text-align: center; background-color: #f2f2f2;">Total Employees</th>');
+                   printWindow.document.write('</tr>');
+                   
+                       
+                       // Get the data from the chart
+                       const data = window.myChart.data;
+                       
+                       // Display data for each label
+                       for (let i = 0; i < data.labels.length; i++) {
+                           const label = data.labels[i];
+                           const totalStudents = data.datasets[0].data[i];
+                           const totalEmployees = data.datasets[1].data[i];
+                           
+                   printWindow.document.write('<tr style="background-color: #f2f2f2; text-align: center;">');
+                   printWindow.document.write('<td style="border: 2px solid #000; padding: 8px;">' + label + '</td>');
+                   printWindow.document.write('<td style="border: 2px solid #000; padding: 8px;">' + totalStudents + '</td>');
+                   printWindow.document.write('<td style="border: 2px solid #000; padding: 8px;">' + totalEmployees + '</td>');
+                   printWindow.document.write('</tr>');
+                   
+                       }
+                       
+                       printWindow.document.write('</table>');
+                       printWindow.document.write('</body></html>');
+                       
+                       printWindow.document.close();
+                       printWindow.print();
+                       printWindow.close();
+                   }
+                   
+                   
+                   
+                               // Fetch and draw the chart when the page loads
+                               fetchChartData();
+                           });
+                       </script>
+                        </div><!--//app-card-body-->
 				</div>			    
 		    </div>
 	    </div>
@@ -483,6 +505,49 @@ window.myChart = new Chart(ctx, {
 		}, 5000);
 	</script>
 
+<script>
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Get references to the parent and sub-menu links
+    const generateLink = document.getElementById('generate-link');
+    const healthprofilesLink = document.getElementById('healthprofiles-link');
+    const printableLink = document.getElementById('printable-link');
+    const generateSubMenuLinks = generateLink.querySelectorAll('.submenu-link');
+    const healthprofilesSubMenuLinks = healthprofilesLink.querySelectorAll('.submenu-link');
+    const printableSubMenuLinks = printableLink.querySelectorAll('.submenu-link');
+
+    // Check if the current URL matches any of the sub-menu links' href attributes
+    generateSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            generateLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-3');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    healthprofilesSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            healthprofilesLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-1');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    printableSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            printableLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-5');
+            submenu.classList.remove('collapse');
+        }
+    });
+</script>
 
 </body>
 </html> 

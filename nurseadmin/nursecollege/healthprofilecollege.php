@@ -324,7 +324,7 @@
             // Add the "active-link" class to the parent list item
             printableLink.classList.add('active-link');
             // Show the submenu by removing the "collapse" class
-            const submenu = document.getElementById('submenu-8');
+            const submenu = document.getElementById('submenu-5');
             submenu.classList.remove('collapse');
         }
     });

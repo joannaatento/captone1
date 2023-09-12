@@ -47,6 +47,9 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
     <link rel="stylesheet" href="assets/dentalstyles.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head> 
 
@@ -108,9 +111,8 @@ if (mysqli_num_rows($result) > 0) {
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 
-
-                <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+<li id="generate-link" class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
@@ -134,8 +136,9 @@ if (mysqli_num_rows($result) > 0) {
             </ul>
         </div>
     </li>
-    <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+
+<li id="healthprofiles-link" class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -174,7 +177,7 @@ if (mysqli_num_rows($result) > 0) {
 </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="consultationformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="consultationformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -188,7 +191,7 @@ if (mysqli_num_rows($result) > 0) {
 </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="schoolhealthassessmentformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="schoolhealthassessmentformcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
@@ -200,8 +203,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
 </li>
 
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
+<li id="printable-link" class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
@@ -941,9 +944,9 @@ if (mysqli_num_rows($result) > 0) {
   
       // Send the SMS using the Infobip API
       $client = new Client([
-          'base_uri' => "https://k3n5n1.api.infobip.com",
+          'base_uri' => "https://k2d48x.api.infobip.com",
           'headers' => [
-              'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
+              'Authorization' => "App 5efb58e143f3f495a0575ef32d0aa9b3-7a8272ca-0d69-4b88-9b6d-faa170909960",
               'Content-Type' => 'application/json',
               'Accept' => 'application/json',
           ]
@@ -978,9 +981,12 @@ if (mysqli_num_rows($result) > 0) {
       // Close the statement and connection
       $stmt->close();
       $conn->close();
+      if ($response->getStatusCode() == 200) {
+          echo '<script>alert("SMS sent successfully!");</script>';
+      }
   }
-  ?>
   
+  ?>
       <!-- Javascript -->          
       <script src="assets/plugins/popper.min.js"></script>
       <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
@@ -997,7 +1003,61 @@ if (mysqli_num_rows($result) > 0) {
               }
           }, 5000);
       </script>
-  
+
+<script>
+		// Timer to remove success message after 5 seconds (5000 milliseconds)
+		setTimeout(function(){
+			var successMessage = document.getElementById('success-message');
+			if(successMessage){
+				successMessage.remove();
+			}
+		}, 5000);
+	</script>
+
+<script>
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Get references to the parent and sub-menu links
+    const generateLink = document.getElementById('generate-link');
+    const healthprofilesLink = document.getElementById('healthprofiles-link');
+    const printableLink = document.getElementById('printable-link');
+    const generateSubMenuLinks = generateLink.querySelectorAll('.submenu-link');
+    const healthprofilesSubMenuLinks = healthprofilesLink.querySelectorAll('.submenu-link');
+    const printableSubMenuLinks = printableLink.querySelectorAll('.submenu-link');
+
+    // Check if the current URL matches any of the sub-menu links' href attributes
+    generateSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            generateLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-3');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    healthprofilesSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            healthprofilesLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-1');
+            submenu.classList.remove('collapse');
+        }
+    });
+
+    printableSubMenuLinks.forEach(function(subMenuLink) {
+        if (currentUrl.includes(subMenuLink.getAttribute('href'))) {
+            // Add the "active-link" class to the parent list item
+            printableLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById('submenu-5');
+            submenu.classList.remove('collapse');
+        }
+    });
+</script>
+
   </body>
   </html> 
   

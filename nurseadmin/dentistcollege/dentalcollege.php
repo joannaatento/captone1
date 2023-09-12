@@ -110,27 +110,19 @@ if (mysqli_num_rows($result) > 0) {
    
 
                 
-                <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-6" aria-expanded="false" aria-controls="submenu-6">
-            <span class="nav-icon">
-                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
-                <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"/>
-                </svg>
-            </span>
-            <span class="nav-link-text">Report Generation</span>
-            <span class="submenu-arrow">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                </svg>
-            </span>
-        </a>
-        <div id="submenu-6" class="collapse submenu submenu-6" data-bs-parent="#menu-accordion">
-            <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="totalappointments.php">Total Dental Appointment Reports</a></li>
-            </ul>
-        </div>
-    </li>
+<li class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle" href="dentistincollege.php" data-bs-target="#submenu-5" aria-controls="submenu-5">
+        <span class="nav-icon">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+            </svg>
+        </span>
+        <span class="nav-link-text">Dental Appointment Reports</span>
+    </a>
+</li>
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle active" href="dentalcollege.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
@@ -144,6 +136,10 @@ if (mysqli_num_rows($result) > 0) {
         <span class="nav-link-text">Dental Approved Appointments</span>
     </a>
 </li>
+			    </nav>
+	        </div>
+	    </div>
+    </header>
 			    </nav>
 	        </div>
 	    </div>
@@ -731,51 +727,55 @@ use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-$phoneNumber = $_POST['phone'];
-$message = $_POST['message'];
-date_default_timezone_set('Asia/Manila');
-$date_created = date('Y-m-d h:i A'); 
+    $phoneNumber = $_POST['phone'];
+    $message = $_POST['message'];
+    date_default_timezone_set('Asia/Manila');
+    $date_created = date('Y-m-d h:i A'); 
 
-// Send the SMS using the Infobip API
-$client = new Client([
-'base_uri' => "https://k3n5n1.api.infobip.com",
-'headers' => [
-'Authorization' => "App 06c65a798c0587c8dc83b35c0ac75dab-be21e6fb-9215-4fc1-b1fd-9754acc09cac",
-'Content-Type' => 'application/json',
-'Accept' => 'application/json',
-]
-]);
+    // Send the SMS using the Infobip API
+    $client = new Client([
+        'base_uri' => "https://k2d48x.api.infobip.com",
+        'headers' => [
+            'Authorization' => "App 5efb58e143f3f495a0575ef32d0aa9b3-7a8272ca-0d69-4b88-9b6d-faa170909960",
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ]
+    ]);
 
-$response = $client->request(
-'POST',
-'sms/2/text/advanced',
-[
-RequestOptions::JSON => [
-'messages' => [
-   [
-       'from' => 'Clinic DWCL',
-       'destinations' => [
-           ['to' => $phoneNumber]
-       ],
-       'text' => $message,
-   ]
-]
-],
-]
-);
+    $response = $client->request(
+        'POST',
+        'sms/2/text/advanced',
+        [
+            RequestOptions::JSON => [
+                'messages' => [
+                    [
+                        'from' => 'Clinic DWCL',
+                        'destinations' => [
+                            ['to' => $phoneNumber]
+                        ],
+                        'text' => $message,
+                    ]
+                ]
+            ],
+        ]
+    );
 
-// Prepare the SQL query
-$sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
-$stmt = $conn->prepare($sql);
+    // Prepare the SQL query
+    $sql = "INSERT INTO sms_message (phone, message, date_created) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
 
-// Bind the parameters and execute the query
-$stmt->bind_param("sss", $phoneNumber, $message, $date_created);
-$stmt->execute();
+    // Bind the parameters and execute the query
+    $stmt->bind_param("sss", $phoneNumber, $message, $date_created);
+    $stmt->execute();
 
-// Close the statement and connection
-$stmt->close();
-$conn->close();
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
+    if ($response->getStatusCode() == 200) {
+        echo '<script>alert("SMS sent successfully!");</script>';
+    }
 }
+
 ?>
 
 

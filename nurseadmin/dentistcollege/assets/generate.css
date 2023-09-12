@@ -1,39 +1,41 @@
-   /* Style the container to have fixed size and enable scrolling */
-        .chart-container {
-            width: 800px;
-            height: 400px;
-            overflow: auto;
-        }
 
-        #reportForm {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
 
-    #generateReport {
-        background-color: #007bff; /* Clinic blue */
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
 
-    /* Clinic chart title styling */
-    .chart-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #007bff; /* Clinic blue */
-        margin-bottom: 10px;
-    }
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
 
-    /* Clinic chart container styling */
-    .chart-container {
-        background-color: #f8f9fa; /* Clinic light gray */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 20px;
-    }
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+#tableSelect {
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/* Style the options inside the select dropdown */
+#tableSelect option {
+    font-size: 14px;
+    padding: 4px;
+    background-color: #f7f7f7;
+}
+
+/* Style the selected option */
+#tableSelect option:checked {
+    background-color: #007bff;
+    color: #fff;
+}

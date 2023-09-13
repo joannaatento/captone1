@@ -397,37 +397,44 @@
                 return $content;   
             }
              
-            //PRIVATE 
-            //create the li element for ul
-            
-            private function _showDay($cellNumber) {
-                if ($this->currentDay == 0) {
-                    $firstDayOfTheWeek = date('N', strtotime($this->currentYear . '-' . $this->currentMonth . '-01'));
-            
-                    if (intval($cellNumber) == intval($firstDayOfTheWeek)) {
-                        $this->currentDay = 1;
-                    }
-                }
-            
-                if (($this->currentDay != 0) && ($this->currentDay <= $this->daysInMonth)) {
-                    $this->currentDate = date('Y-m-d', strtotime($this->currentYear . '-' . $this->currentMonth . '-' . ($this->currentDay)));
-                    $cellContent = $this->currentDay;
-            
-                    // Add data attributes for year and month
-                    $dataYear = $this->currentYear;
-                    $dataMonth = $this->currentMonth;
-                    $this->currentDay++;
-                } else {
-                    $this->currentDate = null;
-                    $cellContent = null;
-                    $dataYear = null;
-                    $dataMonth = null;
-                }
-            
-                return '<li id="li-' . $this->currentDate . '" class="' . ($cellNumber % 7 == 1 ? ' start ' : ($cellNumber % 7 == 0 ? ' end ' : ' ')) .
-                    ($cellContent == null ? 'mask' : '') . '" data-year="' . $dataYear . '" data-month="' . $dataMonth . '">' . $cellContent . '</li>';
-            }
-             
+           // PRIVATE 
+// create the li element for ul
+private function _showDay($cellNumber) {
+    if ($this->currentDay == 0) {
+        $firstDayOfTheWeek = date('N', strtotime($this->currentYear . '-' . $this->currentMonth . '-01'));
+
+        if (intval($cellNumber) == intval($firstDayOfTheWeek)) {
+            $this->currentDay = 1;
+        }
+    }
+
+    if (($this->currentDay != 0) && ($this->currentDay <= $this->daysInMonth)) {
+        $this->currentDate = date('Y-m-d', strtotime($this->currentYear . '-' . $this->currentMonth . '-' . ($this->currentDay)));
+        $cellContent = $this->currentDay;
+
+        // Add data attributes for year and month
+        $dataYear = $this->currentYear;
+        $dataMonth = $this->currentMonth;
+        $this->currentDay++;
+
+        // Check if the date is in the past
+        $currentTimestamp = strtotime(date('Y-m-d'));
+        $cellTimestamp = strtotime($this->currentDate);
+
+        if ($cellTimestamp < $currentTimestamp) {
+            return '<li class="disabled">' . $cellContent . '</li>';
+        }
+    } else {
+        $this->currentDate = null;
+        $cellContent = null;
+        $dataYear = null;
+        $dataMonth = null;
+    }
+
+    return '<li id="li-' . $this->currentDate . '" class="' . ($cellNumber % 7 == 1 ? ' start ' : ($cellNumber % 7 == 0 ? ' end ' : ' ')) .
+        ($cellContent == null ? 'mask' : '') . '" data-year="' . $dataYear . '" data-month="' . $dataMonth . '">' . $cellContent . '</li>';
+}
+
             
             // create navigation
             
@@ -537,109 +544,50 @@
     </div>
     <br>
 
-    <?php
-    $sql1 = "SELECT * FROM statusdentalgsjhsshsmonday";
-    $result1 = mysqli_query($conn, $sql1);
-
-    if (mysqli_num_rows($result1)) {
-        $row1 = $result1->fetch_assoc();
-
-        $statusden9_am = $row1['statusden9_am'];
-        $statusden10_am = $row1['statusden10_am'];
-        $statusden11_am = $row1['statusden11_am'];
-    }
-    ?>
-
-<table class="schedule-table" id="monday-table">
-<th colspan="4" id="selected-day-header"><span id="selected-date-display"></span></th>
-  <tr>
-    <td class="<?php echo ($statusden9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden9_am; ?>')"><?php echo $statusden9_am; ?></td>
-    <td class="<?php echo ($statusden10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden10_am; ?>')"><?php echo $statusden10_am; ?></td>
-    <td class="<?php echo ($statusden11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden11_am; ?>')"><?php echo $statusden11_am; ?></td>
-  </tr>
+    <table class="schedule-table" id="monday-table">
+    <th colspan="4" id="selected-day-header"><span id="selected-date-display"></span></th>
+    <tr>
+        <td onclick="handleLabelClick('09:00 A.M')">09:00 A.M</td>
+        <td onclick="handleLabelClick('10:00 A.M')">10:00 A.M</td>
+        <td onclick="handleLabelClick('11:00 A.M')">11:00 A.M</td>
+    </tr>
 </table>
 
-<?php
-    $sql1 = "SELECT * FROM statusdentalgsjhsshstuesday";
-    $result1 = mysqli_query($conn, $sql1);
-
-    if (mysqli_num_rows($result1)) {
-        $row1 = $result1->fetch_assoc();
-
-        $statusden9_am = $row1['statusden9_am'];
-        $statusden10_am = $row1['statusden10_am'];
-        $statusden11_am = $row1['statusden11_am'];
-    }
-    ?>
 
 <table class="schedule-table" id="tuesday-table">
 <th colspan ="4"><span id="tuesday-date-display"></span></th>
   <tr>
-    <td class="<?php echo ($statusden9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden9_am; ?>')"><?php echo $statusden9_am; ?></td>
-    <td class="<?php echo ($statusden10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden10_am; ?>')"><?php echo $statusden10_am; ?></td>
-    <td class="<?php echo ($statusden11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden11_am; ?>')"><?php echo $statusden11_am; ?></td>
+        <td onclick="handleLabelClick('09:00 A.M')">09:00 A.M</td>
+        <td onclick="handleLabelClick('10:00 A.M')">10:00 A.M</td>
+        <td onclick="handleLabelClick('11:00 A.M')">11:00 A.M</td>
   </tr>
 </table>
 
-<?php
-    $sql1 = "SELECT * FROM statusdentalgsjhsshswednesday";
-    $result1 = mysqli_query($conn, $sql1);
-
-    if (mysqli_num_rows($result1)) {
-        $row1 = $result1->fetch_assoc();
-
-        $statusden9_am = $row1['statusden9_am'];
-        $statusden10_am = $row1['statusden10_am'];
-        $statusden11_am = $row1['statusden11_am'];
-    }
-    ?>
 <table class="schedule-table" id="wednesday-table">
 <th colspan ="4"><span id="wednesday-date-display"></span></th>
   <tr>
-    <td class="<?php echo ($statusden9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden9_am; ?>')"><?php echo $statusden9_am; ?></td>
-    <td class="<?php echo ($statusden10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden10_am; ?>')"><?php echo $statusden10_am; ?></td>
-    <td class="<?php echo ($statusden11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden11_am; ?>')"><?php echo $statusden11_am; ?></td>
+        <td onclick="handleLabelClick('09:00 A.M')">09:00 A.M</td>
+        <td onclick="handleLabelClick('10:00 A.M')">10:00 A.M</td>
+        <td onclick="handleLabelClick('11:00 A.M')">11:00 A.M</td>
   </tr>
 </table>
 
-<?php
-    $sql1 = "SELECT * FROM statusdentalgsjhsshsthursday";
-    $result1 = mysqli_query($conn, $sql1);
-
-    if (mysqli_num_rows($result1)) {
-        $row1 = $result1->fetch_assoc();
-
-        $statusden9_am = $row1['statusden9_am'];
-        $statusden10_am = $row1['statusden10_am'];
-        $statusden11_am = $row1['statusden11_am'];
-    }
-    ?>
 <table class="schedule-table" id="thursday-table">
 <th colspan ="4"><span id="thursday-date-display"></span></th>
   <tr>
-    <td class="<?php echo ($statusden9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden9_am; ?>')"><?php echo $statusden9_am; ?></td>
-    <td class="<?php echo ($statusden10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden10_am; ?>')"><?php echo $statusden10_am; ?></td>
-    <td class="<?php echo ($statusden11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden11_am; ?>')"><?php echo $statusden11_am; ?></td>
+        <td onclick="handleLabelClick('09:00 A.M')">09:00 A.M</td>
+        <td onclick="handleLabelClick('10:00 A.M')">10:00 A.M</td>
+        <td onclick="handleLabelClick('11:00 A.M')">11:00 A.M</td>
   </tr>
 </table>
 
-<?php
-    $sql1 = "SELECT * FROM statusdentalgsjhsshsfriday";
-    $result1 = mysqli_query($conn, $sql1);
 
-    if (mysqli_num_rows($result1)) {
-        $row1 = $result1->fetch_assoc();
-        $statusden9_am = $row1['statusden9_am'];
-        $statusden10_am = $row1['statusden10_am'];
-        $statusden11_am = $row1['statusden11_am'];
-    }
-    ?>
 <table class="schedule-table" id="friday-table">
 <th colspan ="4"><span id="friday-date-display"></span></th>
 <tr>
-  <td class="<?php echo ($statusden9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden9_am; ?>')"><?php echo $statusden9_am; ?></td>
-    <td class="<?php echo ($statusden10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden10_am; ?>')"><?php echo $statusden10_am; ?></td>
-    <td class="<?php echo ($statusden11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusden11_am; ?>')"><?php echo $statusden11_am; ?></td>
+        <td onclick="handleLabelClick('09:00 A.M')">09:00 A.M</td>
+        <td onclick="handleLabelClick('10:00 A.M')">10:00 A.M</td>
+        <td onclick="handleLabelClick('11:00 A.M')">11:00 A.M</td>
   </tr>
 </table>
 <div class="form-group">
@@ -751,11 +699,20 @@ $(document).ready(function() {
 
 
 // Function to handle clicking an available time
-function handleLabelClick(time) {
-    document.getElementById('sched_time').value = time;
+function handleLabelClick(time, formattedDatetime) {
+    // Check availability for the selected date and time
+    var isUnavailable = checkAvailability(formattedDatetime, time);
+
+    if (isUnavailable) {
+        alert('This time slot is unavailable.');
+    } else {
+        document.getElementById('sched_time').value = time;
+    }
 }
 
+
     </script>
+    
 <script>
     // Get the current URL
     const currentUrl = window.location.href;

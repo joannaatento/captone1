@@ -193,7 +193,7 @@
 				        </div><!--//row-->
 				    </div><!--//app-card-header-->
             <div class="app-card-body p-4">
-            <b><p>Please wait for a message for approval of your physician consultation request appointment.</b></p>
+            <b><p>PHYSICIAN is only available every WEDNESDAY. Please wait for a message for approval of your physician consultation request appointment.</b></p>
 
 <form class="form-horizontal mt-4" method="post" action="function/functions.php" onsubmit="return validateForm()">
 <div class="row">
@@ -388,38 +388,44 @@
                 return $content;   
             }
              
-            //PRIVATE 
-            //create the li element for ul
-            
-            private function _showDay($cellNumber) {
-                if ($this->currentDay == 0) {
-                    $firstDayOfTheWeek = date('N', strtotime($this->currentYear . '-' . $this->currentMonth . '-01'));
-            
-                    if (intval($cellNumber) == intval($firstDayOfTheWeek)) {
-                        $this->currentDay = 1;
-                    }
-                }
-            
-                if (($this->currentDay != 0) && ($this->currentDay <= $this->daysInMonth)) {
-                    $this->currentDate = date('Y-m-d', strtotime($this->currentYear . '-' . $this->currentMonth . '-' . ($this->currentDay)));
-                    $cellContent = $this->currentDay;
-            
-                    // Add data attributes for year and month
-                    $dataYear = $this->currentYear;
-                    $dataMonth = $this->currentMonth;
-                    $this->currentDay++;
-                } else {
-                    $this->currentDate = null;
-                    $cellContent = null;
-                    $dataYear = null;
-                    $dataMonth = null;
-                }
-            
-                return '<li id="li-' . $this->currentDate . '" class="' . ($cellNumber % 7 == 1 ? ' start ' : ($cellNumber % 7 == 0 ? ' end ' : ' ')) .
-                    ($cellContent == null ? 'mask' : '') . '" data-year="' . $dataYear . '" data-month="' . $dataMonth . '">' . $cellContent . '</li>';
-            }
-             
-            
+           // PRIVATE 
+// create the li element for ul
+private function _showDay($cellNumber) {
+    if ($this->currentDay == 0) {
+        $firstDayOfTheWeek = date('N', strtotime($this->currentYear . '-' . $this->currentMonth . '-01'));
+
+        if (intval($cellNumber) == intval($firstDayOfTheWeek)) {
+            $this->currentDay = 1;
+        }
+    }
+
+    if (($this->currentDay != 0) && ($this->currentDay <= $this->daysInMonth)) {
+        $this->currentDate = date('Y-m-d', strtotime($this->currentYear . '-' . $this->currentMonth . '-' . ($this->currentDay)));
+        $cellContent = $this->currentDay;
+
+        // Add data attributes for year and month
+        $dataYear = $this->currentYear;
+        $dataMonth = $this->currentMonth;
+        $this->currentDay++;
+
+        // Check if the date is in the past
+        $currentTimestamp = strtotime(date('Y-m-d'));
+        $cellTimestamp = strtotime($this->currentDate);
+
+        if ($cellTimestamp < $currentTimestamp) {
+            return '<li class="disabled">' . $cellContent . '</li>';
+        }
+    } else {
+        $this->currentDate = null;
+        $cellContent = null;
+        $dataYear = null;
+        $dataMonth = null;
+    }
+
+    return '<li id="li-' . $this->currentDate . '" class="' . ($cellNumber % 7 == 1 ? ' start ' : ($cellNumber % 7 == 0 ? ' end ' : ' ')) .
+        ($cellContent == null ? 'mask' : '') . '" data-year="' . $dataYear . '" data-month="' . $dataMonth . '">' . $cellContent . '</li>';
+}
+
             // create navigation
             
             private function _createNavi(){
@@ -529,24 +535,12 @@
     </div>
     
 
-    <?php
-    $sql1 = "SELECT * FROM statusphysiciangsjhsshs";
-    $result1 = mysqli_query($conn, $sql1);
-
-    if (mysqli_num_rows($result1)) {
-        $row1 = $result1->fetch_assoc();
-        $statusphysician9_am = $row1['statusphysician9_am'];
-        $statusphysician10_am = $row1['statusphysician10_am'];
-        $statusphysician11_am = $row1['statusphysician11_am'];
-    }
-    ?>
-
-<table class="schedule-table" id="wednesday-table">
+    <table class="schedule-table" id="wednesday-table">
 <th colspan="4" id="selected-day-header"><span id="selected-date-display"></span></th>
   <tr>
-    <td class="<?php echo ($statusphysician9_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusphysician9_am; ?>')"><?php echo $statusphysician9_am; ?></td>
-    <td class="<?php echo ($statusphysician10_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusphysician10_am; ?>')"><?php echo $statusphysician10_am; ?></td>
-    <td class="<?php echo ($statusphysician11_am == 'Unavailable') ? 'unavailable' : 'available'; ?>" onclick="handleLabelClick('<?php echo $statusphysician11_am; ?>')"><?php echo $statusphysician11_am; ?></td>
+        <td onclick="handleLabelClick('09:00 A.M')">09:00 A.M</td>
+        <td onclick="handleLabelClick('10:00 A.M')">10:00 A.M</td>
+        <td onclick="handleLabelClick('11:00 A.M')">11:00 A.M</td>
   </tr>
 </table>
 

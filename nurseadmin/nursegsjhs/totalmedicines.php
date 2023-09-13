@@ -300,11 +300,16 @@ $result = $stmt->get_result();
         <option value="year" <?php echo $report_type === 'year' ? 'selected' : ''; ?>>Yearly</option>
     </select>
 
-    <select id="yearSelect" name="selected_year">
-        <option value="2023" <?php echo $selected_year === '2023' ? 'selected' : ''; ?>>2023</option>
-        <option value="2024" <?php echo $selected_year === '2024' ? 'selected' : ''; ?>>2024</option>
-        <option value="2025" <?php echo $selected_year === '2025' ? 'selected' : ''; ?>>2025</option>
-    </select>
+    <label for="selected_year">Select Year:</label>
+                           <select id="selected_year" name="selected_year">
+                               <!-- For Years -->
+                               <?php
+                               $current_year = date("Y");
+                               for ($year = $current_year; $year >= 2023; $year--) {
+                                   echo "<option value='$year'>$year</option>";
+                               }
+                               ?>
+             </select>
 
     <button type="submit">Generate Report</button>
     <button id="printButton">Print Report</button>

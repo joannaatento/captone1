@@ -171,12 +171,6 @@ if (mysqli_num_rows($result) > 0) {
 				    </div><!--//app-card-header-->
                     <div class="app-card-body p-4">
                    
-                 <div style="text-align: right; margin-right: 48px;">
-                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
-                         Update Physician Schedule
-                     </button>
-                 </div>
-                 
                  <div class="main-content">
     <table class="styled-table">
         <thead>
@@ -271,76 +265,6 @@ if (mysqli_num_rows($result) > 0) {
         </tbody>
     </table>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Schedule</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <?php
-                $sql1 = "SELECT * FROM statusphysiciancollege ";
-                $result1 = mysqli_query($conn, $sql1);
-
-                if (mysqli_num_rows($result1) > 0) {
-                    while ($row1 = $result1->fetch_assoc()) {
-                        $statphysician_id = $row1['statphysician_id'];
-                        $statusphysician9_am = $row1['statusphysician9_am'];
-                        $statusphysician10_am = $row1['statusphysician10_am'];
-                        $statusphysician11_am = $row1['statusphysician11_am'];
-                        $statusphysician12_pm = $row1['statusphysician12_pm'];
-                    }
-                } else {
-
-                }
-                ?>
-                <?php
-                // Step 1: Retrieve the data to be updated
-                if (isset($_GET['statphysician_id'])) {
-                    $statphysician_id = $_GET['statphysician_id'];
-                }
-
-                ?>
-                <form action="function/physicianrecordcollege.php" method="POST">
-                    <input type="hidden" name="statphysician_id" value="<?php echo $statphysician_id; ?>">
-                    <div class="mb-3">
-                        <label for="inputStatus811" class="form-label">09:00 A.M</label>
-                        <select class="form-select" id="inputStatus811" name="statusphysician9_am">
-                            <option value="09:00 A.M" <?php if ($statusphysician9_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusphysician9_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus811" class="form-label">8:00 A.M</label>
-                        <select class="form-select" id="inputStatus811" name="statusphysician10_am">
-                            <option value="10:00 A.M" <?php if ($statusphysician10_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusphysician10_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus811" class="form-label">11:00 A.M</label>
-                        <select class="form-select" id="inputStatus811" name="statusphysician11_am">
-                            <option value="11:00 A.M" <?php if ($statusphysician11_am == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusphysician11_am == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputStatus811" class="form-label">12:00 P.M</label>
-                        <select class="form-select" id="inputStatus811" name="statusphysician12_pm">
-                            <option value="12:00 P.M" <?php if ($statusphysician12_pm == 'Available') echo 'selected'; ?>>Available</option>
-                            <option value="Unavailable" <?php if ($statusphysician12_pm == 'Unavailable') echo 'selected'; ?>>Unavailable</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit_statusphysiciancollege" class="btn btn-light">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 </div>
 

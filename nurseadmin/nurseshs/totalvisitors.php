@@ -528,7 +528,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 switch ($report_types) {
     case 'week':
         $sql = "SELECT CONCAT(YEAR(date), '-', WEEK(date)) AS label,
-        fullname
+        fullname, COUNT(fullname) AS fullname_count
         FROM consultationformrecord
         WHERE YEAR(date) = ?
         GROUP BY label, fullname";
@@ -539,7 +539,7 @@ switch ($report_types) {
 
     case 'month':
         $sql = "SELECT CONCAT(YEAR(date), '-', MONTHNAME(date)) AS label,
-        fullname
+        fullname, COUNT(fullname) AS fullname_count
         FROM consultationformrecord
         WHERE YEAR(date) = ?
         GROUP BY label, fullname";
@@ -549,7 +549,7 @@ switch ($report_types) {
 
     case 'year':
         $sql = "SELECT CONCAT(YEAR(date)) AS label,
-        fullname
+        fullname, COUNT(fullname) AS fullname_count
         FROM consultationformrecord
         WHERE YEAR(date) = ?
         GROUP BY label, fullname";
@@ -594,6 +594,7 @@ $result = $stmt->get_result();
             <tr>
                 <th><?php echo $report_labels; ?></th>
                 <th>List of Students</th>
+                <th>Total of Visits in the Clinic</th>
             </tr>
         </thead>
         <tbody id="healthRecordTableBody">
@@ -601,6 +602,7 @@ $result = $stmt->get_result();
                 <tr>
                     <td><?php echo $row->label; ?></td>
                     <td><?php echo $row->fullname; ?></td>
+                    <td><?php echo $row->fullname_count; ?></td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
@@ -623,7 +625,7 @@ $result = $stmt->get_result();
 
     // Add another cell for the text beside the image
     printWindow.document.write('<td style="text-align: center;">');
-    printWindow.document.write('<div style="text-align: center;"><b>HEALTH SERVICE UNIT - GS and JHS Department</b></div>');
+    printWindow.document.write('<div style="text-align: center;"><b>HEALTH SERVICE UNIT - SHS Department</b></div>');
     printWindow.document.write('</td>');
 
     // Close the row and start a new row for your table content

@@ -635,7 +635,7 @@ window.myChart = new Chart(ctx, {
     
         // Add another cell for the text beside the image
         printWindow.document.write('<td style="text-align: center;">');
-        printWindow.document.write('<div style="text-align: center;"><b>HEALTH SERVICE UNIT - GS and JHS Department</b></div>');
+        printWindow.document.write('<div style="text-align: center;"><b>HEALTH SERVICE UNIT - SHS Department</b></div>');
         printWindow.document.write('</td>');
     
         // Close the row and start a new row for your table content

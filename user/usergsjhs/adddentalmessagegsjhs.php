@@ -286,7 +286,6 @@
     </div>
 </div>
 
-
     <div class="col-sm-3">
         <div class="form-group">
             <label for="gradecourseyear" class="control-label" style="font-size: 16px">Grade & Section</label>
@@ -699,17 +698,9 @@ $(document).ready(function() {
 
 
 // Function to handle clicking an available time
-function handleLabelClick(time, formattedDatetime) {
-    // Check availability for the selected date and time
-    var isUnavailable = checkAvailability(formattedDatetime, time);
-
-    if (isUnavailable) {
-        alert('This time slot is unavailable.');
-    } else {
+    function handleLabelClick(time) {
         document.getElementById('sched_time').value = time;
     }
-}
-
 
     </script>
     

@@ -106,6 +106,7 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+    <link rel="stylesheet" href="assets/generate.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
 
@@ -391,6 +392,151 @@ window.myChart = new Chart(ctx, {
                                fetchChartData();
                            });
                        </script>
+
+
+
+<br><br>                     
+<?php
+$selected_years = isset($_POST['selected_years']) ? $_POST['selected_years'] : '2023';
+$report_types = isset($_POST['report_types']) ? $_POST['report_types'] : 'week';
+$report_labels = 'Weekly'; // Initialize with a default value
+
+// Your database connection code here
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['report_types']) && isset($_POST['selected_years'])) {
+        $report_types = $_POST['report_types'];
+        $selected_years = $_POST['selected_years'];
+    }
+}
+
+switch ($report_types) {
+    case 'week':
+        $sql = "SELECT CONCAT(YEAR(date_time), '-', WEEK(date_time)) AS label,
+        fullname, sched_time
+        FROM dentalappcollege
+        WHERE role = 'Student in College' AND YEAR(date_time) = ?
+        GROUP BY label, fullname";
+        break;
+
+    case 'month':
+        $sql = "SELECT CONCAT(YEAR(date_time), '-', MONTHNAME(date_time)) AS label,
+       fullname, sched_time
+       FROM dentalappcollege
+        WHERE role = 'Student in College' AND YEAR(date_time) = ?
+        GROUP BY label, fullname";
+        $report_labels = 'Monthly';
+        break;
+
+    case 'year':
+        $sql = "SELECT CONCAT(YEAR(date_time)) AS label,
+         fullname, sched_time
+         FROM dentalappcollege
+        WHERE role = 'Student in College' AND YEAR(date_time) = ?
+        GROUP BY label, fullname";
+        $report_labels = 'Yearly';
+        break;
+
+    default:
+        echo "Invalid report type selection.";
+        exit;
+}
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $selected_years);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+<form class="clinic-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <select id="tableSelect" name="report_types">
+        <option value="week" <?php echo $report_types === 'week' ? 'selected' : ''; ?>>Weekly</option>
+        <option value="month" <?php echo $report_types === 'month' ? 'selected' : ''; ?>>Monthly</option>
+        <option value="year" <?php echo $report_types === 'year' ? 'selected' : ''; ?>>Yearly</option>
+    </select>
+
+    <label for="selected_years">Select Year:</label>
+                           <select id="selected_years" name="selected_years">
+                               <!-- For Years -->
+                               <?php
+                               $current_year = date("Y");
+                               for ($year = $current_year; $year >= 2023; $year--) {
+                                   echo "<option value='$year'>$year</option>";
+                               }
+                               ?>
+             </select>
+
+    <button type="submit">Generate Report</button>
+    <button id="printButton">Print Report</button>
+
+</form>
+
+<table class="clinic-table" id="clinicTable">
+        <thead>
+            <tr>
+                <th><?php echo $report_labels; ?></th>
+                <th>List of Students</th>
+                <th> Schedule Time</th>
+            </tr>
+        </thead>
+        <tbody id="healthRecordTableBody">
+            <?php while ($row = $result->fetch_object()): ?>
+                <tr>
+                    <td><?php echo $row->label; ?></td>
+                    <td><?php echo $row->fullname; ?></td>
+                    <td><?php echo $row->sched_time; ?></td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+
+
+    
+    <script>
+  document.getElementById("printButton").addEventListener("click", function () {
+    var table = document.getElementById("clinicTable");
+    var printWindow = window.open('', '', 'width=800,height=600');
+    printWindow.document.open();
+    
+    printWindow.document.write('<table style="margin: 0 auto;"><tr>');
+
+    // Create a div to hold the logo image with center-aligned cell
+    printWindow.document.write('<td style="text-align: center;">');
+    printWindow.document.write('<div style="text-align: center;"><img src="assets/images/dwcl.png" alt="Logo" width="100" height="100"></div>');
+    printWindow.document.write('</td>');
+
+    // Add another cell for the text beside the image
+    printWindow.document.write('<td style="text-align: center;">');
+    printWindow.document.write('<div style="text-align: center;"><b>HEALTH SERVICE UNIT - College Department</b></div>');
+    printWindow.document.write('</td>');
+
+    // Close the row and start a new row for your table content
+    printWindow.document.write('</tr></table>');
+
+    printWindow.document.write('<br><br>');
+// Create the table for your content
+    printWindow.document.write('<style>');
+    printWindow.document.write('table { margin: 0 auto; }');
+    printWindow.document.write('tr.header { background-color: #f2f2f2; text-align: center; }');
+    printWindow.document.write('table.special-table { border-collapse: collapse; width: 80%; max-width: 800px; border: 1px solid #ccc; }');
+    printWindow.document.write('table.special-table th, table.special-table td { border: 2px solid #ccc; padding: 10px; text-align: left; }');
+    printWindow.document.write('table.special-table th { background-color: #333; color: #fff; }');
+    printWindow.document.write('</style>');
+
+// Create a row to hold your table
+printWindow.document.write('<tr>');
+printWindow.document.write('<td>' + table.outerHTML.replace('<table', '<table class="special-table"') + '</td>');
+printWindow.document.write('</tr>');
+
+
+    // Close the HTML document
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    
+    // Trigger the print dialog
+    printWindow.print();
+    printWindow.close();
+  });
+</script>    
          </div><!--//app-card-body-->
 				</div>			    
 		    </div>

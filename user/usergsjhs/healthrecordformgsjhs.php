@@ -46,7 +46,8 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyle.css">
+	<link rel="stylesheet" href="assets/formstyles.css">
+    <link rel="stylesheet" href="assets/radios.css">
 
 
 <!-- Add Bootstrap JavaScript and jQuery links -->
@@ -413,6 +414,8 @@
             <label for="fullname">Guardian's relation to the student/employee</label>
             <input name="guardianrelation" id="guardianrelation" type="text">
         </div>
+</div>
+<div class="input_form">
     <div class="input_wrap">
             <label for="fullname">Contact</label>
             <input id="contactInput_cguardian" name="cguardian" type="text" placeholder="+63" class="contactInput">            <p class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
@@ -584,156 +587,157 @@
             </div>
    
             <br>
-<p>Do you have a heart condition? (If yes, please specify.)</p>
-<div class="row-container">
-  <div class="checkbox">
-    <input name="yesheartcon" value="yesheartcon" type="checkbox" id="yesheartcon">
+    <p>Do you have a heart condition? (If yes, please specify.)</p>
+    <div class="row-container">
+  <div class="radio">
+    <input name="heartcondition" value="yes" type="radio" id="yesheartcon">
     <label class="labels" for="yesheartcon" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="noheartcon" value="noheartcon" type="checkbox" id="noheartcon">
+  <div class="radio">
+    <input name="heartcondition" value="no" type="radio" id="noheartcon">
     <label class="labels" for="noheartcon" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="heartcon" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="heartcon_specify" id="otherillnesss" type="text" placeholder="If YES, please specify">
   </div>
 </div>
 
 <br>
 <p>Do you have an Eye problem? (If yes, please specify.)</p>
 <div class="row-container">
-  <div class="checkbox">
-    <input name="yeseyeprob" value="yeseyeprob" type="checkbox" id="yeseyeprob">
-    <label class="labels" for="yeseyeprob" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+<div class="radio">
+    <input name="eyeproblem" value="yes" type="radio" id="yeseyeproblem">
+    <label class="labels" for="yeseyeproblem" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="noeyeprob" value="noeyeprob" type="checkbox" id="noeyeprob">
+  <div class="radio">
+    <input name="eyeproblem" value="no" type="radio" id="noeyeproblem">
     <label class="labels" for="noeyeprob" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="eyeprob" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="eyeprob_specify" id="otherillnesss" type="text" placeholder="If YES, please specify">
   </div>
 </div>
+
 <br>
 <p>Do you have a history of serious illness and/or hospitalization? (Please specify and include dates.)</p>
 <div class="row-container">
-  <div class="checkbox">
-    <input name="yesseriousillnes" value="yesseriousillnes" type="checkbox" id="yesseriousillnes">
-    <label class="labels" for="yesseriousillnes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+<div class="radio">
+    <input name="seriousillness" value="yes" type="radio" id="yesseriousillness">
+    <label class="labels" for="yesseriousillness" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="noseriousillnes" value="noseriousillnes" type="checkbox" id="noseriousillnes">
-    <label class="labels" for="noseriousillnes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+    <input name="seriousillness" value="no" type="radio" id="noseriousillness">
+    <label class="labels" for="noseriousillness" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="seriousillnes" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="seriousillness_specify" id="otherillnesss" type="text" placeholder="If YES, please specify">
   </div>
 </div>
 
 <br>
 <p>Do you have a history of surgeries and/or injuries? (Please specify and include dates.)</p>
 <div class="row-container">
-  <div class="checkbox">
-    <input name="yessurgeries" value="yessurgeries" type="checkbox" id="yessurgeries">
-    <label class="labels" for="yessurgeries" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+<div class="radio">
+    <input name="surgeries_injuries" value="yes" type="radio" id="yessurgeries_injuries">
+    <label class="labels" for="yessurgeries_injuries" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="nosurgeries" value="nosurgeries" type="checkbox" id="nosurgeries">
-    <label class="labels" for="nosurgeries" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+    <input name="surgeries_injuries" value="no" type="radio" id="nosurgeries_injuries">
+    <label class="labels" for="nosurgeries_injuries" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="surgeries" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="surgeries_injuries_specify" id="otherillnesss" type="text" placeholder="If YES, please specify">
   </div>
 </div>
 
 <br>
 <p>Do receive any medication or medical treatment, either regulary or occasionally? (If yes, please explain.)</p>
 <div class="row-container">
-  <div class="checkbox">
-    <input name="yesreceive" value="yesreceive" type="checkbox" id="yesreceive">
-    <label class="labels" for="yesreceive" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+<div class="radio">
+    <input name="medicationtreatment" value="yes" type="radio" id="yesmedicationtreatment">
+    <label class="labels" for="yesmedicationtreatment" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="noreceive" value="noreceive" type="checkbox" id="noreceive">
-    <label class="labels" for="noreceive" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+    <input name="medicationtreatment" value="no" type="radio" id="nomedicationtreatment">
+    <label class="labels" for="nomedicationtreatment" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="receive" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="medicationtreatment_specify" id="otherillnesss" type="text" placeholder="If YES, please specify">
   </div>
 </div>
 
 <br>
 <p>Do you have any allergies to medication? (If yes, please specify.)</p>
 <div class="row-container">
-  <div class="checkbox">
-    <input name="yesallergiesmed" value="yesallergiesmed" type="checkbox" id="yesallergiesmed">
+<div class="radio">
+    <input name="allergiesmed" value="yes" type="radio" id="yesallergiesmed">
     <label class="labels" for="yesallergiesmed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="noallergiesmed" value="noallergiesmed" type="checkbox" id="noallergiesmed">
+  <div class="radio">
+    <input name="allergiesmed" value="no" type="radio" id="noallergiesmed">
     <label class="labels" for="noallergiesmed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="allergiesmed" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="allergiesmed_specify" id="otherillnesss" type="text" placeholder="If YES, please specify">
   </div>
 </div>
 <br>
 <p>Do you have any allergies to food? (If yes, please specify.)</p>
 <div class="row-container">
-  <div class="checkbox">
-    <input name="yesallergiesfood" value="yesallergiesfood" type="checkbox" id="yesallergiesfood">
+<div class="radio">
+    <input name="allergiesfood" value="yes" type="radio" id="yesallergiesfood">
     <label class="labels" for="yesallergiesfood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="noallergiesfood" value="noallergiesfood" type="checkbox" id="noallergiesfood">
+  <div class="radio">
+    <input name="allergiesfood" value="no" type="radio" id="noallergiesfood">
     <label class="labels" for="noallergiesfood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="allergiesfood" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="allergiesfood_specify" id="otherillnesss" type="text" placeholder="If YES, please specify">
   </div>
 </div>
 <br>
 <p>Would you like to receive minor first aid (medication & treatment) given by the nurse in the school clinic?</p>
 <div class="row-container">
-  <div class="checkbox">
-    <input name="yesfirstaid" value="yesfirstaid" type="checkbox" id="yesfirstaid">
+<div class="radio">
+    <input name="firstaid" value="yes" type="radio" id="yesfirstaid">
     <label class="labels" for="yesfirstaid" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="nofirstaid" value="nofirstaid" type="checkbox" id="nofirstaid">
-    <label class="labels" for="nofirstaid" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+    <input name="firstaid" value="no" type="radio" id="yesfirstaid">
+    <label class="labels" for="yesfirstaid" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>
 </div>
 <br>
 <p>Do you have any concerns related to your health? (If yes, please explain.)</p>
 <div class="row-container">
-  <div class="checkbox">
-    <input name="yesconcerns" value="yesconcerns" type="checkbox" id="yesconcerns">
+<div class="radio">
+    <input name="concerns" value="yes" type="radio" id="yesconcerns">
     <label class="labels" for="yesconcerns" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="noconcerns" value="noconcerns" type="checkbox" id="noconcerns">
+  <div class="radio">
+    <input name="concerns" value="no" type="radio" id="noconcerns">
     <label class="labels" for="noconcerns" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="concerns" id="otherillnesss" type="text" placeholder="If YES, please specify">
+    <input name="concerns_specify" id="otherillnesss" type="text" placeholder="If YES, please specify">
   </div>
 </div>
  <div class="app-card-footer px-4 py-3" style="display: flex; justify-content: center;">

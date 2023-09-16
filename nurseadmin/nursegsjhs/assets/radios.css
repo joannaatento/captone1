@@ -1,0 +1,48 @@
+.radio, .input_wrap {
+    margin-right: 20px; /* Optional: Add some space between each element */
+  }
+  
+  .radio {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .radio input[type="radio"] {
+    display: none;
+  }
+  
+  .radio label {
+    position: relative;
+    font-size: 14px; /* Set your desired font size */
+    padding-left: 25px;
+    cursor: pointer;
+  }
+  
+  .radio label:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #15a362;
+    border-radius: 50%; /* Make it a circle */
+  }
+  
+  .radio label:after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    background-color: #15a362;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .radio input[type="radio"]:checked + label:after {
+    opacity: 1;
+  }
+
+ 

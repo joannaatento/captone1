@@ -478,6 +478,7 @@ if (mysqli_num_rows($result) > 0) {
                      <div class="input">
                 <label for="fullname">Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>  
             <div class="row-container">
+                
         <div class="radio">
     <input name="take_medication" value="yes" type="radio" id="yestake_medication" <?php if (isset($row['take_medication']) && $row['take_medication'] == 'yes') echo "checked"; ?>>
     <label class="labels" for="yestake_medication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>

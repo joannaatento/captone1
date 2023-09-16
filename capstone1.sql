@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2023 at 11:21 AM
+-- Generation Time: Sep 16, 2023 at 02:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -401,17 +401,13 @@ CREATE TABLE `healthrecordformshs` (
   `eyedis` varchar(255) NOT NULL,
   `heartailment` varchar(255) NOT NULL,
   `otherillness` varchar(255) NOT NULL,
-  `yesfood` varchar(50) NOT NULL,
-  `nofood` varchar(50) NOT NULL,
-  `food` text NOT NULL,
-  `yesmed` varchar(50) NOT NULL,
-  `nomed` varchar(255) NOT NULL,
-  `med` text NOT NULL,
-  `allow` varchar(255) NOT NULL,
-  `notallow` varchar(255) NOT NULL,
-  `yesmedication` varchar(50) NOT NULL,
-  `nomedication` varchar(50) NOT NULL,
-  `medication` varchar(200) NOT NULL,
+  `allergy_food` varchar(50) NOT NULL,
+  `allergyfood_specify` text NOT NULL,
+  `allergy_med` varchar(50) NOT NULL,
+  `allergymed_specify` text NOT NULL,
+  `give_med` varchar(255) NOT NULL,
+  `take_medication` varchar(50) NOT NULL,
+  `take_medication_specify` varchar(50) NOT NULL,
   `notified` varchar(255) NOT NULL,
   `contact` varchar(255) NOT NULL,
   `relationship` varchar(255) NOT NULL
@@ -421,9 +417,8 @@ CREATE TABLE `healthrecordformshs` (
 -- Dumping data for table `healthrecordformshs`
 --
 
-INSERT INTO `healthrecordformshs` (`healthshs_id`, `user_id`, `image`, `fullname`, `idnumber`, `birthday`, `phoneno`, `gender`, `address`, `paddress`, `father`, `cfather`, `mother`, `cmother`, `polio`, `tetanus`, `chickenpox`, `measles`, `mumps`, `tb`, `asthma`, `hepatitis`, `faintingspells`, `seizure`, `bleeding`, `eyedis`, `heartailment`, `otherillness`, `yesfood`, `nofood`, `food`, `yesmed`, `nomed`, `med`, `allow`, `notallow`, `yesmedication`, `nomedication`, `medication`, `notified`, `contact`, `relationship`) VALUES
-(11, 102, 'me.jpg', 'Joanna Mae D. Atento', 6802182, '2001-12-15', '+639156005165', 'Female', 'Calzada Guinobatan Albay', 'Calzada Guinobatan Albay', 'Jojo Atento', '+639156005165', 'Rowena Atento', '+639156005165', '', '', '', '', '', '', '', '', '', '', '', 'eyedis', 'None', 'None', '', 'nofood', '', '', 'nomed', '', 'allow', '', '', 'nomedication', '', 'Edita Dela Cruz', '+639156005164', 'Grandmother'),
-(12, 104, '283741276_5166965043394480_8080625479499483191_n.png', 'User SHS', 2, '2001-12-15', '+639456787978', 'Female', 'Legazpi City', 'Legazpi City', 'fghjkjyhtre', '+639345678756', 'Rowena Atento', '+639235467898', '', 'tetanus', '', '', '', '', '', '', 'faintingspells', '', '', 'eyedis', 'fghjuyyt', 'fghjuyyt', '', 'nofood', '', '', 'nomed', '', '', 'notallow', '', 'nomedication', '', 'fghjk', '+639345678975', 'TYUIYUYTTERE');
+INSERT INTO `healthrecordformshs` (`healthshs_id`, `user_id`, `image`, `fullname`, `idnumber`, `birthday`, `phoneno`, `gender`, `address`, `paddress`, `father`, `cfather`, `mother`, `cmother`, `polio`, `tetanus`, `chickenpox`, `measles`, `mumps`, `tb`, `asthma`, `hepatitis`, `faintingspells`, `seizure`, `bleeding`, `eyedis`, `heartailment`, `otherillness`, `allergy_food`, `allergyfood_specify`, `allergy_med`, `allergymed_specify`, `give_med`, `take_medication`, `take_medication_specify`, `notified`, `contact`, `relationship`) VALUES
+(13, 104, 'Acer_Wallpaper_02_5000x2813.jpg', 'User SHS', 2, '2001-12-15', '+639156005165', 'Female', 'Calzada Guinobatan Albay', 'Calzada Guinobatan Albay', 'Jojo Atento', '+639156005165', 'Rowena Atento', '+639124546578', '', '', '', '', '', '', '', '', '', '', '', 'eyedis', 'N/A', 'N/A', 'no', '', 'no', '', 'no', 'no', '', 'Edita Dela Cruz', '+639156005165', 'Grandmother');
 
 -- --------------------------------------------------------
 
@@ -1226,7 +1221,7 @@ ALTER TABLE `healthrecordformgsjhs`
 -- AUTO_INCREMENT for table `healthrecordformshs`
 --
 ALTER TABLE `healthrecordformshs`
-  MODIFY `healthshs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `healthshs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `medicalapp`

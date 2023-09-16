@@ -31,6 +31,7 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/formstyles.css">
+    <link rel="stylesheet" href="assets/radios.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -38,7 +39,6 @@
 </head> 
 
 <body class="app">   
-    
 <?php  	
 $idnumber = $_GET['idnumber'];
 
@@ -47,47 +47,43 @@ $sql = "SELECT * FROM healthrecordformshs WHERE idnumber = '$idnumber'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-    $row = $result->fetch_assoc(); 
-    $image = $row['image'];
-    $fullname= $row['fullname'];
-    $idnumber = $row['idnumber'];
-    $phoneno = $row['phoneno'];
-    $birthday = $row['birthday'];
-    $gender = $row['gender'];
-    $address = $row ['address'];
-    $paddress = $row ['paddress'];
-    $father = $row['father'];
-    $cfather = $row['cfather'];
-    $mother = $row['mother'];
-    $cmother = $row['cmother'];
-    $polio = $row['polio'];
-    $tetanus = $row['tetanus'];
-    $chickenpox = $row['chickenpox'];
-    $measles = $row['measles'];
-    $mumps = $row['mumps'];
-    $tb = $row['tb'];
-    $asthma = $row['asthma'];
-    $hepatitis = $row['hepatitis'];
-    $faintingspells = $row['faintingspells'];
-    $seizure = $row['seizure'];
-    $bleeding = ['bleeding'];
-    $eyedis = $row['eyedis'];
-    $heartailment = $row['heartailment'];
-    $otherillness = $row['otherillness'];
-    $yesfood =$row ['yesfood'];
-    $nofood = $row['nofood'];
-    $food =$row['food'];
-    $yesmed = $row['yesmed'];
-    $nomed = $row['nomed'];
-    $med = $row['med'];
-    $allow = $row['allow'];
-    $notallow = $row['notallow'];
-    $yesmedication =$row['yesmedication'];
-    $nomedication =$row['nomedication'];
-    $medication =$row['medication'];
-    $notified =$row['notified'];
-    $contact = $row['contact'];
-    $relationship =$row['relationship'];
+  $row = $result->fetch_assoc(); 
+  $image = $row['image'];
+  $fullname= $row['fullname'];
+  $idnumber = $row['idnumber'];
+  $phoneno = $row['phoneno'];
+  $birthday = $row['birthday'];
+  $gender = $row['gender'];
+  $address = $row ['address'];
+  $paddress = $row ['paddress'];
+  $father = $row['father'];
+  $cfather = $row['cfather'];
+  $mother = $row['mother'];
+  $cmother = $row['cmother'];
+  $polio = $row['polio'];
+  $tetanus = $row['tetanus'];
+  $chickenpox = $row['chickenpox'];
+  $measles = $row['measles'];
+  $mumps = $row['mumps'];
+  $tb = $row['tb'];
+  $asthma = $row['asthma'];
+  $hepatitis = $row['hepatitis'];
+  $faintingspells = $row['faintingspells'];
+  $seizure = $row['seizure'];
+  $bleeding = ['bleeding'];
+  $eyedis = $row['eyedis'];
+  $heartailment = $row['heartailment'];
+  $otherillness = $row['otherillness'];
+  $allergy_food =$row ['allergy_food'];
+  $allergyfood_specify = $row['allergyfood_specify'];
+  $allergy_med =$row['allergy_med'];
+  $allergymed_specify = $row['allergymed_specify'];
+  $give_med = $row['give_med'];
+  $take_medication = $row['take_medication'];
+  $take_medication_specify = $row['take_medication_specify'];
+  $notified =$row['notified'];
+  $contact = $row['contact'];
+  $relationship =$row['relationship'];
     }
  else {
  } 
@@ -423,77 +419,80 @@ if (mysqli_num_rows($result) > 0) {
               <input name="otherillness" id ="otherillness" type="text" placeholder="Please Specify" value="<?=$row['otherillness'];?>" readonly>
           </div>
       <br>
-          <p>Do you have any allergy to:</p>
- <div class="input_form">
+      <p>Do you have any allergy to:</p>
+   <div class="input_form">
+    </div>
+    <div class="row-container">
+    <p><b>Food:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="radio">
+    <input name="allergy_food" value="yes" type="radio" id="yesallergy_food" <?php if (isset($row['allergy_food']) && $row['allergy_food'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesheartcon" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
+
+<div class="radio">
+    <input name="allergy_food" value="no" type="radio" id="noallergy_food" <?php if (isset($row['allergy_food']) && $row['allergy_food'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="noallergy_food" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
+
+  <div class="input_wrap">
+  <input name="allergyfood_specify" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['allergyfood_specify'];?>" readonly>
   </div>
-  <div class="row-container">
-  <p><b>Food:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<div class="checkbox">
-  <input name="yesfood" value="yesfood" type="checkbox" id="yesfood" value="<?= $row['yesfood'];?>" <?php if ($row['yesfood']) echo "checked"; ?>>
-  <label class="labels" for="yesfood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-</div>
-
-<div class="checkbox">
-  <input name="nofood" value="nofood" type="checkbox" id="nofood" value="<?= $row['nofood'];?>" <?php if ($row['nofood']) echo "checked"; ?>>
-  <label class="labels" for="nofood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<div class="input_wrap">
-  <input name="food" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['food'];?>" readonly>
-</div>
 </div>
 
 <div class="input_form">
+    </div>
+    <div class="row-container">
+    <p><b>Medicine:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="radio">
+    <input name="allergy_med" value="yes" type="radio" id="yesallergy_med" <?php if (isset($row['allergy_med']) && $row['allergy_med'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesallergy_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
+
+<div class="radio">
+    <input name="allergy_med" value="no" type="radio" id="noallergy_med" <?php if (isset($row['allergy_med']) && $row['allergy_med'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="noallergy_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
+
+  <div class="input_wrap">
+  <input name="allergymed_specify" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['allergymed_specify'];?>" readonly>
   </div>
-  <div class="row-container">
-  <p><b>Medicine:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<div class="checkbox">
-  <input name="yesmed" value="yesmed" type="checkbox" id="yesmed" value="<?= $row['yesmed'];?>" <?php if ($row['yesmed']) echo "checked"; ?>>
-  <label class="labels" for="yesme" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-</div>
-
-<div class="checkbox">
-  <input name="nomed" value="nomed" type="checkbox" id="nomed" value="<?= $row['nomed'];?>" <?php if ($row['nomed']) echo "checked"; ?>>
-  <label class="labels" for="nomed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<div class="input_wrap">
-  <input name="med" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['med'];?>" readonly>
-</div>
 </div>
 
 <div class="input_form"> 
-<div class="input_wrap">
-  <label for="fullname" id="language">Would you allow your child to be given medicine (as needed) while here in the school?</label>
-</div>
-                          </div>
-<div class="input_form">
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
-      <input name="allow" value="allow" type="checkbox" id="allow" value="<?= $row['allow'];?>" <?php if ($row['allow']) echo "checked"; ?>>
-      <label class="labels" for="allow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
-      <input name="notallow" value="notallow" type="checkbox" id="notallow" value="<?= $row['notallow'];?>" <?php if ($row['notallow']) echo "checked"; ?>>
-      <label class="labels" for="notallow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="input_wrap">
+    <label for="fullname" id="language">Would you allow your child to be given medicine (as needed) while here in the school?</label>
   </div>
-  <div class="input_form"> 
-          <div class="input">
-          <label for="fullname">Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>  <div class="row-container">
-<div class="checkbox">
-<input name="yesmedication" value="yesmedication" type="checkbox" id="yesmedication" value="<?= $row['yesmedication'];?>" <?php if ($row['yesmedication']) echo "checked"; ?>>
-  <label class="labels" for="yesmedication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+                            </div>
+  <div class="input_form">
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="radio">
+    <input name="give_med" value="yes" type="radio" id="yesgive_med" <?php if (isset($row['give_med']) && $row['give_med'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesgive_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
 </div>
 
-<div class="checkbox">
-<input name="nomedication" value="nomedication" type="checkbox" id="nomedication" value="<?= $row['nomedication'];?>" <?php if ($row['nomedication']) echo "checked"; ?>>
-  <label class="labels" for="nomedication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="give_med" value="no" type="radio" id="nogive_med" <?php if (isset($row['give_med']) && $row['give_med'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nogive_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
+    <div class="input_form"> 
+                     <div class="input">
+                <label for="fullname">Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>  
+            <div class="row-container">
+        <div class="radio">
+    <input name="take_medication" value="yes" type="radio" id="yestake_medication" <?php if (isset($row['take_medication']) && $row['take_medication'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yestake_medication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-<div class="input_wrap">
-<input name="medication" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['medication'];?>" readonly>
+<div class="radio">
+    <input name="take_medication" value="no" type="radio" id="noallergy_med" <?php if (isset($row['take_medication']) && $row['take_medication'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="notake_medication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
 </div>
+
+  <div class="input_wrap">
+  <input name="take_medication_specify" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['take_medication_specify'];?>" readonly>
+  </div>
 </div>
+
 
  <div class="input_form"> 
           <div class="input_wrap">

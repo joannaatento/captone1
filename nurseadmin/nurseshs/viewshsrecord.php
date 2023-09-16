@@ -31,6 +31,10 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/formstyle.css">
+    <link rel="stylesheet" href="assets/radios.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head> 
 
@@ -71,22 +75,16 @@ if (mysqli_num_rows($result) > 0) {
   $eyedis = $row['eyedis'];
   $heartailment = $row['heartailment'];
   $otherillness = $row['otherillness'];
-  $yesfood =$row ['yesfood'];
-  $nofood = $row['nofood'];
-  $food =$row['food'];
-  $yesmed = $row['yesmed'];
-  $nomed = $row['nomed'];
-  $med = $row['med'];
-  $allow = $row['allow'];
-  $notallow = $row['notallow'];
-  $yesmedication =$row['yesmedication'];
-  $nomedication =$row['nomedication'];
-  $medication =$row['medication'];
+  $allergy_food =$row ['allergy_food'];
+  $allergyfood_specify = $row['allergyfood_specify'];
+  $allergy_med =$row['allergy_med'];
+  $allergymed_specify = $row['allergymed_specify'];
+  $give_med = $row['give_med'];
+  $take_medication = $row['take_medication'];
+  $take_medication_specify = $row['take_medication_specify'];
   $notified =$row['notified'];
   $contact = $row['contact'];
   $relationship =$row['relationship'];
-
-
     }
  else {
  } 
@@ -130,9 +128,8 @@ if (mysqli_num_rows($result) > 0) {
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 
-
-                <li class="nav-item has-submenu">
-        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+<li id="generate-link" class="nav-item has-submenu">
+        <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag" viewBox="0 0 16 16">
@@ -156,7 +153,7 @@ if (mysqli_num_rows($result) > 0) {
             </ul>
         </div>
     </li>
-    <li class="nav-item has-submenu">
+<li id="healthprofiles-link" class="nav-item has-submenu">
         <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
             <span class="nav-icon">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -174,7 +171,7 @@ if (mysqli_num_rows($result) > 0) {
         </a>
         <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
             <ul class="submenu-list list-unstyled">
-            <li class="submenu-item"><a class="submenu-link" href="gsjhslists.php">Grade School and Junior High School Building</a></li>
+                <li class="submenu-item"><a class="submenu-link" href="gsjhslists.php">Grade School and Junior High School Building</a></li>
                 <li class="submenu-item"><a class="submenu-link active" href="shslist.php">Senior High School Building</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="collegelists.php">College Building</a></li>
             </ul>
@@ -182,7 +179,7 @@ if (mysqli_num_rows($result) > 0) {
     </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="medicalshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="medicalshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
@@ -196,7 +193,7 @@ if (mysqli_num_rows($result) > 0) {
 </li>
 
     <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="consultationformshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="consultationformshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -210,7 +207,7 @@ if (mysqli_num_rows($result) > 0) {
 </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="schoolhealthassessmentformshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="schoolhealthassessmentformshs.php" data-bs-target="#submenu-4" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
@@ -222,8 +219,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
 </li>
 
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-6" aria-expanded="false" aria-controls="submenu-5">
+<li id="monitoringsheet-link" class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-6" aria-expanded="false" aria-controls="submenu-5">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-diff" viewBox="0 0 16 16">
@@ -247,7 +244,7 @@ if (mysqli_num_rows($result) > 0) {
 </li>
 
 <li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="nursenotesshs.php" data-bs-target="#submenu-7" aria-controls="submenu-4">
+    <a class="nav-link submenu-toggle" href="nursenotesshs.php" data-bs-target="#submenu-7" aria-controls="submenu-4">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
@@ -260,8 +257,8 @@ if (mysqli_num_rows($result) > 0) {
     </a>
 </li>
 
-<li class="nav-item has-submenu">
-    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
+<li id="printable-link" class="nav-item has-submenu">
+    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-8" aria-expanded="false" aria-controls="submenu-5">
         <span class="nav-icon">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
@@ -463,23 +460,23 @@ if (mysqli_num_rows($result) > 0) {
                 <input name="otherillness" id ="otherillness" type="text" placeholder="Please Specify" value="<?=$row['otherillness'];?>" readonly>
             </div>
         <br>
-            <p>Do you have any allergy to:</p>
+        <p>Do you have any allergy to:</p>
    <div class="input_form">
     </div>
     <div class="row-container">
     <p><b>Food:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
-    <input name="yesfood" value="yesfood" type="checkbox" id="yesfood" value="<?= $row['yesfood'];?>" <?php if ($row['yesfood']) echo "checked"; ?>>
-    <label class="labels" for="yesfood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="allergy_food" value="yes" type="radio" id="yesallergy_food" <?php if (isset($row['allergy_food']) && $row['allergy_food'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesheartcon" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">
-    <input name="nofood" value="nofood" type="checkbox" id="nofood" value="<?= $row['nofood'];?>" <?php if ($row['nofood']) echo "checked"; ?>>
-    <label class="labels" for="nofood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="allergy_food" value="no" type="radio" id="noallergy_food" <?php if (isset($row['allergy_food']) && $row['allergy_food'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="noallergy_food" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="food" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['food'];?>" readonly>
+  <input name="allergyfood_specify" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['allergyfood_specify'];?>" readonly>
   </div>
 </div>
 
@@ -487,18 +484,18 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     <div class="row-container">
     <p><b>Medicine:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
-    <input name="yesmed" value="yesmed" type="checkbox" id="yesmed" value="<?= $row['yesmed'];?>" <?php if ($row['yesmed']) echo "checked"; ?>>
-    <label class="labels" for="yesme" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="allergy_med" value="yes" type="radio" id="yesallergy_med" <?php if (isset($row['allergy_med']) && $row['allergy_med'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesallergy_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">
-    <input name="nomed" value="nomed" type="checkbox" id="nomed" value="<?= $row['nomed'];?>" <?php if ($row['nomed']) echo "checked"; ?>>
-    <label class="labels" for="nomed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="allergy_med" value="no" type="radio" id="noallergy_med" <?php if (isset($row['allergy_med']) && $row['allergy_med'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="noallergy_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="med" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['med'];?>" readonly>
+  <input name="allergymed_specify" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['allergymed_specify'];?>" readonly>
   </div>
 </div>
 
@@ -509,29 +506,31 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
   <div class="input_form">
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div class="checkbox">
-        <input name="allow" value="allow" type="checkbox" id="allow" value="<?= $row['allow'];?>" <?php if ($row['allow']) echo "checked"; ?>>
-        <label class="labels" for="allow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div class="checkbox">
-        <input name="notallow" value="notallow" type="checkbox" id="notallow" value="<?= $row['notallow'];?>" <?php if ($row['notallow']) echo "checked"; ?>>
-        <label class="labels" for="notallow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-    </div>
-    <div class="input_form"> 
-            <div class="input">
-            <label for="fullname">Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>  <div class="row-container">
-  <div class="checkbox">
-  <input name="yesmedication" value="yesmedication" type="checkbox" id="yesmedication" value="<?= $row['yesmedication'];?>" <?php if ($row['yesmedication']) echo "checked"; ?>>
-    <label class="labels" for="yesmedication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="give_med" value="yes" type="radio" id="yesgive_med" <?php if (isset($row['give_med']) && $row['give_med'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesgive_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">
-  <input name="nomedication" value="nomedication" type="checkbox" id="nomedication" value="<?= $row['nomedication'];?>" <?php if ($row['nomedication']) echo "checked"; ?>>
-    <label class="labels" for="nomedication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="give_med" value="no" type="radio" id="nogive_med" <?php if (isset($row['give_med']) && $row['give_med'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nogive_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
+    <div class="input_form"> 
+                     <div class="input">
+                <label for="fullname">Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>  
+            <div class="row-container">
+        <div class="radio">
+    <input name="take_medication" value="yes" type="radio" id="yestake_medication" <?php if (isset($row['take_medication']) && $row['take_medication'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yestake_medication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
+
+<div class="radio">
+    <input name="take_medication" value="no" type="radio" id="noallergy_med" <?php if (isset($row['take_medication']) && $row['take_medication'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="notake_medication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-  <input name="medication" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['medication'];?>" readonly>
+  <input name="take_medication_specify" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['take_medication_specify'];?>" readonly>
   </div>
 </div>
 
@@ -575,7 +574,34 @@ if (mysqli_num_rows($result) > 0) {
 		}, 5000);
 	</script>
 
+<script>
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Get references to the parent and sub-menu links
+    const generateLink = document.getElementById('generate-link');
+    const healthprofilesLink = document.getElementById('healthprofiles-link');
+    const monitoringsheetLink = document.getElementById('monitoringsheet-link');
+    const printableLink = document.getElementById('printable-link');
+    const generateSubMenuLinks = generateLink.querySelectorAll('.submenu-link');
+    const healthprofilesSubMenuLinks = healthprofilesLink.querySelectorAll('.submenu-link');
+    const printableSubMenuLinks = printableLink.querySelectorAll('.submenu-link');
+
+    // Function to check if the current URL contains a specific string
+    function checkCurrentUrl(stringToCheck, parentLink, submenuId) {
+        if (currentUrl.includes(stringToCheck)) {
+            // Add the "active-link" class to the parent list item
+            parentLink.classList.add('active-link');
+            // Show the submenu by removing the "collapse" class
+            const submenu = document.getElementById(submenuId);
+            submenu.classList.remove('collapse');
+        }
+    }
+
+    // Check for "?idnumber=" in the URL and apply logic
+    checkCurrentUrl("?idnumber=", healthprofilesLink, 'submenu-1');
+
+</script>
+
 </body>
 </html> 
-
-V

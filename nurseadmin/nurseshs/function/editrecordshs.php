@@ -44,17 +44,15 @@ include '../../../db.php';
         $eyedis = isset($_POST['eyedis']) ? trim(mysqli_real_escape_string($conn, $_POST['eyedis'])) : "";
         $heartailment = trim(mysqli_real_escape_string($conn, $_POST['heartailment']));
         $otherillness = trim(mysqli_real_escape_string($conn, $_POST['otherillness']));
-        $yesfood = isset($_POST['yesfood']) ? trim(mysqli_real_escape_string($conn, $_POST['yesfood'])) : "";
-        $nofood = isset($_POST['nofood']) ? trim(mysqli_real_escape_string($conn, $_POST['nofood'])) : "";
-        $food = trim(mysqli_real_escape_string($conn, $_POST['food']));
-        $yesmed = isset($_POST['yesmed']) ? trim(mysqli_real_escape_string($conn, $_POST['yesmed'])) : "";
-        $nomed = isset($_POST['nomed']) ? trim(mysqli_real_escape_string($conn, $_POST['nomed'])) : "";
-        $med = trim(mysqli_real_escape_string($conn, $_POST['med']));
-        $allow = isset($_POST['allow']) ? trim(mysqli_real_escape_string($conn, $_POST['allow'])) : "";
-        $notallow = isset($_POST['notallow']) ? trim(mysqli_real_escape_string($conn, $_POST['notallow'])) : "";
-        $yesmedication = isset($_POST['yesmedication']) ? trim(mysqli_real_escape_string($conn, $_POST['yesmedication'])) : "";
-        $nomedication = isset($_POST['nomedication']) ? trim(mysqli_real_escape_string($conn, $_POST['nomedication'])) : "";
-        $medication = trim(mysqli_real_escape_string($conn, $_POST['medication']));
+        $allergy_food = isset($_POST['allergy_food']) ? trim(mysqli_real_escape_string($conn, $_POST['allergy_food'])) : "";
+        $allergyfood_specify = isset($_POST['allergyfood_specify']) ? trim(mysqli_real_escape_string($conn, $_POST['allergyfood_specify'])) : "";
+        $allergy_med = isset($_POST['allergy_med']) ? trim(mysqli_real_escape_string($conn, $_POST['allergy_med'])) : "";
+        $allergymed_specify = isset($_POST['allergymed_specify']) ? trim(mysqli_real_escape_string($conn, $_POST['allergymed_specify'])) : "";
+        $allergy_med = isset($_POST['allergy_med']) ? trim(mysqli_real_escape_string($conn, $_POST['allergy_med'])) : "";
+        $allergymed_specify = isset($_POST['allergymed_specify']) ? trim(mysqli_real_escape_string($conn, $_POST['allergymed_specify'])) : "";
+        $give_med = isset($_POST['give_med']) ? trim(mysqli_real_escape_string($conn, $_POST['give_med'])) : "";
+        $take_medication = isset($_POST['take_medication']) ? trim(mysqli_real_escape_string($conn, $_POST['take_medication'])) : "";
+        $take_medication_specify = isset($_POST['take_medication_specify']) ? trim(mysqli_real_escape_string($conn, $_POST['take_medication_specify'])) : "";
         $notified = trim(mysqli_real_escape_string($conn, $_POST['notified']));
         $contact = trim(mysqli_real_escape_string($conn, $_POST['contact']));
         $relationship = trim(mysqli_real_escape_string($conn, $_POST['relationship']));
@@ -68,10 +66,11 @@ include '../../../db.php';
         cfather='$cfather', mother='$mother', cmother='$cmother', polio='$polio', tetanus='$tetanus', chickenpox='$chickenpox',
         measles='$measles', mumps='$mumps', tb='$tb', asthma='$asthma', hepatitis='$hepatitis',
         faintingspells='$faintingspells', seizure='$seizure', bleeding='$bleeding', eyedis='$eyedis', 
-        bleeding='$bleeding', eyedis='$eyedis', heartailment='$heartailment', yesfood='$yesfood',
-        nofood='$nofood', food='$food', yesmed='$yesmed', nomed='$nomed', med='$med', allow='$allow', 
-        notallow='$notallow', yesmedication ='$yesmedication',nomedication ='$nomedication', medication ='$medication', notified='$notified', contact='$contact',
-        relationship='$relationship' WHERE healthshs_id = '$healthshs_id'";
+        bleeding='$bleeding', eyedis='$eyedis', heartailment='$heartailment', allergy_food='$allergy_food',
+        allergyfood_specify='$allergyfood_specify', allergy_med='$allergy_med', allergymed_specify='$allergymed_specify',
+        give_med='$give_med', take_medication='$take_medication', take_medication_specify='$take_medication_specify', 
+        notified='$notified', contact='$contact',relationship='$relationship' 
+        WHERE healthshs_id = '$healthshs_id'";
     
       
       $imageUploadSuccess = false;

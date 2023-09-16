@@ -30,17 +30,15 @@
         $eyedis = isset($_POST['eyedis']) ? trim(mysqli_real_escape_string($conn, $_POST['eyedis'])) : "";
         $heartailment = trim(mysqli_real_escape_string($conn, $_POST['otherillness']));
         $otherillness = trim(mysqli_real_escape_string($conn, $_POST['otherillness']));
-        $yesfood = isset($_POST['yesfood']) ? trim(mysqli_real_escape_string($conn, $_POST['yesfood'])) : "";
-        $nofood = isset($_POST['nofood']) ? trim(mysqli_real_escape_string($conn, $_POST['nofood'])) : "";
-        $food = trim(mysqli_real_escape_string($conn, $_POST['food']));
-        $yesmed = isset($_POST['yesmed']) ? trim(mysqli_real_escape_string($conn, $_POST['yesmed'])) : "";
-        $nomed = isset($_POST['nomed']) ? trim(mysqli_real_escape_string($conn, $_POST['nomed'])) : "";
-        $med = trim(mysqli_real_escape_string($conn, $_POST['med']));
-        $allow = isset($_POST['allow']) ? trim(mysqli_real_escape_string($conn, $_POST['allow'])) : "";
-        $notallow = isset($_POST['notallow']) ? trim(mysqli_real_escape_string($conn, $_POST['notallow'])) : "";
-        $yesmedication = isset($_POST['yesmedication']) ? trim(mysqli_real_escape_string($conn, $_POST['yesmedication'])) : "";
-        $nomedication = isset($_POST['nomedication']) ? trim(mysqli_real_escape_string($conn, $_POST['nomedication'])) : "";
-        $medication = trim(mysqli_real_escape_string($conn, $_POST['medication']));
+        $allergy_food = isset($_POST['allergy_food']) ? trim(mysqli_real_escape_string($conn, $_POST['allergy_food'])) : "";
+        $allergyfood_specify = isset($_POST['allergyfood_specify']) ? trim(mysqli_real_escape_string($conn, $_POST['allergyfood_specify'])) : "";
+        $allergy_med = isset($_POST['allergy_med']) ? trim(mysqli_real_escape_string($conn, $_POST['allergy_med'])) : "";
+        $allergymed_specify = isset($_POST['allergymed_specify']) ? trim(mysqli_real_escape_string($conn, $_POST['allergymed_specify'])) : "";
+        $allergy_med = isset($_POST['allergy_med']) ? trim(mysqli_real_escape_string($conn, $_POST['allergy_med'])) : "";
+        $allergymed_specify = isset($_POST['allergymed_specify']) ? trim(mysqli_real_escape_string($conn, $_POST['allergymed_specify'])) : "";
+        $give_med = isset($_POST['give_med']) ? trim(mysqli_real_escape_string($conn, $_POST['give_med'])) : "";
+        $take_medication = isset($_POST['take_medication']) ? trim(mysqli_real_escape_string($conn, $_POST['take_medication'])) : "";
+        $take_medication_specify = isset($_POST['take_medication_specify']) ? trim(mysqli_real_escape_string($conn, $_POST['take_medication_specify'])) : "";
         $notified= trim(mysqli_real_escape_string($conn, $_POST['notified']));
         $contact = trim(mysqli_real_escape_string($conn, $_POST['contact']));
         $relationship = trim(mysqli_real_escape_string($conn, $_POST['relationship']));
@@ -48,8 +46,8 @@
         $sql = "INSERT INTO healthrecordformshs VALUES ('','$user_id','$image','$fullname','$idnumber','$birthday','$phoneno',
         '$gender','$address','$paddress','$father','$cfather','$mother','$cmother','$polio','$tetanus','$chickenpox','$measles',
         '$mumps','$tb','$asthma','$hepatitis','$faintingspells','$seizure','$bleeding','$eyedis','$heartailment','$otherillness',
-        '$yesfood','$nofood','$food','$yesmed','$nomed','$med','$allow','$notallow','$yesmedication','$nomedication','$medication','$notified','$contact',
-        '$relationship')";
+        '$allergy_food','$allergyfood_specify','$allergy_med','$allergymed_specify','$give_med','$take_medication','$take_medication_specify','$notified',
+        '$contact','$relationship')";
       
       if (mysqli_query($conn, $sql)) {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], "/xampp/htdocs/CAPSTONE1/upload_image/" . $_FILES["image"]["name"])) {

@@ -27,8 +27,8 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/style.css">
 	<link rel="stylesheet" href="assets/formstyle.css">
+    <link rel="stylesheet" href="assets/radios.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -426,18 +426,18 @@
     </div>
     <div class="row-container">
     <p><b>Food:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
-    <input name="yesfood" value="yesfood" type="checkbox" id="yesfood" <?php if($row['yesfood']=="yesfood") {echo "checked";} ?>>
-    <label class="labels" for="yesfood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="allergy_food" type="radio" id="yesallergy_food" value="yes" <?php if($row['allergy_food']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesallergy_food" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="nofood" value="nofood" type="checkbox" id="nofood" <?php if($row['nofood']=="nofood") {echo "checked";} ?>>
-    <label class="labels" for="nofood" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="allergy_food" type="radio" id="noallergy_food" value="no" <?php if($row['allergy_food']=="no") {echo "checked";} ?>>
+    <label class="labels" for="noallergy_food" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="food" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['food'];?>">
+  <input name="allergyfood_specify" id ="othersmedical" type="text" value="<?=$row['allergyfood_specify'];?>">
   </div>
 </div>
 
@@ -445,21 +445,20 @@
     </div>
     <div class="row-container">
     <p><b>Medicine:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
-  <input name="yesmed" value="yesmed" type="checkbox" id="yesmed" <?php if($row['yesmed']=="yesmed") {echo "checked";} ?>>
-    <label class="labels" for="yesmed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="allergy_med" type="radio" id="yesallergy_med" value="yes" <?php if($row['allergy_med']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesallergy_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-    <input name="nomed" value="nomed" type="checkbox" id="nomed" <?php if($row['nomed']=="nomed") {echo "checked";} ?>>
-    <label class="labels" for="nomed" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="allergy_med" type="radio" id="noallergy_med" value="no" <?php if($row['allergy_med']=="no") {echo "checked";} ?>>
+    <label class="labels" for="noallergy_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="med" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['med'];?>">
+  <input name="allergymed_specify" id ="othersmedical" type="text" value="<?=$row['allergymed_specify'];?>">
   </div>
 </div>
-
 <div class="input_form"> 
   <div class="input_wrap">
     <label for="fullname" id="language">Would you allow your child to be given medicine (as needed) while here in the school?</label>
@@ -467,32 +466,33 @@
                             </div>
   <div class="input_form">
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div class="checkbox">
-        <input name="allow" value="allow" type="checkbox" id="allow" <?php if($row['allow']=="allow") {echo "checked";} ?>>
-        <label class="labels" for="allow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div class="checkbox">
-        <input name="notallow" value="notallow" type="checkbox" id="notallow" <?php if($row['notallow']=="notallow") {echo "checked";} ?>>
-        <label class="labels" for="notallow" style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+    <div class="radio">
+  <input name="give_med" type="radio" id="yesgive_med" value="yes" <?php if($row['give_med']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesgive_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  </div>
+
+  <div class="radio">
+  <input name="give_med" type="radio" id="nogive_med" value="no" <?php if($row['give_med']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nogive_med" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
     </div>
+
     <div class="input_form"> 
             <div class="input">
             <label for="fullname">Is your child taking any medications at present? If YES, please list the name of the medicine/s:</label>  <div class="row-container">
-  <div class="checkbox">
-  <input name="yesmedication" value="yesmedication" type="checkbox" id="yesmedication" <?php if($row['yesmedication']=="yesmedication") {echo "checked";} ?>>
-    <label class="labels" for="yesmedication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+            <div class="radio">
+  <input name="take_medication" type="radio" id="yestake_medication" value="yes" <?php if($row['take_medication']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yestake_medication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">
-  <input name="nomedication" value="nomedication" type="checkbox" id="nomedication" <?php if($row['nomedication']=="nomedication") {echo "checked";} ?>>
-    <label class="labels" for="nomedication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="take_medication" type="radio" id="notake_medication" value="no" <?php if($row['take_medication']=="no") {echo "checked";} ?>>
+    <label class="labels" for="notake_medication" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-  <input name="medication" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['medication'];?>">
+  <input name="take_medication_specify" id ="othersmedical" type="text" value="<?=$row['take_medication_specify'];?>">
   </div>
 </div>
-
 
    <div class="input_form"> 
             <div class="input_wrap">

@@ -28,6 +28,7 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/formstyles.css">
+    <link rel="stylesheet" href="assets/radios.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -397,18 +398,18 @@
     <div class="row-container">
     <p>Asthma:</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
-  <input name="yesasthma" value="yesasthma" type="checkbox" id="yesasthma" <?php if($row['yesasthma']=="yesasthma") {echo "checked";} ?>>
-    <label class="labels" for="yesasthma" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="asthma_history" type="radio" id="yesasthma_history" value="yes" <?php if($row['asthma_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesasthma_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="noasthma" value="noasthma" type="checkbox" id="noasthma" <?php if($row['noasthma']=="noasthma") {echo "checked";} ?>>
-    <label class="labels" for="noasthma" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="asthma_history" type="radio" id="noasthma_history" value="no" <?php if($row['asthma_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="noasthma_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationasthma" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationasthma'];?>">
+  <input name="asthma_relation" id ="othersmedical" type="text" value="<?=$row['asthma_relation'];?>">
   </div>
 </div>
 <div class="input_form">
@@ -416,37 +417,38 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 53px;">Bleeding Tendency:</p>
-  <div class="checkbox">
-  <input name="yesbleeding" value="yesbleeding" type="checkbox" id="yesbleeding" <?php if($row['yesbleeding']=="yesbleeding") {echo "checked";} ?>>
-    <label class="labels" for="yesbleeding" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="bleedingtendency_history" type="radio" id="yesbleedingtendency_history" value="yes" <?php if($row['bleedingtendency_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesbleedingtendency_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="nobleeding" value="nobleeding" type="checkbox" id="nobleeding" <?php if($row['nobleeding']=="nobleeding") {echo "checked";} ?>>
-    <label class="labels" for="nobleeding" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="bleedingtendency_history" type="radio" id="nobleedingtendency_history" value="no" <?php if($row['bleedingtendency_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nobleedingtendency_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationbleeding" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationbleeding'];?>">
+  <input name="bleedingtendency_relation" id ="othersmedical" type="text" value="<?=$row['bleedingtendency_relation'];?>">
   </div>
 </div>
+
 <div class="input_form">
     </div>
     <br>
     <div class="row-container">
     <p style="margin-right: 137px;">Cancer:</p>
-  <div class="checkbox">
-  <input name="yescancer" value="yescancer" type="checkbox" id="yescancer" <?php if($row['yescancer']=="yescancer") {echo "checked";} ?>>
-    <label class="labels" for="yescancer" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="cancer_history" type="radio" id="yescancer_history" value="yes" <?php if($row['cancer_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yescancer_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="nocancer" value="nocancer" type="checkbox" id="nocancer" <?php if($row['nocancer']=="nocancer") {echo "checked";} ?>>
-    <label class="labels" for="nocancer" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="cancer_history" type="radio" id="nocancer_history" value="no" <?php if($row['cancer_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nocancer_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationcancer" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationcancer'];?>">
+  <input name="cancer_relation" id ="othersmedical" type="text" value="<?=$row['cancer_relation'];?>">
   </div>
 </div>
 
@@ -455,18 +457,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 125px;">Diabetes:</p>
-  <div class="checkbox">
-  <input name="yesdiabetes" value="yesdiabetes" type="checkbox" id="yesdiabetes" <?php if($row['yesdiabetes']=="yesdiabetes") {echo "checked";} ?>>
-    <label class="labels" for="yesdiabetes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="diabetes_history" type="radio" id="yesdiabetes_history" value="yes" <?php if($row['diabetes_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesdiabetes_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="nodiabetes" value="nodiabetes" type="checkbox" id="nodiabetes" <?php if($row['nodiabetes']=="nodiabetes") {echo "checked";} ?>>
-    <label class="labels" for="nodiabetes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="diabetes_history" type="radio" id="nodiabetes_history" value="no" <?php if($row['diabetes_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nodiabetes_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationdiabetes" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationdiabetes'];?>">
+  <input name="diabetes_relation" id ="othersmedical" type="text" value="<?=$row['diabetes_relation'];?>">
   </div>
 </div>
 
@@ -475,18 +477,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 84px;">Heart Disorder:</p>
-  <div class="checkbox">
-  <input name="yesheartdis" value="yesheartdis" type="checkbox" id="yesheartdis" <?php if($row['yesheartdis']=="yesheartdis") {echo "checked";} ?>>
-    <label class="labels" for="yesheartdis" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="heartdisorder_history" type="radio" id="yesheartdisorder_history" value="yes" <?php if($row['heartdisorder_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesheartdisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="noheartdis" value="noheartdis" type="checkbox" id="noheartdis" <?php if($row['noheartdis']=="noheartdis") {echo "checked";} ?>>
-    <label class="labels" for="noheartdis" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="heartdisorder_history" type="radio" id="noheartdisorder_history" value="no" <?php if($row['heartdisorder_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="noheartdisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationheartdis" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationheartdis'];?>">
+  <input name="heartdisorder_relation" id ="othersmedical" type="text" value="<?=$row['heartdisorder_relation'];?>">
   </div>
 </div>
 
@@ -495,18 +497,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 45px;">High Blood Pressure:</p>
-  <div class="checkbox">
-  <input name="yesbp" value="yesbp" type="checkbox" id="yesbp" <?php if($row['yesbp']=="yesbp") {echo "checked";} ?>>
-    <label class="labels" for="yesbp" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="highblood_history" type="radio" id="yeshighblood_history" value="yes" <?php if($row['highblood_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yeshighblood_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="nobp" value="nobp" type="checkbox" id="nobp" <?php if($row['nobp']=="nobp") {echo "checked";} ?>>
-    <label class="labels" for="nobp" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="highblood_history" type="radio" id="nohighblood_history" value="no" <?php if($row['highblood_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nohighblood_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationbp" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationbp'];?>">
+  <input name="highblood_relation" id ="othersmedical" type="text" value="<?=$row['highblood_relation'];?>">
   </div>
 </div>
 
@@ -515,18 +517,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 78px;">Kidney Problem:</p>
-  <div class="checkbox">
-  <input name="yeskidney" value="yeskidney" type="checkbox" id="yeskidney" <?php if($row['yeskidney']=="yeskidney") {echo "checked";} ?>>
-    <label class="labels" for="yeskidney" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="kidneyproblem_history" type="radio" id="yeskidneyproblem_history" value="yes" <?php if($row['kidneyproblem_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yeskidneyproblem_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="nokidney" value="nokidney" type="checkbox" id="nokidney" <?php if($row['nokidney']=="nokidney") {echo "checked";} ?>>
-    <label class="labels" for="nokidney" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="kidneyproblem_history" type="radio" id="nokidneyproblem_history" value="no" <?php if($row['kidneyproblem_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nokidneyproblem_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationkidney" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationkidney'];?>">
+  <input name="kidneyproblem_relation" id ="othersmedical" type="text" value="<?=$row['kidneyproblem_relation'];?>">
   </div>
 </div>
 
@@ -535,18 +537,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 78px;">Mental Disorder:</p>
-  <div class="checkbox">
-  <input name="yesmental" value="yesmental" type="checkbox" id="yesmental" <?php if($row['yesmental']=="yesmental") {echo "checked";} ?>>
-    <label class="labels" for="yesmental" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="mentaldisorder_history" type="radio" id="yesmentaldisorder_history" value="yes" <?php if($row['mentaldisorder_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesmentaldisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="nomental" value="nomental" type="checkbox" id="nomental" <?php if($row['nomental']=="nomental") {echo "checked";} ?>>
-    <label class="labels" for="nomental" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="mentaldisorder_history" type="radio" id="nomentaldisorder_history" value="no" <?php if($row['mentaldisorder_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nomentaldisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationmental" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationmental'];?>">
+  <input name="mentaldisorder_relation" id ="othersmedical" type="text" value="<?=$row['mentaldisorder_relation'];?>">
   </div>
 </div>
 
@@ -555,18 +557,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 140px;">Obesity:</p>
-  <div class="checkbox"> 
-  <input name="yesobese" value="yesobese" type="checkbox" id="yesobese" <?php if($row['yesobese']=="yesobese") {echo "checked";} ?>>
-    <label class="labels" for="yesobese" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="obesity_history" type="radio" id="yesobesity_history" value="yes" <?php if($row['obesity_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesobesity_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="noobese" value="noobese" type="checkbox" id="noobese" <?php if($row['noobese']=="noobese") {echo "checked";} ?>>
-    <label class="labels" for="noobese" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="obesity_history" type="radio" id="noobesity_history" value="no" <?php if($row['obesity_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="noobesity_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationobese" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationobese'];?>">
+  <input name="obesity_relation" id ="othersmedical" type="text" value="<?=$row['obesity_relation'];?>">
   </div>
 </div>
 
@@ -575,18 +577,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 79px;">Seizure Disorder:</p>
-  <div class="checkbox">
-  <input name="yesseizure" value="yesseizure" type="checkbox" id="yesseizure" <?php if($row['yesseizure']=="yesseizure") {echo "checked";} ?>>
-    <label class="labels" for="yesseizure" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="seizuredisorder_history" type="radio" id="yesseizuredisorder_history" value="yes" <?php if($row['seizuredisorder_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesseizuredisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="noseizure" value="noseizure" type="checkbox" id="noseizure" <?php if($row['noseizure']=="noseizure") {echo "checked";} ?>>
-    <label class="labels" for="noseizure" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="seizuredisorder_history" type="radio" id="noseizuredisorder_history" value="no" <?php if($row['seizuredisorder_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="noseizuredisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationseizure" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationseizure'];?>">
+  <input name="seizuredisorder_relation" id ="othersmedical" type="text" value="<?=$row['seizuredisorder_relation'];?>">
   </div>
 </div>
 
@@ -595,18 +597,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 150px;">Stroke:</p>
-  <div class="checkbox">
-  <input name="yesstroke" value="yesstroke" type="checkbox" id="yesstroke" <?php if($row['yesstroke']=="yesstroke") {echo "checked";} ?>>
-    <label class="labels" for="yesstroke" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="stroke_history" type="radio" id="yesstroke_history" value="yes" <?php if($row['stroke_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yesstroke_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="nostroke" value="nostroke" type="checkbox" id="nostroke" <?php if($row['nostroke']=="nostroke") {echo "checked";} ?>>
-    <label class="labels" for="nostroke" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="stroke_history" type="radio" id="nostroke_history" value="no" <?php if($row['stroke_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nostroke_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationstroke" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationstroke'];?>">
+  <input name="stroke_relation" id ="othersmedical" type="text" value="<?=$row['stroke_relation'];?>">
   </div>
 </div>
 
@@ -615,22 +617,21 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 109px;">Tuberculosis:</p>
-  <div class="checkbox">
-  <input name="yestb" value="yestb" type="checkbox" id="yestb" <?php if($row['yestb']=="yestb") {echo "checked";} ?>>
-    <label class="labels" for="yestb" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+    <div class="radio">
+  <input name="tb_history" type="radio" id="yestb_history" value="yes" <?php if($row['tb_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yestb_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="notb" value="notb" type="checkbox" id="notb" <?php if($row['notb']=="notb") {echo "checked";} ?>>
-    <label class="labels" for="notb" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="tb_history" type="radio" id="notb_history" value="no" <?php if($row['tb_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="notb_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationtb" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationtb'];?>">
+  <input name="tb_relation" id ="othersmedical" type="text" value="<?=$row['tb_relation'];?>">
   </div>
 </div>
 <div>
-
 <br>
      <b><p class="title">C. MEDICAL HISTORY:</b><i> The student/employee has suffered from: (please tick the box)</i></p>
     </div>
@@ -781,25 +782,25 @@
     <div class="row-container">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <p style="margin-right: 30px;">Hospitalization</p>
-  <div class="checkbox">
-  <input name="yeshospitalization" value="yeshospitalization" type="checkbox" id="yeshospitalization" <?php if($row['yeshospitalization']=="yeshospitalization") {echo "checked";} ?>>
-    <label class="labels" for="yeshospitalization" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+  <input name="hospitalization_history" type="radio" id="yeshospitalization_history" value="yes" <?php if($row['hospitalization_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yeshospitalization_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nohospitalization" value="nohospitalization" type="checkbox" id="nohospitalization" <?php if($row['nohospitalization']=="nohospitalization") {echo "checked";} ?>>
-    <label class="labels" for="nohospitalization" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="hospitalization_history" type="radio" id="nohospitalization_history" value="no" <?php if($row['hospitalization_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nohospitalization_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <p style="margin-right: 30px;">Surgical Operation</p>
-  <div class="checkbox">
-    <input name="yessurgical" value="yessurgical" type="checkbox" id="yessurgical" <?php if($row['yessurgical']=="yessurgical") {echo "checked";} ?>>
-    <label class="labels" for="yessurgical" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+  <input name="surgicaloperation_history" type="radio" id="yessurgicaloperation_history" value="yes" <?php if($row['surgicaloperation_history']=="yes") {echo "checked";} ?>>
+      <label class="labels" for="yessurgicaloperation_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="nosurgical" value="nosurgical" type="checkbox" id="nosurgical" <?php if($row['nosurgical']=="nosurgical") {echo "checked";} ?>>
-    <label class="labels" for="nosurgical" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">
+  <input name="surgicaloperation_history" type="radio" id="nosurgicaloperation_history" value="no" <?php if($row['surgicaloperation_history']=="no") {echo "checked";} ?>>
+    <label class="labels" for="nosurgicaloperation_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </div>

@@ -46,10 +46,11 @@
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-	<link rel="stylesheet" href="assets/formstyles.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/formstyles.css">
+    <link rel="stylesheet" href="assets/radios.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head> 
 
@@ -282,7 +283,7 @@
       </div>
       <div class="input_form">
         <div class="input_wrap">
-            <label for="fullname">Father's/Guardian's Name</label>
+            <label for="fullname">Father's Name</label>
             <input name="fguardian" id="fguardian" type="text">
         </div>
 
@@ -360,34 +361,6 @@
     <input id="ContactEmertwoInput" name="contactno2" type="text" placeholder="+63" class="contactInput">
     <p id="ContactEmertwoError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
 </div>
-
-<script>
-    const ContactEmertwoInput = document.getElementById('ContactEmertwoInput');
-    const ContactEmertwoError = document.getElementById('ContactEmertwoError');
-
-        ContactEmertwoInput.addEventListener('input', function() {
-        let inputValue = ContactEmertwoInput.value.trim();
-
-        // Ensure that the input always starts with "+63"
-        if (!inputValue.startsWith('+63')) {
-            inputValue = '+63' + inputValue;
-        }
-
-        // Remove any extra characters beyond the maximum length
-        if (inputValue.length > 13) {
-            inputValue = inputValue.slice(0, 13);
-        }
-
-        // Check if the input is valid
-        if (inputValue === '+63' || (inputValue.startsWith('+63') && inputValue.length <= 13 && inputValue[3] === '9')) {
-            ContactEmertwoInput.value = inputValue;
-            ContactEmertwoError.style.display = 'none'; // Hide the error message
-        } else {
-            ContactEmertwoInput.value = ''; // Clear the input if it's invalid
-            ContactEmertwoError.style.display = 'block'; // Show the error message for invalid input
-        }
-    });
-</script>
   </div>
 
 
@@ -447,18 +420,18 @@
     <div class="row-container">
     <p>Asthma:</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
-    <input name="yesasthma" value="yesasthma" type="checkbox" id="yesasthma">
+  <div class="radio">
+    <input name="asthma_history" value="yes" type="radio" id="yesasthma">
     <label class="labels" for="yesasthma" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="noasthma" value="noasthma" type="checkbox" id="noasthma">
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="asthma_history" value="no" type="radio" id="noasthma">
     <label class="labels" for="noasthma" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationasthma" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="asthma_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -467,18 +440,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 53px;">Bleeding Tendency:</p>
-  <div class="checkbox">
-    <input name="yesbleeding" value="yesbleeding" type="checkbox" id="yesbleeding">
-    <label class="labels" for="yesbleeding" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="bleedingtendency_history" value="yes" type="radio" id="yesbleedingtendency_history">
+    <label class="labels" for="yesbleedingtendency_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nobleeding" value="nobleeding" type="checkbox" id="nobleeding">
-    <label class="labels" for="nobleeding" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="bleedingtendency_history" value="no" type="radio" id="nobleedingtendency_history">
+    <label class="labels" for="nobleedingtendency_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationbleeding" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="bleedingtendency_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -487,18 +460,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 137px;">Cancer:</p>
-  <div class="checkbox">
-    <input name="yescancer" value="yescancer" type="checkbox" id="yescancer">
-    <label class="labels" for="yescancer" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="cancer_history" value="yes" type="radio" id="yescancer_history">
+    <label class="labels" for="yescancer_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nocancer" value="nocancer" type="checkbox" id="nocancer">
-    <label class="labels" for="nocancer" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="cancer_history" value="no" type="radio" id="nocancer_history">
+    <label class="labels" for="nocancer_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationcancer" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="cancer_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -507,18 +480,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 125px;">Diabetes:</p>
-  <div class="checkbox">
-    <input name="yesdiabetes" value="yesdiabetes" type="checkbox" id="yesdiabetes">
-    <label class="labels" for="yesdiabetes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="diabetes_history" value="yes" type="radio" id="yesdiabetes_history">
+    <label class="labels" for="yesdiabetes_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nodiabetes" value="nodiabetes" type="checkbox" id="nodiabetes">
-    <label class="labels" for="nodiabetes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="diabetes_history" value="no" type="radio" id="nodiabetes">
+    <label class="labels" for="nodiabetes_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationdiabetes" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="diabetes_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -527,18 +500,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 84px;">Heart Disorder:</p>
-  <div class="checkbox">
-    <input name="yesheartdis" value="yesheartdis" type="checkbox" id="yesheartdis">
-    <label class="labels" for="yesheartdis" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="heartdisorder_history" value="yes" type="radio" id="yesheartdisorder_history">
+    <label class="labels" for="yesheartdisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="noheartdis" value="noheartdis" type="checkbox" id="noheartdis">
-    <label class="labels" for="noheartdis" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="heartdisorder_history" value="no" type="radio" id="noheartdisorder_history">
+    <label class="labels" for="noheartdisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationheartdis" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="heartdisorder_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -548,18 +521,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 45px;">High Blood Pressure:</p>
-  <div class="checkbox">
-    <input name="yesbp" value="yesbp" type="checkbox" id="yesbp">
-    <label class="labels" for="yesbp" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="highblood_history" value="yes" type="radio" id="yeshighblood_history">
+    <label class="labels" for="yeshighblood_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nobp" value="nobp" type="checkbox" id="nobp">
-    <label class="labels" for="nobp" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="highblood_history" value="no" type="radio" id="nohighblood_history">
+    <label class="labels" for="nohighblood_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationbp" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="highblood_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -569,18 +542,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 78px;">Kidney Problem:</p>
-  <div class="checkbox">
-    <input name="yeskidney" value="yeskidney" type="checkbox" id="yeskidney">
-    <label class="labels" for="yeskidney" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="kidneyproblem_history" value="yes" type="radio" id="yeskidneyproblem_history">
+    <label class="labels" for="yeskidneyproblem_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nokidney" value="nokidney" type="checkbox" id="nokidney">
-    <label class="labels" for="nokidney" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="kidneyproblem_history" value="no" type="radio" id="nokidneyproblem_history">
+    <label class="labels" for="nokidneyproblem_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationkidney" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="kidneyproblem_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -589,18 +562,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 78px;">Mental Disorder:</p>
-  <div class="checkbox">
-    <input name="yesmental" value="yesmental" type="checkbox" id="yesmental">
-    <label class="labels" for="yesmental" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="mentaldisorder_history" value="yes" type="radio" id="yesmentaldisorder_history">
+    <label class="labels" for="yesmentaldisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nomental" value="nomental" type="checkbox" id="nomental">
-    <label class="labels" for="nomental" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="mentaldisorder_history" value="no" type="radio" id="nomentaldisorder_history">
+    <label class="labels" for="nomentaldisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationmental" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="mentaldisorder_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -609,18 +582,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 140px;">Obesity:</p>
-  <div class="checkbox">
-    <input name="yesobese" value="yesobese" type="checkbox" id="yesobese">
-    <label class="labels" for="yesobese" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="obesity_history" value="yes" type="radio" id="yesobesity_history">
+    <label class="labels" for="yesobesity_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="noobese" value="noobese" type="checkbox" id="noobese">
-    <label class="labels" for="noobese" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="obesity_history" value="no" type="radio" id="noobesity_history">
+    <label class="labels" for="noobesity_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationobese" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="obesity_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -629,18 +602,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 79px;">Seizure Disorder:</p>
-  <div class="checkbox">
-    <input name="yesseizure" value="yesseizure" type="checkbox" id="yesseizure">
-    <label class="labels" for="yesseizure" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="seizuredisorder_history" value="yes" type="radio" id="yesseizuredisorder_history">
+    <label class="labels" for="yesseizuredisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="noseizure" value="noseizure" type="checkbox" id="noseizure">
-    <label class="labels" for="noseizure" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="seizuredisorder_history" value="no" type="radio" id="noseizuredisorder_history">
+    <label class="labels" for="noseizuredisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationseizure" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="seizuredisorder_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -649,18 +622,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 150px;">Stroke:</p>
-  <div class="checkbox">
-    <input name="yesstroke" value="yesstroke" type="checkbox" id="yesstroke">
-    <label class="labels" for="yesstroke" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="stroke_history" value="yes" type="radio" id="yesstroke_history">
+    <label class="labels" for="yesstroke_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nostroke" value="nostroke" type="checkbox" id="nostroke">
-    <label class="labels" for="nostroke" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="stroke_history" value="no" type="radio" id="nostroke_history">
+    <label class="labels" for="nostroke_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationstroke" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="stroke_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -669,18 +642,18 @@
     <br>
     <div class="row-container">
     <p style="margin-right: 109px;">Tuberculosis:</p>
-  <div class="checkbox">
-    <input name="yestb" value="yestb" type="checkbox" id="yestb">
-    <label class="labels" for="yestb" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="tb_history" value="yes" type="radio" id="yestb_history">
+    <label class="labels" for="yestb_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="notb" value="notb" type="checkbox" id="notb">
-    <label class="labels" for="notb" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input name="tb_history" value="no" type="radio" id="notb_history">
+    <label class="labels" for="notb_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <div class="input_wrap">
-    <input name="relationtb" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
+    <input name="tb_relation" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee">
   </div>
 </div>
 
@@ -836,25 +809,25 @@
     <div class="row-container">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <p style="margin-right: 30px;">Hospitalization</p>
-  <div class="checkbox">
-    <input name="yeshospitalization" value="yeshospitalization" type="checkbox" id="yeshospitalization">
-    <label class="labels" for="yeshospitalization" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="hospitalization_history" value="yes" type="radio" id="yeshospitalization_history">
+    <label class="labels" for="yeshospitalization_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nohospitalization" value="nohospitalization" type="checkbox" id="nohospitalization">
-    <label class="labels" for="nohospitalization" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="hospitalization_history" value="no" type="radio" id="nohospitalization_history">
+    <label class="labels" for="nohospitalization_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <p style="margin-right: 30px;">Surgical Operation</p>
-  <div class="checkbox">
-    <input name="yessurgical" value="yessurgical" type="checkbox" id="yessurgical">
-    <label class="labels" for="yessurgical" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+  <div class="radio">
+    <input name="surgicaloperation_history" value="yes" type="radio" id="yessurgicaloperation_history">
+    <label class="labels" for="yessurgicaloperation_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
   </div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nosurgical" value="nosurgical" type="checkbox" id="nosurgical">
-    <label class="labels" for="nosurgical" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+  <div class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="surgicaloperation_historyl" value="no" type="radio" id="nosurgicaloperation_history">
+    <label class="labels" for="nosurgicaloperation_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </div>

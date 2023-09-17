@@ -32,6 +32,7 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link rel="stylesheet" href="assets/formstyles.css">
+  <link rel="stylesheet" href="assets/radios.css">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -41,10 +42,10 @@
 <body class="app">   	
 
 <?php  	
-$idnumber = $_GET['idnumber'];
+$healthcollege_id = $_GET['healthcollege_id'];
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM healthrecordformcollege WHERE idnumber = '$idnumber'";
+$sql = "SELECT * FROM healthrecordformcollege WHERE healthcollege_id = '$healthcollege_id'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -72,42 +73,29 @@ if (mysqli_num_rows($result) > 0) {
   $mmr = $row['mmr'];
   $hepab = $row ['hepab'];
   $varicella = $row['varicella'];
-  $yesasthma =$row['yesasthma'];
-  $noasthma = $row['noasthma'];
-  $relationasthma = $row['relationasthma'];
-  $yesbleeding = $row['yesbleeding'];
-  $nobleeding = $row['nobleeding'];
-  $relationbleeding = $row['relationbleeding'];
-  $yescancer =$row['yescancer'];
-  $nocancer =$row['nocancer'];
-  $relationcancer = $row['relationcancer'];
-  $yesdiabetes =$row['yesdiabetes'];
-  $nodiabetes =$row['nodiabetes'];
-  $relationdiabetes =$row['relationdiabetes'];
-  $yesheartdis =$row['yesheartdis'];
-  $noheartdis =$row['noheartdis'];
-  $relationheartdis =$row['relationheartdis'];
-  $yesbp = $row['yesbp'];
-  $nobp = $row['nobp'];
-  $relationbp = $row['relationbp'];
-  $yeskidney =$row['yeskidney'];
-  $nokidney =$row['nokidney'];
-  $relationkidney =$row['relationkidney'];
-  $yesmental =$row['yesmental'];
-  $nomental =$row['nomental'];
-  $relationmental =$row['relationmental'];
-  $yesobese = $row['yesobese'];
-  $noobese = $row['noobese'];
-  $relationobese = $row['relationobese'];
-  $yesseizure =$row['yesseizure'];
-  $noseizure =$row['noseizure'];
-  $relationseizure =$row['relationseizure'];
-  $yesstroke =$row['yesstroke'];
-  $nostroke =$row['nostroke'];
-  $relationstroke =$row['relationstroke'];
-  $yestb = $row['yestb'];
-  $notb = $row['notb'];
-  $relationtb = $row['relationtb'];
+  $asthma_history =$row['asthma_history'];
+  $asthma_relation = $row['asthma_relation'];
+  $bleedingtendency_history = $row['bleedingtendency_history'];
+  $bleedingtendency_relation = $row['bleedingtendency_relation'];
+  $cancer_history = $row['cancer_history'];
+  $cancer_relation = $row['cancer_relation'];
+  $diabetes_history =$row['diabetes_history'];
+  $heartdisorder_history =$row['heartdisorder_history'];
+  $heartdisorder_relation = $row['heartdisorder_relation'];
+  $highblood_history =$row['highblood_history'];
+  $highblood_relation =$row['highblood_relation'];
+  $kidneyproblem_history =$row['kidneyproblem_history'];
+  $kidneyproblem_relation =$row['kidneyproblem_relation'];
+  $mentaldisorder_history =$row['mentaldisorder_history'];
+  $mentaldisorder_relation =$row['mentaldisorder_relation'];
+  $obesity_history  = $row['obesity_history'];
+  $obesity_relation = $row['obesity_relation'];
+  $seizuredisorder_history = $row['seizuredisorder_history'];
+  $seizuredisorder_relation =$row['seizuredisorder_relation'];
+  $stroke_history =$row['stroke_history'];
+  $stroke_relation =$row['stroke_relation'];
+  $tb_history =$row['tb_history'];
+  $tb_relation =$row['tb_relation'];
   $allergy =$row['allergy'];
   $anemia =$row['anemia'];
   $asthma = $row['asthma'];
@@ -140,10 +128,8 @@ if (mysqli_num_rows($result) > 0) {
   $tonsillitis =$row['tonsillitis'];
   $typhoid_fever =$row['typhoid_fever'];
   $vision_defect =$row['vision_defect'];
-  $yeshospitalization =$row['yeshospitalization'];
-  $nohospitalization =$row['nohospitalization'];
-  $yessurgical =$row['yessurgical'];
-  $nosurgical =$row['nosurgical'];
+  $hospitalization_history =$row['hospitalization_history'];
+  $surgicaloperation_history =$row['surgicaloperation_history'];
   $specialmed =$row['specialmed'];
   $otherrelevant =$row['otherrelevant'];
 
@@ -507,18 +493,18 @@ if (mysqli_num_rows($result) > 0) {
     <div class="row-container">
     <p>Asthma:</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="checkbox">
-    <input name="yesasthma" value="yesasthma" type="checkbox" id="yesasthma" value="<?= $row['yesasthma'];?>" <?php if ($row['yesasthma']) echo "checked"; ?>>
-    <label class="labels" for="yesasthma" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="asthma_history" value="yes" type="radio" id="yesasthma_history" <?php if (isset($row['asthma_history']) && $row['asthma_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesasthma_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="noasthma" value="noasthma" type="checkbox" id="noasthma" value="<?= $row['noasthma'];?>" <?php if ($row['noasthma']) echo "checked"; ?>>
-    <label class="labels" for="noasthma" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="asthma_history" value="no" type="radio" id="noasthma_history" <?php if (isset($row['asthma_history']) && $row['asthma_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="noasthma_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationasthma" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationasthma'];?>" readonly>
+  <input name="asthma_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['asthma_relation'];?>" readonly>
   </div>
 </div>
 
@@ -527,18 +513,18 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 53px;">Bleeding Tendency:</p>
-  <div class="checkbox">
-    <input name="yesbleeding" value="yesbleeding" type="checkbox" id="yesbleeding" value="<?= $row['yesbleeding'];?>" <?php if ($row['yesbleeding']) echo "checked"; ?>>
-    <label class="labels" for="yesbleeding" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="bleedingtendency_history" value="yes" type="radio" id="yesbleedingtendency_history" <?php if (isset($row['bleedingtendency_history']) && $row['bleedingtendency_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesbleedingtendency_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nobleeding" value="nobleeding" type="checkbox" id="nobleeding" value="<?= $row['nobleeding'];?>" <?php if ($row['nobleeding']) echo "checked"; ?>>
-    <label class="labels" for="nobleeding" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="bleedingtendency_history" value="no" type="radio" id="nobleedingtendency_history" <?php if (isset($row['bleedingtendency_history']) && $row['bleedingtendency_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nobleedingtendency_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationbleeding" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationbleeding'];?>" readonly>
+  <input name="bleedingtendency_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['asthma_relation'];?>" readonly>
   </div>
 </div>
 
@@ -547,18 +533,18 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 137px;">Cancer:</p>
-  <div class="checkbox">
-    <input name="yescancer" value="yescancer" type="checkbox" id="yescancer" value="<?= $row['yescancer'];?>" <?php if ($row['yescancer']) echo "checked"; ?>>
-    <label class="labels" for="yescancer" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="cancer_history" value="yes" type="radio" id="yescancer_history" <?php if (isset($row['cancer_history']) && $row['cancer_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yescancer_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nocancer" value="nocancer" type="checkbox" id="nocancer" value="<?= $row['nocancer'];?>" <?php if ($row['nocancer']) echo "checked"; ?>>
-    <label class="labels" for="nocancer" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="cancer_history" value="no" type="radio" id="nocancer_history" <?php if (isset($row['cancer_history']) && $row['cancer_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nocancer_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationcancer" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationcancer'];?>" readonly>
+  <input name="cancer_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['cancer_relation'];?>" readonly>
   </div>
 </div>
 
@@ -567,18 +553,18 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 125px;">Diabetes:</p>
-  <div class="checkbox">
-    <input name="yesdiabetes" value="yesdiabetes" type="checkbox" id="yesdiabetes" value="<?= $row['yesdiabetes'];?>" <?php if ($row['yesdiabetes']) echo "checked"; ?>>
-    <label class="labels" for="yesdiabetes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="diabetes_history" value="yes" type="radio" id="yesdiabetes_history" <?php if (isset($row['diabetes_history']) && $row['diabetes_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesdiabetes_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nodiabetes" value="nodiabetes" type="checkbox" id="nodiabetes" value="<?= $row['nodiabetes'];?>" <?php if ($row['nodiabetes']) echo "checked"; ?>>
-    <label class="labels" for="nodiabetes" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="diabetes_history" value="no" type="radio" id="nodiabetes_history" <?php if (isset($row['diabetes_history']) && $row['diabetes_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nodiabetes_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationdiabetes" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationdiabetes'];?>" readonly>
+  <input name="diabetes_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['diabetes_relation'];?>" readonly>
   </div>
 </div>
 
@@ -587,41 +573,38 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 84px;">Heart Disorder:</p>
-  <div class="checkbox">
-    <input name="yesheartdis" value="yesheartdis" type="checkbox" id="yesheartdis" value="<?= $row['yesheartdis'];?>" <?php if ($row['yesheartdis']) echo "checked"; ?>>
-    <label class="labels" for="yesheartdis" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
-
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="noheartdis" value="noheartdis" type="checkbox" id="noheartdis" value="<?= $row['noheartdis'];?>" <?php if ($row['noheartdis']) echo "checked"; ?>>
-    <label class="labels" for="noheartdis" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-  <div class="input_wrap">
-    <input name="relationheartdis" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationheartdis'];?>" readonly
->
-  </div>
+    <div class="radio">
+    <input name="heartdisorder_history" value="yes" type="radio" id="yesheartdisorder_history" <?php if (isset($row['heartdisorder_history']) && $row['heartdisorder_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesheartdisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
 </div>
 
+<div class="radio">
+    <input name="heartdisorder_history" value="no" type="radio" id="noheartdisorder_history" <?php if (isset($row['heartdisorder_history']) && $row['heartdisorder_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="noheartdisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
+
+  <div class="input_wrap">
+  <input name="heartdisorder_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['heartdisorder_relation'];?>" readonly>
+  </div>
+</div>
 
 <div class="input_form">
     </div>
     <br>
     <div class="row-container">
     <p style="margin-right: 45px;">High Blood Pressure:</p>
-  <div class="checkbox">
-    <input name="yesbp" value="yesbp" type="checkbox" id="yesbp" value="<?= $row['yesbp'];?>" <?php if ($row['yesbp']) echo "checked"; ?>>
-    <label class="labels" for="yesbp" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="highblood_history" value="yes" type="radio" id="yeshighblood_history" <?php if (isset($row['highblood_history']) && $row['highblood_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yeshighblood_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nobp" value="nobp" type="checkbox" id="nobp" value="<?= $row['nobp'];?>" <?php if ($row['nobp']) echo "checked"; ?>>
-    <label class="labels" for="nobp" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="highblood_history" value="no" type="radio" id="nohighblood_history" <?php if (isset($row['highblood_history']) && $row['highblood_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nohighblood_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationbp" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationbp'];?>" readonly
->
+  <input name="highblood_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['highblood_relation'];?>" readonly>
   </div>
 </div>
 
@@ -631,19 +614,18 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 78px;">Kidney Problem:</p>
-  <div class="checkbox">
-    <input name="yeskidney" value="yeskidney" type="checkbox" id="yeskidney"value="<?= $row['yeskidney'];?>" <?php if ($row['yeskidney']) echo "checked"; ?>>
-    <label class="labels" for="yeskidney" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="kidneyproblem_history" value="yes" type="radio" id="yeskidneyproblem_history" <?php if (isset($row['kidneyproblem_history']) && $row['kidneyproblem_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yeskidneyproblem_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nokidney" value="nokidney" type="checkbox" id="nokidney" value="<?= $row['nokidney'];?>" <?php if ($row['nokidney']) echo "checked"; ?>>
-    <label class="labels" for="nokidney" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="kidneyproblem_history" value="no" type="radio" id="nokidneyproblem_history" <?php if (isset($row['kidneyproblem_history']) && $row['kidneyproblem_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nokidneyproblem_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationkidney" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationkidney'];?>" readonly
->
+  <input name="kidneyproblem_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['kidneyproblem_relation'];?>" readonly>
   </div>
 </div>
 
@@ -652,19 +634,18 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 78px;">Mental Disorder:</p>
-  <div class="checkbox">
-    <input name="yesmental" value="yesmental" type="checkbox" id="yesmental" value="<?= $row['yesmental'];?>" <?php if ($row['yesmental']) echo "checked"; ?>>
-    <label class="labels" for="yesmental" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="mentaldisorder_history" value="yes" type="radio" id="yesmentaldisorder_history" <?php if (isset($row['mentaldisorder_history']) && $row['mentaldisorder_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesmentaldisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nomental" value="nomental" type="checkbox" id="nomental" value="<?= $row['nomental'];?>" <?php if ($row['nomental']) echo "checked"; ?>>
-    <label class="labels" for="nomental" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="mentaldisorder_history" value="no" type="radio" id="nomentaldisorder_history" <?php if (isset($row['mentaldisorder_history']) && $row['mentaldisorder_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nomentaldisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationmental" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationmental'];?>" readonly
->
+  <input name="mentaldisorder_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['mentaldisorder_relation'];?>" readonly>
   </div>
 </div>
 
@@ -673,19 +654,18 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 140px;">Obesity:</p>
-  <div class="checkbox"> 
-    <input name="yesobese" value="yesobese" type="checkbox" id="yesobese" value="<?= $row['yesobese'];?>" <?php if ($row['yesobese']) echo "checked"; ?>>
-    <label class="labels" for="yesobese" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="obesity_history" value="yes" type="radio" id="yesobesity_history" <?php if (isset($row['obesity_history']) && $row['obesity_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesobesity_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="noobese" value="noobese" type="checkbox" id="noobese" value="<?= $row['noobese'];?>" <?php if ($row['noobese']) echo "checked"; ?>>
-    <label class="labels" for="noobese" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="obesity_history" value="no" type="radio" id="noobesity_history" <?php if (isset($row['obesity_history']) && $row['obesity_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="noobesity_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationobese" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationobese'];?>" readonly
->
+  <input name="obesity_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['obesity_relation'];?>" readonly>
   </div>
 </div>
 
@@ -694,19 +674,18 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 79px;">Seizure Disorder:</p>
-  <div class="checkbox">
-    <input name="yesseizure" value="yesseizure" type="checkbox" id="yesseizure" value="<?= $row['yesseizure'];?>" <?php if ($row['yesseizure']) echo "checked"; ?>>
-    <label class="labels" for="yesseizure" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="seizuredisorder_history" value="yes" type="radio" id="yesseizuredisorder_history" <?php if (isset($row['seizuredisorder_history']) && $row['seizuredisorder_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesseizuredisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="noseizure" value="noseizure" type="checkbox" id="noseizure" value="<?= $row['noseizure'];?>" <?php if ($row['noseizure']) echo "checked"; ?>>
-    <label class="labels" for="noseizure" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="seizuredisorder_history" value="no" type="radio" id="noseizuredisorder_history" <?php if (isset($row['seizuredisorder_history']) && $row['seizuredisorder_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="noseizuredisorder_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationseizure" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationseizure'];?>" readonly
->
+  <input name="seizuredisorder_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['seizuredisorder_relation'];?>" readonly>
   </div>
 </div>
 
@@ -715,18 +694,18 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 150px;">Stroke:</p>
-  <div class="checkbox">
-    <input name="yesstroke" value="yesstroke" type="checkbox" id="yesstroke" value="<?= $row['yesstroke'];?>" <?php if ($row['yesstroke']) echo "checked"; ?>>
-    <label class="labels" for="yesstroke" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="stroke_history" value="yes" type="radio" id="yesstroke_history" <?php if (isset($row['stroke_history']) && $row['stroke_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesstroke_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nostroke" value="nostroke" type="checkbox" id="nostroke" value="<?= $row['nostroke'];?>" <?php if ($row['nostroke']) echo "checked"; ?>>
-    <label class="labels" for="nostroke" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="stroke_history" value="no" type="radio" id="nostroke_history" <?php if (isset($row['stroke_history']) && $row['stroke_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nostroke_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationstroke" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationstroke'];?>" readonly>
+  <input name="stroke_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['stroke_relation'];?>" readonly>
   </div>
 </div>
 
@@ -735,18 +714,18 @@ if (mysqli_num_rows($result) > 0) {
     <br>
     <div class="row-container">
     <p style="margin-right: 109px;">Tuberculosis:</p>
-  <div class="checkbox">
-    <input name="yestb" value="yestb" type="checkbox" id="yestb" value="<?= $row['yestb'];?>" <?php if ($row['yestb']) echo "checked"; ?>>
-    <label class="labels" for="yestb" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+    <div class="radio">
+    <input name="tb_history" value="yes" type="radio" id="yestb_history" <?php if (isset($row['tb_history']) && $row['tb_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yesstroke_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="notb" value="notb" type="checkbox" id="notb" value="<?= $row['notb'];?>" <?php if ($row['notb']) echo "checked"; ?>>
-    <label class="labels" for="notb" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
-  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="radio">
+    <input name="tb_history" value="no" type="radio" id="notb_history" <?php if (isset($row['tb_history']) && $row['tb_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="notb_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+</div>
 
   <div class="input_wrap">
-    <input name="relationtb" id="otherillnesss" type="text" placeholder="Relation(s) to student/emloyee" value="<?=$row['relationtb'];?>" readonly>
+  <input name="tb_relation" id="otherillnesss" type="text" placeholder="If YES, please specify" value="<?=$row['tb_relation'];?>" readonly>
   </div>
 </div>
 
@@ -902,25 +881,25 @@ if (mysqli_num_rows($result) > 0) {
     <div class="row-container">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <p style="margin-right: 30px;">Hospitalization</p>
-  <div class="checkbox">
-    <input name="yeshospitalization" value="yeshospitalization" type="checkbox" id="yeshospitalization" value="<?= $row['yeshospitalization'];?>" <?php if ($row['yeshospitalization']) echo "checked"; ?>>
-    <label class="labels" for="yeshospitalization" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+  <div class="radio">
+    <input name="hospitalization_history" value="yes" type="radio" id="yeshospitalization_history" <?php if (isset($row['hospitalization_history']) && $row['hospitalization_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yeshospitalization_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nohospitalization" value="nohospitalization" type="checkbox" id="nohospitalization" value="<?= $row['nohospitalization'];?>" <?php if ($row['nohospitalization']) echo "checked"; ?>>
-    <label class="labels" for="nohospitalization" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+<div class="radio">
+    <input name="hospitalization_history" value="no" type="radio" id="nohospitalization_history" <?php if (isset($row['hospitalization_history']) && $row['hospitalization_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nohospitalization_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <p style="margin-right: 30px;">Surgical Operation</p>
-  <div class="checkbox">
-    <input name="yessurgical" value="yessurgical" type="checkbox" id="yessurgical" value="<?= $row['yessurgical'];?>" <?php if ($row['yessurgical']) echo "checked"; ?>>
-    <label class="labels" for="yessurgical" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
-  </div>
+  <div class="radio">
+    <input name="surgicaloperation_history" value="yes" type="radio" id="yessurgicaloperation_history" <?php if (isset($row['surgicaloperation_history']) && $row['surgicaloperation_history'] == 'yes') echo "checked"; ?>>
+    <label class="labels" for="yessurgicaloperation_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</label>
+</div>
 
-  <div class="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input name="nosurgical" value="nosurgical" type="checkbox" id="nosurgical" value="<?= $row['nosurgical'];?>" <?php if ($row['nosurgical']) echo "checked"; ?>>
-    <label class="labels" for="nosurgical" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
+<div class="radio">
+    <input name="surgicaloperation_history" value="no" type="radio" id="nosurgicaloperation_history" <?php if (isset($row['surgicaloperation_history']) && $row['surgicaloperation_history'] == 'no') echo "checked"; ?>>
+    <label class="labels" for="nosurgicaloperation_history" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</label>
   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </div>
@@ -987,7 +966,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 
     // Check for "?idnumber=" in the URL and apply logic
-    checkCurrentUrl("?idnumber=", healthprofilesLink, 'submenu-1');
+    checkCurrentUrl("?healthcollege_id=", healthprofilesLink, 'submenu-1');
 
 </script>
 

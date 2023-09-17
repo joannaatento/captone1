@@ -40,10 +40,10 @@
 
 <body class="app">   
 <?php  	
-$idnumber = $_GET['idnumber'];
+$healthshs_id = $_GET['healthshs_id'];
 
 // Retrieve the health record for the given ID number
-$sql = "SELECT * FROM healthrecordformshs WHERE idnumber = '$idnumber'";
+$sql = "SELECT * FROM healthrecordformshs WHERE healthshs_id = '$healthshs_id'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -560,7 +560,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 
     // Check for "?idnumber=" in the URL and apply logic
-    checkCurrentUrl("?idnumber=", healthprofilesLink, 'submenu-1');
+    checkCurrentUrl("?healthshs_id=", healthprofilesLink, 'submenu-1');
 
 </script>
 

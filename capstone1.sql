@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2023 at 02:59 PM
+-- Generation Time: Sep 17, 2023 at 03:38 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -199,42 +199,30 @@ CREATE TABLE `healthrecordformcollege` (
   `mmr` varchar(100) NOT NULL,
   `hepab` varchar(100) NOT NULL,
   `varicella` varchar(100) NOT NULL,
-  `yesasthma` varchar(100) NOT NULL,
-  `noasthma` varchar(100) NOT NULL,
-  `relationasthma` text NOT NULL,
-  `yesbleeding` varchar(100) NOT NULL,
-  `nobleeding` varchar(100) NOT NULL,
-  `relationbleeding` varchar(100) NOT NULL,
-  `yescancer` varchar(100) NOT NULL,
-  `nocancer` varchar(100) NOT NULL,
-  `relationcancer` varchar(100) NOT NULL,
-  `yesdiabetes` varchar(100) NOT NULL,
-  `nodiabetes` varchar(100) NOT NULL,
-  `relationdiabetes` varchar(100) NOT NULL,
-  `yesheartdis` varchar(100) NOT NULL,
-  `noheartdis` varchar(100) NOT NULL,
-  `relationheartdis` varchar(100) NOT NULL,
-  `yesbp` varchar(100) NOT NULL,
-  `nobp` varchar(100) NOT NULL,
-  `relationbp` varchar(100) NOT NULL,
-  `yeskidney` varchar(100) NOT NULL,
-  `nokidney` varchar(100) NOT NULL,
-  `relationkidney` varchar(100) NOT NULL,
-  `yesmental` varchar(100) NOT NULL,
-  `nomental` varchar(100) NOT NULL,
-  `relationmental` varchar(100) NOT NULL,
-  `yesobese` varchar(100) NOT NULL,
-  `noobese` varchar(100) NOT NULL,
-  `relationobese` varchar(100) NOT NULL,
-  `yesseizure` varchar(100) NOT NULL,
-  `noseizure` varchar(100) NOT NULL,
-  `relationseizure` varchar(100) NOT NULL,
-  `yesstroke` varchar(100) NOT NULL,
-  `nostroke` varchar(100) NOT NULL,
-  `relationstroke` varchar(100) NOT NULL,
-  `yestb` varchar(100) NOT NULL,
-  `notb` varchar(100) NOT NULL,
-  `relationtb` varchar(100) NOT NULL,
+  `asthma_history` varchar(100) NOT NULL,
+  `asthma_relation` text NOT NULL,
+  `bleedingtendency_history` varchar(100) NOT NULL,
+  `bleedingtendency_relation` varchar(100) NOT NULL,
+  `cancer_history` varchar(100) NOT NULL,
+  `cancer_relation` varchar(100) NOT NULL,
+  `diabetes_history` varchar(100) NOT NULL,
+  `diabetes_relation` varchar(100) NOT NULL,
+  `heartdisorder_history` varchar(100) NOT NULL,
+  `heartdisorder_relation` varchar(100) NOT NULL,
+  `highblood_history` varchar(100) NOT NULL,
+  `highblood_relation` varchar(100) NOT NULL,
+  `kidneyproblem_history` varchar(100) NOT NULL,
+  `kidneyproblem_relation` varchar(100) NOT NULL,
+  `mentaldisorder_history` varchar(100) NOT NULL,
+  `mentaldisorder_relation` varchar(100) NOT NULL,
+  `obesity_history` varchar(100) NOT NULL,
+  `obesity_relation` varchar(100) NOT NULL,
+  `seizuredisorder_history` varchar(100) NOT NULL,
+  `seizuredisorder_relation` varchar(100) NOT NULL,
+  `stroke_history` varchar(100) NOT NULL,
+  `stroke_relation` varchar(100) NOT NULL,
+  `tb_history` varchar(100) NOT NULL,
+  `tb_relation` varchar(100) NOT NULL,
   `allergy` varchar(100) NOT NULL,
   `anemia` varchar(100) NOT NULL,
   `asthma` varchar(100) NOT NULL,
@@ -267,10 +255,8 @@ CREATE TABLE `healthrecordformcollege` (
   `tonsillitis` varchar(100) NOT NULL,
   `typhoid_fever` varchar(100) NOT NULL,
   `vision_defect` varchar(100) NOT NULL,
-  `yeshospitalization` varchar(100) NOT NULL,
-  `nohospitalization` varchar(100) NOT NULL,
-  `yessurgical` varchar(100) NOT NULL,
-  `nosurgical` varchar(100) NOT NULL,
+  `hospitalization_history` varchar(100) NOT NULL,
+  `surgicaloperation_history` varchar(100) NOT NULL,
   `specialmed` varchar(100) NOT NULL,
   `allergicdrugs` varchar(100) NOT NULL,
   `otherrelevant` varchar(100) NOT NULL
@@ -280,8 +266,8 @@ CREATE TABLE `healthrecordformcollege` (
 -- Dumping data for table `healthrecordformcollege`
 --
 
-INSERT INTO `healthrecordformcollege` (`healthcollege_id`, `user_id`, `image`, `idnumber`, `fullname`, `gender`, `address`, `pcontact`, `nationality`, `birthday`, `religion`, `fguardian`, `occupation1`, `mother`, `occupation2`, `contactemer`, `contactno`, `relation`, `referral`, `contactno2`, `physiciannumcall`, `addresshospital`, `td`, `mmr`, `hepab`, `varicella`, `yesasthma`, `noasthma`, `relationasthma`, `yesbleeding`, `nobleeding`, `relationbleeding`, `yescancer`, `nocancer`, `relationcancer`, `yesdiabetes`, `nodiabetes`, `relationdiabetes`, `yesheartdis`, `noheartdis`, `relationheartdis`, `yesbp`, `nobp`, `relationbp`, `yeskidney`, `nokidney`, `relationkidney`, `yesmental`, `nomental`, `relationmental`, `yesobese`, `noobese`, `relationobese`, `yesseizure`, `noseizure`, `relationseizure`, `yesstroke`, `nostroke`, `relationstroke`, `yestb`, `notb`, `relationtb`, `allergy`, `anemia`, `asthma`, `behavioral`, `bleedingprob`, `blood`, `chickenpox`, `convulsion`, `dengue`, `diabetess`, `earproblem`, `eating_disorder`, `epilepsy`, `eyeproblemm`, `fracture`, `hearing_problem`, `heart_disorder`, `hyperacidity`, `indigestion`, `insomia`, `kidney_problem`, `liver_problem`, `measless`, `mumpss`, `parasitism`, `pneumonia`, `primary_complex`, `scoliosis`, `skin_problem`, `tonsillitis`, `typhoid_fever`, `vision_defect`, `yeshospitalization`, `nohospitalization`, `yessurgical`, `nosurgical`, `specialmed`, `allergicdrugs`, `otherrelevant`) VALUES
-(11, 105, 'lll.jpg', 3, 'User College', 'Female', 'Guinobatan Albay', '+639156005165', 'Filipino', '2001-12-15', 'Roman Catholic', 'hfgfhjk', 'dfghj', 'sthy', 'sdfghj', 'dgfhgjhkj', '+639235467653', 'ghjhskjdfgh', 'sdfghj', '+639124565787', 'dsfgthjyk', 'dfghjede', 'dfghj', 'cfgfhg', 'dfgfh', 'dsfgh', '', 'noasthma', '', '', 'nobleeding', '', '', 'nocancer', '', '', 'nodiabetes', '', '', 'noheartdis', '', '', 'nobp', '', '', 'nokidney', '', '', 'nomental', '', '', 'noobese', '', '', 'noseizure', '', '', 'nostroke', '', '', 'notb', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'nohospitalization', '', 'nosurgical', 'dfghjk', 'dcfgh', 'dfghj');
+INSERT INTO `healthrecordformcollege` (`healthcollege_id`, `user_id`, `image`, `idnumber`, `fullname`, `gender`, `address`, `pcontact`, `nationality`, `birthday`, `religion`, `fguardian`, `occupation1`, `mother`, `occupation2`, `contactemer`, `contactno`, `relation`, `referral`, `contactno2`, `physiciannumcall`, `addresshospital`, `td`, `mmr`, `hepab`, `varicella`, `asthma_history`, `asthma_relation`, `bleedingtendency_history`, `bleedingtendency_relation`, `cancer_history`, `cancer_relation`, `diabetes_history`, `diabetes_relation`, `heartdisorder_history`, `heartdisorder_relation`, `highblood_history`, `highblood_relation`, `kidneyproblem_history`, `kidneyproblem_relation`, `mentaldisorder_history`, `mentaldisorder_relation`, `obesity_history`, `obesity_relation`, `seizuredisorder_history`, `seizuredisorder_relation`, `stroke_history`, `stroke_relation`, `tb_history`, `tb_relation`, `allergy`, `anemia`, `asthma`, `behavioral`, `bleedingprob`, `blood`, `chickenpox`, `convulsion`, `dengue`, `diabetess`, `earproblem`, `eating_disorder`, `epilepsy`, `eyeproblemm`, `fracture`, `hearing_problem`, `heart_disorder`, `hyperacidity`, `indigestion`, `insomia`, `kidney_problem`, `liver_problem`, `measless`, `mumpss`, `parasitism`, `pneumonia`, `primary_complex`, `scoliosis`, `skin_problem`, `tonsillitis`, `typhoid_fever`, `vision_defect`, `hospitalization_history`, `surgicaloperation_history`, `specialmed`, `allergicdrugs`, `otherrelevant`) VALUES
+(15, 105, 'Planet9_Wallpaper_5000x2813.jpg', 3, 'User College', 'Female', 'Guinobatan Albay', '+639156005165', 'Filipino', '2001-12-15', 'Roman Catholic', 'Jojo Atento', 'Tricycle Driver', 'Rowena Atento', 'Housewife', 'Edita Dela Cruz', '+639156005165', 'Grandmother', 'BRTTH', '+639157869542', 'None', 'None', 'N/A', 'N/A', 'N/A', 'N/A', 'no', '', 'no', '', 'no', '', 'no', '', 'no', '', 'no', '', 'no', '', 'no', '', 'no', '', 'no', '', 'no', '', 'no', '', '', '', '', 'behavioral', '', '', '', '', '', '', '', '', '', 'eyeproblemm', '', '', '', '', '', 'insomia', '', '', '', '', '', '', '', '', '', '', '', '', 'no', 'no', 'N/A', 'N/A', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -1209,7 +1195,7 @@ ALTER TABLE `dentalappcollege`
 -- AUTO_INCREMENT for table `healthrecordformcollege`
 --
 ALTER TABLE `healthrecordformcollege`
-  MODIFY `healthcollege_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `healthcollege_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `healthrecordformgsjhs`

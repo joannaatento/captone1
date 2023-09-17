@@ -298,6 +298,7 @@
           <td><?php echo $row['contactemer']; ?></td>
           <td><?php echo $row['contactno']; ?></td>
           
+          
           <td>
             <center><a href="viewcollegerecord.php?healthcollege_id=<?php echo $row['healthcollege_id']; ?>">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">

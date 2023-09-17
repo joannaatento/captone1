@@ -301,7 +301,6 @@
           <td><?php echo $row['notified']; ?></td>
           <td><?php echo $row['contact']; ?></td>
           
-          
           <td> 
             <center>
             <a href="editrecordshslist.php?healthshs_id=<?php echo $healthshs_id; ?>">

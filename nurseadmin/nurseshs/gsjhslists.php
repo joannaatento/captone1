@@ -298,6 +298,7 @@
           <td><?php echo $row['guardianname']; ?></td>
           <td><?php echo $row['cguardian']; ?></td>
           
+          
           <td>
             <center><a href="viewgsjhsrecord.php?healthnogsjhs_id=<?php echo $row['healthnogsjhs_id']; ?>">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">

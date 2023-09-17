@@ -41,6 +41,7 @@
 
 <body class="app">   	
 
+
 <?php  	
 $healthcollege_id = $_GET['healthcollege_id'];
 

@@ -49,6 +49,17 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <style>
+
+.unavailable-slot {
+    background-color: red; /* You can style unavailable slots as you prefer */
+    color: white;
+    cursor: not-allowed;
+}
+
+</style>
 </head> 
 
 <body class="app">   
@@ -546,9 +557,10 @@ private function _showDay($cellNumber) {
     <table class="schedule-table" id="monday-table">
     <th colspan="4" id="selected-day-header"><span id="selected-date-display"></span></th>
     <tr>
-        <td onclick="handleLabelClick('09:00 A.M')">09:00 A.M</td>
-        <td onclick="handleLabelClick('10:00 A.M')">10:00 A.M</td>
-        <td onclick="handleLabelClick('11:00 A.M')">11:00 A.M</td>
+            <td onclick="fetchAndUpdateStatus('09:00 A.M')" id="09:00 A.M">09:00 A.M</td>
+            <td onclick="fetchAndUpdateStatus('10:00 A.M')" id="10:00 A.M">10:00 A.M</td>
+            <td onclick="fetchAndUpdateStatus('11:00 A.M')" id="11:00 A.M">11:00 A.M</td>
+
     </tr>
 </table>
 
@@ -724,6 +736,22 @@ $(document).ready(function() {
     });
 </script>
 
+<script>
+function fetchAndUpdateStatus(timeSlot) {
+    // Send an AJAX request to fetch the status
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Update the table cell with the retrieved status
+            var status = this.responseText;
+            var cell = document.getElementById(timeSlot);
+            cell.innerHTML = timeSlot + ' - Status: ' + status;
+        }
+    };
+    xhttp.open("GET", "function/functions.php?timeSlot=" + timeSlot, true);
+    xhttp.send();
+}
+</script>
 
 
 </body>

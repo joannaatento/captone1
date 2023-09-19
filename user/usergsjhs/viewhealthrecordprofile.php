@@ -43,7 +43,7 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
     <link rel="stylesheet" href="assets/radios.css">
-    <link rel="stylesheet" href="assets/formstyle.css">
+    <link rel="stylesheet" href="assets/formstyles.css">
    <!-- Add Bootstrap JavaScript and jQuery links -->
    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

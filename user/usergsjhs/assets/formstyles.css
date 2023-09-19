@@ -196,7 +196,7 @@ input[type="text"]:focus {outline:none;}
     width: 400px;
 }
 #guardianname{
-    width: 400px;
+    width: 300px;
 }
 .input_form {
     display: grid;

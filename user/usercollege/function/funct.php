@@ -103,7 +103,7 @@
       
         
        if (mysqli_query($conn, $sql)) {
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], "../../../../upload_image/" . $_FILES["image"]["name"])) {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], "/xampp/htdocs/DivineClinic/upload_image/" . $_FILES["image"]["name"])) {
             header('location: ../healthrecordformcollege.php');
             $_SESSION['success'] = "
                 <div id='success-message' style='position:absolute; right:30px; background-color:#15a362; padding: 10px 10px; width:auto; border-radius: 10px;'>

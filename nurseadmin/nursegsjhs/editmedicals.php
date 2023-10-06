@@ -58,7 +58,7 @@ if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
   $fullname = $row['fullname'];
-  $gradecourseyear1 = $row['gradecourseyear1'];
+  $gradelevel = $row['gradelevel'];
   $role = $row['role'];
   $onoff  = $row['onoff'];
   $date_time = $row['date_time'];
@@ -132,9 +132,9 @@ if (mysqli_num_rows($result) > 0) {
 
  <div class="col-sm-3">
    <div class="form-group">
-     <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
+     <label for="gradelevel" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
      <div class="col-sm-12">
-       <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" value="<?=$row['gradecourseyear1'];?>">
+       <input type="text" class="form-control" id="gradelevel" name="gradelevel" value="<?=$row['gradelevel'];?>">
      </div>
    </div>
  </div>
@@ -171,11 +171,7 @@ if (mysqli_num_rows($result) > 0) {
        <div class="form-group">
            <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
            <div class="col-sm-12">
-               <select id="role" name="role" class="form-control">
-               <option value="" <?php if(empty($row['role'])) echo "selected"; ?>>Select Role</option>
-               <option value="Student in GS/JHS" <?php if($row['role'] == "Student in GS/JHS") echo "selected"; ?>>Student in GS/JHS</option>
-               <option value="Employee in GS/JHS" <?php if($row['role'] == "Employee in GS/JHS") echo "selected"; ?>>Employee in GS/JHS</option>
-           </select>
+           <input type="text" class="form-control" id="role" name="role" value="<?=$row['role'];?>" readonly>
            </div>
        </div>
    </div>

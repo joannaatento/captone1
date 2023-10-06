@@ -1,0 +1,74 @@
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    }
+    
+    th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    }
+    
+    th {
+    background-color: #f2f2f2;
+    }
+    
+    tr:nth-child(even) {
+    background-color: #f9f9f9;
+    }
+    
+    
+    
+    #printReport,#generateReport  {
+    background-color: #2e37a4!important; /* Clinic blue */
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    }
+    #generateReport:hover,
+    #printReport:hover,
+    #printButton:hover {
+    background-color: #007BFF!important; 
+    }
+    
+    #selected_year, #report_type,#tableSelect,#selected_years {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 14px;
+    outline: none;
+    }
+    /* Add hover effect to the "Select Year" select element */
+    #selected_year:hover,#report_type:hover {
+    border-color: #007BFF!important;
+    }
+    
+    
+    
+    .clinic-form button {
+    background-color: #2e37a4 !important; /* Clinic blue */
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    }
+    
+    .clinic-form button:hover {
+    background-color: #007BFF!important; 
+    }
+    
+    #printButton{
+    background-color: #2e37a4!important; /* Clinic blue */
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    }

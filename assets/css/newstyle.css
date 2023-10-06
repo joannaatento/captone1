@@ -1,0 +1,404 @@
+
+:root{
+    --ternary: #2e37a4 ;
+}
+
+
+.form-group label{
+    font-size: clamp(10px,0.9em, 16px) !important;
+}
+
+.input_form label{
+    font-size: clamp(10px,0.9em, 16px) !important;
+}
+
+
+.clinic-table-container{
+    padding: 25px;
+}
+
+.align_form{
+    padding-top:0px!important;
+}
+.app-card-body p {
+    text-align: center;
+}   
+.chart-container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+    aspect-ratio : 1 / 1 ; 
+    display: flex;
+    justify-content: center;
+}
+
+.chart-container #barChart{ 
+    width: 100%!important;
+}
+
+#tableSelectYear {
+    font-size: 16px!important;
+    padding: 8px!important;
+    border: 1px solid #ccc!important;
+    border-radius: 4px!important;
+    width: 100px!important;
+}
+
+
+#tableSelectYear option {
+    font-size: 14px!important;
+    padding: 4px!important;
+    background-color: #f7f7f7!important;
+}
+
+
+#tableSelectYear option:checked {
+    background-color: #007bff!important;
+    color: #fff!important;
+}
+table:not(.table-condensed)  tbody tr:last-of-type {
+    border-bottom: 2px solid #2e37a4 !important;
+}
+
+table:not(.table-condensed) {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+
+/* Style table rows alternately */
+table:not(.table-condensed)  tr:nth-child(even) {
+    background-color: #fff; /* Change background color to white */
+}
+table:not(.table-condensed) tr td:last-child{
+    width: 100px!important;
+}
+
+/* Style table cells */
+table:not(.table-condensed)  td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-wrap: wrap!important;
+    min-width: 0px !important;
+}
+
+
+table:not(.table-condensed)  tbody, table:not(.table-condensed)  thead, 
+    table:not(.table-condensed)  td , table:not(.table-condensed)  th{
+    max-width: 100%;
+}
+
+/* Style table cell links on hover */
+table:not(.table-condensed)  td a:hover {
+    text-decoration: underline;
+}
+
+
+ 
+
+.app-card{
+    padding: 0px!important;
+}
+
+
+
+#printReport,#generateReport  {
+background-color: #2e37a4!important; /* Clinic blue */
+color: #fff;
+padding: 10px 15px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+#generateReport:hover,
+#printReport:hover,
+#printButton:hover {
+background-color: #007BFF!important; 
+}
+
+#selected_year, #report_type,#tableSelect,#selected_years {
+padding: 6px;
+border: 1px solid #ccc;
+border-radius: 5px;
+width: 150px;
+font-size: 14px;
+outline: none;
+}
+/* Add hover effect to the "Select Year" select element */
+#selected_year:hover,#report_type:hover {
+border-color: #007BFF!important;
+}
+
+.clinic-form button {
+background-color: #2e37a4 !important; /* Clinic blue */
+color: #fff;
+padding: 10px 15px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+
+.clinic-form button:hover {
+background-color: #007BFF!important; 
+}
+
+#printButton{
+background-color: #2e37a4!important; /* Clinic blue */
+color: #fff;
+padding: 10px 15px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+
+
+
+.app-card-body .form-horizontal p{
+    text-align: left;
+}
+
+input_wrap input, input_wrap select{
+    border: 2px solid #afbdcf !important;
+}
+
+input[type='submit']{
+    background-color: var(--ternary);
+    color:white;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+}
+
+
+
+
+.styled-table th{
+    background-color:var(--ternary);
+}
+
+.styled-table td{
+    padding: 12px 13px !important;
+}
+
+.form-group select{
+    border: 2px solid #afbdcf !important;
+}
+.input_wrap .form-select{
+    border: 2px solid #afbdcf !important;
+}
+
+input:hover,select:hover,.form-select:hove{
+    border: 2px solid var(--ternary);
+    background-color: transparent;
+}
+
+input:read-only:hover , input:read-only:focus, .form-select:read-only:hove{
+    border: 2px solid rgba(183, 183, 207, 0.788);
+}
+
+
+input:focus, select:focus{
+    border: 2px solid var(--ternary);
+}
+
+input[type="file"]{
+    border-radius: 10px;
+}
+
+::file-selector-button{
+    background-color: rgb(82, 82, 146);
+    color: white;
+    border-radius: 30px;
+}
+
+.checkbox-label::before{
+    border: 2px solid var(--ternary) !important;
+}
+
+.checkbox:checked + label:before{
+    background-color: var(--ternary);
+}
+
+.checkbox-label::before:checked {
+    background-color: var(--ternary);
+}
+
+.btn-success {
+    background-color: var(--ternary);
+    border: 2px solid var(--ternary);
+}
+
+.btn-success:hover{
+    background-color: var(--ternary);
+    border: 2px solid var(--ternary);
+}
+
+.btn-success:active{
+    background-color: var(--ternary)!important;
+    border: 3px solid var(--ternary)!important;
+}
+
+
+
+
+.app-search-form .search-btn {
+    padding: 0.7rem 1rem;
+  
+}
+
+
+
+
+
+.form-container {
+    background-color: #fff;
+    box-shadow: 4px 4px 4px 4px rgba(76, 84, 177, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.form-title {
+    text-align: center;
+    color: #4c54b1;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    color: #000 !important;
+}
+
+input.form-control {
+    border: 2px solid #afbdcf !important;
+    background-color: #fff !important;
+    padding: 10px;
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
+}
+
+input.form-control:hover {
+    background-color: #e0e0e0 !important;
+    border-color: #4e5864 !important;
+}
+input.form-control:focus{
+    background-color: #e0e0e0 !important;
+}
+.sched{
+    color: #800000;
+    font-size: 17px !important;
+}
+
+.form-container{
+    width : 100%!important;
+}
+
+.form-container p{
+    text-align: left;
+}
+
+.container{ 
+    max-width: 100% !important;
+    margin-top: 30px!important;
+    padding-top:30px!important;
+}
+
+
+.input_wrap{
+    max-width: 100% !important;
+}
+
+.input_wrap input, .input_wrap label, .input_wrap select{
+    max-width: 100%;
+    min-width: 0!important ;
+}
+
+.input_wrap input{
+    width:100%!important;
+}
+
+
+.app-card > .app-card-body{
+	padding-top:20px!important;
+}
+
+
+ #success-message{
+    position:fixed!important;
+    margin-top: 0px!important;
+    bottom:25px!important; 
+} 
+
+@media (max-width:1366px){
+    .row-container{
+        width: 750px!important;
+    }
+}
+
+.position-relative{
+    margin-top: 0!important;
+}
+
+.grid-row-1{
+    grid-template-columns: repeat(1, 1fr)!important;
+}
+.grid-row-3{
+    grid-template-columns: repeat(3, 1fr)!important;
+}
+.grid-row-2{
+    grid-template-columns: repeat(2, 1fr)!important;
+}
+
+
+
+
+/* @media screen and (max-width: 1549px) {
+    .form-container {
+        width: 80%!important;
+    
+    }
+
+    .control-label {
+        font-size: 14px!important;
+    }
+
+    .calendar-container {
+        width: 100%!important;
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    .form-container {
+        width: 71%!important;
+    
+    }
+
+    .control-label {
+        font-size: 14px!important;
+    }
+
+    .calendar-container {
+        width: 100%!important;
+    }
+}
+
+
+@media screen and (min-width: 991px) and (max-width: 1199px) {
+    .form-container {
+        width: 85%!important;
+        margin-left: 180px!important;
+    }
+
+    .control-label {
+        font-size: 14px!important;
+    }
+
+    .calendar-container {
+        width: 100%!important;
+    }
+} */

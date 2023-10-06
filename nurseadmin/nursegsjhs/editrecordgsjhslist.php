@@ -202,7 +202,7 @@ if (mysqli_num_rows($result) > 0) {
               
               <div class="input_wrap" style="text-align: center;">
                 <div class="image_container" style="display: inline-block; text-align: center;">
-                    <img src="<?php echo "../../../../upload_image/".$row['image'];?>" style="display: block; margin: 0 auto;">
+                    <img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>" style="display: block; margin: 0 auto;">
                     <input type="file" name="image" id="image">
                    
                 </div>
@@ -430,7 +430,7 @@ if (mysqli_num_rows($result) > 0) {
 <div class="input_wrap" style="text-align: center;">
 <p>Vaccination Screenshot</p>
                 <div class="image_container" style="display: inline-block; text-align: center;">
-                    <img src="<?php echo "../../../../upload_image/".$row['imagevac'];?>" style="display: block; margin: 0 auto;">
+                    <img src="<?php echo "/CAPSTONE1/upload_image/".$row['imagevac'];?>" style="display: block; margin: 0 auto;">
                     <input type="file" name="imagevac" id="imagevac">
            
 

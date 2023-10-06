@@ -116,7 +116,7 @@ include '../../../db.php';
       if (mysqli_query($conn, $sql)) {
         // Check if the first image was uploaded successfully
         if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
-            $imageUploadSuccess = move_uploaded_file($_FILES["image"]["tmp_name"], "../../../../upload_image/" . $_FILES["image"]["name"]);
+            $imageUploadSuccess = move_uploaded_file($_FILES["image"]["tmp_name"], "/xampp/htdocs/CAPSTONE1/upload_image/" . $_FILES["image"]["name"]);
         } else {
             // Handle the case when no file was uploaded or other errors occurred
             if ($_FILES["image"]["error"] === UPLOAD_ERR_NO_FILE) {
@@ -129,7 +129,7 @@ include '../../../db.php';
     
           // Check if the second image was uploaded successfully
           if (isset($_FILES["imagevac"]) && $_FILES["imagevac"]["error"] === UPLOAD_ERR_OK) {
-              $secondFileUploadSuccess = move_uploaded_file($_FILES["imagevac"]["tmp_name"], "../../../../upload_image/" . $_FILES["imagevac"]["name"]);
+              $secondFileUploadSuccess = move_uploaded_file($_FILES["imagevac"]["tmp_name"], "/xampp/htdocs/CAPSTONE1/upload_image/" . $_FILES["imagevac"]["name"]);
           } else {
               // Handle the case when no file was uploaded or other errors occurred
               if ($_FILES["imagevac"]["error"] === UPLOAD_ERR_NO_FILE) {

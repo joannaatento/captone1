@@ -184,15 +184,13 @@ td{
                     <td><?php echo $row['role']; ?></td>
                     <td><?php echo $row['onoff']; ?></td>
                     <td>
-
-
                         
     <center>
     <a href="#openModal<?= $medicalapp_id; ?>" class="modal-link" data-bs-toggle="modal" data-bs-target="#openModal<?= $medicalapp_id; ?>">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-        </svg>
-    </a>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                      <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                      </svg>
+                       </a>
     <a href="editmedicals.php?medicalapp_id=<?php echo $medicalapp_id; ?>">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -217,29 +215,28 @@ td{
     </center>
 </td>
                   </tr>
- <!-- Modal for each record -->
- <div class="modal fade" id="openModal<?= $medicalapp_id; ?>" tabindex="-1" aria-labelledby="modalLabel<?= $medicalapp_id; ?>" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabel<?= $healthnogsjhs_id; ?>">Send Message</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="#" method="POST">
-                                    <div class="mb-3">
-                                        <label for="inputTo" class="form-label">To</label>
-                                        <input type="text" class="form-control" id="inputTo" name="phone" value="<?= $phoneno; ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="messagesms" class="form-label">Message</label>
-                                        <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" name="submit">Send</button>
-                                    </div>
-                                    </form>
+                  <div class="modal fade" id="openModal<?= $medicalapp_id; ?>" tabindex="-1" aria-labelledby="modalLabel<?= $medicalapp_id; ?>" aria-hidden="true">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="modalLabel<?= $medicalapp_id; ?>">Send Message</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                  <form action="" method="POST">
+                      <div class="mb-3">
+                          <label for="inputTo" class="form-label">To</label>
+                          <input type="text" class="form-control" id="inputTo" name="phone" value="<?= $phoneno; ?>">  
+                      </div>
+                      <div class="mb-3">
+                          <label for="messagesms" class="form-label">Message</label>
+                          <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day <?=$row['fullname'];?>! Your request for medical appointment is approved. Your schedule will be on <?= date('F j, Y', strtotime($row['date_time'])); ?> at <?= date('h:i A', strtotime($row['sched_time'])); ?>.</textarea>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Send</button>
+                      </div>
+                      </form>
                             </div>
                         </div>
                     </div>

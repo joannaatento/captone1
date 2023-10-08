@@ -268,7 +268,7 @@ if (mysqli_num_rows($result) > 0) {
 
 <div class="input_wrap">
   <label for="fullname">Name of Father</label>
-  <input name="fathername" id="father" type="text" value="<?=$row['father'];?>" >
+  <input name="father" id="father" type="text" value="<?=$row['father'];?>" >
 </div>
 
 <div class="input_wrap">
@@ -282,7 +282,7 @@ if (mysqli_num_rows($result) > 0) {
 
 <div class="input_wrap">
     <label for="fullname">Name of Mother</label>
-    <input name="mothername" id="mother" type="text" value="<?=$row['mother'];?>" >
+    <input name="mother" id="mother" type="text" value="<?=$row['mother'];?>" >
 </div>
 
 <div class="input_wrap">
@@ -294,15 +294,24 @@ if (mysqli_num_rows($result) > 0) {
 
 <div class="input_form grid-row-2">
 <div class="input_wrap">
-    <label for="fullname">Religion</label>
-    <input name="religion" id="religion" type="text" value="<?=$row['religion'];?>" >
-</div>
+<label for="fullname">Religion</label>
+                <select class="form-select" name="religion">
+                    <option value="" <?php if(empty($row['religion'])) echo "selected"; ?>>Select Religion</option>
+                    <option value="Roman Catholic" <?php if($row['religion'] == "Roman Catholic") echo "selected"; ?>>Roman Catholic</option>
+                    <option value="Other" <?php if($row['religion'] == "Other") echo "selected"; ?>>Other</option>
+                </select>
+              </div>
 
 <div class="input_wrap">
-    <label for="fullname">Nationality</label>
-    <input name="nationality" id="nationality" type="text" value="<?=$row['nationality'];?>" >
-</div>
-</div>
+<label for="fullname">Nationality</label>
+                <select class="form-select" name="nationality">
+                    <option value="" <?php if(empty($row['nationality'])) echo "selected"; ?>>Select Nationality</option>
+                    <option value="Filipino" <?php if($row['nationality'] == "Filipino") echo "selected"; ?>>Filipino</option>
+                    <option value="Other" <?php if($row['nationality'] == "Other") echo "selected"; ?>>Other</option>
+                </select>
+              </div>
+
+              </div>
 
 <div class="input_form grid-row-1">
   <div class="input_wrap">

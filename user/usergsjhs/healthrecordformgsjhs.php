@@ -184,29 +184,29 @@
 
     <div class="input_form">
 
-            <div class="input_wrap">
-                <label for="image" >Upload Image</label>
-                <input type="file" name="image" id="image" required>
-             
-           
-        
-            </div>
+    <div class="input_wrap">
+    <label for="image">Upload Image<span class="required" style="color: red;">*</span></label>
+    <input type="file" name="image" id="image" required>
+</div>
+
+
+
 
     </div>
 
         <div class="input_form">
 
             <div class="input_wrap">
-                <label for="fullname">Full Name</label>
+                <label for="fullname">Full Name<span class="required" style="color: red;">*</span></label>
                 <input name="fullname" type="text" class="input-box" value="<?= $fullname; ?>" readonly>
             </div>
             <div class="input_wrap">
-                <label for="fullname">ID Number</label>
+                <label for="fullname">ID Number<span class="required" style="color: red;">*</span></label>
                 <input name="idnumber" type="text" class="input-box" value="<?= $idnumber; ?>" readonly>
             </div>
             <div class="input_wrap">
-                <label for="personal_contact">Personal Contact Number</label>
-                <input id="personalContactInput" class="input-box" name="cp" type="text" placeholder="+63" >
+                <label for="personal_contact">Personal Contact Number<span class="required" style="color: red;">*</span></label>
+                <input id="personalContactInput" class="input-box" name="cp" type="text" placeholder="+63" required>
                 <p id="personalContactError" class="error-message">Invalid Phone Number</p>
             </div>
 
@@ -240,8 +240,8 @@
 
 
 <div class="input_wrap">
-                <label for="fullname">Birthday</label>
-                <input class="input-box" name="birthday" id="birthday" type="date">
+                <label for="fullname">Birthday<span class="required" style="color: red;">*</span></label>
+                <input class="input-box" name="birthday" id="birthday" type="date" required>
             </div>
 </div>
    </div>
@@ -249,33 +249,33 @@
         <div class="input_form">
 
             <div class="input_wrap">
-                <label for="fullname">Gender</label>      
-                <select class="form-select" name="gender">          
+                <label for="fullname">Gender<span class="required" style="color: red;">*</span></label> 
+                <select class="form-select" name="gender" required>          
                     <option disabled selected>Select Gender</option>
                     <option value="Female">Female</option>
                     <option value="Male">Male</option>
                 </select>
             </div>
             <div class="input_wrap">
-                <label for="fullname">Home Address</label>
-                <input class="input-box" name="address" id ="address" type="text">
+                <label for="fullname">Home Address<span class="required" style="color: red;">*</span></label>
+                <input class="input-box" name="address" id ="address" type="text" required>
             </div>
             <div class="input_wrap">
-                <label for="fullname">Present Address</label>
-                <input class="input-b" name="paddress" id="paddress" type="text">
+                <label for="fullname">Present Address<span class="required" style="color: red;">*</span></label>
+                <input class="input-b" name="paddress" id="paddress" type="text" required>
             </div>
 
         </div>
 
         <div class="input_form">
             <div class="input_wrap">
-                <label for="fullname">Name of Father</label>
-                <input name="father" id="father" type="text">
+                <label for="fullname">Name of Father<span class="required" style="color: red;">*</span></label>
+                <input name="father" id="father" type="text" required>
             </div>
 
             <div class="input_wrap">
-                <label for="fullname">Contact</label>
-                <input id="contactInput_one" class="input-box" name="cfather" type="text" placeholder="+63" >
+                <label for="fullname">Contact<span class="required" style="color: red;">*</span></label>
+                <input id="contactInput_one" class="input-box" name="cfather" type="text" placeholder="+63" required>
                 <p id="contactInputOneError" class="error-message">Invalid Phone Number</p>
             </div>
     
@@ -311,13 +311,13 @@
 
     <div class="input_form">
         <div class="input_wrap">
-            <label for="fullname">Name of Mother</label>
-            <input name="mother" id="mother" type="text">
+            <label for="fullname">Name of Mother<span class="required" style="color: red;">*</span></label>
+            <input name="mother" id="mother" type="text" rquired>
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Contact</label>
-            <input id="contactInput_two" class="input-box" name="cmother" type="text" placeholder="+63">
+            <label for="fullname">Contact<span class="required" style="color: red;">*</span></label>
+            <input id="contactInput_two" class="input-box" name="cmother" type="text" placeholder="+63" required>
             <p id="contactInputTwoError" class="error-message">Invalid Phone Number</p>
         </div>
 
@@ -349,69 +349,74 @@
     });
 </script>
 </div>
-
     <div class="input_form">
-        <div class="input_wrap">
-            <label for="fullname">Religion</label>
-            <input name="religion" id="religion" type="text">
-        </div>
+    <div class="input_wrap">
+                <label for="fullname">Religion<span class="required" style="color: red;">*</span></label> 
+                <select class="form-select" name="religion" required>          
+                    <option disabled selected>Select Religion</option>
+                    <option value="Roman Catholic">Roman Catholic</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="input_wrap">
+                <label for="fullname">Nationality<span class="required" style="color: red;">*</span></label> 
+                <select class="form-select" name="nationality" required>          
+                    <option disabled selected>Select Nationality</option>
+                    <option value="Filipino">Filipino</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
 
         <div class="input_wrap">
-            <label for="fullname">Nationality</label>
-            <input name="nationality" id="nationality" type="text">
-        </div>
-
-        <div class="input_wrap">
-                <label for="fullname">Primary Language Spoken</label>
-                <input name="language" id ="language" type="text">
+                <label for="fullname">Primary Language Spoken<span class="required" style="color: red;">*</span></label>
+                <input name="language" id ="language" type="text" required>
             </div>
     </div>
 
   
 
      <div class="input_form">
-        <label for="fullname" style="font-size: 18px;">Student lives with:</label>
+        <label for="fullname" style="font-size: 18px;">Student lives with:<span class="required" style="color: red;">*</span></label>
     </div>
 <br>
 
 
 <div class="checkbox-group">
     <div>
-        <input class="checkbox" name="student_lives" value="livesbothparents" type="radio" id="bothparents">
+        <input class="checkbox" name="student_lives" value="livesbothparents" type="radio" id="bothparents" required>
         <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="bothparents">Both Parents</label>
     </div>
 
     <div >
-        <input class="checkbox" name="student_lives" value="livesfather" type="radio" id="livesfather">
+        <input class="checkbox" name="student_lives" value="livesfather" type="radio" id="livesfather" required>
         <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="livesfather">Father</label>
     </div>
 
     <div>
-        <input class="checkbox" name="student_lives" value="livesmother" type="radio" id="livesmother">
+        <input class="checkbox" name="student_lives" value="livesmother" type="radio" id="livesmother" required>
         <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="livesmother">Mother</label>
     </div>
 
     <div>
-        <input class="checkbox" name="student_lives" value="livesguardian" type="radio" id="livesguardian">
+        <input class="checkbox" name="student_lives" value="livesguardian" type="radio" id="livesguardian" required>
         <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="livesguardian">Guardian</label>
     </div>
 </div>
 
-
-
     <div class="input_form">
         <div class="input_wrap">
-            <label for="fullname">Person to contact in case of emergency</label>
-            <input class="input-box" name="guardianname" id="guardianname" type="text">
+            <label for="fullname">Person to contact in case of emergency<span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="guardianname" id="guardianname" type="text" required>
         </div>
         <div class="input_wrap">
-            <label for="fullname">Relation to the Student</label>
-            <input class="input-box" name="guardianrelation" id="guardianrelation" type="text">
+            <label for="fullname">Relation to the Student<span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="guardianrelation" id="guardianrelation" type="text" required>
         </div>
  
         <div class="input_wrap">
-            <label for="fullname">Contact</label>
-            <input id="contactInput_cguardian" class="input-box" name="cguardian" type="text" placeholder="+63">            
+            <label for="fullname">Contact<span class="required" style="color: red;">*</span></label>
+            <input id="contactInput_cguardian" class="input-box" name="cguardian" type="text" placeholder="+63" required>            
             <p id="contactguardianError" class="error-message">Invalid Phone Number</p>
         </div>
     
@@ -465,7 +470,7 @@
 
     <div class="indent">
         <div>
-            <p class="title" style="font-size: 20px; font-weight: bold;">IMMUNIZATION</p>
+            <p class="title" style="font-size: 20px; font-weight: bold;">IMMUNIZATION<span class="required" style="color: red;">*</span></label>
         </div>
         <p class="instructions">Please select the box if your child/ward has completed the following Primary Immunization.</p>
 
@@ -494,28 +499,29 @@
 
     <div class="input-wrap">
         <label for="fullname">Others</label>
-        <input class="input-box" name="others" id="others" type="text">
+        <input class="input-box" name="others" id="others" type="text" placeholder ="Put N/A if not completed">
     </div>
 
     <br>
-        <p>Does your child/ward have COVID-19 Vaccination? (If with First, Second or Booster dose, please attach a screenshot of Vaccination Card).</p>
+        <p>Does your child/ward have COVID-19 Vaccination? (If with First, Second or Booster dose, please attach a screenshot of Vaccination Card).
+        <span class="required" style="color: red;">*</span></p>
 
         <div class="input_form">
 
             <div>
-            <input class="checkbox" name="vaccination" value="firstdose" type="radio" id="firstdose">
+            <input class="checkbox" name="vaccination" value="firstdose" type="radio" id="firstdose" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="firstdose">First Dose Only</label>
             </div>
             <div>
-            <input class="checkbox" name="vaccination" value="seconddose" type="radio" id="seconddose">
+            <input class="checkbox" name="vaccination" value="seconddose" type="radio" id="seconddose" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="seconddose">Second Dose</label>
             </div>
             <div>
-            <input class="checkbox" name="vaccination" value="boosterdose" type="radio" id="boosterdose">
+            <input class="checkbox" name="vaccination" value="boosterdose" type="radio" id="boosterdose" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="boosterdose">Booster Dose</label>
             </div>
             <div>
-            <input class="checkbox" name="vaccination" value="no" type="radio" id="no">
+            <input class="checkbox" name="vaccination" value="no" type="radio" id="no" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="no">No</label>
             </div>
 
@@ -530,7 +536,7 @@
     <br>
     <div class="medical-history">
         <p class="title" style="font-size: 20px; font-weight: bold;">MEDICAL HISTORY</p>
-        <p>Does you/your child have/ or history of the following conditions?</p>
+        <p>Does you/your child have/ or history of the following conditions?<span class="required" style="color: red;">*</span></p>
 
         <div class="checkbox-group">
             <div>
@@ -608,19 +614,19 @@
 
             <div class="input_wrap">
                 <label for="fullname">Others</label>
-                <input name="othersmedical" class="input-box" id ="othersmedical" type="text" placeholder="Other Conditions">
+                <input name="othersmedical" class="input-box" id ="othersmedical" type="text" placeholder="Other Conditions (if None put N/A)">
             </div>
 
             <div class="input_wrap">
-                <p>Do you have a heart condition?</p>
+                <p>Do you have a heart condition?<span class="required" style="color: red;">*</span></p>
                 <div class="row-container">
                     <div>
-                        <input class="checkbox" value="yes" name="heartcondition" value="yesheartcon" type="radio" id="yesheartcon">
+                        <input class="checkbox" value="yes" name="heartcondition" value="yesheartcon" type="radio" id="yesheartcon" required>
                         <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="yesheartcon">Yes</label>
                     </div>
 
                     <div>
-                        <input class="checkbox" value="no" name="heartcondition" value="noheartcon" type="radio" id="noheartcon">
+                        <input class="checkbox" value="no" name="heartcondition" value="noheartcon" type="radio" id="noheartcon" required>
                         <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="noheartcon">No</label>
                     </div>
 
@@ -631,15 +637,15 @@
             </div>
 
     <div class="question">
-        <p>Do you have an Eye problem?</p>
+        <p>Do you have an Eye problem?<span class="required" style="color: red;">*</span></p>
         <div class="row-container">
         <div>
-        <input class="checkbox"  name="eyeproblem" value="yes" type="radio" id="yeseyeproblem">
+        <input class="checkbox"  name="eyeproblem" value="yes" type="radio" id="yeseyeproblem" required>
     <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="yeseyeproblem">Yes</label>
 </div>
 
 <div>
-    <input class="checkbox" name="eyeproblem" value="no" type="radio" id="noeyeproblem">
+    <input class="checkbox" name="eyeproblem" value="no" type="radio" id="noeyeproblem" required>
     <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="noeyeproblem">No</label>
 </div>
 
@@ -650,15 +656,15 @@
     </div>
 
     <div class="question">
-        <p>Do you have a history of serious illness and/or hospitalization? (Please specify and include dates.)</p>
+        <p>Do you have a history of serious illness and/or hospitalization? (Please specify and include dates.)<span class="required" style="color: red;">*</span></p>
         <div class="row-container">
             <div>
-                <input class="checkbox" name="seriousillness" value="yes" type="radio" id="yesseriousillness">
+                <input class="checkbox" name="seriousillness" value="yes" type="radio" id="yesseriousillness" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="yesseriousillness">Yes</label>
             </div>
 
             <div>
-                <input class="checkbox" name="seriousillness" value="no" type="radio" id="noseriousillness">
+                <input class="checkbox" name="seriousillness" value="no" type="radio" id="noseriousillness" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="noseriousillness">No</label>
             </div>
 
@@ -669,15 +675,15 @@
     </div>
 
     <div class="question">
-        <p>Do you have a history of surgeries and/or injuries? (Please specify and include dates.)</p>
+        <p>Do you have a history of surgeries and/or injuries? (Please specify and include dates.)<span class="required" style="color: red;">*</span></p>
         <div class="row-container">
             <div>
-                <input class="checkbox" name="surgeries_injuries" value="yes" type="radio" id="yessurgeries_injuries">
+                <input class="checkbox" name="surgeries_injuries" value="yes" type="radio" id="yessurgeries_injuries" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="yessurgeries_injuries">Yes</label>
             </div>
 
             <div>
-                <input class="checkbox" name="surgeries_injuries" value="no" type="radio" id="nosurgeries_injuries">
+                <input class="checkbox" name="surgeries_injuries" value="no" type="radio" id="nosurgeries_injuries" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="nosurgeries_injuries">No</label>
             </div>
 
@@ -688,15 +694,15 @@
     </div>
 
     <div class="question">
-        <p>Do receive any medication or medical treatment, either regularly or occasionally?</p>
+        <p>Do receive any medication or medical treatment, either regularly or occasionally?<span class="required" style="color: red;">*</span></p>
         <div class="row-container">
             <div>
-                <input class="checkbox" name="medicationtreatment" value="yes" type="radio" id="yesmedicationtreatment">
+                <input class="checkbox" name="medicationtreatment" value="yes" type="radio" id="yesmedicationtreatment" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="yesmedicationtreatment">Yes</label>
             </div>
 
             <div>
-                <input class="checkbox" name="medicationtreatment" value="no" type="radio" id="nomedicationtreatment">
+                <input class="checkbox" name="medicationtreatment" value="no" type="radio" id="nomedicationtreatment" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="nomedicationtreatment">No</label>
             </div>
 
@@ -706,15 +712,15 @@
         </div>
     </div>
 <div class="question">
-        <p>Do you have any allergies to medication?</p>
+        <p>Do you have any allergies to medication?<span class="required" style="color: red;">*</span></p>
         <div class="row-container">
             <div>
-                <input class="checkbox" name="allergiesmed" value="yes" type="radio" id="yesallergiesmed">
+                <input class="checkbox" name="allergiesmed" value="yes" type="radio" id="yesallergiesmed" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="yesallergiesmed">Yes</label>
             </div>
 
             <div>
-                <input class="checkbox" name="allergiesmed" value="no" type="radio" id="noallergiesmed">
+                <input class="checkbox" name="allergiesmed" value="no" type="radio" id="noallergiesmed" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="noallergiesmed">No</label>
             </div>
 
@@ -725,15 +731,15 @@
     </div>
 
     <div class="question">
-        <p>Do you have any allergies to food?</p>
+        <p>Do you have any allergies to food?<span class="required" style="color: red;">*</span></p>
         <div class="row-container">
             <div>
-                <input class="checkbox" name="allergiesfood" value="yes" type="radio" id="yesallergiesfood">
+                <input class="checkbox" name="allergiesfood" value="yes" type="radio" id="yesallergiesfood" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="yesallergiesfood">Yes</label>
             </div>
 
             <div>
-                <input class="checkbox" name="allergiesfood" value="no" type="radio" id="noallergiesfood">
+                <input class="checkbox" name="allergiesfood" value="no" type="radio" id="noallergiesfood" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="noallergiesfood">No</label>
             </div>
 
@@ -744,15 +750,15 @@
     </div>
 
     <div class="question">
-        <p>Would you like to receive minor first aid (medication & treatment) given by the nurse in the school clinic?</p>
+        <p>Would you like to receive minor first aid (medication & treatment) given by the nurse in the school clinic?<span class="required" style="color: red;">*</span></p>
         <div class="row-container">
         <div>
-    <input class="checkbox" name="firstaid" value="yes" type="radio" id="yesfirstaid">
+        <input class="checkbox" name="firstaid" value="yes" type="radio" id="yesfirstaid" required>
     <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="yesfirstaid">Yes</label>
 </div>
 
 <div>
-    <input class="checkbox" name="firstaid" value="no" type="radio" id="nofirstaid">
+    <input class="checkbox" name="firstaid" value="no" type="radio" id="nofirstaid" required>
     <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="nofirstaid">No</label>
 </div>
 
@@ -761,16 +767,16 @@
 
     <div class="question">
 
-        <p>Do you have any concerns related to your health?</p>
+        <p>Do you have any concerns related to your health?<span class="required" style="color: red;">*</span></p>
         <div class="row-container">
 
             <div>
-                <input class="checkbox" name="concerns" value="yes" type="radio" id="yesconcerns">
+                <input class="checkbox" name="concerns" value="yes" type="radio" id="yesconcerns" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="yesconcerns">Yes</label>
             </div>
 
             <div>
-                <input class="checkbox" name="concerns" value="no" type="radio" id="noconcerns">
+                <input class="checkbox" name="concerns" value="no" type="radio" id="noconcerns" required>
                 <label class="checkbox-label" style="font-size: 14px; padding-left: 30px;" for="noconcerns">No</label>
             </div>
 

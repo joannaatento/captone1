@@ -11,7 +11,7 @@ if (isset($_POST['update_dentalrecord'])) {
     $fullname = $_POST['fullname'];
     $service = $_POST['service'];
     $phoneno= $_POST['phoneno'];
-    $gradecourseyear= $_POST['gradecourseyear'];
+    $gradelevel= $_POST['gradelevel'];
     $role = $_POST['role'];
     $date_time = $_POST['date_time'];
     $sched_time = $_POST['sched_time'];
@@ -27,7 +27,7 @@ if (isset($_POST['update_dentalrecord'])) {
     // Update the record in the database
     $sql = "UPDATE dentalapp SET
     idnumber='$idnumber', fullname='$fullname', service='$service',phoneno='$phoneno',
-    gradecourseyear = '$gradecourseyear', role='$role', date_time='$formattedDatetime',sched_time='$sched_time'
+    gradelevel = '$gradelevel', role='$role', date_time='$formattedDatetime',sched_time='$sched_time'
     WHERE dentalapp_id = '$dentalapp_id'";
 
     if (mysqli_query($conn, $sql)) {

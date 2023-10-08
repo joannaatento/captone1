@@ -10,7 +10,7 @@
         $phoneno = $_POST['phoneno'];
         $date_time = $_POST['date_time'];
         $sched_time = $_POST['sched_time'];
-        $gradecourseyear = $_POST['gradecourseyear'];
+        $gradelevel = $_POST['gradelevel'];
         $role = $_POST['role'];
         // Check if 'is_deleted_on_website' is set in $_POST
         if (isset($_POST['is_deleted_on_website'])) {
@@ -34,8 +34,8 @@
     
             if ($row['count'] == 0) {
                 // No duplicate entry, proceed with the insertion
-                $sql = "INSERT INTO dentalapp (user_id, idnumber, fullname, service, phoneno, date_time, sched_time, gradecourseyear, role, created_at, is_deleted_on_website, status) 
-                         VALUES ('$user_id', '$idnumber', '$fullname', '$service', '$phoneno', '$formattedDatetime', '$sched_time', '$gradecourseyear','$role', NOW(), '$is_deleted_on_website', 'Available')";
+                $sql = "INSERT INTO dentalapp (user_id, idnumber, fullname, service, phoneno, date_time, sched_time, gradelevel, role, created_at, is_deleted_on_website, status) 
+                         VALUES ('$user_id', '$idnumber', '$fullname', '$service', '$phoneno', '$formattedDatetime', '$sched_time', '$gradelevel','$role', NOW(), '$is_deleted_on_website', 'Available')";
     
                 if (mysqli_query($conn, $sql)) {
                     // Mark the selected slot as unavailable

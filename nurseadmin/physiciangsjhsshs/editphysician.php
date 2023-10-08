@@ -62,7 +62,7 @@ if (mysqli_num_rows($result) > 0) {
     $row = $result->fetch_assoc(); 
     $idnumber = $row['idnumber'];
     $fullname = $row['fullname'];
-    $gradesection = $row['gradesection'];
+    $gradelevel = $row['gradelevel'];
     $phoneno = $row['phoneno'];
     $date_time = $row['date_time'];
     $sched_time = $row['sched_time'];
@@ -136,9 +136,9 @@ $sql = "SELECT * FROM physicianapp WHERE phy_id ='$phy_id'";
 
   <div class="col-sm-3">
     <div class="form-group">
-      <label for="gradesection" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
+      <label for="gradelevel" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradesection" name="gradesection" value="<?=$row['gradesection'];?>">
+        <input type="text" class="form-control" id="gradelevel" name="gradelevel" value="<?=$row['gradelevel'];?>">
       </div>
     </div>
   </div>

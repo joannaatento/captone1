@@ -149,7 +149,7 @@ if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
   $fullname = $row['fullname'];
-  $gradesection = $row['gradesection'];
+  $gradelevel = $row['gradelevel'];
   $phoneno = $row['phoneno'];
   $date_time = $row['date_time'];
   $sched_time = $row['sched_time'];
@@ -209,8 +209,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/DivineClinic/components/navbar.php";
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                <label for="gradesection" class="control-label">Grade & Section</label>
-                                <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter patient name" value="<?php echo $row['gradesection']; ?>" readonly>
+                                <label for="gradelevel" class="control-label">Grade & Section</label>
+                                <input type="text" class="form-control" id="gradelevel" name="gradelevel" placeholder="Enter patient name" value="<?php echo $row['gradelevel']; ?>" readonly>
                             </div>
 
                         </div>

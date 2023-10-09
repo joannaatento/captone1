@@ -180,7 +180,7 @@
         <div class="input_form">
 
             <div class="input_wrap">
-                <label for="image">Upload Image</label>
+                <label for="image">Upload Image<span class="required" style="color: red;">*</span></label>
                 <input type="file" name="image" id="image" required>
             </div>
 
@@ -188,17 +188,17 @@
         <div class="input_form grid-row-3">
 
             <div class="input_wrap">
-                <label for="fullname">Full Name</label>
+                <label for="fullname">Full Name<span class="required" style="color: red;">*</span></label>
                 <input name="fullname" type="text" class="input-box" value="<?= $fullname; ?>" readonly>
             </div>
                        
             <div class="input_wrap">
-                <label for="fullname">ID Number</label>
+                <label for="fullname">ID Number<span class="required" style="color: red;">*</span></label>
                 <input id="idnumber" name="idnumber" type="text" class="input-box" value="<?= $idnumber; ?>" readonly>
             </div>
             <div class="input_wrap">
-                <label for="personal_contact">Personal Contact Number</label>
-                <input id="personalContactInput" class="input-box" name="phoneno" type="text" placeholder="+63">
+                <label for="personal_contact">Personal Contact Number<span class="required" style="color: red;">*</span></label>
+                <input id="personalContactInput" class="input-box" name="phoneno" type="text" placeholder="+63" required>
                 <p id="personalContactError" class="error-message">Invalid Phone Number</p>
             </div>
 
@@ -235,13 +235,13 @@
     <div class="input_form grid-row-2">
 
         <div class="input_wrap">
-                <label for="fullname">Birthday</label>
-                <input class="input-box" name="birthday" id="birthday" type="date">
+                <label for="fullname">Birthday <span class="required" style="color: red;">*</span></label>
+                <input class="input-box" name="birthday" id="birthday" type="date" required>
             </div>
     
         <div class="input_wrap">
-            <label for="fullname">Gender</label>
-            <select class="form-select" name="gender">
+            <label for="fullname">Gender<span class="required" style="color: red;">*</span></label>
+            <select class="form-select" name="gender" required>
                 <option disabled selected>Select Gender</option>
             <option value="Female">Female</option>
                 <option value="Male">Male</option>
@@ -253,25 +253,25 @@
     <div class="input_form grid-row-2">
 
             <div class="input_wrap">
-                <label for="fullname">Home Address</label>
-                <input class="input-box" name="address" id ="address" type="text">
+                <label for="fullname">Home Address<span class="required" style="color: red;">*</span></label>
+                <input class="input-box" name="address" id ="address" type="text" required>
             </div>
                             
             <div class="input_wrap">
-                <label for="fullname">Present Address</label>
-                <input class="input-box" name="paddress" id="paddress" type="text">
+                <label for="fullname">Present Address<span class="required" style="color: red;">*</span></label>
+                <input class="input-box" name="paddress" id="paddress" type="text" required>
             </div>
     </div>
 
         <div class="input_form grid-row-2">
             <div class="input_wrap">
-                <label for="fullname">Name of Father</label>
-                <input name="father" id="father" type="text">
+                <label for="fullname">Name of Father<span class="required" style="color: red;">*</span></label>
+                <input name="father" id="father" type="text" required>
             </div>
 
             <div class="input_wrap">
-                <label for="fullname">Contact</label>
-                <input id="contactInput_one" class="input-box" name="cfather" type="text" placeholder="+63">
+                <label for="fullname">Contact<span class="required" style="color: red;">*</span></label>
+                <input id="contactInput_one" class="input-box" name="cfather" type="text" placeholder="+63" required>
                 <p id="contactInputOneError" class="error-message">Invalid Phone Number</p>
             </div>
 
@@ -306,13 +306,13 @@
 
     <div class="input_form grid-row-2">
         <div class="input_wrap">
-            <label for="fullname">Name of Mother</label>
-            <input name="mother" id="mother" type="text">
+            <label for="fullname">Name of Mother<span class="required" style="color: red;">*</span></label>
+            <input name="mother" id="mother" type="text" required>
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Contact</label>
-            <input id="contactInput_two" class="input-box" name="cmother" type="text" placeholder="+63">            
+            <label for="fullname">Contact<span class="required" style="color: red;">*</span></label>
+            <input id="contactInput_two" class="input-box" name="cmother" type="text" placeholder="+63" required>            
             <p id="contactInputTwoError" class="error-message">Invalid Phone Number</p>
         </div>
 
@@ -348,7 +348,7 @@
 <br>
     <div class="medical-history">
 
-        <p style="color: #000;" >Please select box if you have/had any of the following illnesses:</p>
+        <p style="color: #000;" >Please select box if you have/had any of the following illnesses:<span class="required" style="color: red;">*</span></p>
 
         <div class="checkbox-group">
 
@@ -417,7 +417,7 @@
    
             
         <br>
-        <p style="color: #000;">Do you have any allergy to:</p>
+        <p style="color: #000;">Do you have any allergy to:<span class="required" style="color: red;">*</span></p>
 
         <div class="row-container">
             <p><b>Food:</b></p>
@@ -459,7 +459,7 @@
     <div class="row-container">
 
         <div class="input_wrap">
-            <label for="fullname" id="language">Would you allow your child to be given medicine (as needed) while here in the school?</label>
+            <label for="fullname" id="language">Would you allow your child to be given medicine (as needed) while here in the school?<span class="required" style="color: red;">*</span></label>
         </div>
 
         <div>
@@ -479,7 +479,7 @@
         <div class="row-container">
 
             <div class="input_wrap"> 
-                <label for="fullname">Is your child taking any medications at present?</label>
+                <label for="fullname">Is your child taking any medications at present?<span class="required" style="color: red;">*</span></label>
             </div>
             
             <div>
@@ -505,15 +505,15 @@
    <div class="input_form grid-row-3"> 
 
         <div class="input_wrap">
-            <label class="font-minus" for="fullname" >Person to contact in case of emergency:</label>
-            <input name="notified" id ="languages" type="text" style="width:333px !important;">
+            <label class="font-minus" for="fullname" >Person to contact in case of emergency:<span class="required" style="color: red;">*</span></label>
+            <input name="notified" id ="languages" type="text" style="width:333px !important;" required>
 
         
         </div>
             
         <div class="input_wrap">
-            <label for="fullname">Contact</label>
-            <input id="contactInput_five" class="input-box" name="contact" type="text" placeholder="+63">            
+            <label for="fullname">Contact<span class="required" style="color: red;">*</span></label>
+            <input id="contactInput_five" class="input-box" name="contact" type="text" placeholder="+63" required>            
             <p id="contactInputFiveError" class="error-message">Invalid Phone Number</p>
         </div>
 
@@ -546,8 +546,8 @@
 </script>
 
         <div class="input_wrap">
-            <label for="fullname">Relationship</label>
-            <input name="relationship" id ="relationship" type="text" style="width:333px !important;">
+            <label for="fullname">Relationship<span class="required" style="color: red;">*</span></label>
+            <input name="relationship" id ="relationship" type="text" style="width:333px !important;" required>
         </div>
 
        

@@ -15,6 +15,8 @@
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
         $idnumber = $row['idnumber'];
+        $gradelevel = $row['gradelevel'];
+        $role = $row['role'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 2){
             // User type 1 specific code here
@@ -281,21 +283,19 @@ personalContactError.style.display = 'block'; // Show the error message for inva
 
 <div class="col-sm-3">
 <div class="form-group">
-<label for="gradecourseyear" class="control-label" style="font-size: 16px">Grade & Section</label>
-<input type="text" class="form-control" id="igradecourseyear" name="gradecourseyear" placeholder="Enter Grade & Section">
+<label for="gradelevel" class="control-label" style="font-size: 16px">Grade & Section</label>
+<input type="text" class="form-control" id="gradelevel" name="gradelevel" value="<?= $gradelevel; ?>" readonly>
 </div>
 </div>
 
 <div class="col-sm-3">
-<div class="form-group">
-<label for="fullname" style="font-size: 16px">Role</label>
-<select id="role" name="role" class="form-control">
-<option value="">--Select--</option>
-<option value="Student in SHS">Student</option>
-<option value="Employee in SHS">Employee</option>
-</select>
-</div>
-</div>
+                <div class="form-group">
+                    <label for="role" class="control-label">Role</label>
+                    <input type="hidden" name="role" value="Student in SHS">
+                    <input type="text" class="form-control" id="role_display" readonly value="Student">
+
+                </div>
+            </div>
 </div>
 
 <br><br>

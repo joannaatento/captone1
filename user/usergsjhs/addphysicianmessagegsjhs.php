@@ -174,14 +174,14 @@
 
 
     <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="role" class="control-label">Role</label>
-                    <input type="hidden" name="role" value="Student in GS/JHS">
-                    <input type="text" class="form-control" id="role_display" readonly value="Student">
-
-                </div>
-            </div>
-
+    <div class="form-group">
+        <label for="role" class="control-label">Role</label>
+        <select class="form-control" id="role" name="role">
+            <option value="Student in GS/JHS" <?php if ($role === "Student in GS/JHS") echo "selected"; ?>>Student</option>
+            <option value="Employee in GS/JHS" <?php if ($role === "Employee in GS/JHS") echo "selected"; ?>>Employee</option>
+        </select>
+    </div>
+</div>
 </div>
 
     <style>

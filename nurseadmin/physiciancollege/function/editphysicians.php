@@ -18,15 +18,10 @@ if (isset($_POST['update_physicianrecord'])) {
 
     // Validate and sanitize inputs here...
 
-    // Convert appointment datetime to a DateTime object
-    date_default_timezone_set('Asia/Manila');
-    $appointmentDateTime = new DateTime($date_time);
-    $formattedDatetime = $appointmentDateTime->format("Y-m-d h:i A");
-
     // Update the record in the database
     $sql = "UPDATE physicianappcollege SET
     idnumber='$idnumber', fullname='$fullname',gradesection = '$gradesection',  phoneno='$phoneno',
-    date_time='$formattedDatetime', sched_time='$sched_time', role='$role'
+    date_time='$date_time', sched_time='$sched_time', role='$role'
     WHERE phy_id = '$phy_id'";
 
     if (mysqli_query($conn, $sql)) {

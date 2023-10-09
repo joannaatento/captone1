@@ -15,6 +15,8 @@
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
         $idnumber = $row['idnumber'];
+        $gradelevel = $row['gradelevel'];
+        $role = $row['role'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 3){
             // User type 1 specific code here
@@ -283,23 +285,19 @@
 
     <div class="col-sm-3">
         <div class="form-group">
-            <label for="gradecourseyear" class="control-label" style="font-size: 16px">Course & Year</label>
-            <input type="text" class="form-control" id="igradecourseyear" name="gradecourseyear" placeholder="Enter Course & Year">
+            <label for="gradelevel" class="control-label" style="font-size: 16px">Course & Year</label>
+            <input type="text" class="form-control" id="gradelevel" name="gradelevel" value="<?= $gradelevel; ?>" readonly>
         </div>
     </div>
-    
     <div class="col-sm-3">
-        <div class="form-group">
-            <label for="fullname" style="font-size: 16px">Role</label>
-            <select id="role" name="role" class="form-control">
-                <option value="">--Select--</option>
-                <option value="Student in College">Student</option>
-                <option value="Employee in College">Employee</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label for="role" class="control-label">Role</label>
+        <select class="form-control" id="role" name="role">
+            <option value="Student in College" <?php if ($role === "Student in College") echo "selected"; ?>>Student</option>
+            <option value="Employee in College" <?php if ($role === "Employee in College") echo "selected"; ?>>Employee</option>
+        </select>
     </div>
 </div>
-
 <br><br>
 
 <?php

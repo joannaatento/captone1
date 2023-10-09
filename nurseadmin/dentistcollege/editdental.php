@@ -60,7 +60,7 @@ if (mysqli_num_rows($result) > 0) {
   $fullname = $row['fullname'];
   $service = $row['service'];
   $phoneno = $row['phoneno'];
-  $gradecourseyear = $row['gradecourseyear'];
+  $gradelevel = $row['gradelevel'];
   $role = $row['role'];
   $date_time = $row['date_time'];
     }
@@ -133,9 +133,9 @@ if (mysqli_num_rows($result) > 0) {
 
   <div class="col-sm-3">
     <div class="form-group">
-      <label for="gradecourseyear" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
+      <label for="gradelevel" class="col-sm-12 control-label" style="font-size: 16px">Course & Year</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear" name="gradecourseyear" value="<?=$row['gradecourseyear'];?>">
+        <input type="text" class="form-control" id="gradelevel" name="gradelevel" value="<?=$row['gradelevel'];?>">
       </div>
     </div>
   </div>

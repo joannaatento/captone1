@@ -199,9 +199,10 @@
       </div>
 
       <div class="input_wrap">
-          <label for="fullname">Religion</label>
-          <input name="religion" class="input-box" id="religion" type="text" style="width: 240px;" value="<?=$row['religion'];?>" readonly>
-      </div>
+      <label for="fullname">Religion</label>
+      <input name="religion" id="religion" type="text" value="<?=$row['religion'];?>" readonly>
+  </div>
+
 
     </div>
 
@@ -726,9 +727,14 @@
         <div>
             <input class="checkbox" name="vision_defect" value="vision_defect" type="checkbox" id="vision_defect" value="<?= $row['vision_defect'];?>" <?php if ($row['vision_defect']) echo "checked"; ?>>
             <label class="checkbox-label" for="vision_defect" style="font-size: 14px; padding-left: 30px;">VISION DEFECT</label>
-        </div>
-
+      </div>
     </div>
+
+    <div class="input_wrap">
+  <label>Other Illness</label>
+  <input name="otherillness" type="text" style="width: 900px !important;" value="<?=$row['otherillness'];?>" readonly>
+</div>
+
 
     <div>
         <br>

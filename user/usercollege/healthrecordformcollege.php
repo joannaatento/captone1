@@ -116,7 +116,7 @@
       <div class="input_form">
 
         <div class="input_wrap">
-          <label for="image">Upload Image</label>
+          <label for="image">Upload Image<span class="required" style="color: red;">*</span></label>
           <input type="file" name="image" id="image" required>
         </div>
       </div>
@@ -124,18 +124,18 @@
       <div class="input_form">
 
         <div class="input_wrap">
-          <label for="fullname">Full Name</label>
+          <label for="fullname">Full Name<span class="required" style="color: red;">*</span></label>
           <input class="input-box" name="fullname" type="text" value="<?= $fullname; ?>"readonly>
         </div>
 
         <div class="input_wrap">
-          <label for="fullname">ID Number</label>
+          <label for="fullname">ID Number<span class="required" style="color: red;">*</span></label>
           <input name="idnumber" class="input-box" type="text" value="<?= $idnumber; ?>" readonly>
         </div>
        
         <div class="input_wrap">
-                <label for="fullname">Gender</label>
-                  <select class="form-select" name="gender">
+                <label for="fullname">Gender<span class="required" style="color: red;">*</span></label>
+                  <select class="form-select" name="gender" required>
                       <option value="" disabled selected>Select Gender</option>
                       <option value="Female">Female</option>
                       <option value="Male">Male</option>
@@ -143,8 +143,8 @@
             </div>
 
             <div class="input_wrap">
-                <label for="fullname">Address</label>
-                <input name="address" id ="address" type="text" style="width: 553px;">
+                <label for="fullname">Address<span class="required" style="color: red;">*</span></label>
+                <input name="address" id ="address" type="text" style="width: 553px;" required>
             </div>
 
       </div>
@@ -152,8 +152,8 @@
     <div class="input_form">
 
     <div class="input_wrap">
-     <label for="personal_contact">Personal Contact Number</label>
-    <input id="personalContactInput" name="pcontact" type="text" placeholder="+63" class="contactInput">
+     <label for="personal_contact">Personal Contact Number<span class="required" style="color: red;">*</span></label>
+    <input id="personalContactInput" name="pcontact" type="text" placeholder="+63" class="contactInput" required>
     <p id="personalContactError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
 </div>
 
@@ -206,57 +206,64 @@
   }
 </script>
    
-      <div class="input_wrap">
-          <label for="fullname">Nationality</label>
-          <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;">   
-      </div>
+<div class="input_wrap">
+                <label for="fullname">Nationality<span class="required" style="color: red;">*</span></label> 
+                <select class="form-select" name="nationality" required>          
+                    <option disabled selected>Select Nationality</option>
+                    <option value="Filipino">Filipino</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
 
         <div class="input_wrap">
-            <label for="fullname">Birthday</label>
-            <input class="input-box" name="birthday" id="birthday" type="date">
+            <label for="fullname">Birthday<span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="birthday" id="birthday" type="date" required>
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Religion</label>
-            <input class="input-box" name="religion" id="religion" type="text" style="width: 240px;">
-        </div>
-
+                <label for="fullname">Religion<span class="required" style="color: red;">*</span></label> 
+                <select class="form-select" name="religion" required>          
+                    <option disabled selected>Select Religion</option>
+                    <option value="Roman Catholic">Roman Catholic</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
     </div>
 
       <div class="input_form">
 
       <div class="input_wrap">
-            <label for="fullname">Father's Name</label>
-            <input class="input-box" name="fguardian" id="fguardian" type="text">
+            <label for="fullname">Father's Name<span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="fguardian" id="fguardian" type="text" required>
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Occupation</label>
-            <input class="input-box" name="occupation1" id="fguardian" type="text">
+            <label for="fullname">Occupation<span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="occupation1" id="fguardian" type="text" required>
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Mother's Name</label>
-            <input class="input-box" name="mother" id="fguardian" type="text">
+            <label for="fullname">Mother's Name<span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="mother" id="fguardian" type="text" required>
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Occupation</label>
-            <input class="input-box" name="occupation2" id="fguardian" type="text">
+            <label for="fullname">Occupation<span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="occupation2" id="fguardian" type="text" required>
         </div>
 
     </div>
 
     <div class="input_form">
     <div class="input_wrap">
-  <label for="fullname" style="width: 300px;">Person to Contact in case of Emergency</label>
-  <input class="input-box" name="contactemer" id="contactemer" type="text">
+  <label for="fullname" style="width: 300px;">Person to Contact in case of Emergency<span class="required" style="color: red;">*</span></label>
+  <input class="input-box" name="contactemer" id="contactemer" type="text" required>
 </div>
 
 
         <div class="input_wrap">
-   <label for="personal_contact">Contact Number</label>
-    <input id="ContactEmerInput" name="contactno" type="text" placeholder="+63" class="contactInput">
+   <label for="personal_contact">Contact Number<span class="required" style="color: red;">*</span></label>
+    <input id="ContactEmerInput" name="contactno" type="text" placeholder="+63" class="contactInput" required>
     <p id="ContactEmerError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
 </div>
 
@@ -309,8 +316,8 @@
 </script>
 
         <div class="input_wrap">
-            <label for="fullname">Relation to the Student</label>
-            <input class="input-box" name="relation" id="con" type="text">
+            <label for="fullname">Relation to the Student <span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="relation" id="con" type="text" required>
         </div>
 
     </div>
@@ -318,46 +325,48 @@
       <div class="input_form">
 
         <div class="input_wrap">
-          <label for="fullname">Hospital of Choice of referral</label>
-          <input class="input-box" name="referral" id="referral" type="text">
+          <label for="fullname">Hospital of Choice of referral<span class="required" style="color: red;">*</span></label>
+          <input class="input-box" name="referral" id="referral" type="text" placeholder="Type N/A if NONE" required>
         </div>
 
         <div class="input_wrap">
-   <label for="personal_contact">Contact Number</label>
-   <input id="ContactEmertwoInput" name="contactno2" type="text" placeholder="+63"  class="input-box">
+   <label for="personal_contact">Contact Number<span class="required" style="color: red;">*</span></label>
+   <input id="ContactEmertwoInput" name="contactno2" type="text" placeholder="+63" class="input-box" required>
    <p id="ContactEmertwoError" class="errorMessage" style="color: red; display: none;">Invalid Phone Number</p>
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Physician and Number to call</label>
-            <input class="input-box" name="physiciannumcall" id="physician" type="text">
+            <label for="fullname">Physician and Number to call<span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="physiciannumcall" id="physician" type="text" placeholder="Type N/A if NONE" required>
         </div>
 
         <div class="input_wrap">
-            <label for="fullname">Address of Hospital</label>
-            <input class="input-box" name="addresshospital" id="physician" type="text">
+            <label for="fullname">Address of Hospital<span class="required" style="color: red;">*</span></label>
+            <input class="input-box" name="addresshospital" id="physician" type="text" placeholder="Type N/A if NONE" required>
         </div>
 
   </div>
 
    <div>
     <br>
-    <b><p class="title" style="font-size: 20px; color: #000;">A. IMMUNIZATION</p></b>
+    <b><p class="title" style="font-size: 20px; color: #000;">A. IMMUNIZATION<span class="required" style="color: red;">*</span></p></b>
   </div>
 
     <b><p class="vaccine">VACCINE</p></b>
+
+<i>Type N/A if NONE</i>
     
     <div class="input_form grid-row-2">
 
       <div class="input_wrap">
       <label for="td_vaccine">Tetanus & Diphtheria (Td) of Tetanus toxoid</label>
-        <input class="input-box" name="td" id="td_vaccine" type="text" placeholder="Write WHEN and WHERE administered" style="width: 555px;">
+        <input class="input-box" name="td" id="td_vaccine" type="text" placeholder="Write WHEN and WHERE administered" style="width: 555px;" required>
       </div>
 
 
       <div class="input_wrap">
       <label for="mmr_vaccine">Measles, Mumps, Rubella (MMR)</label>
-        <input class="input-box" name="mmr" id="mmr_vaccine" type="text" placeholder="Write WHEN and WHERE administered" style="width: 555px;">
+        <input class="input-box" name="mmr" id="mmr_vaccine" type="text" placeholder="Write WHEN and WHERE administered" style="width: 555px;" required>
       </div>
 
     </div>
@@ -367,19 +376,19 @@
 
         <div class="input_wrap">
         <label for="hepab_vaccine">Hepatitis B</label>
-            <input class="input-box" name="hepab" id="hepab_vaccine" type="text" placeholder="Write WHEN and WHERE administered" style="width: 555px;">
+            <input class="input-box" name="hepab" id="hepab_vaccine" type="text" placeholder="Write WHEN and WHERE administered" style="width: 555px;" required>
         </div>
 
         <div class="input_wrap">
         <label for="varicella_vaccine">Varicella</label>
-            <input class="input-box" name="varicella" id="varicella_vaccine" type="text" placeholder="Write WHEN and WHERE administered" style="width: 555px;">
+            <input class="input-box" name="varicella" id="varicella_vaccine" type="text" placeholder="Write WHEN and WHERE administered" style="width: 555px;" required>
         </div>
 
     </div>
 
   <div>
     <br>
-    <b><p class="title" style="font-size: 20px; color: #000;">B. FAMILY HISTORY</p></b>
+    <b><p class="title" style="font-size: 20px; color: #000;">B. FAMILY HISTORY<span class="required" style="color: red;">*</span></p></b>
   </div>
   
     <b><p class="vaccine">DISEASE</p></b>
@@ -647,7 +656,7 @@
 
 <div>
   <br>
-  <b><p class="title" style="font-size: 20px; color: #000;">C. MEDICAL HISTORY:</b></p>
+  <b><p class="title" style="font-size: 20px; color: #000;">C. MEDICAL HISTORY:<span class="required" style="color: red;">*</span></b></p>
   <p><i> The student has suffered from: (please tick the box)</i></p>
 </div>
 
@@ -786,12 +795,18 @@
             <input class="checkbox" name="vision_defect" value="vision_defect" type="checkbox" id="vision_defect">
             <label class="checkbox-label" for="vision_defect" style="font-size: 14px; padding-left: 30px;">VISION DEFECT</label>
         </div>
- 
+             
     </div>
+
+        <div class="input_wrap">
+  <label>Other Illness</label>
+  <input name="otherillness" type="text" style="width: 900px !important;" placeholder="Type N/A if NONE">
+</div>
+
 
     <div>
         <br>
-        <p><i>The student has a history of</i></p>
+        <p><i>The student has a history of<span class="required" style="color: red;">*</span></i></p>
     </div>
 
     <div class="row-container">
@@ -826,16 +841,16 @@
 <div class="row"></div>
 <div class="input_form grid-row-3">
     <div class="input_wrap">
-      <label>Special medication:</label>
-      <input name="specialmed" type="text" style="">
+      <label>Special medication:<span class="required" style="color: red;">*</span></label>
+      <input name="specialmed" type="text" style="" required placeholder="Type N/A if NONE">
     </div>
     <div class="input_wrap">
-      <label>Allergic to the ff. drugs:</label>
-      <input name="allergicdrugs" style="" type="text">
+      <label>Allergic to the ff. drugs:<span class="required" style="color: red;">*</span></label>
+      <input name="allergicdrugs" style="" type="text" required placeholder="Type N/A if NONE">
     </div>
     <div class="input_wrap">
-      <label>Other relevant information</label>
-      <input name="otherrelevant" style="" type="text">
+      <label>Other relevant information<span class="required" style="color: red;">*</span></label>
+      <input name="otherrelevant" style="" type="text" required placeholder="Type N/A if NONE">
     </div>
 </div>
           

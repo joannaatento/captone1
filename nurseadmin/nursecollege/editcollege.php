@@ -126,6 +126,7 @@ if (mysqli_num_rows($result) > 0) {
   $tonsillitis =$row['tonsillitis'];
   $typhoid_fever =$row['typhoid_fever'];
   $vision_defect =$row['vision_defect'];
+  $otherillness =$row['otherillness'];
   $hospitalization_history =$row['hospitalization_history'];
   $surgicaloperation_history =$row['surgicaloperation_history'];
   $specialmed =$row['specialmed'];
@@ -173,7 +174,7 @@ if (mysqli_num_rows($result) > 0) {
 
                                         <div class="input_wrap" style="text-align: center;">
                                             <div class="image_container" style="display: inline-block; text-align: center;">
-                                                <img src="<?php echo "../../../../upload_image/".$row['image'];?>" style="display: block; margin: 0 auto;">
+                                                <img src="<?php echo "/DivineClinic/upload_image/".$row['image'];?>" style="display: block; margin: 0 auto;">
                                                 <input type="file" name="image" id="image">
                                             </div>
                                         </div>
@@ -221,9 +222,13 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
                         
                             <div class="input_wrap">
-                                <label for="fullname">Nationality</label>
-                                <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?=$row['nationality'];?>" >
-                            </div>
+<label for="fullname">Nationality</label>
+                <select class="form-select" name="nationality">
+                    <option value="" <?php if(empty($row['nationality'])) echo "selected"; ?>>Select Nationality</option>
+                    <option value="Filipino" <?php if($row['nationality'] == "Filipino") echo "selected"; ?>>Filipino</option>
+                    <option value="Other" <?php if($row['nationality'] == "Other") echo "selected"; ?>>Other</option>
+                </select>
+              </div>
 
                             <div class="input_wrap">
                             <label for="fullname">Birthday</label>
@@ -231,10 +236,13 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
 
                             <div class="input_wrap">
-                                <label for="fullname">Religion</label>
-                                <input name="religion" class="input-box" id="religion" type="text" style="width: 240px;" value="<?=$row['religion'];?>" >
-                            </div>
-
+<label for="fullname">Religion</label>
+                <select class="form-select" name="religion">
+                    <option value="" <?php if(empty($row['religion'])) echo "selected"; ?>>Select Religion</option>
+                    <option value="Roman Catholic" <?php if($row['religion'] == "Roman Catholic") echo "selected"; ?>>Roman Catholic</option>
+                    <option value="Other" <?php if($row['religion'] == "Other") echo "selected"; ?>>Other</option>
+                </select>
+              </div>
                         </div>
 
                             <div class="input_for">
@@ -760,6 +768,10 @@ if (mysqli_num_rows($result) > 0) {
                                 <label class="checkbox-label" for="vision_defect" style="font-size: 14px; padding-left: 30px;">VISION DEFECT</label>
                             </div>
 
+                        </div>
+                        <div class="input_wrap">
+                        <label>Other Illness</label>
+                        <input name="otherillness" type="text" style="width: 900px !important;" value="<?=$row['otherillness'];?>" readonly>
                         </div>
 
                         <div>

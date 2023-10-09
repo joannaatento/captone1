@@ -24,9 +24,9 @@ include '../../../db.php';
         $gender = isset($_POST['gender']) ? trim(mysqli_real_escape_string($conn, $_POST['gender'])) : "";
         $address = trim(mysqli_real_escape_string($conn, $_POST['address']));
         $pcontact = trim(mysqli_real_escape_string($conn, $_POST['pcontact']));
-        $nationality = trim(mysqli_real_escape_string($conn, $_POST['nationality']));
+        $nationality = isset($_POST['nationality']) ? trim(mysqli_real_escape_string($conn, $_POST['nationality'])) : "";
         $birthday = trim(mysqli_real_escape_string($conn, $_POST['birthday']));
-        $religion = trim(mysqli_real_escape_string($conn, $_POST['religion']));
+        $religion = isset($_POST['religion']) ? trim(mysqli_real_escape_string($conn, $_POST['religion'])) : "";
         $fguardian = trim(mysqli_real_escape_string($conn, $_POST['fguardian']));
         $occupation1 = trim(mysqli_real_escape_string($conn, $_POST['occupation1']));
         $mother = trim(mysqli_real_escape_string($conn, $_POST['mother']));
@@ -98,6 +98,7 @@ include '../../../db.php';
         $tonsillitis = isset($_POST['tonsillitis']) ? trim(mysqli_real_escape_string($conn, $_POST['tonsillitis'])) : "";
         $typhoid_fever = isset($_POST['typhoid_fever']) ? trim(mysqli_real_escape_string($conn, $_POST['typhoid_fever'])) : "";
         $vision_defect = isset($_POST['vision_defect']) ? trim(mysqli_real_escape_string($conn, $_POST['vision_defect'])) : "";
+        $otherillness = trim(mysqli_real_escape_string($conn, $_POST['otherillness']));
         $hospitalization_history = isset($_POST['hospitalization_history']) ? trim(mysqli_real_escape_string($conn, $_POST['hospitalization_history'])) : "";
         $surgicaloperation_history = isset($_POST['surgicaloperation_history']) ? trim(mysqli_real_escape_string($conn, $_POST['surgicaloperation_history'])) : "";
         $specialmed = trim(mysqli_real_escape_string($conn, $_POST['specialmed']));
@@ -121,7 +122,7 @@ include '../../../db.php';
         fracture='$fracture', hearing_problem='$hearing_problem',heart_disorder='$heart_disorder',hyperacidity='$hyperacidity',indigestion='$indigestion',
         insomia='$insomia',kidney_problem='$kidney_problem',liver_problem='$liver_problem',measless='$measless',mumpss='$mumpss',parasitism='$parasitism',pneumonia='$pneumonia',
         primary_complex='$primary_complex',scoliosis='$scoliosis',skin_problem='$skin_problem',tonsillitis='$tonsillitis',typhoid_fever='$typhoid_fever',
-        vision_defect='$vision_defect', hospitalization_history='$hospitalization_history', surgicaloperation_history='$surgicaloperation_history', specialmed='$specialmed',
+        vision_defect='$vision_defect', otherillness='$otherillness',hospitalization_history='$hospitalization_history', surgicaloperation_history='$surgicaloperation_history', specialmed='$specialmed',
         allergicdrugs='$allergicdrugs', otherrelevant='$otherrelevant' WHERE healthcollege_id = '$healthcollege_id'";
             
       

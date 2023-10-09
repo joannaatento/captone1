@@ -15,7 +15,8 @@
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
         $idnumber = $row['idnumber'];
-
+        $gradelevel = $row['gradelevel'];
+        $role = $row['role'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 2){
             // User type 1 specific code here
@@ -207,8 +208,8 @@
 
   <div class="col-sm-3">
     <div class="form-group">
-      <label for="gradesection" class="control-label">Grade & Section</label>
-        <input type="text" class="form-control" id="gradesection" name="gradesection" placeholder="Enter your Grade & Section" required>
+      <label for="gradelevel" class="control-label">Grade & Section</label>
+        <input type="text" class="form-control" id="gradelevel" name="gradelevel" value="<?= $gradelevel; ?>" readonly>
     </div>
   </div>
 
@@ -267,17 +268,14 @@
       </div>
   </div>
 
+  <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="role" class="control-label">Role</label>
+                    <input type="hidden" name="role" value="Student in SHS">
+                    <input type="text" class="form-control" id="role_display" readonly value="Student">
 
-  <div class="col-sm-4">
-        <div class="form-group">
-            <label for="role" class="control-label">Role</label>
-                <select id="role" name="role" class="form-control">
-                <option value="">Select Role</option>
-                <option value="Student in SHS">Student</option>
-                <option value="Employee in SHS">Employee</option>
-                </select>
-        </div>
-  </div>
+                </div>
+            </div>
 
   <br>
   <br>

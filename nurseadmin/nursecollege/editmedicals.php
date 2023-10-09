@@ -60,7 +60,7 @@ if (mysqli_num_rows($result) > 0) {
   $row = $result->fetch_assoc(); 
   $idnumber = $row['idnumber'];
   $fullname = $row['fullname'];
-  $gradecourseyear1 = $row['gradecourseyear1'];
+  $gradelevel = $row['gradelevel'];
   $phoneno = $row['phoneno'];
   $date_time = $row['date_time'];
   $sched_time = $row['sched_time'];
@@ -136,9 +136,9 @@ if (mysqli_num_rows($result) > 0) {
 
   <div class="col-sm-3">
     <div class="form-group">
-      <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Grade & Section</label>
+      <label for="gradelevel" class="col-sm-12 control-label" style="font-size: 16px">Course & Year</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" value="<?=$row['gradecourseyear1'];?>">
+        <input type="text" class="form-control" id="gradelevel" name="gradelevel" value="<?=$row['gradelevel'];?>">
       </div>
     </div>
   </div>

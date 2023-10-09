@@ -9,7 +9,7 @@ if (isset($_POST['update_medicalrecord'])) {
     $user_id = $_POST['user_id'];
     $idnumber = $_POST['idnumber'];
     $fullname = $_POST['fullname'];
-    $gradecourseyear1 = $_POST['gradecourseyear1'];
+    $gradelevel = $_POST['gradelevel'];
     $phoneno = $_POST['phoneno'];
     $date_time = $_POST['date_time'];
     $sched_time = $_POST['sched_time'];
@@ -21,7 +21,7 @@ if (isset($_POST['update_medicalrecord'])) {
 
     // Update the record in the database
     $sql = "UPDATE medicalappcollege SET
-    idnumber='$idnumber', fullname='$fullname', gradecourseyear1='$gradecourseyear1',phoneno='$phoneno',
+    idnumber='$idnumber', fullname='$fullname', gradelevel='$gradelevel',phoneno='$phoneno',
     role='$role', date_time='$date_time', sched_time='$sched_time', onoff='$onoff'
     WHERE medicalapp_id = '$medicalapp_id'";
 

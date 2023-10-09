@@ -15,6 +15,8 @@
         $user_id = $row['user_id'];
         $fullname = $row['fullname'];
         $idnumber = $row['idnumber'];
+        $gradelevel = $row['gradelevel'];
+        $role = $row['role'];
         require_once('../../db.php');
         if($_SESSION['leveleduc'] == 3){
             // User type 1 specific code here
@@ -205,9 +207,9 @@
 
   <div class="col-sm-3">
     <div class="form-group">
-      <label for="gradecourseyear1" class="col-sm-12 control-label" style="font-size: 16px">Course & Year</label>
+      <label for="gradelevel" class="col-sm-12 control-label" style="font-size: 16px">Course & Year</label>
       <div class="col-sm-12">
-        <input type="text" class="form-control" id="gradecourseyear1" name="gradecourseyear1" placeholder="Enter Course & Year">
+        <input type="text" class="form-control" id="gradelevel" name="gradelevel" value="<?= $gradelevel; ?>" readonly>
       </div>
     </div>
   </div>
@@ -274,20 +276,17 @@
     </div>
 </div>
 
-
-
-    <div class="col-sm-3">
-        <div class="form-group">
-            <label for="role" class="col-sm-12 control-label" style="font-size: 16px">Role</label>
-            <div class="col-sm-12">
-                <select id="role" name="role" class="form-control">
-                    <option value="">Select Role</option>
-                    <option value="Student in College">Student</option>
-                    <option value="Employee in College">Employee</option>
-                </select>
-            </div>
-        </div>
+<div class="col-sm-3">
+    <div class="form-group">
+        <label for="role" class="control-label">Role</label>
+        <?php
+        // Assuming $role is populated with data from the database
+        $displayedRole = ($role === "Student in College") ? "Student" : (($role === "Employee in College") ? "Employee" : "");
+        ?>
+        <input type="text" class="form-control" id="displayed_role" name="displayed_role" value="<?php echo htmlspecialchars($displayedRole); ?>" readonly>
+        <input type="hidden" id="role" name="role" value="<?php echo htmlspecialchars($role); ?>">
     </div>
+</div>
 
 
     <div class="col-sm-3">

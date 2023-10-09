@@ -66,7 +66,7 @@ if (mysqli_num_rows($result) > 0) {
     $row = $result->fetch_assoc(); 
     $idnumber = $row['idnumber'];
     $fullname = $row['fullname'];
-    $gradecourseyear1 = $row['gradecourseyear1'];
+    $gradelevel = $row['gradelevel'];
     $phoneno = $row['phoneno'];
     $date_time = $row['date_time'];
     $sched_time = $row['sched_time'];
@@ -122,11 +122,13 @@ if (mysqli_num_rows($result) > 0) {
                   <th>Role</th>
                   <th>On or Off-campus Activity</th>
                   <th>Action</th>
+                  <th>Status</th>
               </tr>
           </thead>
           <tbody id="healthRecordTableBody">
           <?php
-             $sql = "SELECT * FROM medicalappcollege WHERE (role = 'Student in College' OR role = 'Employee in College') AND is_deleted_on_website = 0 ORDER BY date_time";
+             $sql = "SELECT * FROM medicalappcollege WHERE (role = 'Student in College' OR role = 'Employee in College') AND is_deleted_on_website = 0 ORDER BY done_status ASC, date_time ASC, sched_time DESC";
+
             $result = mysqli_query($conn, $sql);
 
             while ($row = $result->fetch_assoc()) {
@@ -137,7 +139,7 @@ if (mysqli_num_rows($result) > 0) {
                       <td><?php echo $row['medicalapp_id']; ?></td>
                       <td><?php echo $row['idnumber']; ?></td>
                       <td><?php echo $row['fullname']; ?></td>
-                      <td><?php echo $row['gradecourseyear1']; ?></td>
+                      <td><?php echo $row['gradelevel']; ?></td>
                       <td><?php echo $row['phoneno']; ?></td>
                       <td><?php echo $row['date_time']; ?></td>
                       <td><?php echo $row['sched_time']; ?></td>
@@ -157,15 +159,22 @@ if (mysqli_num_rows($result) > 0) {
                               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                               </svg>
                           </a>  
-                          <a href="function/formedicalappstudentdone.php?medicalapp_id=<?php echo $row['medicalapp_id']; ?>"
-                          onclick="return confirm('Are you sure you want to delete this record?')">
-                              <!-- Replace the anchor element with SVG icon -->
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                              </svg>
-                          </a>
-                          </center>
-                          </td>
+                          <td>
+  <center>
+        <?php if ($row['done_status'] === 'Done') { ?>
+            <!-- If done_status is 'Done', disable the button -->
+            <button type="button" class="btn btn-secondary" disabled>Done</button>
+        <?php } else { ?>
+            <!-- If done_status is not 'Done', enable the button -->
+            <a href="function/updated_status.php?medicalapp_id=<?php echo $row['medicalapp_id']; ?>&done_status=Done"
+                onclick="return confirm('Are you sure you want to mark this record as done?')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                    <path d="M13.78 3.22a.75.75 0 0 1 1.06 0l.97.97a.75.75 0 0 1 0 1.06l-7 7a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 1 1 1.06-1.06L7 10.94l6.72-6.72a.75.75 0 0 1 0-1.06z"/>
+                </svg>
+            </a>
+        <?php } ?>
+    </center>
+</td>
                   </tr>
   <!-- Approve Modal -->
   <div class="modal fade" id="openModal<?= $medicalapp_id; ?>" tabindex="-1" aria-labelledby="modalLabel<?= $medicalapp_id; ?>" aria-hidden="true">
@@ -183,7 +192,7 @@ if (mysqli_num_rows($result) > 0) {
                       </div>
                       <div class="mb-3">
                           <label for="messagesms" class="form-label">Message</label>
-                          <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day! Your request for medical appointment is approved. Your schedule will be on June 30, 2023 at 10:30 A.M</textarea>
+                          <textarea class="form-control" id="messagesms" name="message" rows="4">Good Day <?=$row['fullname'];?>! Your request for medical appointment is approved. Your schedule will be on <?= date('F j, Y', strtotime($row['date_time'])); ?> at <?= date('h:i A', strtotime($row['sched_time'])); ?>.</textarea>
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>

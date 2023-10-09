@@ -126,6 +126,7 @@ if (mysqli_num_rows($result) > 0) {
   $tonsillitis =$row['tonsillitis'];
   $typhoid_fever =$row['typhoid_fever'];
   $vision_defect =$row['vision_defect'];
+  $otherillness =$row['otherillness'];
   $hospitalization_history =$row['hospitalization_history'];
   $surgicaloperation_history =$row['surgicaloperation_history'];
   $specialmed =$row['specialmed'];
@@ -755,6 +756,10 @@ if (mysqli_num_rows($result) > 0) {
                                 <label class="checkbox-label" for="vision_defect" style="font-size: 14px; padding-left: 30px;">VISION DEFECT</label>
                             </div>
 
+                        </div>
+                        <div class="input_wrap">
+                        <label>Other Illness</label>
+                        <input name="otherillness" type="text" style="width: 900px !important;" value="<?=$row['otherillness'];?>" readonly>
                         </div>
 
                         <div>

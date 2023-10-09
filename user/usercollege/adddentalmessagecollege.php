@@ -292,10 +292,12 @@
     <div class="col-sm-3">
     <div class="form-group">
         <label for="role" class="control-label">Role</label>
-        <select class="form-control" id="role" name="role">
-            <option value="Student in College" <?php if ($role === "Student in College") echo "selected"; ?>>Student</option>
-            <option value="Employee in College" <?php if ($role === "Employee in College") echo "selected"; ?>>Employee</option>
-        </select>
+        <?php
+        // Assuming $role is populated with data from the database
+        $displayedRole = ($role === "Student in College") ? "Student" : (($role === "Employee in College") ? "Employee" : "");
+        ?>
+        <input type="text" class="form-control" id="displayed_role" name="displayed_role" value="<?php echo htmlspecialchars($displayedRole); ?>" readonly>
+        <input type="hidden" id="role" name="role" value="<?php echo htmlspecialchars($role); ?>">
     </div>
 </div>
 <br><br>

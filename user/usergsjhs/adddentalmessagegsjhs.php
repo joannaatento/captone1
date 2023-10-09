@@ -326,15 +326,16 @@
             </div>
                 
             <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="role" class="control-label">Role</label>
-                    <input type="hidden" name="role" value="Student in GS/JHS">
-                    <input type="text" class="form-control" id="role_display" readonly value="Student">
-
-                </div>
-            </div>
-
-            <div>
+    <div class="form-group">
+        <label for="role" class="control-label">Role</label>
+        <?php
+        // Assuming $role is populated with data from the database
+        $displayedRole = ($role === "Student in GS/JHS") ? "Student" : (($role === "Employee in GS/JHS") ? "Employee" : "");
+        ?>
+        <input type="text" class="form-control" id="displayed_role" name="displayed_role" value="<?php echo htmlspecialchars($displayedRole); ?>" readonly>
+        <input type="hidden" id="role" name="role" value="<?php echo htmlspecialchars($role); ?>">
+    </div>
+</div>
 
 <br><br>
 

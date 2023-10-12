@@ -8,7 +8,7 @@
         $name = $_POST['name'];
         $dental_service = $_POST['dental_service'];
         $c_enrolled = $_POST['c_enrolled'];
-        $gradecourseyear = $_POST ['gradecourseyear'];
+        $gradelevel = $_POST ['gradelevel'];
         $c_employee = $_POST['c_employee'];
         $message = $_POST['message'];
         
@@ -19,7 +19,7 @@
         $is_read = $_POST['is_read'];
         $is_deleted_on_website = $_POST['is_deleted_on_website'];
     
-        $sql = "INSERT INTO dental VALUES ('','$user_id','$idnumber','$name','$dental_service','$c_enrolled','$gradecourseyear','$c_employee','$message','$date_created','$is_read','$is_deleted_on_website')";
+        $sql = "INSERT INTO dental VALUES ('','$user_id','$idnumber','$name','$dental_service','$c_enrolled','$gradelevel','$c_employee','$message','$date_created','$is_read','$is_deleted_on_website')";
     
         if (mysqli_query($conn, $sql)) {
             header('location: ../adddentalmessage.php');
@@ -36,7 +36,7 @@
         $user_id = $_POST['user_id'];
         $idnumber = $_POST['idnumber'];
         $name1 = $_POST['name1'];
-        $gradecourseyear1 = $_POST ['gradecourseyear1'];
+        $gradelevel = $_POST ['gradelevel'];
         $idnumber2 = $_POST['idnumber2'];
         $name2 = $_POST['name2'];
         $gradecourseyear2 = $_POST ['gradecourseyear2'];

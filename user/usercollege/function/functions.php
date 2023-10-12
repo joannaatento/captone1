@@ -124,7 +124,7 @@
         $user_id = $_POST['user_id'];
         $idnumber = $_POST['idnumber'];
         $fullname = $_POST['fullname'];
-        $gradesection = $_POST ['gradesection'];
+        $gradelevel = $_POST ['gradelevel'];
         $phoneno = $_POST ['phoneno'];
         $date_time = $_POST ['date_time'];
         $sched_time = $_POST ['sched_time'];
@@ -152,8 +152,8 @@
     
             if ($row['count'] == 0) {
                 // No duplicate entry, proceed with the insertion
-                $sql = "INSERT INTO physicianappcollege (user_id, idnumber, fullname, gradesection, phoneno, date_time, sched_time, role, created_at, is_deleted_on_website, status) 
-                        VALUES ('$user_id', '$idnumber', '$fullname', '$gradesection', '$phoneno', '$formattedDatetime', '$sched_time', '$role', NOW(), '$is_deleted_on_website', 'Available')";
+                $sql = "INSERT INTO physicianappcollege (user_id, idnumber, fullname, gradelevel, phoneno, date_time, sched_time, role, created_at, is_deleted_on_website, status) 
+                        VALUES ('$user_id', '$idnumber', '$fullname', '$gradelevel', '$phoneno', '$formattedDatetime', '$sched_time', '$role', NOW(), '$is_deleted_on_website', 'Available')";
     
                 if (mysqli_query($conn, $sql)) {
                     // Mark the selected slot as unavailable

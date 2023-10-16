@@ -55,8 +55,10 @@ if (mysqli_num_rows($result) > 0) {
   $address = $row ['address'];
   $pcontact = $row ['pcontact'];
   $nationality = $row['nationality'];
+  $otherNationality = $row['otherNationality'];
   $birthday = $row['birthday'];
   $religion = $row['religion'];
+  $otherReligion = $row['otherReligion'];
   $fguardian = $row['fguardian'];
   $occupation1 = $row['occupation1'];
   $mother = $row['occupation2'];
@@ -222,13 +224,13 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
                         
                             <div class="input_wrap">
-<label for="fullname">Nationality</label>
-                <select class="form-select" name="nationality">
-                    <option value="" <?php if(empty($row['nationality'])) echo "selected"; ?>>Select Nationality</option>
-                    <option value="Filipino" <?php if($row['nationality'] == "Filipino") echo "selected"; ?>>Filipino</option>
-                    <option value="Other" <?php if($row['nationality'] == "Other") echo "selected"; ?>>Other</option>
-                </select>
-              </div>
+  <label for="fullname">Nationality</label>
+  <?php if ($row['nationality'] === 'Other' && !empty($row['otherNationality'])) : ?>
+    <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?php echo $row['otherNationality']; ?>">
+  <?php else : ?>
+    <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?php echo $row['nationality']; ?>">
+  <?php endif; ?>
+</div>
 
                             <div class="input_wrap">
                             <label for="fullname">Birthday</label>
@@ -236,13 +238,13 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
 
                             <div class="input_wrap">
-<label for="fullname">Religion</label>
-                <select class="form-select" name="religion">
-                    <option value="" <?php if(empty($row['religion'])) echo "selected"; ?>>Select Religion</option>
-                    <option value="Roman Catholic" <?php if($row['religion'] == "Roman Catholic") echo "selected"; ?>>Roman Catholic</option>
-                    <option value="Other" <?php if($row['religion'] == "Other") echo "selected"; ?>>Other</option>
-                </select>
-              </div>
+  <label for="fullname">Religion</label>
+  <?php if ($row['religion'] === 'Other' && !empty($row['otherReligion'])) : ?>
+    <input class="input-box" name="religion" id="religion" type="text" style="width: 240px;" value="<?php echo $row['otherReligion']; ?>">
+  <?php else : ?>
+    <input class="input-box" name="religion" id="religion" type="text" style="width: 240px;" value="<?php echo $row['religion']; ?>">
+  <?php endif; ?>
+</div>
                         </div>
 
                             <div class="input_for">

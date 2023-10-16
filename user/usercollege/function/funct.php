@@ -11,8 +11,10 @@
         $address = trim(mysqli_real_escape_string($conn, $_POST['address']));
         $pcontact = trim(mysqli_real_escape_string($conn, $_POST['pcontact']));
         $nationality = isset($_POST['nationality']) ? trim(mysqli_real_escape_string($conn, $_POST['nationality'])) : "";
+        $otherNationality = trim(mysqli_real_escape_string($conn, $_POST['otherNationality']));
         $birthday = trim(mysqli_real_escape_string($conn, $_POST['birthday']));
         $religion = isset($_POST['religion']) ? trim(mysqli_real_escape_string($conn, $_POST['religion'])) : "";
+        $otherReligion = trim(mysqli_real_escape_string($conn, $_POST['otherReligion']));
         $fguardian = trim(mysqli_real_escape_string($conn, $_POST['fguardian']));
         $occupation1 = trim(mysqli_real_escape_string($conn, $_POST['occupation1']));
         $mother = trim(mysqli_real_escape_string($conn, $_POST['mother']));
@@ -92,7 +94,7 @@
         $otherrelevant = trim(mysqli_real_escape_string($conn, $_POST['otherrelevant']));
 
         $sql = "INSERT INTO healthrecordformcollege VALUES ('','$user_id','$image','$idnumber','$fullname','$gender','$address',
-        '$pcontact','$nationality','$birthday','$religion','$fguardian','$occupation1','$mother','$occupation2','$contactemer','$contactno',
+        '$pcontact','$nationality','$otherNationality','$birthday','$religion','$otherReligion','$fguardian','$occupation1','$mother','$occupation2','$contactemer','$contactno',
         '$relation','$referral','$contactno2','$physiciannumcall','$addresshospital','$td','$mmr','$hepab', '$varicella','$asthma_history',
         '$asthma_relation','$bleedingtendency_history','$bleedingtendency_relation','$cancer_history','$cancer_relation','$diabetes_history','$diabetes_relation','$heartdisorder_history',
         '$heartdisorder_relation','$highblood_history','$highblood_relation','$kidneyproblem_history','$kidneyproblem_relation','$mentaldisorder_history','$mentaldisorder_relation','$obesity_history','$obesity_relation',

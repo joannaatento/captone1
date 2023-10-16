@@ -55,8 +55,10 @@ if (mysqli_num_rows($result) > 0) {
   $address = $row ['address'];
   $pcontact = $row ['pcontact'];
   $nationality = $row['nationality'];
+  $otherNationality = $row['otherNationality'];
   $birthday = $row['birthday'];
   $religion = $row['religion'];
+  $otherReligion = $row['otherReligion'];
   $fguardian = $row['fguardian'];
   $occupation1 = $row['occupation1'];
   $mother = $row['occupation2'];
@@ -218,18 +220,25 @@ if (mysqli_num_rows($result) > 0) {
                         
                             <div class="input_wrap">
                                 <label for="fullname">Nationality</label>
-                                <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?=$row['nationality'];?>" readonly>
-                            </div>
-
+                                <?php if ($row['nationality'] === 'Other' && !empty($row['otherNationality'])) : ?>
+                                    <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?php echo $row['otherNationality']; ?>" readonly>
+                                <?php else : ?>
+                                    <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?php echo $row['nationality']; ?>" readonly>
+                                <?php endif; ?>
+                                </div>
                             <div class="input_wrap">
                             <label for="fullname">Birthday</label>
                             <input name="birthday" class="input-box" id="birthday" type="date" value="<?=$row['birthday'];?>" readonly>
                             </div>
 
                             <div class="input_wrap">
-                                <label for="fullname">Religion</label>
-                                <input name="religion" class="input-box" id="religion" type="text" style="width: 240px;" value="<?=$row['religion'];?>" readonly>
-                            </div>
+                                    <label for="fullname">Religion</label>
+                                    <?php if ($row['religion'] === 'Other' && !empty($row['otherReligion'])) : ?>
+                                        <input class="input-box" name="religion" id="religion" type="text" style="width: 240px;" value="<?php echo $row['otherReligion']; ?>" readonly>
+                                    <?php else : ?>
+                                        <input class="input-box" name="religion" id="religion" type="text" style="width: 240px;" value="<?php echo $row['religion']; ?>" readonly>
+                                    <?php endif; ?>
+                                    </div>
 
                         </div>
 

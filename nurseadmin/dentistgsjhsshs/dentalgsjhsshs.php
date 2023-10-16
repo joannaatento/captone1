@@ -159,8 +159,8 @@ if (mysqli_num_rows($result) > 0) {
                         <td>
   <center>
         <?php if ($row['done_status'] === 'Done') { ?>
-            <!-- If done_status is 'Done', disable the button -->
-            <button type="button" class="btn btn-secondary" disabled>Done</button>
+            <!-- If done_status is 'Done', disable the button --><br>
+            <p style="color: blue">Done</p>
         <?php } else { ?>
             <!-- If done_status is not 'Done', enable the button -->
             <a href="function/updated_status.php?dentalapp_id=<?php echo $row['dentalapp_id']; ?>&done_status=Done"

@@ -218,7 +218,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/DivineClinic/components/navbar.php";
                     </div>
         <div class="form-group">
 			<b>
-                <span class="sched">Schedule: <?php echo date('Y-m-d', strtotime($row['date_time'])); ?>
+                <span class="sched">Schedule: <?php echo date('F j, Y', strtotime($row['date_time'])); ?>
                 &nbsp;&nbsp;<?php echo date('h:i A', strtotime($row['sched_time'])); ?></span>
             </b>
         </div>

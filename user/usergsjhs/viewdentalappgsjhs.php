@@ -227,7 +227,7 @@ if (mysqli_num_rows($result) > 0) {
         </div>
         <div class="form-group">
             <b>
-                <span class="sched">Schedule: <?php echo date('Y-m-d', strtotime($row['date_time'])); ?>&nbsp;&nbsp;
+                <span class="sched">Schedule: <?php echo date('F j, Y', strtotime($row['date_time'])); ?>&nbsp;&nbsp;
                  <?php echo date('h:i A', strtotime($row['sched_time'])); ?></span>
             </b>
         </div>

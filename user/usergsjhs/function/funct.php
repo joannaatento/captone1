@@ -17,7 +17,9 @@
         $mother = trim(mysqli_real_escape_string($conn, $_POST['mother']));
         $cmother = trim(mysqli_real_escape_string($conn, $_POST['cmother']));
         $religion = isset($_POST['religion']) ? trim(mysqli_real_escape_string($conn, $_POST['religion'])) : "";
+        $otherReligion = trim(mysqli_real_escape_string($conn, $_POST['otherReligion']));
         $nationality = isset($_POST['nationality']) ? trim(mysqli_real_escape_string($conn, $_POST['nationality'])) : "";        
+        $otherNationality = trim(mysqli_real_escape_string($conn, $_POST['otherNationality']));
         $language = trim(mysqli_real_escape_string($conn, $_POST['language']));
         $student_lives = isset($_POST['student_lives']) ? trim(mysqli_real_escape_string($conn, $_POST['student_lives'])) : "";
         $guardianname = trim(mysqli_real_escape_string($conn, $_POST['guardianname']));
@@ -67,7 +69,7 @@
 
  $sql = "INSERT INTO healthrecordformgsjhs (
     user_id, image, fullname, idnumber, cp, birthday, gender, address, paddress, father, cfather, mother, cmother, 
-    religion, nationality, language, student_lives, guardianname, guardianrelation, cguardian, 
+    religion, otherReligion, nationality, otherNationality, language, student_lives, guardianname, guardianrelation, cguardian, 
     bcg, dpt, opv, hepa, measles, others, vaccination,imagevac, asthma, faintingspells, 
     allergicrhinitis, freqheadache, anxietydis, g6pd, bleedingclotting, hearingprob, hypergas, derma, hypertension, 
     diabetes, hyperventilation, mens, othersmedical, heartcondition, heartcon_specify, eyeproblem, eyeprob_specify, 
@@ -76,7 +78,7 @@
     concerns, concerns_specify
 ) VALUES (
     '$user_id', '$image', '$fullname', '$idnumber', '$cp', '$birthday', '$gender', '$address', '$paddress', '$father', '$cfather', 
-    '$mother', '$cmother', '$religion', '$nationality', '$language', '$student_lives',
+    '$mother', '$cmother', '$religion','$otherReligion', '$nationality', '$otherNationality', '$language', '$student_lives',
     '$guardianname', '$guardianrelation', '$cguardian', '$bcg', '$dpt', '$opv', '$hepa', '$measles', '$others', '$vaccination', 
     '$imagevac', '$asthma', '$faintingspells', '$allergicrhinitis', '$freqheadache', 
     '$anxietydis', '$g6pd', '$bleedingclotting', '$hearingprob', '$hypergas', '$derma', '$hypertension', '$diabetes', 

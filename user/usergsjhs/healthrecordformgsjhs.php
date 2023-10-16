@@ -351,22 +351,60 @@
 </div>
     <div class="input_form">
     <div class="input_wrap">
-                <label for="fullname">Religion<span class="required" style="color: red;">*</span></label> 
-                <select class="form-select" name="religion" required>          
-                    <option disabled selected>Select Religion</option>
-                    <option value="Roman Catholic">Roman Catholic</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
+    <label for="fullname">Religion<span class="required" style="color: red;">*</span></label>
+    <select class="form-select" name="religion" id="religion-select" required>
+        <option disabled selected>Select Religion</option>
+        <option value="Roman Catholic">Roman Catholic</option>
+        <option value="Other">Other</option>
+    </select>
+    <input type="text" class="form-input" name="otherReligion" id="otherReligion" style="display: none;" placeholder="Enter other religion">
+</div>
+
+
+<script>
+    const religionSelect = document.getElementById('religion-select');
+    const otherReligionInput = document.getElementById('otherReligion');
+
+    religionSelect.addEventListener('change', function () {
+        if (religionSelect.value === 'Other') {
+            religionSelect.style.display = 'none';
+            otherReligionInput.style.display = 'inline-block';
+            otherReligionInput.setAttribute('required', 'required');
+        } else {
+            religionSelect.style.display = 'inline-block';
+            otherReligionInput.style.display = 'none';
+            otherReligionInput.removeAttribute('required');
+        }
+    });
+</script>
 
             <div class="input_wrap">
-                <label for="fullname">Nationality<span class="required" style="color: red;">*</span></label> 
-                <select class="form-select" name="nationality" required>          
-                    <option disabled selected>Select Nationality</option>
-                    <option value="Filipino">Filipino</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
+    <label for="fullname">Nationality<span class="required" style="color: red;">*</span></label>
+    <select class="form-select" name="nationality" id="nationality-select" required>
+        <option disabled selected>Select Nationality</option>
+        <option value="Filipino">Filipino</option>
+        <option value="Other">Other</option>
+    </select>
+    <input type="text" class="form-input" name="otherNationality" id="otherNationality" style="display: none;" placeholder="Enter other nationality">
+</div>
+
+
+<script>
+    const nationalitySelect = document.getElementById('nationality-select');
+    const otherNationalityInput = document.getElementById('otherNationality');
+
+    nationalitySelect.addEventListener('change', function () {
+        if (nationalitySelect.value === 'Other') {
+            nationalitySelect.style.display = 'none';
+            otherNationalityInput.style.display = 'inline-block';
+            otherNationalityInput.setAttribute('required', 'required');
+        } else {
+            nationalitySelect.style.display = 'inline-block';
+            otherNationalityInput.style.display = 'none';
+            otherNationalityInput.removeAttribute('required');
+        }
+    });
+</script>
 
         <div class="input_wrap">
                 <label for="fullname">Primary Language Spoken<span class="required" style="color: red;">*</span></label>

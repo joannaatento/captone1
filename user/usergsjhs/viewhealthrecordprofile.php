@@ -234,17 +234,24 @@
 
 </div>
 
-<div class="input_form grid-row-2">
-  <div class="input_wrap">
-      <label for="fullname">Religion</label>
-      <input name="religion" id="religion" type="text" value="<?=$row['religion'];?>" readonly>
-  </div>
+<div class="input_wrap">
+  <label for="fullname">Religion</label>
+  <?php if ($row['religion'] === 'Other' && !empty($row['otherReligion'])) : ?>
+    <input class="input-box" name="religion" id="religion" type="text" style="width: 240px;" value="<?php echo $row['otherReligion']; ?>" readonly>
+  <?php else : ?>
+    <input class="input-box" name="religion" id="religion" type="text" style="width: 240px;" value="<?php echo $row['religion']; ?>" readonly>
+  <?php endif; ?>
+</div>
 
   <div class="input_wrap">
-      <label for="fullname">Nationality</label>
-      <input name="nationality" id="nationality" type="text" value="<?=$row['nationality'];?>" readonly>
-  </div>
+  <label for="fullname">Nationality</label>
+  <?php if ($row['nationality'] === 'Other' && !empty($row['otherNationality'])) : ?>
+    <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?php echo $row['otherNationality']; ?>" readonly>
+  <?php else : ?>
+    <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?php echo $row['nationality']; ?>" readonly>
+  <?php endif; ?>
 </div>
+
 
 <div class="input_form grid-row-1">
     <div class="input_wrap">

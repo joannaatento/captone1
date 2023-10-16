@@ -113,8 +113,10 @@ if (mysqli_num_rows($result) > 0) {
   $cfather = $row['cfather'];
   $mother = $row['mother'];
   $cmother = $row['cmother'];
-  $religion = $row['religion'];
   $nationality = $row['nationality'];
+  $otherNationality = $row['otherNationality'];
+  $birthday = $row['birthday'];
+  $otherReligion = $row['otherReligion'];
   $language = $row['language'];
   $student_lives = $row['student_lives'];
   $guardianname = $row['guardianname'];
@@ -195,7 +197,7 @@ if (mysqli_num_rows($result) > 0) {
               
               <div class="input_wrap" style="text-align: center;">
                 <div class="image_container" style="display: inline-block; text-align: center;">
-                    <img src="<?php echo "/CAPSTONE1/upload_image/".$row['image'];?>" style="display: block; margin: 0 auto;">
+                    <img src="<?php echo "/DivineClinic/upload_image/".$row['image'];?>" style="display: block; margin: 0 auto;">
                    
                 </div>
               </div>
@@ -284,13 +286,21 @@ if (mysqli_num_rows($result) > 0) {
 
 <div class="input_form grid-row-2">
 <div class="input_wrap">
-    <label for="fullname">Religion</label>
-    <input name="religion" id="religion" type="text" value="<?=$row['religion'];?>" readonly>
+  <label for="fullname">Religion</label>
+  <?php if ($row['religion'] === 'Other' && !empty($row['otherReligion'])) : ?>
+    <input class="input-box" name="religion" id="religion" type="text" style="width: 240px;" value="<?php echo $row['otherReligion']; ?>" readonly>
+  <?php else : ?>
+    <input class="input-box" name="religion" id="religion" type="text" style="width: 240px;" value="<?php echo $row['religion']; ?>" readonly>
+  <?php endif; ?>
 </div>
 
 <div class="input_wrap">
-    <label for="fullname">Nationality</label>
-    <input name="nationality" id="nationality" type="text" value="<?=$row['nationality'];?>" readonly>
+  <label for="fullname">Nationality</label>
+  <?php if ($row['nationality'] === 'Other' && !empty($row['otherNationality'])) : ?>
+    <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?php echo $row['otherNationality']; ?>" readonly>
+  <?php else : ?>
+    <input class="input-box" name="nationality" id="nationality" type="text" style="width: 240px;" value="<?php echo $row['nationality']; ?>" readonly>
+  <?php endif; ?>
 </div>
 </div>
 
@@ -420,7 +430,7 @@ if (mysqli_num_rows($result) > 0) {
 <div class="input_wrap">
 <div class="image_container">
   <label>Vaccination Attachment</label>
-    <img src="<?php echo "/CAPSTONE1/upload_image/".$row['imagevac'];?>">
+    <img src="<?php echo "/DivineClinic/upload_image/".$row['imagevac'];?>">
 </div>
 </div>
 

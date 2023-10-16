@@ -139,7 +139,7 @@ $phoneno = $row['phoneno'];
    <td><?php echo $row['phoneno']; ?></td>
    <td><?php echo $row['gradelevel']; ?></td>
    <td><?php echo $row['role']; ?></td>
-   <td><?php echo $row['date_time']; ?></td>
+   <td><?php echo date("F j, Y", strtotime($row['date_time'])); ?></td>
    <td><?php echo $row['sched_time']; ?></td>
 
    <td>

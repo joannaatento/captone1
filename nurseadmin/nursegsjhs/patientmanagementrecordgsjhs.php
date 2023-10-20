@@ -13,6 +13,7 @@
     while($row = $result->fetch_array()){
         $admin_id = $row['admin_id'];
         $username = $row['username'];
+        $role = $row['role'];
         require_once('../../db.php');
         if($_SESSION['role'] == 1){
             // User type 1 specific code here

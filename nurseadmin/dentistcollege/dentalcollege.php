@@ -31,7 +31,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Edit Dental Appointments</title>
+    <title>Dental Appointments</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -89,7 +89,7 @@ if (mysqli_num_rows($result) > 0) {
 				    <div class="app-card-header px-4 py-3">
 				        <div class="row g-3 align-items-center">
 					        <div class="col-12 col-lg-auto text-center text-lg-start">
-						        <h4 class="notification-title mb-1">Edit Dental Appointments</h4>
+						        <h4 class="notification-title mb-1">Dental Appointments</h4>
 					        </div>
                             <?php
 								if(isset($_SESSION['success'])){

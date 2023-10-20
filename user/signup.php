@@ -197,8 +197,12 @@ a.app-link:hover{
 							<label class="sr-only" for="signup-email">Role</label>
 							<select id="signup-name" name="role" class="form-control signup-role" required="required">
 								<option value="" selected disabled>Select Role</option>
-								<option value="Student in GS/JHS">Student</option>
-								<option value="Employee in GS/JHS">Employee</option>
+								<option value="Student in GS/JHS">Student in GS/JHS</option>
+                                <option value="Student in SHS">Student in SHS</option>
+                                <option value="Student in College">Student in College</option>
+								<option value="Employee in GS/JHS">Employee in GS/JHS</option>
+                                <option value="Employee in SHS">Employee in SHS</option>
+                                <option value="Employee in College">Employee in College</option>
 							</select>
       					  </div>
 							<div class="email mb-3">
